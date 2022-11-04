@@ -1,0 +1,253 @@
+      const addProdmatsub = document.querySelectorAll('.addProdmatsub')
+    for (let i = 0; i < addProdmatsub.length; i++) {
+    
+ addProdmatsub[i].addEventListener('click', ()=>{
+   const addmatsubRef = addProdmatsub[i].getAttribute('data-id');
+   console.log(addmatsubRef)
+   db.collection('recycledproducts').doc(`${btnpraddRef}`).collection('selectedParts').doc(`${partmatRef}`).collection('selectedMaterials').doc(`${addmatsubRef}`).collection('selectedSubs').get()
+.then(query=>{
+    // let data = query.docs.map(doc=>{
+    //     let x = doc.data()
+    //         return x;
+    // })
+    // console.log(data)
+    console.log('Success!')
+  })
+  })}
+
+
+
+
+
+
+
+
+  const ColGrp = document.querySelector('.ColGrp')
+ColGrp.addEventListener('click', (e)=>{
+  e.preventDefault()
+          var productsRef = db.collectionGroup('materials');
+productsRef
+.get()
+ .then(query=>{
+    let data = query.docs.map(doc=>{
+   
+        let x = doc.ref.path
+            return  x;
+           
+    })
+
+    console.log(data) })
+})
+
+
+
+
+    const viewmatsub = document.querySelectorAll('.viewmatsub')
+    for (let i = 0; i < viewmatsub.length; i++) {
+    
+    viewmatsub[i].addEventListener('click', ()=>{
+  document.querySelector('.substancelist').innerHTML = ""
+   const matsubRef = viewmatsub[i].getAttribute('data-id');
+   console.log(matsubRef)
+   db.collection('recycledparts').doc(`${doc.id}`).collection('materials').get()
+
+  
+.then(query=>{
+    let data = query.docs.map(doc=>{
+        let x = doc.data()
+            return x;
+    })
+    console.log(data)
+    let arrUniq = [...new Map(data.map(v => [JSON.stringify([v.materialGroup,v.materialName,v.materialRecycleContent,v.materialClassId,v.materialRecycleType,v.materialMassg,v.materialMassPerc]), v])).values()]
+    console.log(arrUniq)
+    buildTable(arrUniq)
+	function buildTable(arrUniq){
+
+		for (var i = 0; i < arrUniq.length; i++){
+			var row = `  <tr id='${doc.id}' data-id='${doc.id}'>
+    <td>${doc.data().materialGroup}</td>
+       <td>${doc.data().materialName}</td>
+      <td>${doc.data().materialClassId}</td>
+      <td>${doc.data().materialRecycleContent}</td>
+      <td>${doc.data().materialRecycleType}</td>
+      <td>${doc.data().materialMassg}</td>
+        <td>${doc.data().materialMassPerc}</td>
+     
+
+  <td>
+<div class="btngroup">
+  
+     <div class="button-dropdown" >
+        <a class="button toggle" style="padding: 1.5em 0.3em;"></a>
+        <ul class="dropdown">
+      
+           <li><a href="#" class="dropdown-link btnpmviewSubs" data-id='${doc.id}' data-toggle="modal" data-target="#exampleModalScrollableSubstances">View Substances</a></li>
+          <li><a href="#" class="dropdown-link btnpmedit" data-id='${doc.id}'>Edit</a></li>
+          <li><a href="#" class="dropdown-link btnpmSubs" data-id='${doc.id}'>Add New Substance</a></li>
+    <li><a href="#" class="dropdown-link btnpmdelete" data-Part='${partRef}' data-id='${doc.id}'>Delete</a></li>
+        </ul>
+      </div>
+    </div>
+      </td>
+    </tr>`
+    
+			document.querySelector('.substancelist').innerHTML += row
+      // document.querySelector('.substancelist').insertAdjacentHTML('beforeend', html)
+
+
+	}}
+  })
+  })}
+
+
+      <div class="btngroup">
+     <span href="#" class="viewpartmat button btn-large" data-toggle="modal" data-target="#partproductmaterial" data-PN= '${doc.data().partname}' data-id='${doc.id}'>View Material</span>
+         <div class="button-dropdown" >
+        <a class="button toggle" style="padding: 1.5em 0.3em;"></a>
+        <ul class="dropdown">
+    <li><a href="#" class="dropdown-link btnprodpartdelete" data-Part='${doc.id}' >Delete</a></li>
+        </ul>
+      </div>
+   
+    </div>
+
+
+
+
+
+    <div class="editMatmodaly modal fade" id="addsubsproduct" tabindex="-1" role="dialog" aria-labelledby="addsubsproduct" style="z-index: 99999;" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                                 <h5 class="modal-title " id="partproductmaterialsubsTitle"><span class="treeproducttitle"></span></h5>
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                                 </button>
+                              </div>
+                                <div class="modal-body">  
+                                  <div class="container-fluid">
+                                          <form class="form editMatPartForm"  autocomplete="off"  data-toggle="validator" id="form-wizard1">
+                             <ul id="top-tab-list" class="p-0">
+                           
+                           <li id="personal">
+                              <a href="#personal">
+                              <i class="ri-user-fill"></i><span>Material Details </span>
+                              </a>
+                           </li>
+                        
+                        </ul>
+                        <!-- fieldsets -->
+                        <fieldset>
+                           <div class="form-card text-left">
+                              <div class="row">
+                                 <div class="col-7">
+                                    <h3 class="mb-4">Edit Material Details:</h3>
+                                 </div>
+                                 <div class="col-5">
+                                    <!-- <h2 class="steps">Step 3 - 4</h2> -->
+                                 </div>
+                              </div>
+                              
+                           <div class="row">
+                                           <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Material Group *</label>
+                                          <input type="text" class="form-control"  id='PMmaterialGroup' placeholder="Please Enter Material Category" data-errors="Please Class ID." name="PMmaterialGroup" >
+                                         <!-- <select class="form-control" id="PMmaterialGroup" name="PMmaterialGroup" data-errors="Please Enter Material Category."  required>
+                                       
+                                             
+                                           </select> -->
+                                      
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>  
+                   
+                                  <div class="col-md-6">                
+                                            <div class="form-group">
+                                        <label>Material Name *</label>
+                                         <input type="text" class="form-control editmaterialName"  id='PMmaterialName' placeholder="Please Enter Product Name" data-errors="Please Class ID." name="editmaterialName" >
+                                         <!-- <select class="editmaterialName form-control addmaterialName" id="PMmaterialName" name="editmaterialName" data-errors="Please Enter Product Name."  required>
+                                           
+                                           </select> -->
+                                      
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>  
+                           </div> 
+                             <div class="row" style="align-items: center; margin-top: 15px; margin-bottom: 15px;">
+                            <div class="col-md-6">
+                                  <div class="custom-control custom-checkbox custom-control-inline">
+                           <input type="checkbox" class="custom-control-input seleccheckbox" id="customCheck5" >
+                           <label class="custom-control-label" for="customCheck5">Selective Materials</label>
+                                   </div>
+                            </div>
+
+                            <div class="col-md-6">
+                              <label>Treatment </label>
+                               <select class="form-control selectiveMat" id="selectiveMat" name="selectiveMat" disabled="true">
+                                           
+                                           </select>
+                            </div>
+                           </div> 
+                               <div class="row">
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Class ID</label>
+                                        <input type="text" class="form-control"  id='PMmaterialClassID' placeholder="Enter Enter Material Class ID" data-errors="Please Class ID." name="PMmaterialClassID" >
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                <div class="col-md-4"> 
+                                    <div class="form-group">
+                                        <label>Recycle Rate (%)</label>
+                                        <input type="number" class="form-control" id='PMmaterialRecycleContent' placeholder="Enter Material Recycle Content" data-errors="Please part specs." name="editmaterialRecycleContent" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                               </div>
+                              <div class="row">
+                                  <div class="col-md-12"> 
+                                    <div class="form-group">
+                                        <label>Recycle Type *</label>
+                                         <select name="editMaterialRecycleType" id="PMMaterialRecycleType" class="form-control" data-style="py-0">
+                                           <option>Select Option</option>
+                                       <option>Pre Consumer </option>
+                                       <option>Post Consumer </option>
+                                       <option >Pre+Post Consumer</option>
+                                       <option>Unspecified</option>
+                                    
+                                    
+                                    </select>
+                                        
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                              </div>
+                            <div class="row">
+                                     <div class="col-md-6"> 
+                                    <div class="form-group">
+                                        <label>Material Mass (g) *</label>
+                                        <input type="number" class="form-control" id='PMmaterialMassg' placeholder="Please enter Material mass" data-errors="Please part mass." name="editmaterialMassg" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                 <div class="col-md-6"> 
+                                    <div class="form-group">
+                                        <label>Material Mass (%) *</label>
+                                        <input type="number" class="form-control" id='PMMaterialMassPerc' placeholder="Please enter Material mass" data-errors="Please part mass." name="editMaterialMassPerc" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                            </div>
+                           </div>
+                    
+                        <button  id="editMat"  class="btn btn-primary btn-light  action-button-previous float-right mr-3" >소재 편집</button>
+                            <button type="button" id="subsmodalclose" class="btn btn-secondary "  >Close</button>
+                        </fieldset>
+                      
+                   </form>
+                  </div>
+               </div>            
+            </div>
+         </div>    
+        </div>
