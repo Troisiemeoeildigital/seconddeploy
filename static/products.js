@@ -1184,7 +1184,7 @@ Swal.fire({
       // materiallist.innerHTML = ""
        
   
- console.log('hii')
+ console.log('hii github!')
 
 
     var deleteFn = firebase.functions().httpsCallable('recursiveDelete');
