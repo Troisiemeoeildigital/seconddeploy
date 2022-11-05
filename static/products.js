@@ -1239,18 +1239,12 @@ Swal.fire({
 		<span class=" viewmatsub" id="btnprview" data-toggle="modal" data-target="#partproductmaterialsubs" data-id='${doc.id}'><i class="ri-eye-line" style="color: white; font-size: 15px;"></i></span>
 		<span class="navbary__label">View Substances</span>
 	</a>
+
 	<a href="#" class="navbary__link">
-		<span class=" btnpr-edit"><i class='bx bxs-edit-alt' style="color: white; font-size: 15px;" ></i></span>
-		<span class="navbary__label">Edit Part</span>
-	</a>
-	<a href="#" class="navbary__link">
-		<span class=" addProdmatsub"  data-toggle="modal" data-target="#addsubsproduct" data-id='${doc.id}'><i class='bx bx-plus' style="color: white; font-size: 15px;"></i></span>
+		<span class=" addProdmatsub"  data-toggle="modal" data-target="#addsubsproduct" data-id='${doc.id}'><i class='bx bx-plus' style="color: white; font-size: 15px; left:-58px;"></i></span>
 		<span class="navbary__label">Add New Substance</span>
 	</a>
-  	<a href="#" class="navbary__link">
-		<span class=" btnpr-delete" ><i class='ri-delete-bin-line' style="color: white; font-size: 15px;" ></i></span>
-		<span class="navbary__label">Delete Substance</span>
-	</a>
+
 </nav>
    
       </td>
@@ -1415,18 +1409,33 @@ addSubs.onclick = function(e) {
  
  btnprsubdelete[i].addEventListener('click', (event) => {
   event.preventDefault()
-      let deleteData = btnprsubdelete[i].getAttribute("data-id");
+  Swal.fire({
+  title: 'Do you want to save the changes?',
+  showDenyButton: true,
+  showCancelButton: true,
+  confirmButtonText: 'Save',
+  denyButtonText: `Don't save`,
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+    let deleteData = btnprsubdelete[i].getAttribute("data-id");
 console.log(deleteData)
    let tr = document.getElementById(`${deleteData}`);
       tr.remove(tr);
       db.collection('recycledproducts').doc(`${btnpraddRef}`).collection('selectedParts').doc(`${partmatRef}`).collection('selectedMaterials').doc(`${matsubRef}`).collection('selectedSubs').doc(deleteData).delete().then(() => {
-        
+          Swal.fire('Saved!', '', 'success')
       console.log('Document succesfully deleted!');
     })
  
     .catch(err => {
       console.log('Error removing document', err);
     });
+  
+  } else if (result.isDenied) {
+    Swal.fire('Changes are not saved', '', 'info')
+  }
+})
+      
     event.stopPropagation();
 
   })

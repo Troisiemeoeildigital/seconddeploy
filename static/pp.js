@@ -107,7 +107,7 @@ const renderUser = doc => {
 
   const tr = `
     <tr data-id='${doc.id}' style="  border-bottom: 0.5px solid grey;">
-  
+      <td>${doc.data().supplierName}</td>
      <td>${doc.data().partName}</td>
    
       <td>${doc.data().partCode}</td>
@@ -119,10 +119,12 @@ const renderUser = doc => {
 
 
          <td>
-    <div class="btngroup">
-     <span href="#" id="btnprview" class="button btn-large viewbtn" data-toggle="modal" style="margin-bottom: 22px;" data-target="#exampleModalScrollable">View Materials</span>
-   
-    </div>
+  <nav class="navbary">
+	<a href="#" class="navbary__link">
+		<span class=" viewbtn" id="btnprview"  data-toggle="modal" data-target="#exampleModalScrollable" data-id='${doc.id}'><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
+		<span class="navbary__label" style="left: -36px;">View Materials</span>
+	</a>
+</nav>
    
       </td>
     </tr>
@@ -163,10 +165,12 @@ viewMatTable.classList.add('modaly-show');
 
 
   <td>
-    <div class="btngroup">
-     <span href="#" class="button btn-large btnpmviewSubs" data-id='${doc.id}'  data-toggle="modal" data-target="#exampleModalScrollableSubstances" style="margin-bottom: 22px;" >View Substances</span>
-   
-    </div>
+ <nav class="navbary">
+	<a href="#" class="navbary__link">
+		<span class="btnpmviewSubs" id="btnprview" data-id='${doc.id}'  data-toggle="modal" data-target="#exampleModalScrollableSubstances"><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
+		<span class="navbary__label" style="left: -36px;">View Substances</span>
+	</a>
+</nav>
       </td>
     </tr>
       

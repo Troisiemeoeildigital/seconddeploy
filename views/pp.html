@@ -331,8 +331,8 @@
                         </div>
                         <select  class="custom-select searchPartSelection" id="inputGroupSelect03">
                            <option selected>Choose...</option>
-                           <option value="0">Part Name</option>
-                           <option value="1">Part Code</option>
+                           <option value="1">Part Name</option>
+                           <option value="2">Part Code</option>
                         </select>
                            <div class="input-group-append">
                            <span class="input-group-text" id="basic-addon5"><i class="las la-search font-size-20"></i></span>
@@ -346,8 +346,8 @@
                       
                         <select  class="custom-select sortPartSelection" id="inputGroupSelect03">
                            <option value="0" selected>Choose...</option>
-                           <option value="0">Sort by Part Name</option>
-                           <option value="1">Sorty by Part Code</option>
+                           <option value="1">Sort by Part Name</option>
+                           <option value="2">Sorty by Part Code</option>
                         </select>
                            <div class="input-group-append">
                            <span class="input-group-text" id="basic-addon5"><i class="bx bx-sort font-size-20"></i></span>
@@ -375,9 +375,8 @@
     overflow-y: scroll;"> 
       <table class="table-users parttable" id="myTableMat" >
         <thead style="position: sticky; top: 0; z-index: 1;">
-              
+                 <th>Supplier Name</th>
              <th>Part Name</th>
-    
             <th>Part Code</th>
             <th>Part Weight (g)</th>
               <th>Part Size</th>
@@ -1045,9 +1044,9 @@
                         <table class="table-parts" id="myTable" >
                             <thead>
                                 <tr>
-                                <th >  Material Category</th>
+                                <th >  Material Group</th>
                                   <th>  Material Name</th>
-                                      <th>  Recycle Content</th>
+                                      <th>  Recycled Rate (%)</th>
                                         <th>  Recycle Type</th>
                                           <th>  Mass (g)</th>
                                             <th>  Mass (%)</th>
@@ -1263,7 +1262,7 @@ const firebaseConfig = {
     <script src="./table-treeview.js"></script>
  <script  type="module" src="./pp.js" defer></script>
      <script   src="./sidemenu.js" ></script>
-      <script   src="./sortandsearch/sortPart.js" ></script>
+ 
 
     
     <!-- Chart Custom JavaScript -->
@@ -1276,7 +1275,7 @@ const firebaseConfig = {
     <script src="./app.js"></script>
      <!-- <script   type="module" src="./auth.js" ></script> -->
      <script>feather.replace()</script>
-<script src="./search.js" ></script>
+<script src="./searchPP/searchPP.js" ></script>
   </body>
 </html>
 

@@ -108,9 +108,8 @@ const renderUser = doc => {
   const tr = `
     <tr data-id='${doc.id}' style="  border-bottom: 0.5px solid grey;">
   
-     <td>${doc.data().partSupplier}</td>
+     <td>${doc.data().supplierName}</td>
      <td>${doc.data().partName}</td>
-   
       <td>${doc.data().partCode}</td>
         <td>${doc.data().partWeight}</td>
          <td>${doc.data().partSize}</td>

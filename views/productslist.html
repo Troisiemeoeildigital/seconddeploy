@@ -1440,6 +1440,7 @@
                           
                                       <div class="row downloadtitle">
                                     <button type="button"  id="edit" class="btn btn-secondary reportbtnEN4557 float-right" style="  position: -webkit-sticky; position: sticky;"  > Download Assessment Report [EN4557] </button>
+                                      <!-- <button type="button"  id="edit" class="btn btn-secondary exporttocsv float-right" style="  position: -webkit-sticky; position: sticky;"  > Download CSV Report [EN4557] </button> -->
                             </div>
                 
                                <div class="" style="margin-left: 15px; margin-right: 15px; margin-top: 15px;">
@@ -1895,6 +1896,7 @@
     <!-- Chart Custom JavaScript -->
     <script src="./customizer.js"></script>
       <script  src="./searchProd.js" ></script>
+      <script type="text/javascript" src="./table-to-excel-master/dist/tableToExcel.js"></script>
           <script  src="./sortandsearch/sortProd.js" ></script>
     <!-- Chart Custom JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -2013,5 +2015,11 @@ window.onload = function () {
 }
 
      </script>
+     <!-- <script>	
+   document.querySelector('.exporttocsv').onclick = function() {
+      TableToExcel.convert(document.querySelector(".materialChart"));
+
+   }
+   </script> -->
   </body>
 </html>
