@@ -129,7 +129,7 @@ const renderUser = doc => {
       </td>
     </tr>
   `;
-
+console.log('Hi')
 
   const parttable = document.querySelector('.parttable')
   parttable.insertAdjacentHTML('beforeend', tr);
