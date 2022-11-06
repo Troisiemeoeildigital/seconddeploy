@@ -908,3 +908,9 @@ flex-direction: row;
   display: block;
 }
 
+.deleterow {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+

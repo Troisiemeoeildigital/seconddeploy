@@ -107,7 +107,12 @@ const renderUser = doc => {
 
   const tr = `
     <tr data-id='${doc.id}' style="  border-bottom: 0.5px solid grey;">
-  
+     <td>
+                                <div class="checkbox d-inline-block">
+                                    <input type="checkbox" class="checkbox-input" id="checkbox2">
+                                    <label for="checkbox2" class="mb-0"></label>
+                                </div>
+                            </td>
      <td>${doc.data().supplierName}</td>
      <td>${doc.data().partName}</td>
       <td>${doc.data().partCode}</td>
@@ -118,17 +123,31 @@ const renderUser = doc => {
            <td>${doc.data().partMemo}</td>
 
 
+   
+
          <td>
     <div class="btngroup">
-     <span href="#" id="btnprview" class="button btn-large viewbtn" data-toggle="modal" data-target="#exampleModalScrollable">View Materials</span>
-     <div class="button-dropdown">
-        <a class="button toggle"></a>
-        <ul class="dropdown">
-          <li><a href="#" class="dropdown-link btnpr-edit">Edit</a></li>
-          <li><a href="#" class="dropdown-link btnpr-addParts" data-id='${doc.id}'>Add New Material</a></li>
-          <li><a href="#" class="dropdown-link btnpr-delete">Delete</a></li>
-        </ul>
-      </div>
+             <nav class="navbary">
+	<a href="#" class="navbary__link">
+		<span class="viewbtn" id="btnprview" data-id='${doc.id}' data-toggle="modal" data-target="#exampleModalScrollable"><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
+		<span class="navbary__label">View Materials</span>
+	</a>
+
+  	<a href="#" class="navbary__link">
+		<span class="btnpr-edit"><i class="bx bxs-edit-alt" style="color: white; font-size: 15px; "></i></span>
+		<span class="navbary__label">Edit Part</span>
+	</a>
+  
+    	<a href="#" class="navbary__link">
+		<span class="btnpr-addParts" data-id='${doc.id}'><i class="bx bx-plus" style="color: white; font-size: 15px; "></i></span>
+		<span class="navbary__label">Add New Material</span>
+	</a>
+
+      	<a href="#" class="navbary__link">
+		<span class="btnpr-delete" ><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
+		<span class="navbary__label" style="left: -36px;">Delete Part</span>
+	</a>
+</nav>
     </div>
    
       </td>
@@ -172,19 +191,31 @@ viewMatTable.classList.add('modaly-show');
  <i class="ri-file-download-line " style="font-size: 25px;  color: black;"></i>
 </a></td>
 
+
+
   <td>
-<div class="btngroup">
-     <div class="button-dropdown" >
-        <a class="button toggle" style="padding: 1.5em 0.3em;"></a>
-        <ul class="dropdown">
-      
-           <li><a href="#" class="dropdown-link btnpmviewSubs" data-id='${doc.id}' data-toggle="modal" data-target="#exampleModalScrollableSubstances">View Substances</a></li>
-          <li><a href="#" class="dropdown-link btnpmedit" data-id='${doc.id}'>Edit</a></li>
-          <li><a href="#" class="dropdown-link btnpmSubs" matWeight="${doc.data().materialMassg}" data-id='${doc.id}'>Add New Substance</a></li>
-    <li><a href="#" class="dropdown-link btnpmdelete" data-Part='${partRef}' data-id='${doc.id}'>Delete</a></li>
-        </ul>
-      </div>
-    </div>
+
+       <nav class="navbary">
+	<a href="#" class="navbary__link">
+		<span class="btnpmviewSubs"  data-id='${doc.id}'  data-id='${doc.id}' data-toggle="modal" data-target="#exampleModalScrollableSubstances"><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
+		<span class="navbary__label">View Substances</span>
+	</a>
+
+<a href="#" class="navbary__link">
+		<span class="btnpmedit"  data-id='${doc.id}'><i class="bx bxs-edit-alt" style="color: white; font-size: 15px; "></i></span>
+		<span class="navbary__label">Edit Material</span>
+	</a>
+
+<a href="#" class="navbary__link">
+		<span class="btnpmSubs"  matWeight="${doc.data().materialMassg}" data-id='${doc.id}'><i class="bx bx-plus" style="color: white; font-size: 15px; "></i></span>
+		<span class="navbary__label">Add New Substances </span>
+	</a>
+
+  <a href="#" class="navbary__link">
+		<span class="btnpmdelete"   data-Part='${partRef}' data-id='${doc.id}'><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
+		<span class="navbary__label" style='left:-49px'>Delete Material </span>
+	</a>
+  </nav>
       </td>
     </tr>
       
@@ -496,12 +527,14 @@ db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${s
                     <td>${arrUniq[i].rohs}</td>
 							<td>${arrUniq[i].substanceMassg}</td>
 							<td>${arrUniq[i].substanceMassPerc}</td>
+       
                     <td>
-    <div class="btngroup">
-      
-     <span href="#" class="button btn-large btnpartsubdelete" data-Part='${arrUniq[i].subidRef}'>Delete</span>
-    </div>
-   
+             <nav class="navbary">
+	<a href="#" class="navbary__link">
+		<span class="btnpartsubdelete"  data-Part='${arrUniq[i].subidRef}'><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
+		<span class="navbary__label">View Substances</span>
+	</a>
+  </nav>
       </td>
              </tr>`
 			substancelisttable.innerHTML += row
@@ -898,6 +931,8 @@ addModalyParts.reset();
 
 // Click add user button
 btnprAdd.onclick = function() {
+  let form = document.querySelector('.uploadbtn');
+		let file = document.querySelector('.filey');
   addmodaly.classList.add('modaly-show');
 
   addModalyForm.addpartName.value = '';
@@ -907,22 +942,56 @@ btnprAdd.onclick = function() {
     addModalyForm.addpartregisteredDate.value = '';
   addModalyForm.addMemo.value = '';
 
-
-
-        // Get the form and file field
-
-		/**
-		 * Log the uploaded file to the console
-		 * @param {event} Event The file loaded event
-		 */
-		function logFile (event) {
-      event.preventDefault()
-			let str = event.target.result;
-			let json = JSON.parse(str);
-			console.log('string', str);
-			console.log('json', json);
-for(let i = 0; i < json.length; i++) {
-    let obj = json[i];
+ form.onclick = function upload(e) {
+      e.preventDefault()
+        var files = file.files;
+        if(files.length==0){
+          alert("Please choose any file...");
+          return;
+        }
+        var filename = files[0].name;
+        var extension = filename.substring(filename.lastIndexOf(".")).toUpperCase();
+        if (extension == '.CSV') {
+            //Here calling another method to read CSV file into json
+            csvFileToJSON(files[0]);
+        }else{
+            alert("Please select a valid csv file.");
+        }
+      }
+    
+      //Method to read csv file and convert it into JSON 
+      function csvFileToJSON(file){
+          try {
+            var reader = new FileReader();
+            reader.readAsBinaryString(file);
+            reader.onload = function(e) {
+                var jsonData = [];
+                var headers = [];
+                var rows = e.target.result.split("\r\n");               
+                for (var i = 0; i < rows.length; i++) {
+                    var cells = rows[i].split(",");
+                    var rowData = {};
+                    for(var j=0;j<cells.length;j++){
+                        if(i==0){
+                            var headerName = cells[j].trim();
+                            headers.push(headerName);
+                        }else{
+                            var key = headers[j];
+                            if(key){
+                                rowData[key] = cells[j].trim();
+                            }
+                        }
+                    }
+                    //skip the first row (header) data
+                    if(i!=0){
+                        jsonData.push(rowData);
+                    }
+                }
+                  
+                //displaying the json result in string format
+                console.log(JSON.stringify(jsonData));
+                for(let i = 0; i < jsonData.length; i++) {
+    let obj = jsonData[i];
 
        db.collection('recycledparts').doc().set({
    
@@ -940,62 +1009,12 @@ for(let i = 0; i < json.length; i++) {
       console.log("Documents Added!")
     });
 }
+                }
+            }catch(e){
+                console.error(e);
+            }
+      }
 
-
-		}
-
-		/**
-		 * Handle submit events
-		 * @param  {Event} event The event object
-		 */
-		function handleSubmit (event) {
-
-
-			// Stop the form from reloading the page
-			event.preventDefault();
-
-      let timerInterval
-Swal.fire({
-   icon: 'info',
-  html: 'Files being Uploaded...',
-  timer: 3000,
-  timerProgressBar: true,
-  didOpen: () => {
-    Swal.showLoading()
-   
-   
-  },
-  willClose: () => {
-    clearInterval(timerInterval)
-  }
-}).then((result) => {
-  /* Read more about handling dismissals below */
-  if (result.dismiss === Swal.DismissReason.timer) {
-    console.log('I was closed by the timer')
-  }
-})
-
-			// If there's no file, do nothing
-			if (!file.value.length) return;
-
-			// Create a new FileReader() object
-			let reader = new FileReader();
-
-			// Setup the callback event to run when the file is read
-			reader.onload = logFile;
-
-			// Read the file
-			reader.readAsText(file.files[0]);
-
-
-    
-		}
-
-
-		let form = document.querySelector('#upload');
-		let file = document.querySelector('.filey');
-		// Listen for submit events
-		form.addEventListener('submit', handleSubmit);
   
   
 };
