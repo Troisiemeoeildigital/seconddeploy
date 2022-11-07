@@ -65,6 +65,7 @@ const renderUser = doc => {
      <td>${doc.data().casnumber}</td>
       <td>${doc.data().crm}</td>
        <td>${doc.data().rohs}</td>
+         <td>${doc.data().none}</td>
     
     </tr>
   `;
@@ -128,7 +129,7 @@ for(let i = 0; i < json.length; i++) {
             casnumber: obj.casnumber,
             rohs: obj.rohs,
             crm: obj.crm,
-        
+            none: obj.none,
        
         }) .then(()=> {
       console.log("Documents Added!")

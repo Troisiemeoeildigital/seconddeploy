@@ -485,7 +485,6 @@ addmodalySubssSingle.classList.add('modaly-show');
       }
 
 
-  //to be fixed
  addsubstanceMassg.onchange = function(e){
   e.preventDefault()
   addsubstanceMassPerc.value = (addsubstanceMassg.value / parseFloat(matWeightRef) * 100).toFixed(2)

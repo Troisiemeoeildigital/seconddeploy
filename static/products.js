@@ -172,8 +172,14 @@ closebtn.forEach((eachClose)=> {
     addPPmodaly.classList.remove('modaly-show');
     addmodaly.classList.remove('modaly-show');
     editmodaly.classList.remove('modaly-show');
+    
    })
 })
+
+const subsmodalclose = document.querySelector('#subsmodalclose')
+subsmodalclose.onclick = function() {
+document.querySelector('#addsubsproduct').classList.remove('show');
+}
 
 // Click on view product button to view assessment
 
@@ -1261,12 +1267,12 @@ Swal.fire({
          <td>
      <nav class="navbary">
 	<a href="#" class="navbary__link">
-		<span class=" viewmatsub" id="btnprview" data-toggle="modal" data-target="#partproductmaterialsubs" data-id='${doc.id}'><i class="ri-eye-line" style="color: white; font-size: 15px;"></i></span>
+		<span class=" viewmatsub" id="btnprview" data-toggle="modal" data-target="#partproductmaterialsubs"  data-id='${doc.id}'><i class="ri-eye-line" style="color: white; font-size: 15px;"></i></span>
 		<span class="navbary__label">View Substances</span>
 	</a>
 
 	<a href="#" class="navbary__link">
-		<span class=" addProdmatsub"  data-toggle="modal" data-target="#addsubsproduct" data-id='${doc.id}'><i class='bx bx-plus' style="color: white; font-size: 15px; left:-58px;"></i></span>
+		<span class=" addProdmatsub"  data-toggle="modal" data-target="#addsubsproduct" mat-weight="${doc.data().materialMassg}" data-id='${doc.id}'><i class='bx bx-plus' style="color: white; font-size: 15px; left:-58px;"></i></span>
 		<span class="navbary__label" style = "top: -46px;
     left: -50px;">Add New Substance</span>
 	</a>
@@ -1303,6 +1309,11 @@ Swal.fire({
  addProdmatsub[i].addEventListener('click', ()=>{
   const getprodsubstancetype = document.querySelector('.getprodsubstancetype')
    const getprodsubstancelist = document.querySelector('.getprodsubstancelist')
+     let matWeightRef = addProdmatsub[i].getAttribute("mat-Weight");
+ addsubstanceMassg.onchange = function(e){
+  e.preventDefault()
+  addsubstanceMassPerc.value = (addsubstanceMassg.value / parseFloat(matWeightRef) * 100).toFixed(2)
+}
     getprodsubstancetype.addEventListener('change', (e)=>{
     e.preventDefault()
     getprodsubstancelist.innerHTML =""
@@ -1418,15 +1429,14 @@ addSubs.onclick = function(e) {
 							<td>${arrUniq[i].substanceMassg}</td>
 							<td>${arrUniq[i].substanceMassPerc}</td>
               <td>
-                  <div class="button-dropdown">
-        <a class="button toggle"></a>
-        <ul class="dropdown">
-       
 
-          <li><a href="#" class="dropdown-link btnpr-edit">Edit</a></li>
-          <li><a href="#" class="dropdown-link btnprsubdelete" data-id= '${arrUniq[i].subProdid}'>Delete</a></li>
-        </ul>
-      </div>
+
+
+  <nav class="navbary">
+	<a href="#" class="navbary__link">
+		<span class="btnprsubdelete"  data-id= '${arrUniq[i].subProdid}'><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
+		<span class="navbary__label">Delete Substance</span>
+	</a>
               </td>
              </tr>`
 			document.querySelector('.substancelist').innerHTML += row
