@@ -272,10 +272,18 @@
    
     <div class="table-wrapper table-responsive rounded mb-3" style="overflow-x: hidden; height: 459px;
     overflow-y: scroll;">
+    <div class="deleterow align-items-center float-right" >
+            <button class="btnpr btnpr-add" style="width: 10%; margin-bottom: 10px; background: red;"><div class="addnewproductbtnpr">Delete All</div></button>
+          </div>
           <div class="loadingtitle"></div>
+          
       <table class="table-users  mb-0 prod-table" >
     <thead class="bg-white text-uppercase" style="position: sticky; top: 0; z-index: 1;">
   <tr class="ligth ligth-data">
+                <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
+  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+</svg></th>
          <th >Product Image</th>
              <th >Product Category</th>
           <th>Product Name</th>
@@ -578,7 +586,7 @@
 <option>태블릿</option>
                                            </select>
                                         <!-- <input type="text" class="form-control" id='editproductName' placeholder="Enter Product Name" data-errors="Please Enter Product Name." name="productName" required> -->
-                                        <div class="help-block with-errors"></div>
+                                  
                                     </div>
                                 </div>                   
                              
@@ -586,14 +594,14 @@
                                     <div class="form-group">
                                         <label>Product Name *</label>
                                         <input readonly type="text" class="form-control" id='editproductName' placeholder="Enter Product Name" data-errors="Please Enter Product Name." name="productName" required>
-                                        <div class="help-block with-errors"></div>
+                                   
                                     </div>
                                 </div>    
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Product Model Name</label>
                                         <input type="text" class="form-control"  id='editmodelName'placeholder="Enter Product Model Name" data-errors="Enter Product Model Name." name="editmodelName" required>
-                                        <div class="help-block with-errors"></div>
+                              
                                     </div>
                                 </div> 
                             
@@ -601,7 +609,7 @@
                                     <div class="form-group">
                                         <label>Product Weight (g) *</label>
                                         <input type="number" class="form-control" id='editproductWeight'placeholder="Enter Code" data-errors="Please product weight." name="productWeight" required>
-                                        <div class="help-block with-errors"></div>
+                                 
                                     </div>
                                 </div> 
                                     <div class="col-md-6"> 
@@ -627,7 +635,7 @@
                            <option value="inch">inch</option>
                         </select>
                         </div>
-                           <div class="help-block with-errors"></div>
+                       
                             </div>
                            </div> 
                             </div>   
@@ -635,7 +643,7 @@
                                     <div class="form-group">
                                      <label>Registration Date</label>
                                         <input type="date" style=" font-size: 15px;" class="form-control" id='editregisteredDate'placeholder="Enter Registration Date" data-errors="Please Registration Date." name="editregisteredDate" required>
-                                        <div class="help-block with-errors"></div>
+                                     
                                     </div>
                                 </div>
 
@@ -649,7 +657,7 @@
                                             <option value="Ready">Ready</option>
                                            
                                            </select>
-                                        <div class="help-block with-errors"></div>
+                                     
                                     </div>
                                        
                                 </div>
@@ -659,7 +667,7 @@
                                         <label>Memo</label>
                                          <input type="text" class="productStatus form-control" id="editMemo" name="editMemo" data-errors="Please Enter Memo."  required>
                                          
-                                        <div class="help-block with-errors"></div>
+                           
                                     </div>
                                        
                                 </div>
@@ -864,8 +872,15 @@
         </div>
          <div class="col-md-10">
               <div  class="table-wrapper"> 
+               <div class="deleterow align-items-center float-right" >
+             <button class="btnpr btnpr-add" style="width: 10%; margin-bottom: 10px; background: red;"><div class="addnewproductbtnpr">Delete All</div></button>
+          </div>
                                <table class="table-parts">
                                 <tr>
+                                      <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
+  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+</svg></th>
                                    <th>Part Name</th>
                                 <th>Part Code</th>
                                    <th>Part Weight</th>
@@ -1047,7 +1062,7 @@
                                 <div class="col-md-4"> 
                                     <div class="form-group">
                                         <label>Recycle Rate (%)</label>
-                                        <input type="number" class="form-control" id='materialRecycleContent' placeholder="Enter Material Recycle Content" data-errors="Please part specs." name="addmaterialRecycleContent" required>
+                                        <input type="number" class="form-control" id='materialRecycleContent' placeholder="Enter Material Recycle Rete (%)" data-errors="Please enter Material Recycle Rete (%)" name="addmaterialRecycleContent" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div> 
@@ -1134,9 +1149,13 @@
                                <table class="table-parts" id="myTable">
                             <thead>
                                 <tr>
+                                                             <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
+  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+</svg></th>
                                 <th >  Material Category</th>
                                   <th>  Material Name</th>
-                                      <th>  Recycle Content</th>
+                                      <th>  Recycle Rate (%)</th>
                                         <th>  Recycle Type</th>
                                           <th>  Mass (g)</th>
                                             <th>  Mass (%)</th>
@@ -1199,7 +1218,10 @@
                             <thead>
                                 
                                 <tr>
-
+                            <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
+  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+</svg></th>
                                <th>Substance Name</th>
                                     <th>CAS No</th>
                                     <th>CRMs</th>

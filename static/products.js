@@ -119,6 +119,12 @@ const renderUser = doc => {
 
   const tr = `
     <tr data-id='${doc.id}' style="  border-bottom: 0.5px solid grey;">
+         <td>
+                                <div class="checkbox d-inline-block">
+                                    <input type="checkbox" class="checkbox-input" id="checkbox2">
+                                    <label for="checkbox2" class="mb-0"></label>
+                                </div>
+                            </td>
        <td><img style="max-width: 70px; max-height: 70px;" src="${doc.data().productImg}" alt="${doc.data().productName}"></td>
      <td>${doc.data().productCategory}</td>
       <td>${doc.data().productName}</td>
@@ -279,6 +285,7 @@ buildTable(arrUniq)
 
 		for (var i = 0; i < arrUniq.length; i++){
 			var row = `<tr>
+          
 							<td>${arrUniq[i].partRef}</td>
               <td>${arrUniq[i].partWeight}</td>
                 <td>${arrUniq[i].materialNameRef}</td>
@@ -1124,7 +1131,12 @@ let idref = guid()
       console.log(addedparts)
       const pp = `
       <tr id='${doc.id}' data-Part='${doc.id}'>
-
+  <td>
+                                <div class="checkbox d-inline-block">
+                                    <input type="checkbox" class="checkbox-input" id="checkbox2">
+                                    <label for="checkbox2" class="mb-0"></label>
+                                </div>
+                            </td>
         <td>${doc.data().partname}</td>
         <td>${doc.data().partCode}</td>
         <td>${doc.data().partWeight}</td>
@@ -1232,6 +1244,12 @@ Swal.fire({
       console.log(material)
       const li = `
      <tr id='${doc.id}' data-id='${doc.id}'>
+      <td>
+                                <div class="checkbox d-inline-block">
+                                    <input type="checkbox" class="checkbox-input" id="checkbox2">
+                                    <label for="checkbox2" class="mb-0"></label>
+                                </div>
+                            </td>
     <td>${doc.data().materialGroup}</td>
        <td>${doc.data().materialName}</td>
       <td>${doc.data().materialRecycleContent}</td>
@@ -1249,7 +1267,8 @@ Swal.fire({
 
 	<a href="#" class="navbary__link">
 		<span class=" addProdmatsub"  data-toggle="modal" data-target="#addsubsproduct" data-id='${doc.id}'><i class='bx bx-plus' style="color: white; font-size: 15px; left:-58px;"></i></span>
-		<span class="navbary__label">Add New Substance</span>
+		<span class="navbary__label" style = "top: -46px;
+    left: -50px;">Add New Substance</span>
 	</a>
 
 </nav>
@@ -1386,6 +1405,12 @@ addSubs.onclick = function(e) {
 
 		for (var i = 0; i < arrUniq.length; i++){
 			var row = `<tr  id= '${arrUniq[i].subProdid}' >
+       <td>
+                                <div class="checkbox d-inline-block">
+                                    <input type="checkbox" class="checkbox-input" id="checkbox2">
+                                    <label for="checkbox2" class="mb-0"></label>
+                                </div>
+                            </td>
 							<td>${arrUniq[i].substanceName}</td>
               <td>${arrUniq[i].casnumber}</td>
                 <td>${arrUniq[i].crm}</td>
