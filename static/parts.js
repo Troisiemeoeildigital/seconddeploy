@@ -31,7 +31,7 @@ const subsmodalclose = document.querySelector('#subsmodalclose')
 let addpartWidth = document.querySelector('.addpartWidth')
 let addpartDepth = document.querySelector('.addpartDepth')
 let addpartHeight = document.querySelector('.addpartHeight')
-
+let selectUnit = document.querySelector(".selectUnit")
 // modaly edit
 const editmodaly = document.querySelector('.edit-modaly');
 const editmodalyForm = document.querySelector('.edit-modaly .form');
@@ -59,6 +59,22 @@ let PMMaterialRecycleType = document.getElementById('PMMaterialRecycleType')
 let PMmaterialMassg = document.getElementById('PMmaterialMassg')
  let PMMaterialMassPerc = document.getElementById('PMMaterialMassPerc')
  let editMat = document.getElementById('editMat')
+
+ //edit part
+ const editsupplierName = document.querySelector('#editsupplierName')
+const editpartName = document.querySelector('#editpartName')
+const editpartWeight = document.querySelector('#editpartWeight')
+const editpartClass = document.querySelector('#editpartClass')
+const editpartSize = document.querySelector('#editpartSize')
+const editreusedPart = document.querySelector('#editreusedPart')
+const editpartregisteredDate = document.querySelector('#editpartregisteredDate')
+const editMemo = document.querySelector('#editMemo')
+const editPart = document.querySelector('#editPart')
+
+const editpartWidth = document.querySelector('.editpartWidth')
+const editpartDepth = document.querySelector('.editpartDepth')
+const editpartHeight = document.querySelector('.editpartHeight')
+const editselectUnit = document.querySelector('.editselectUnit')
 
 //substances references
  let addSubs = document.getElementById('addSubs')
@@ -899,11 +915,17 @@ addModalyParts.reset();
     editmodalyForm.editpartName.value = doc.data().partName;
     editmodalyForm.editpartClass.value = doc.data().partCode;
     editmodalyForm.editpartWeight.value = doc.data().partWeight;
-    editmodalyForm.editpartSize.value = doc.data().partSize;
+
     editmodalyForm.editreusedPart.value = doc.data().reusedPart;
      editmodalyForm.editpartregisteredDate.value = doc.data().partRegisteredDate;
     editmodalyForm.editMemo.value = doc.data().partMemo;
+
+     editmodalyForm.editpartWidth.value = doc.data().partWidth;
+     editmodalyForm.editpartDepth.value = doc.data().partDepth;
+    editmodalyForm.editpartHeight.value = doc.data().partHeight;
+     editmodalyForm.editselectUnit.value = doc.data().sizeUnit;
   }
+
 
   // Click delete user
   const btnprDelete = document.querySelector(`[data-id='${doc.id}'] .btnpr-delete`);
@@ -939,31 +961,8 @@ addModalyParts.reset();
 
 }
 
-let selectUnit = document.querySelector(".selectUnit")
-selectUnit.onchange = function LengthConverter(valNum) {
 
 
-   document.querySelector('.addpartWidth').value = valNum / 25.4
-     document.querySelector('.addpartDepth').value = valNum/ 25.4
-      document.querySelector('.addpartHeight').value = valNum / 25.4
-}
-
-
-// let selectUnit = document.querySelector('.selectUnit')
-// selectUnit.onselect = function() {
-//   if(selectUnit.value = "inch"){
-//     document.querySelector('.addpartWidthInch').value = addpartWidth.value / 25.4
-//      document.querySelector('.addpartDepthInch').value = addpartDepth.value / 25.4
-//       document.querySelector('.addpartHeightInch').value = addpartHeight.value / 25.4
-
-//   }
-//     else if(selectUnit.value = "mm"){
-
-//       addpartWidth.value = document.querySelector('.addpartWidthInch').value * 25.4
-//       addpartDepth.value = document.querySelector('.addpartDepthInch').value * 25.4
-//       addpartHeight.value = document.querySelector('.addpartHeightInch').value * 25.4
-//   }
-// }
  
   let form = document.querySelector('.uploadbtn');
 		let file = document.querySelector('.filey');
@@ -1051,7 +1050,7 @@ btnprAdd.onclick = function() {
   addModalyForm.addpartClass.value = '';
   addModalyForm.addpartWeight.value = '';
   addModalyForm.addreusedPart.value = '';
-    addModalyForm.addpartregisteredDate.value = '';
+  addModalyForm.addpartregisteredDate.value = '';
   addModalyForm.addMemo.value = '';
 
 
@@ -1136,6 +1135,10 @@ addPartsForm.addEventListener('click', e => {
    partName: addModalyForm.addpartName.value,
     partCode: document.querySelector('#addClass').value,
     partWeight: addModalyForm.addpartWeight.value,
+    partWidth: addpartWidth.value,
+    partDepth: addpartDepth.value,
+    partHeight: addpartHeight.value,
+    sizeUnit: selectUnit.value,
     partSize: `${addpartWidth.value} x ${addpartDepth.value} x ${addpartHeight.value}`,
     reusedPart: addModalyForm.addreusedPart.value,
     partRegisteredDate: addModalyForm.addpartregisteredDate.value,
@@ -1148,15 +1151,7 @@ Swal.fire(
   'success'
 )
 });
-const editsupplierName = document.querySelector('#editsupplierName')
-const editpartName = document.querySelector('#editpartName')
-const editpartWeight = document.querySelector('#editpartWeight')
-const editpartClass = document.querySelector('#editpartClass')
-const editpartSize = document.querySelector('#editpartSize')
-const editreusedPart = document.querySelector('#editreusedPart')
-const editpartregisteredDate = document.querySelector('#editpartregisteredDate')
-const editMemo = document.querySelector('#editMemo')
-const editPart = document.querySelector('#editPart')
+
 // document.querySelector('#addpartName').setAttribute("disabled","disabled")
 // Click submit in edit modaly
 editPart.onclick = function(e) {
@@ -1175,7 +1170,15 @@ editPart.onclick = function(e) {
     partName: editpartName.value,
     partCode: editpartClass.value,
     partWeight: parseFloat(editpartWeight.value),
-    partSize: editpartSize.value,
+    // partWidth: addpartWidth.value,
+    // partDepth: addpartDepth.value,
+    // partHeight: addpartHeight.value,
+    // sizeUnit: selectUnit.value,
+    partWidth:editpartWidth.value,
+    partDepth:editpartDepth.value,
+    partHeight:editpartHeight.value,
+    sizeUnit:editselectUnit.value,
+  
     reusedPart: editreusedPart.value,
     partRegisteredDate: editpartregisteredDate.value,
     partMemo: editMemo.value
