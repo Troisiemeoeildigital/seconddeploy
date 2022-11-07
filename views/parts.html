@@ -480,7 +480,7 @@
                                 </div> 
                                  <div class="col-md-6"> 
                                     <div class="form-group">
-                                        <label>Part Size (mm x mm x mm) *</label>
+                                        <label>Part Size  *</label>
 
                             
 
@@ -617,11 +617,30 @@
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div> 
-                                 <div class="col-md-6"> 
+                                 <div class="col-md-9"> 
                                     <div class="form-group">
                                         <label>Part Size *</label>
-                                        <input type="text" step=".01" class="form-control" id='editpartSize' placeholder="Please part size (mm x mm x mm)" data-errors="Please part size." name="editpartSize" required>
-                                        <div class="help-block with-errors"></div>
+                                                                <div class="input-group mb-4" style="align-items: center;">
+                        
+                        <input type="number" class="form-control addpartWidth "   placeholder="Width" aria-label="Width"
+                           aria-describedby="basic-addon4" required>
+                    <i class="las la-times" style="margin: 4px;"></i>
+                                <input type="number" class="form-control addpartDepth "  placeholder="Depth" aria-label="Depth"
+                           aria-describedby="basic-addon4" required>
+                   <i class="las la-times" style="margin: 4px;"></i>
+                                <input type="number" class="form-control addpartHeight "  placeholder="Height" aria-label="notification"
+                           aria-describedby="basic-addon4" required>
+                           <div class="input-group-prepend">
+                                 
+                           <span class="input-group-text" id="basic-addon4" style="height: 2.8em;
+                              border-radius: 0;"><i class="las la-ruler-combined  font-size-28"></i></span>
+                                     <select class="custom-select selectUnit" id="inputGroupSelect03" style="border-radius: 0 10px 10px 0px;">
+                           <option value="" selected>Choose Unit</option>
+                           <option value="1" >mm</option>
+                           <option value="2">inch</option>
+                        </select>
+                        </div>
+                     </div>
                                     </div>
                                 </div> 
                                    <div class="col-md-6">
