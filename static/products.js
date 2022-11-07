@@ -41,9 +41,16 @@ const sumRecycWeightPerChart = document.querySelector(".sumRecycWeightPer")
 const chartsthree = document.querySelector(".chartsthree")
 const chartsecond = document.querySelector(".chartsecond")
 const charts = document.querySelector(".chart")
-let addprodWidth = document.querySelector('.addprodWidth')
-let addprodDepth = document.querySelector('.addprodDepth')
-let addprodHeight = document.querySelector('.addprodHeight')
+let selectUnit = document.querySelector('.selectUnit')
+let addprodWidth = document.querySelector('#addprodWidth')
+let addprodDepth = document.querySelector('#addprodDepth')
+let addprodHeight = document.querySelector('#addprodHeight')
+
+const editprodWidth = document.querySelector('.editprodWidth')
+const editprodDepth = document.querySelector('.editprodDepth')
+const editprodHeight = document.querySelector('.editprodHeight')
+const editselectUnit = document.querySelector('.editselectUnit')
+
   let addProduct = document.querySelector('#addProduct')
 let addproductCategory = document.querySelector('#addproductCategory')
 let addproductName = document.querySelector('#addproductName')
@@ -117,7 +124,7 @@ const renderUser = doc => {
       <td>${doc.data().productName}</td>
       <td>${doc.data().productMN}</td>
       <td>${doc.data().productWeight}</td>
-      <td>${doc.data().productSize}</td>
+      <td>${doc.data().prodWidth} x ${doc.data().prodHeight} x ${doc.data().prodDepth} (${doc.data().sizeUnit})</td>
         <td>${doc.data().registeredDate}</td>
            <td>${doc.data().productStatus}</td>
              <td>${doc.data().memo}</td>
@@ -198,7 +205,7 @@ console.log(dataPN)
       el.value = doc.data().productMN;
      })
       productSizeAssess.forEach((el)=>{
-      el.value = doc.data().productSize;
+      el.value = `${doc.data().prodWidth} x ${doc.data().prodHeight} x ${doc.data().prodDepth} (${doc.data().sizeUnit})`;
      })
       productWeight.forEach((el)=>{
       el.value = doc.data().productWeight;
@@ -1463,10 +1470,15 @@ console.log(deleteData)
     editmodalyForm.productName.value = doc.data().productName;
        editmodalyForm.editmodelName.value = doc.data().productMN;
     editmodalyForm.productWeight.value = doc.data().productWeight;
-    editmodalyForm.editproductSize.value = doc.data().productSize;
+  
     editmodalyForm.editregisteredDate.value = doc.data().registeredDate;
     editmodalyForm.editproductStatus.value = doc.data().productStatus;
       editmodalyForm.editMemo.value = doc.data().memo;
+
+         editmodalyForm.editprodWidth.value = doc.data().prodWidth;
+     editmodalyForm.editprodDepth.value = doc.data().prodDepth;
+    editmodalyForm.editprodHeight.value = doc.data().prodHeight;
+     editmodalyForm.editselectUnit.value = doc.data().sizeUnit;
   });
 
 
@@ -1605,7 +1617,7 @@ document.querySelector(".files").addEventListener("change", function(e) {
         function progress(snapshot) {
           var percentage =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          document.getElementById("progress").value = percentage;
+          
         },
 
         function error() {
@@ -1613,9 +1625,7 @@ document.querySelector(".files").addEventListener("change", function(e) {
         },
 
         function complete() {
-          document.getElementById(
-            "uploading"
-          ).innerHTML += `${files[i].name} uploaded <br />`;
+       
             //create a storage reference
               let filename = files[i].name;
             var storage = firebase.storage().ref(filename);
@@ -1634,7 +1644,10 @@ document.querySelector(".files").addEventListener("change", function(e) {
     productName: addproductName.value,
     productMN: addproductMN.value,
     productWeight: addproductWeight.value,
-    productSize: `${addprodWidth.value} x ${addprodDepth.value} x ${addprodHeight.value}`,
+    prodWidth: addprodWidth.value,
+    prodDepth: addprodDepth.value,
+    prodHeight: addprodHeight.value,
+    sizeUnit: selectUnit.value,
     registeredDate: addregisteredDate.value,
     productStatus: addproductStatus.value,
     memo: addMemo.value,
@@ -1728,11 +1741,14 @@ editFormProd.addEventListener('click', e => {
     productCategory: editmodalyForm.productCategory.value,
     productMN: editmodalyForm.editmodelName.value,
     productWeight: editmodalyForm.productWeight.value,
-    productSize: editmodalyForm.editproductSize.value,
     registeredDate: editmodalyForm.editregisteredDate.value,
    productStatus: editmodalyForm.editproductStatus.value,
    memo: editmodalyForm.editMemo.value,
-    productImg: url
+    productImg: url,
+     prodWidth:editprodWidth.value,
+    prodDepth:editprodDepth.value,
+    prodHeight:editprodHeight.value,
+    sizeUnit:editselectUnit.value,
   })
   
     Swal.fire(

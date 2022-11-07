@@ -419,17 +419,23 @@
                                      <label>Product Size</label>
                                          <div class="input-group mb-4" style="align-items: center;">
                         
-                        <input type="text" class="form-control addprodWidth" placeholder="Width" aria-label="Width"
+                        <input type="text" class="form-control " id="addprodWidth" placeholder="Width" aria-label="Width"
                            aria-describedby="basic-addon4" required>
                     <i class="las la-times" style="margin: 4px;"></i>
-                                <input type="text" class="form-control addprodDepth" placeholder="Depth" aria-label="Depth"
+                                <input type="text" class="form-control " id="addprodDepth"  placeholder="Depth" aria-label="Depth"
                            aria-describedby="basic-addon4" required>
                    <i class="las la-times" style="margin: 4px;"></i>
-                                <input type="text" class="form-control addprodHeight" placeholder="Height" aria-label="notification"
+                                <input type="text" class="form-control " id="addprodHeight"  placeholder="Height" aria-label="Height"
                            aria-describedby="basic-addon4" required>
-                           <div class="input-group-prepend">
+                              <div class="input-group-prepend">
+                                 
                            <span class="input-group-text" id="basic-addon4" style="height: 2.8em;
-                              border-radius: 0 10px 10px 0px;"><i class="las la-ruler-combined  font-size-28"></i></span>
+                              border-radius: 0;"><i class="las la-ruler-combined  font-size-28"></i></span>
+                                     <select class="custom-select selectUnit" name="selectUnit" id="inputGroupSelect03" style="border-radius: 0 10px 10px 0px;">
+                           <option value="" selected>Choose Unit</option>
+                           <option value="mm" >mm</option>
+                           <option value="inch">inch</option>
+                        </select>
                         </div>
                      </div>
                                     </div>
@@ -601,11 +607,31 @@
                                     <div class="col-md-6"> 
                                     <div class="form-group">
                                         <label>Product Size (mm x mm x mm)</label>
-                                        <input type="text" class="form-control" id='editproductSize' placeholder="Enter Product Size (Width x Depth x Height)" data-errors="Enter Product Size (Width x Depth x Height)" name="editproductSize" required>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div> 
-                                   <div class="col-md-6">
+                                    <div class="input-group mb-4" style="align-items: center;">
+                        
+                        <input type="number" class="form-control editprodWidth " name="editprodWidth"  placeholder="Width" aria-label="Width"
+                           aria-describedby="basic-addon4" required>
+                    <i class="las la-times" style="margin: 4px;"></i>
+                                <input type="number" class="form-control editprodDepth " name="editprodDepth" placeholder="Depth" aria-label="Depth"
+                           aria-describedby="basic-addon4" required>
+                   <i class="las la-times" style="margin: 4px;"></i>
+                                <input type="number" class="form-control editprodHeight " name="editprodHeight"  placeholder="Height" aria-label="notification"
+                           aria-describedby="basic-addon4" required>
+                                           <div class="input-group-prepend">
+                                 
+                           <span class="input-group-text" id="basic-addon4" style="height: 2.8em;
+                              border-radius: 0;"><i class="las la-ruler-combined  font-size-28"></i></span>
+                                     <select class="custom-select editselectUnit" name="editselectUnit" id="inputGroupSelect03" style="border-radius: 0 10px 10px 0px;">
+                           <option value="" selected>Choose Unit</option>
+                           <option value="mm" >mm</option>
+                           <option value="inch">inch</option>
+                        </select>
+                        </div>
+                           <div class="help-block with-errors"></div>
+                            </div>
+                           </div> 
+                            </div>   
+                                  <div class="col-md-6">
                                     <div class="form-group">
                                      <label>Registration Date</label>
                                         <input type="date" style=" font-size: 15px;" class="form-control" id='editregisteredDate'placeholder="Enter Registration Date" data-errors="Please Registration Date." name="editregisteredDate" required>
@@ -637,25 +663,8 @@
                                     </div>
                                        
                                 </div>
-                               
-                                <!-- <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Image</label>
-                                        <input type="file" class="form-control image-file" style="height: fit-content;" name="pic" accept="image/*">
-                                    </div>
-                                </div> -->
-                            </div>   
-
                               </div>
                            </div>
-                       
-                            <!-- <div class="buttony " id="editForm">
-                                <div class="text-icon">
-                                <i class="bx bx-cloud-upload"></i>
-                                <span class="texty">Edit Product</span>
-                                </div>
-                            </div> -->
-
                         </fieldset>
                        <button type="button" class="btn btn-secondary action-button-close" data-dismiss="modaly">Close</button>
       <button  id="edit" class="btn btn-primary btn-dark editFormProd  float-right mr-3"  >Edit Product</button>

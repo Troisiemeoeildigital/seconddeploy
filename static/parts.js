@@ -133,7 +133,7 @@ const renderUser = doc => {
      <td>${doc.data().partName}</td>
       <td>${doc.data().partCode}</td>
         <td>${doc.data().partWeight}</td>
-         <td>${doc.data().partSize}</td>
+         <td>${doc.data().partWidth} x ${doc.data().partHeight} x ${doc.data().partDepth} (${doc.data().sizeUnit}) </td>
            <td>${doc.data().reusedPart}</td>
      <td>${doc.data().partRegisteredDate}</td>
            <td>${doc.data().partMemo}</td>
