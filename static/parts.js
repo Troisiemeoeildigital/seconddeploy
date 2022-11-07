@@ -180,6 +180,12 @@ viewMatTable.classList.add('modaly-show');
 
       const li = `
      <tr id='${doc.id}' data-id='${doc.id}'>
+         <td>
+                                <div class="checkbox d-inline-block">
+                                    <input type="checkbox" class="checkbox-input" id="checkbox2">
+                                    <label for="checkbox2" class="mb-0"></label>
+                                </div>
+                            </td>
     <td>${doc.data().materialGroup}</td>
        <td>${doc.data().materialName}</td>
       <td>${doc.data().materialRecycleContent}</td>
@@ -520,7 +526,12 @@ db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${s
 
 		for (var i = 0; i < arrUniq.length; i++ ) {
 			var row = `<tr id="${arrUniq[i].subidRef}">
-     
+         <td>
+                                <div class="checkbox d-inline-block">
+                                    <input type="checkbox" class="checkbox-input" id="checkbox2">
+                                    <label for="checkbox2" class="mb-0"></label>
+                                </div>
+                            </td>
 							<td>${arrUniq[i].substanceName}</td>
               <td>${arrUniq[i].casnumber}</td>
                 <td>${arrUniq[i].crm}</td>
@@ -532,7 +543,11 @@ db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${s
              <nav class="navbary">
 	<a href="#" class="navbary__link">
 		<span class="btnpartsubdelete"  data-Part='${arrUniq[i].subidRef}'><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label">View Substances</span>
+		<span class="navbary__label">delete Substance</span>
+	</a>
+  	<a href="#" class="navbary__link">
+		<span class=""  data-Part='${arrUniq[i].subidRef}'><i class="bx bxs-edit-alt" style="color: white; font-size: 15px; "></i></span>
+		<span class="navbary__label">Edit Substances</span>
 	</a>
   </nav>
       </td>
@@ -923,25 +938,35 @@ addModalyParts.reset();
 
 
 }
+
+let selectUnit = document.querySelector(".selectUnit")
+selectUnit.onchange = function LengthConverter(valNum) {
+
+
+   document.querySelector('.addpartWidth').value = valNum / 25.4
+     document.querySelector('.addpartDepth').value = valNum/ 25.4
+      document.querySelector('.addpartHeight').value = valNum / 25.4
+}
+
+
+// let selectUnit = document.querySelector('.selectUnit')
+// selectUnit.onselect = function() {
+//   if(selectUnit.value = "inch"){
+//     document.querySelector('.addpartWidthInch').value = addpartWidth.value / 25.4
+//      document.querySelector('.addpartDepthInch').value = addpartDepth.value / 25.4
+//       document.querySelector('.addpartHeightInch').value = addpartHeight.value / 25.4
+
+//   }
+//     else if(selectUnit.value = "mm"){
+
+//       addpartWidth.value = document.querySelector('.addpartWidthInch').value * 25.4
+//       addpartDepth.value = document.querySelector('.addpartDepthInch').value * 25.4
+//       addpartHeight.value = document.querySelector('.addpartHeightInch').value * 25.4
+//   }
+// }
  
-
-
-
-
-
-// Click add user button
-btnprAdd.onclick = function() {
   let form = document.querySelector('.uploadbtn');
 		let file = document.querySelector('.filey');
-  addmodaly.classList.add('modaly-show');
-
-  addModalyForm.addpartName.value = '';
-  addModalyForm.addpartClass.value = '';
-  addModalyForm.addpartWeight.value = '';
-  addModalyForm.addreusedPart.value = '';
-    addModalyForm.addpartregisteredDate.value = '';
-  addModalyForm.addMemo.value = '';
-
  form.onclick = function upload(e) {
       e.preventDefault()
         var files = file.files;
@@ -951,7 +976,7 @@ btnprAdd.onclick = function() {
         }
         var filename = files[0].name;
         var extension = filename.substring(filename.lastIndexOf(".")).toUpperCase();
-        if (extension == '.CSV') {
+        if (extension == '.CSV' ) {
             //Here calling another method to read CSV file into json
             csvFileToJSON(files[0]);
         }else{
@@ -1014,6 +1039,22 @@ btnprAdd.onclick = function() {
                 console.error(e);
             }
       }
+
+
+
+// Click add user button
+btnprAdd.onclick = function() {
+
+  addmodaly.classList.add('modaly-show');
+
+  addModalyForm.addpartName.value = '';
+  addModalyForm.addpartClass.value = '';
+  addModalyForm.addpartWeight.value = '';
+  addModalyForm.addreusedPart.value = '';
+    addModalyForm.addpartregisteredDate.value = '';
+  addModalyForm.addMemo.value = '';
+
+
 
   
   
