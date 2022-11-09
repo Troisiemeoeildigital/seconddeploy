@@ -11,7 +11,7 @@ const firebaseConfig = {
   measurementId: "G-TL8J23TNZE"
 };
 
-console.log("helllo branch!!!!!!!")
+console.log("helllo branch v2!!")
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
