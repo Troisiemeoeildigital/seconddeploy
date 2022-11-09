@@ -23,7 +23,6 @@ const csrfMiddleware = csrf({ cookie: true });
 
 const PORT = process.env.PORT || 3000;
 const app = express();
-
 app.engine("html", require("ejs").renderFile);
 app.use(express.static("static"));
 

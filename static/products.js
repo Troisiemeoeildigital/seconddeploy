@@ -86,7 +86,7 @@ const partsTab = document.querySelector('#pills-contact-tab-fill')
 //parts references 
     const supplierinfo = document.querySelector('#supplierinfo')
 const partname = document.querySelector('#partname')
-const quantity = document.querySelector('#quantity')
+let quantity = document.querySelector('.quantity')
 const partCode = document.querySelector('#partCode')
 const partNumber = document.querySelector('#partNumber')
 const partSpecs = document.querySelector('#partSpecs')
@@ -149,7 +149,7 @@ const renderUser = doc => {
 		<span class="navbary__label">Edit Product</span>
 	</a>
 	<a href="#" class="navbary__link">
-		<span class=" viewbtn" data-toggle="modal" data-id='${doc.id}' data-PN='${doc.data().productName}' data-target="#exampleModalScrollable"><i class='ri-file-chart-fill' style="color: white; font-size: 15px;"></i></span>
+		<span class=" viewbtn" data-toggle="modal" data-id='${doc.id}' data-PN='${doc.data().productName}'  prodWeight='${doc.data().productWeight}'data-target="#exampleModalScrollable"><i class='ri-file-chart-fill' style="color: white; font-size: 15px;"></i></span>
 		<span class="navbary__label">View Assessment</span>
 	</a>
   	<a href="#" class="navbary__link">
@@ -183,10 +183,12 @@ document.querySelector('#addsubsproduct').classList.remove('show');
 
 // Click on view product button to view assessment
 
+
   const viewassess = document.querySelector(`[data-id='${doc.id}'] .viewbtn`);
   viewassess.onclick= function (e) {
     e.preventDefault()
 let dataPN = viewassess.getAttribute('data-PN');
+let prodWeightRef = viewassess.getAttribute('prodWeight');
 console.log(dataPN)
    		var table = document.querySelector('.renderParts')
       var renderEN4555 = document.querySelector('.renderEN4555')
@@ -359,7 +361,7 @@ buildTable(arrUniq)
       x: 'No. of CRMs',
       y: 0
     }, {
-      x: 'CRM Weight(g)',
+      x: 'CRM Weight',
       y: 0
     }]
   }]
@@ -380,7 +382,7 @@ buildTable(arrUniq)
       x: 'No. of CRMs',
       y: numCrmArr.length
     }, {
-      x: 'CRM Weight(g)',
+      x: 'CRM Weight',
       y: crmWeightSum
     }]
   }]
@@ -702,7 +704,7 @@ for (var i = 1; i < sumAssess.rows.length; i++) {
 }
 let sumTotalWeightg = document.querySelectorAll('.sumTotalWeightg')
 sumTotalWeightg.forEach((el)=> {
-  el.innerHTML = sumAssesUniqTbl
+  el.innerHTML = prodWeightRef
 })
 
 // Summary Total Weight (%)
@@ -793,16 +795,18 @@ const materialChart = document.querySelector('.materialChart');
   
   sumVal = 0;
 for (var i = 1; i < materialChart.rows.length; i++) {
-  sumVal = sumVal + parseFloat(materialChart.rows[i].cells[5].innerHTML);
+  sumVal = sumVal + parseFloat(materialChart.rows[i].cells[2].innerHTML);
+
 }
+  let sumValPerc = sumVal / prodWeightRef * 100
 const sumRecycWeightPer = document.querySelectorAll('.sumRecycWeightPer')
 sumRecycWeightPer.forEach((el)=> {
-  el.innerHTML = sumVal.toFixed(2)
+  el.innerHTML = sumValPerc.toFixed(2)
 })
      // Recycled Material (g)
   sumVal = 0;
 for (var i = 1; i < materialChart.rows.length; i++) {
-  sumVal = sumVal + parseFloat(materialChart.rows[i].cells[4].innerHTML);
+  sumVal = sumVal + parseFloat(materialChart.rows[i].cells[2].innerHTML);
 }
 const sumRecycWeight = document.querySelectorAll('.sumRecycWeight')
 sumRecycWeight.forEach((el)=> {
@@ -863,7 +867,9 @@ let chartsecondref = new ApexCharts(chartsecond, optionsref);
 })
 })
 })
+
 }
+
 
 
 //add parts tp specific product
@@ -882,113 +888,59 @@ btnpraddParts.addEventListener('click', () => {
 
 
 
-//         // Get the form and file field
-
-// 		/**
-// 		 * Log the uploaded file to the console
-// 		 * @param {event} Event The file loaded event
-// 		 */
-// 		function logFile (event) {
-//       event.preventDefault()
-// 			let str = event.target.result;
-// 			let json = JSON.parse(str);
-// 			console.log('string', str);
-// 			console.log('json', json);
-// for(let i = 0; i < json.length; i++) {
-//     let obj = json[i];
-
-//        db.collection('recycledproducts').doc(btnpraddRef).collection('selectedParts').add({
-   
-//             partname: obj.partname,
-//             partWeight: obj.partWeight,
-//             partSize: obj.partSize,
-//             partRegisteredDate: obj.partRegisteredDate,
-//             quantity	: obj.quantity,
-//             partMemo: obj.partMemo
-        
-       
-//         }) .then(()=> {
-//       console.log("Documents Added!")
-//     });
-// }
-
-
-// 		}
-
-// 		/**
-// 		 * Handle submit events
-// 		 * @param  {Event} event The event object
-// 		 */
-// 		function handleSubmit (event) {
-
-// 			// Stop the form from reloading the page
-// 			event.preventDefault();
-
-// 			// If there's no file, do nothing
-// 			if (!file.value.length) return;
-
-// 			// Create a new FileReader() object
-// 			let reader = new FileReader();
-
-// 			// Setup the callback event to run when the file is read
-// 			reader.onload = logFile;
-
-// 			// Read the file
-// 			reader.readAsText(file.files[0]);
-
-
-    
-// 		}
-
-
-// 		let form = document.querySelector('#upload');
-// 		let file = document.querySelector('.filey');
-// 		// Listen for submit events
-// 		form.addEventListener('submit', handleSubmit);
-
-
 //click on add new parts
 const partname = document.querySelector('.partname');
 const getPPdata = document.querySelector('.getPPdata')
-getPPdata.addEventListener('click', (e) => {
+getPPdata.onclick = function(e) {
  e.preventDefault()
+  partSize.value = 0;
+  partWeight.value = 0;
+
+//     var tablepartsRef = document.querySelector(".table-parts"),
+//   sumPartsWeight = 0;
+// for (var i = 1; i < tablepartsRef.rows.length; i++) {
+//   sumPartsWeight = sumPartsWeight + parseFloat(tablepartsRef.rows[i].cells[3].innerHTML);
+// }
+
+// console.log(sumPartsWeight)
+
+console.log(  typeof(btnpraddWeightRef))
   const partsRef = db.collection("recycledparts")
      partsRef.where("partName", "==", partname.value).where("supplierName", "==", supplierName.value)
     .get()
     .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          console.log(partname.value)
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-            partId.value = doc.id
+          const partWeightRef =  parseInt(doc.data().partWeight) * quantity.value;
+     
+           console.log(partWeightRef)
+          console.log(partWeightRef < btnpraddWeightRef)
+           if (partWeightRef < btnpraddWeightRef) {
+               partId.value = doc.id
              partname.value = doc.data().partName
           partSize.value = doc.data().partSize
-          partWeight.value = doc.data().partWeight
+          partWeight.value = parseInt(doc.data().partWeight)
           partRegisteredDate.value = doc.data().partRegisteredDate
           companyName.value = doc.data().partMemo
           supplierName.value = doc.data().supplierName
-
-        });
-    }).then(()=>{
-      if (partWeight.value < btnpraddWeightRef) {
-          Swal.fire({
+           const buttonaddParts = document.querySelector('.buttonaddParts')
+      buttonaddParts.style.display = "block";
+      
+      } else {
+            const buttonaddParts = document.querySelector('.buttonaddParts')
+      buttonaddParts.style.display = "none";
+       Swal.fire({
+        
   icon: 'error',
   title: 'Warning!',
-  text: "The selected part weight can't exceed the product weight.",
-  footer: '<a href="">Why do I have this issue?</a>'
+  text: `The selected part weight  ${quantity.value} x ${doc.data().partName} (${partWeightRef} g) can't exceed the product weight. (${btnpraddWeightRef} g) `,
+  footer: '<a href="">Why do I have this issue?</a>',
+  keydownListenerCapture:true
 })
-      } else {
-      const buttonaddParts = document.querySelector('.buttonaddParts')
-      buttonaddParts.style.display = "block";
       }
-    
-      
+        });
     })
   
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
-})
+}
 
 // Add Parts/Materials/Substances to a product
 const buttonaddParts = document.querySelector('.buttonaddParts')
@@ -1017,6 +969,7 @@ const buttonaddParts = document.querySelector('.buttonaddParts')
             // doc.data() is never undefined for query doc snapshots
             db.collection('recycledparts').where('partName', '==', doc.data().partname).get()
             .then((querySnapshot) => {
+              
               let  partproductRef = doc.id 
               let partproductname = doc.data().partname
                  let partproductweight = doc.data().partWeight
