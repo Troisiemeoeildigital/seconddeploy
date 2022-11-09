@@ -11,6 +11,8 @@ const firebaseConfig = {
   measurementId: "G-TL8J23TNZE"
 };
 
+console.log("helllo branch!")
+
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth(app);
@@ -869,8 +871,6 @@ let chartsecondref = new ApexCharts(chartsecond, optionsref);
 })
 
 }
-
-
 
 //add parts tp specific product
  const btnpraddParts = document.querySelector(`[data-id='${doc.id}'] .btnpr-addPP`);
