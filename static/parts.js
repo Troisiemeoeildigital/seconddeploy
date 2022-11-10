@@ -567,6 +567,7 @@ db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${s
   </nav>
       </td>
              </tr>`
+      
 			substancelisttable.innerHTML += row
 		}}
   })

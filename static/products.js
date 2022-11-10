@@ -141,20 +141,20 @@ const renderUser = doc => {
     <td>
   
     
- <nav class="navbary" style="margin: 30px;">
-	<a href="#" class="navbary__link">
+ <nav class="navbary" style="margin: 30px;  background-color:  #8ecae6 ;">
+	<a href="#" class="navbary__link"  style="background-color:  #8ecae6" ;>
 		<span class=" btnpr-addPP"  id='${doc.id}' part-weight='${doc.data().productWeight}'><i class="bx bx-plus" style="color: white; font-size: 15px;"></i></span>
 		<span class="navbary__label">Add Parts</span>
 	</a>
-	<a href="#" class="navbary__link">
+	<a href="#" class="navbary__link"  style="background-color:  #8ecae6">
 		<span class=" btnpr-edit" data-id="${doc.id}"><i class='bx bxs-edit-alt' style="color: white; font-size: 15px;" ></i></span>
 		<span class="navbary__label">Edit Product</span>
 	</a>
-	<a href="#" class="navbary__link">
+	<a href="#" class="navbary__link"  style="background-color:  #8ecae6">
 		<span class=" viewbtn" data-toggle="modal" data-id='${doc.id}' data-PN='${doc.data().productName}'  prodWeight='${doc.data().productWeight}'data-target="#exampleModalScrollable"><i class='ri-file-chart-fill' style="color: white; font-size: 15px;"></i></span>
 		<span class="navbary__label">View Assessment</span>
 	</a>
-  	<a href="#" class="navbary__link">
+  	<a href="#" class="navbary__link"  style="background-color:  #8ecae6">
 		<span class=" btnpr-delete" ><i class='ri-delete-bin-line' style="color: white; font-size: 15px;" ></i></span>
 		<span class="navbary__label" style="left: -50px;">Delete Product</span>
 	</a>
@@ -1105,13 +1105,13 @@ let idref = guid()
         <td>${doc.data().partMemo}</td>
 
           <td>
-  <nav class="navbary">
+  <nav class="navbary"  style="background-color:  #8ecae6 ;>
 
-  	<a href="#" class="navbary__link">
+  	<a href="#" class="navbary__link"  style="background-color:  #8ecae6">
 		<span class="btnprodpartdelete" data-Part='${doc.id}' ><i class='ri-delete-bin-line' style="color: white; font-size: 15px;" ></i></span>
 		<span class="navbary__label">Delete Part</span>
 	</a>
-    	<a href="#" class="navbary__link">
+    	<a href="#" class="navbary__link"  style="background-color:  #8ecae6">
 		<span class="viewpartmat"data-toggle="modal" data-target="#partproductmaterial" data-PN= '${doc.data().partname}' data-id='${doc.id}'><i class="ri-eye-line" style="color: white; font-size: 15px;"></i></span>
 		<span class="navbary__label">View Materials</span>
 	</a>
@@ -1218,13 +1218,13 @@ Swal.fire({
      
 
          <td>
-     <nav class="navbary">
-	<a href="#" class="navbary__link">
+     <nav class="navbary"  style="background-color:  #8ecae6 ;>
+	<a href="#" class="navbary__link"  style="background-color:  #8ecae6">
 		<span class=" viewmatsub" id="btnprview" data-toggle="modal" data-target="#partproductmaterialsubs"  data-id='${doc.id}'><i class="ri-eye-line" style="color: white; font-size: 15px;"></i></span>
 		<span class="navbary__label">View Substances</span>
 	</a>
 
-	<a href="#" class="navbary__link">
+	<a href="#" class="navbary__link"  style="background-color:  #8ecae6">
 		<span class=" addProdmatsub"  data-toggle="modal" data-target="#addsubsproduct" mat-weight="${doc.data().materialMassg}" data-id='${doc.id}'><i class='bx bx-plus' style="color: white; font-size: 15px; left:-58px;"></i></span>
 		<span class="navbary__label" style = "top: -46px;
     left: -50px;">Add New Substance</span>
@@ -1385,8 +1385,8 @@ addSubs.onclick = function(e) {
 
 
 
-  <nav class="navbary">
-	<a href="#" class="navbary__link">
+  <nav class="navbary"  style="background-color:  #8ecae6 ;>
+	<a href="#" class="navbary__link"  style="background-color:  #8ecae6">
 		<span class="btnprsubdelete"  data-id= '${arrUniq[i].subProdid}'><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
 		<span class="navbary__label">Delete Substance</span>
 	</a>
