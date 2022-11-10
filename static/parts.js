@@ -146,22 +146,22 @@ const renderUser = doc => {
              <nav class="navbary" style="background-color: orange;">
 	<a href="#" class="navbary__link">
 		<span class="viewbtn" id="btnprview" data-id='${doc.id}' data-toggle="modal" data-target="#exampleModalScrollable"><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label">View Materials</span>
+		<span class="navbary__label" style="background-color: orange;">View Materials</span>
 	</a>
 
   	<a href="#" class="navbary__link">
 		<span class="btnpr-edit"><i class="bx bxs-edit-alt" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label">Edit Part</span>
+		<span class="navbary__label" style="background-color: orange;">Edit Part</span>
 	</a>
   
     	<a href="#" class="navbary__link">
 		<span class="btnpr-addParts" data-id='${doc.id}'><i class="bx bx-plus" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label">Add New Material</span>
+		<span class="navbary__label" style="background-color: orange;">Add New Material</span>
 	</a>
 
       	<a href="#" class="navbary__link">
 		<span class="btnpr-delete" ><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style="left: -36px;">Delete Part</span>
+		<span class="navbary__label" style="left: -36px; background-color: orange;">Delete Part</span>
 	</a>
 </nav>
     </div>
@@ -220,22 +220,22 @@ viewMatTable.classList.add('modaly-show');
        <nav class="navbary" style="background-color: orange;">
 	<a href="#" class="navbary__link">
 		<span class="btnpmviewSubs"  data-id='${doc.id}'  data-id='${doc.id}' data-toggle="modal" data-target="#exampleModalScrollableSubstances"><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label">View Substances</span>
+		<span class="navbary__label" style="background-color: orange;">View Substances</span>
 	</a>
 
 <a href="#" class="navbary__link">
 		<span class="btnpmedit"  data-id='${doc.id}'><i class="bx bxs-edit-alt" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label">Edit Material</span>
+		<span class="navbary__label" style="background-color: orange;">Edit Material</span>
 	</a>
 
 <a href="#" class="navbary__link">
 		<span class="btnpmSubs"  matWeight="${doc.data().materialMassg}" data-id='${doc.id}'><i class="bx bx-plus" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label">Add New Substances </span>
+		<span class="navbary__label" style="background-color: orange;">Add New Substances </span>
 	</a>
 
   <a href="#" class="navbary__link">
 		<span class="btnpmdelete"   data-Part='${partRef}' data-id='${doc.id}'><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style='left:-49px'>Delete Material </span>
+		<span class="navbary__label" style='left:-49px; background-color: orange;'>Delete Material </span>
 	</a>
   </nav>
       </td>
@@ -558,11 +558,11 @@ db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${s
              <nav class="navbary" style="background-color: orange;">
 	<a href="#" class="navbary__link">
 		<span class="btnpartsubdelete"  data-Part='${arrUniq[i].subidRef}'><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label">delete Substance</span>
+		<span class="navbary__label" style="background-color: orange;">delete Substance</span>
 	</a>
   	<a href="#" class="navbary__link">
 		<span class=""  data-Part='${arrUniq[i].subidRef}'><i class="bx bxs-edit-alt" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label">Edit Substances</span>
+		<span class="navbary__label" style="background-color: orange;">Edit Substances</span>
 	</a>
   </nav>
       </td>
