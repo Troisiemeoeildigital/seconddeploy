@@ -20,6 +20,8 @@ function tableSearch() {
             }
 
         };
+
+        
 let searchChoice = document.querySelector(".searchPartSelection")
 searchChoice.addEventListener('change', ()=>{
 if (searchChoice.value == 1) {

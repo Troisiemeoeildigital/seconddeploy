@@ -143,7 +143,7 @@ const renderUser = doc => {
 
          <td>
     <div class="btngroup">
-             <nav class="navbary">
+             <nav class="navbary" style="background-color: orange;">
 	<a href="#" class="navbary__link">
 		<span class="viewbtn" id="btnprview" data-id='${doc.id}' data-toggle="modal" data-target="#exampleModalScrollable"><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
 		<span class="navbary__label">View Materials</span>
@@ -217,7 +217,7 @@ viewMatTable.classList.add('modaly-show');
 
   <td>
 
-       <nav class="navbary">
+       <nav class="navbary" style="background-color: orange;">
 	<a href="#" class="navbary__link">
 		<span class="btnpmviewSubs"  data-id='${doc.id}'  data-id='${doc.id}' data-toggle="modal" data-target="#exampleModalScrollableSubstances"><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
 		<span class="navbary__label">View Substances</span>
@@ -555,7 +555,7 @@ db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${s
 							<td>${arrUniq[i].substanceMassPerc}</td>
        
                     <td>
-             <nav class="navbary">
+             <nav class="navbary" style="background-color: orange;">
 	<a href="#" class="navbary__link">
 		<span class="btnpartsubdelete"  data-Part='${arrUniq[i].subidRef}'><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
 		<span class="navbary__label">delete Substance</span>
@@ -1125,10 +1125,26 @@ const supplierNameData = document.querySelector('#addsupplierName')
 supplierNameData.value = doc.data().userCompanyname
    })})}})
 
+     
 
 // Click submit in add modaly
 addPartsForm.addEventListener('click', e => {
   e.preventDefault();
+
+        //Start work here
+   var partsCodeRef = db.collectionGroup('recycledparts');
+partsCodeRef
+.get()
+ .then(query=>{
+    let data = query.docs.map(doc=>{
+        let x = doc.data().partCode
+            return x;
+    })
+    console.log(data)
+const checkUsername = element => element == document.querySelector('#addClass').value;
+    
+console.log(data.some(checkUsername) )
+if (data.some(checkUsername) == false) {
   db.collection('recycledparts').add({
      supplierName: addModalyForm.addsupplierName.value,
    partName: addModalyForm.addpartName.value,
@@ -1149,6 +1165,17 @@ Swal.fire(
   'New part is added successfully!',
   'success'
 )
+}
+else {
+  Swal.fire(
+  'Error!',
+  `Part Code ${document.querySelector('#addClass').value} already exists!`,
+  'warning'
+)
+}
+  })
+
+
 });
 
 // document.querySelector('#addpartName').setAttribute("disabled","disabled")
