@@ -5004,12 +5004,16 @@ button.bg-light-gray:focus {
 .d-none {
   display: none !important; }
 
-.d-inline {
+td {
+   color: black;font-weight: 600; font-size: 15px;
+}
+
+/* .d-inline {
   display: inline !important; }
 
 .d-inline-block {
   display: inline-block !important; 
-    margin-top: 40px;}
+    margin-top: 40px;} */
   
 
 .d-block {

@@ -121,52 +121,53 @@ const renderUser = doc => {
   const tr = `
     <tr data-id='${doc.id}' style="  border-bottom: 0.5px solid grey;">
      <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox2">
+                                <div class="checkbox " style="  display: inline-table;  width: 20px;
+    height: 15px;">
+                                    <input type="checkbox" class="checkbox-input" id="checkbox2" style="height: fit-content;">
                                     <label for="checkbox2" class="mb-0"></label>
                                 </div>
                             </td>
-     <td>${doc.data().supplierName}</td>
-     <td>${doc.data().partName}</td>
-      <td>${doc.data().partCode}</td>
-        <td>${doc.data().partWeight}</td>
-         <td>${doc.data().partWidth} x ${doc.data().partHeight} x ${doc.data().partDepth} (${doc.data().sizeUnit}) </td>
-           <td>${doc.data().reusedPart}</td>
-     <td>${doc.data().partRegisteredDate}</td>
-           <td>${doc.data().partMemo}</td>
+     <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().supplierName}</td>
+     <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().partName}</td>
+      <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().partCode}</td>
+        <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().partWeight}</td>
+         <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().partWidth} x ${doc.data().partHeight} x ${doc.data().partDepth} (${doc.data().sizeUnit}) </td>
+           <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().reusedPart}</td>
+     <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().partRegisteredDate}</td>
+           <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().partMemo}</td>
 
 
    
 
          <td>
-    <div class="btngroup">
-             <nav class="navbary" style="background-color: orange;">
+    <div class="btngroup" style="margin:0;">
+             <nav class="navbary" style="background-color: #fb8500; width: 60%;">
 	<a href="#" class="navbary__link">
 		<span class="viewbtn" id="btnprview" data-id='${doc.id}' data-toggle="modal" data-target="#exampleModalScrollable"><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style="background-color: orange;">View Materials</span>
+		<span class="navbary__label" style="background-color: #fb8500;">View Materials</span>
 	</a>
 
   	<a href="#" class="navbary__link">
 		<span class="btnpr-edit"><i class="bx bxs-edit-alt" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style="background-color: orange;">Edit Part</span>
+		<span class="navbary__label" style="background-color: #fb8500;">Edit Part</span>
 	</a>
   
     	<a href="#" class="navbary__link">
 		<span class="btnpr-addParts" data-id='${doc.id}'><i class="bx bx-plus" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style="background-color: orange;">Add New Material</span>
+		<span class="navbary__label" style="background-color: #fb8500;">Add New Material</span>
 	</a>
 
       	<a href="#" class="navbary__link">
 		<span class="btnpr-delete" ><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style="left: -36px; background-color: orange;">Delete Part</span>
+		<span class="navbary__label" style="left: -36px; background-color: #fb8500;">Delete Part</span>
 	</a>
 </nav>
 
-    <nav class="navbary" style="margin-left: -12px; width:40px; background-color: orange;">
+    <nav class="navbary" style="margin-left: -12px; width:40px; background-color: #fb8500;">
 	<a href="#" class="navbary__link">
 		<span class="" data-id='${doc.id}'><i class='bx bx-duplicate' style="    color: white;
     font-size: 17px;"></i></i></span>
-		<span class="navbary__label" style="background-color: orange;">Duplicate Part</span>
+		<span class="navbary__label" style="background-color: #fb8500;">Duplicate Part</span>
 	</a>
 </nav>
     </div>
@@ -202,8 +203,9 @@ viewMatTable.classList.add('modaly-show');
       const li = `
      <tr id='${doc.id}' data-id='${doc.id}'>
          <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox2">
+                                <div class="checkbox " style="  display: inline-table;  width: 20px;
+    height: 15px;">
+                                    <input type="checkbox" class="checkbox-input" id="checkbox2" >
                                     <label for="checkbox2" class="mb-0"></label>
                                 </div>
                             </td>
@@ -222,25 +224,25 @@ viewMatTable.classList.add('modaly-show');
 
   <td>
 
-       <nav class="navbary" style="background-color: orange;">
-	<a href="#" class="navbary__link">
+       <nav class="navbary" style="background-color: #fb8500; width: 80%;">
+	<a href="#" class="navbary__link" >
 		<span class="btnpmviewSubs"  data-id='${doc.id}'  data-id='${doc.id}' data-toggle="modal" data-target="#exampleModalScrollableSubstances"><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style="background-color: orange;">View Substances</span>
+		<span class="navbary__label" style="background-color: #fb8500;">View Substances</span>
 	</a>
 
-<a href="#" class="navbary__link">
+<a href="#" class="navbary__link" >
 		<span class="btnpmedit"  data-id='${doc.id}'><i class="bx bxs-edit-alt" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style="background-color: orange;">Edit Material</span>
+		<span class="navbary__label" style="background-color: #fb8500;">Edit Material</span>
 	</a>
 
 <a href="#" class="navbary__link">
 		<span class="btnpmSubs"  matWeight="${doc.data().materialMassg}" data-id='${doc.id}'><i class="bx bx-plus" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style="background-color: orange;">Add New Substances </span>
+		<span class="navbary__label" style="background-color: #fb8500;">Add New Substances </span>
 	</a>
 
   <a href="#" class="navbary__link">
 		<span class="btnpmdelete"   data-Part='${partRef}' data-id='${doc.id}'><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style='left:-49px; background-color: orange;'>Delete Material </span>
+		<span class="navbary__label" style='left:-49px; background-color: #fb8500;'>Delete Material </span>
 	</a>
   </nav>
       </td>
@@ -546,9 +548,10 @@ db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${s
 
 		for (var i = 0; i < arrUniq.length; i++ ) {
 			var row = `<tr id="${arrUniq[i].subidRef}">
-         <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox2">
+         <td >
+                                <div class="checkbox " style="  display: inline-table;  width: 20px;
+    height: 15px;">
+                                    <input type="checkbox" class="checkbox-input" id="checkbox2" >
                                     <label for="checkbox2" class="mb-0"></label>
                                 </div>
                             </td>
@@ -560,14 +563,14 @@ db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${s
 							<td>${arrUniq[i].substanceMassPerc}</td>
        
                     <td>
-             <nav class="navbary" style="background-color: orange;">
+             <nav class="navbary" style="background-color: #fb8500;">
 	<a href="#" class="navbary__link">
 		<span class="btnpartsubdelete"  data-Part='${arrUniq[i].subidRef}'><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style="background-color: orange;">delete Substance</span>
+		<span class="navbary__label" style="background-color: #fb8500;">delete Substance</span>
 	</a>
   	<a href="#" class="navbary__link">
 		<span class=""  data-Part='${arrUniq[i].subidRef}'><i class="bx bxs-edit-alt" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style="background-color: orange;">Edit Substances</span>
+		<span class="navbary__label" style="background-color: #fb8500;">Edit Substances</span>
 	</a>
   </nav>
       </td>

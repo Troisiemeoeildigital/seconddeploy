@@ -121,18 +121,9 @@ const renderUser = doc => {
 
   const tr = `
     <tr data-id='${doc.id}' style="  border-bottom: 0.5px solid grey;">
-         <td 
-         style="max-height: 60px; height: fit-content;
-    display: flex;
-    justify-content: center;
-        align-items: center;"
-        >
-                                <div class="checkbox d-inline-block"  style="    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: center;
-    align-items: center;">
+         <td >
+                                <div class="checkbox "  style="  display: inline-table;  width: 20px;
+    height: 15px;">
                                     <input type="checkbox" class="checkbox-input" id="checkbox2" style="height: fit-content;">
                                     <label for="checkbox2" class="mb-0"></label>
                                 </div>
@@ -407,6 +398,13 @@ let chartthreeref = new ApexCharts(chartsthree, optionsthreeref);
 
 })
  
+
+//TESTING OUT FUNCTION 
+var tableJSON = document.querySelector('.materialChart').tableToJSON()
+console.log(tableJSON);
+//TESTING OUT FUNCTION
+
+
 
   var matRef = db.collectionGroup('selectedMaterials');
 matRef
@@ -1100,13 +1098,9 @@ let idref = guid()
       console.log(addedparts)
       const pp = `
       <tr id='${doc.id}' data-Part='${doc.id}'>
-  <td style="    max-height: 60px;
-    height: fit-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border:0;">
-                                <div class="checkbox d-inline-block">
+  <td>
+                                <div class="checkbox " style="  display: inline-table;  width: 15px;
+    height: 15px;">
                                     <input type="checkbox" class="checkbox-input" id="checkbox2">
                                     <label for="checkbox2" class="mb-0"></label>
                                 </div>
@@ -1219,7 +1213,8 @@ Swal.fire({
       const li = `
      <tr id='${doc.id}' data-id='${doc.id}'>
       <td>
-                                <div class="checkbox d-inline-block">
+                                <div class="checkbox" style="  display: inline-table;  width: 20px;
+    height: 15px;">
                                     <input type="checkbox" class="checkbox-input" id="checkbox2">
                                     <label for="checkbox2" class="mb-0"></label>
                                 </div>

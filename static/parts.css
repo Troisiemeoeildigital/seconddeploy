@@ -4,3 +4,9 @@
     justify-content: flex-end;
     align-items: flex-start;
 }
+
+thead {
+    color: black;
+    font-size: medium;
+    font-weight: 400;
+}
