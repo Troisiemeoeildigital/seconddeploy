@@ -57,20 +57,25 @@ let id;
 const renderUser = doc => {
   const tr = `
    
-   
      
+      
        <tr data-id='${doc.id}'>
 
-      <td style="padding:20px">${doc.data().subtanceName}</td>
-     <td>${doc.data().casnumber}</td>
-      <td>${doc.data().crm}</td>
-       <td>${doc.data().rohs}</td>
-         <td>${doc.data().none}</td>
+      <td style="padding:20px" class="substxt">${doc.data().subtanceName}</td>
+     <td class="substxt">${doc.data().casnumber}</td>
+      <td class="substxt">${doc.data().crm}</td>
+       <td class="substxt">${doc.data().rohs}</td>
+         <td class="substxt">${doc.data().none}</td>
     
     </tr>
   `;
   tableUsers.insertAdjacentHTML('beforeend', tr);
-
+  let substxt = document.querySelectorAll('.substxt')
+  substxt.forEach(e => {
+    let text = e.innerHTML
+    let reuslt = text.substring(0, 10)
+  })
+ 
 // var tableusersfilter, rows, switching, i, x, y, shouldSwitch;
 // var tableusersfilter = document.querySelector(".table-users")
 //   switching = true;
