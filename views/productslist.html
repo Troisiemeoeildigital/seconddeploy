@@ -1572,7 +1572,8 @@
                               </tr>
                           </div>
                           <div class="col-md-4">
-                              <table class="table">
+                            <div style="display: flex; flex-direction:column; align-items:center;">
+                                <table class="table">
                         <thead class="thead-light">
                            <tr>
                               <th scope="col">Indication</th>
@@ -1582,7 +1583,7 @@
                            </tr>
                         </thead>
                         <tbody>
-                           <tr>
+                           <tr class="">
                               <th scope="row">Recycled Material</th>
                               <td class="sumRecycWeight"></td>
                               <td class="sumRecycWeightPer"></td>
@@ -1595,7 +1596,21 @@
                            
                            </tr>
                         </tbody>
+                            </table>
+                     <table class="table">
+                        <thead class="thead-light">
+                           <tr>
+                              <th scope="col">Recycled Material</th>
+                              <th scope="col">Recycled Mass(g)</th>
+                           
+                        
+                           </tr>
+                        </thead>
+                        <tbody class="summedrecyc">
+
+                        </tbody>
                      </table>
+                            </div>
                           </div>
                           <div class="col-md-4">
                               <div class="card">
@@ -1615,9 +1630,9 @@
                            <tr>
                               <th scope="col">Material Group </th>
                                  <th scope="col">Material Name </th>
-                                    <th scope="col">Material Mass (g) </th>
-                                       <th scope="col">Recycled rate(%)</th>
-                                                   <th scope="col">Recycled Material Mass(g)</th>
+                                    <th scope="col">Material Mass </th>
+                                       <th scope="col">Recycled rate</th>
+                                                   <th scope="col">Recycled Material Mass</th>
                                    
                            </tr>
                         </thead>
