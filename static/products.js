@@ -121,42 +121,52 @@ const renderUser = doc => {
 
   const tr = `
     <tr data-id='${doc.id}' style="  border-bottom: 0.5px solid grey;">
-         <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox2">
+         <td 
+         style="max-height: 60px; height: fit-content;
+    display: flex;
+    justify-content: center;
+        align-items: center;"
+        >
+                                <div class="checkbox d-inline-block"  style="    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;">
+                                    <input type="checkbox" class="checkbox-input" id="checkbox2" style="height: fit-content;">
                                     <label for="checkbox2" class="mb-0"></label>
                                 </div>
                             </td>
-       <td><img style="max-width: 70px; max-height: 70px;" src="${doc.data().productImg}" alt="${doc.data().productName}"></td>
-     <td>${doc.data().productCategory}</td>
-      <td>${doc.data().productName}</td>
-      <td>${doc.data().productMN}</td>
-      <td>${doc.data().productWeight}</td>
-      <td>${doc.data().prodWidth} x ${doc.data().prodHeight} x ${doc.data().prodDepth} (${doc.data().sizeUnit})</td>
-        <td>${doc.data().registeredDate}</td>
-           <td>${doc.data().productStatus}</td>
-             <td>${doc.data().memo}</td>
+       <td><img style="max-width: 30px; max-height: 30px;" src="${doc.data().productImg}" alt="${doc.data().productName}"></td>
+     <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().productCategory}</td>
+      <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().productName}</td>
+      <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().productMN}</td>
+      <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().productWeight}</td>
+      <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().prodWidth} x ${doc.data().prodHeight} x ${doc.data().prodDepth} (${doc.data().sizeUnit})</td>
+        <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().registeredDate}</td>
+           <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().productStatus}</td>
+             <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().memo}</td>
 
 
-    <td>
+    <td >
   
     
- <nav class="navbary" style="margin: 30px;  background-color:  #8ecae6 ;">
-	<a href="#" class="navbary__link"  style="background-color:  #8ecae6" ;>
+ <nav class="navbary" style="background-color:  #219EBC; ">
+	<a href="#" class="navbary__link"   ;>
 		<span class=" btnpr-addPP"  id='${doc.id}' part-weight='${doc.data().productWeight}'><i class="bx bx-plus" style="color: white; font-size: 15px;"></i></span>
-		<span class="navbary__label">Add Parts</span>
+		<span class="navbary__label" style="background-color:  #219EBC">Add Parts</span>
 	</a>
-	<a href="#" class="navbary__link"  style="background-color:  #8ecae6">
+	<a href="#" class="navbary__link"  >
 		<span class=" btnpr-edit" data-id="${doc.id}"><i class='bx bxs-edit-alt' style="color: white; font-size: 15px;" ></i></span>
-		<span class="navbary__label">Edit Product</span>
+		<span class="navbary__label" style="background-color:  #219EBC">Edit Product</span>
 	</a>
-	<a href="#" class="navbary__link"  style="background-color:  #8ecae6">
+	<a href="#" class="navbary__link"  >
 		<span class=" viewbtn" data-toggle="modal" data-id='${doc.id}' data-PN='${doc.data().productName}'  prodWeight='${doc.data().productWeight}'data-target="#exampleModalScrollable"><i class='ri-file-chart-fill' style="color: white; font-size: 15px;"></i></span>
-		<span class="navbary__label">View Assessment</span>
+		<span class="navbary__label" style="background-color:  #219EBC">View Assessment</span>
 	</a>
-  	<a href="#" class="navbary__link"  style="background-color:  #8ecae6">
+  	<a href="#" class="navbary__link"  >
 		<span class=" btnpr-delete" ><i class='ri-delete-bin-line' style="color: white; font-size: 15px;" ></i></span>
-		<span class="navbary__label" style="left: -50px;">Delete Product</span>
+		<span class="navbary__label" style="left: -50px; background-color:  #219EBC ;">Delete Product</span>
 	</a>
 </nav>
    
@@ -497,7 +507,7 @@ buildTable(materialDataUniq)
          <td>${secondMatarrUniq[i].materialMassg}</td>
          <td>${recycleRate}</td>
          <td>${RecycMatg}</td>
-             <td>${RecycMatPerc}</td>
+            
                </tr>
       `
       	renderEN4557.innerHTML += rowMat
@@ -1090,28 +1100,33 @@ let idref = guid()
       console.log(addedparts)
       const pp = `
       <tr id='${doc.id}' data-Part='${doc.id}'>
-  <td>
+  <td style="    max-height: 60px;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:0;">
                                 <div class="checkbox d-inline-block">
                                     <input type="checkbox" class="checkbox-input" id="checkbox2">
                                     <label for="checkbox2" class="mb-0"></label>
                                 </div>
                             </td>
-        <td>${doc.data().partname}</td>
-        <td>${doc.data().partCode}</td>
-        <td>${doc.data().partWeight}</td>
-        <td>${doc.data().partSize}</td>
-        <td>${doc.data().partRegisteredDate}</td>
-           <td>${doc.data().quantity}</td>
-        <td>${doc.data().partMemo}</td>
+        <td  style="color: black; font-weight: 600;">${doc.data().partname}</td>
+        <td style="color: black; font-weight: 600;">${doc.data().partCode}</td>
+        <td style="color: black; font-weight: 600;">${doc.data().partWeight}</td>
+        <td style="color: black; font-weight: 600;">${doc.data().partSize}</td>
+        <td style="color: black; font-weight: 600;">${doc.data().partRegisteredDate}</td>
+           <td style="color: black; font-weight: 600;">${doc.data().quantity}</td>
+        <td style="color: black; font-weight: 600;">${doc.data().partMemo}</td>
 
           <td>
-  <nav class="navbary"  style="background-color:  #8ecae6 ;>
+  <nav class="navbary"  style="background-color:  #219EBC" ;>
 
-  	<a href="#" class="navbary__link"  style="background-color:  #8ecae6">
+  	<a href="#" class="navbary__link"  style="background-color:  #219EBC">
 		<span class="btnprodpartdelete" data-Part='${doc.id}' ><i class='ri-delete-bin-line' style="color: white; font-size: 15px;" ></i></span>
 		<span class="navbary__label">Delete Part</span>
 	</a>
-    	<a href="#" class="navbary__link"  style="background-color:  #8ecae6">
+    	<a href="#" class="navbary__link"  style="background-color:  #219EBC">
 		<span class="viewpartmat"data-toggle="modal" data-target="#partproductmaterial" data-PN= '${doc.data().partname}' data-id='${doc.id}'><i class="ri-eye-line" style="color: white; font-size: 15px;"></i></span>
 		<span class="navbary__label">View Materials</span>
 	</a>
@@ -1124,7 +1139,7 @@ let idref = guid()
       html+=pp
        const bpart = `
        <tr data-id="1" data-parent="0" data-level="1">
-        <td data-column="name">${doc.data().partname}</td>
+        <td data-column="name">ㄴ  ${doc.data().partname}</td>
          </tr>
       `;
        
@@ -1218,13 +1233,13 @@ Swal.fire({
      
 
          <td>
-     <nav class="navbary"  style="background-color:  #8ecae6 ;>
-	<a href="#" class="navbary__link"  style="background-color:  #8ecae6">
+     <nav class="navbary"  style="background-color:  #219EBC ;>
+	<a href="#" class="navbary__link"  style="background-color:  #219EBC">
 		<span class=" viewmatsub" id="btnprview" data-toggle="modal" data-target="#partproductmaterialsubs"  data-id='${doc.id}'><i class="ri-eye-line" style="color: white; font-size: 15px;"></i></span>
 		<span class="navbary__label">View Substances</span>
 	</a>
 
-	<a href="#" class="navbary__link"  style="background-color:  #8ecae6">
+	<a href="#" class="navbary__link"  style="background-color:  #219EBC">
 		<span class=" addProdmatsub"  data-toggle="modal" data-target="#addsubsproduct" mat-weight="${doc.data().materialMassg}" data-id='${doc.id}'><i class='bx bx-plus' style="color: white; font-size: 15px; left:-58px;"></i></span>
 		<span class="navbary__label" style = "top: -46px;
     left: -50px;">Add New Substance</span>
@@ -1385,8 +1400,8 @@ addSubs.onclick = function(e) {
 
 
 
-  <nav class="navbary"  style="background-color:  #8ecae6 ;>
-	<a href="#" class="navbary__link"  style="background-color:  #8ecae6">
+  <nav class="navbary"  style="background-color:  #219EBC ;>
+	<a href="#" class="navbary__link" >
 		<span class="btnprsubdelete"  data-id= '${arrUniq[i].subProdid}'><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
 		<span class="navbary__label">Delete Substance</span>
 	</a>

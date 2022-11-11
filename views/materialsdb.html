@@ -16,6 +16,18 @@
        <link rel="stylesheet" href="./all.min.css">
       <link rel="stylesheet" href="./line-awesome.min.css">
       <link rel="stylesheet" href="./remixicon.css">
+         <style>
+                @media only screen and (min-width: 60em) {
+  .table-wrapper {
+    height: 443px;
+  }
+}
+         @media only screen and (min-width: 86em) {
+  .table-wrapper {
+    height: 645px;
+  }
+}
+      </style>
         <!-- <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js"></script>
    
     <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-auth.js" defer ></script> -->
@@ -227,9 +239,8 @@
             <div class="col-lg-12">
                 <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
                     <div>
-                        <h4 class="mb-3">소재 목록
+                        <h4 class="mb-3" style="color: black;font-weight: 600; font-size: 25px;">소재 목록
 </h4>
-                        <p class="mb-0">등록된 소재 목록을 보여줍니다</p>
                     </div>
                     <button class="btnpr btnpr-add adminelement" style="display: none;"><div class="addnewproductbtnpr">Add New Material</div></button>
                 </div>
@@ -266,7 +277,7 @@
         
  <div class="tabledata">
    
-    <div class="table-wrapper" style="height: 850px;
+    <div class="table-wrapper" style="
     overflow-y: scroll;">
       <table class="table-users">
       <thead style="position: sticky; top: 0; z-index: 1;">

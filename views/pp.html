@@ -16,6 +16,18 @@
        <link rel="stylesheet" href="./all.min.css">
       <link rel="stylesheet" href="./line-awesome.min.css">
       <link rel="stylesheet" href="./remixicon.css">
+         <style>
+                @media only screen and (min-width: 60em) {
+  .table-wrapper {
+    height: 443px;
+  }
+}
+         @media only screen and (min-width: 86em) {
+  .table-wrapper {
+    height: 645px;
+  }
+}
+      </style>
         <!-- <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js"></script>
    
     <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-auth.js" defer ></script> -->
@@ -316,8 +328,7 @@
             
                 <div class="d-flex flex-wrap flex-wrap align-items-center mb-4">
                     <div class="col-lg-4">
-                 <h4 class="mb-3">부품목록</h4>
-                        <p class="mb-0">등록된부품목록을보여줍니다.</p>
+                 <h4 class="mb-3" style="color: black;font-weight: 600; font-size: 25px;">부품목록</h4>  
               </div>
                 
                <div class="col-lg-8">
@@ -371,7 +382,7 @@
         <!--Here starts the form-->
              <div class="loadingtitle"></div>
  <div class="tabledata" >
-    <div class="table-wrapper" style="height: 850px;
+    <div class="table-wrapper" style="
     overflow-y: scroll;"> 
       <table class="table-users parttable" id="myTableMat" >
         <thead style="position: sticky; top: 0; z-index: 1;">

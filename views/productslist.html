@@ -16,6 +16,18 @@
        <link rel="stylesheet" href="./all.min.css">
       <link rel="stylesheet" href="./line-awesome.min.css">
       <link rel="stylesheet" href="./remixicon.css">
+      <style>
+                @media only screen and (max-width: 50em) {
+  .table-wrapper {
+    height: 200px;
+  }
+}
+         @media only screen and (min-width: 86em) {
+  .table-wrapper {
+    height: 645px;
+  }
+}
+      </style>
         <!-- <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js"></script>
    
     <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-auth.js" defer ></script> -->
@@ -32,7 +44,7 @@
    
     <!-- loader END -->
     <!-- Wrapper Start -->
-      <div class="sidebar">
+      <div class="sidebar" style="background: #219EBC;">
     <div class="logo-details">
      
         <div class="logo_name">KitechCRM</div>
@@ -40,12 +52,12 @@
     </div>
     <ul class="nav-list">
       <li>
-          <i class='bx bx-search' ></i>
-         <input type="text" placeholder="Search...">
+          <i class='bx bx-search' style="background: #fff; color:#000"></i>
+         <input type="text" placeholder="Search..." style="background: #fff; color:#000">
          <span class="tooltip">Search</span>
       </li>
       <li>
-        <a class="adminelement" href="./dashboard"style="display: none;">
+        <a class="adminelement" href="./dashboard"style="display: none; background: #219EBC;">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">대시보드</span>
         </a>
@@ -59,7 +71,7 @@
          <span class="tooltip">대시보드</span>
       </li>
       <li>
-       <a class="adminelement" href="./listofproducts" style="display: none;">
+       <a class="adminelement" href="./listofproducts" style="display: none; background: #219EBC;">
        
               <i class='bx bxs-cube-alt'></i>
          <span class="links_name">제품목록</span>
@@ -67,14 +79,14 @@
        <span class="tooltip">제품목록</span>
      </li>
       <li>
-       <a class="notadmin" href="./parts" style="display: none;">
+       <a class="notadmin" href="./parts" style="display: none; ">
     <i class='bx bxs-component' ></i>
          <span class="links_name">부품목록</span>
        </a>
        <span class="tooltip">부품목록</span>
      </li>
        <li>
-       <a class="adminelement" href="./partslist" style="display: none;">
+       <a class="adminelement" href="./partslist" style="display: none; background: #219EBC;">
  <i class='bx bxs-component' ></i>
          <span class="links_name">부품목록</span>
        </a>
@@ -88,14 +100,14 @@
        <span class="tooltip">소재목록</span>
      </li>
      <li>
-       <a class="notadmin" href="./substances" style="display: none;">
+       <a class="notadmin" href="./substances" style="display: none; ">
   <i class='bx bx-dna' ></i>
          <span class="links_name">물질목록</span>
        </a>
        <span class="tooltip">물질목록</span>
      </li>
           <li>
-       <a class="adminelement" href="#" style="display: none;">
+       <a class="adminelement" href="#" style="display: none; background: #219EBC;">
         <i class='bx bx-bell' ></i>
          <span class="links_name">공지사항</span>
        </a>
@@ -110,7 +122,7 @@
      </li>
         
     
-     <li class="profile" style="margin-bottom: 30px; background:#11101D;">
+     <li class="profile" style="margin-bottom: 30px; background: #219EBC;">
          <div class="profile-details">
            <!--<img src="profile.jpg" alt="profileImg">-->
            <div class="name_job">
@@ -119,7 +131,7 @@
                
            </div>
          </div>
-        <a href="/sessionLogout"> <i class='bx bx-log-out' id="log_out" ></i> </a>
+        <a href="/sessionLogout"  > <i style="background: #219EBC;" class='bx bx-log-out' id="log_out" ></i> </a>
        
      </li>
     </ul>
@@ -140,7 +152,7 @@
                         <div class="userroledisplay adminelement" style="display: none;">
                          <div class="card-body">
                   
-                      <button type="button" class="btn mb-1 bg-primary-light">
+                      <button type="button" class="btn mb-1 bg-primary-light" style="background-color:  #219EBC ;">
                       제품 제조사
                       </button>
                       <!-- <button type="button" class="btn mb-1 bg-success-light">
@@ -225,26 +237,28 @@
               </nav>
           </div>
       </div>
-        <div class="row">
+        <div class="row" >
             <div class="col-lg-12">
-                <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
+                <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4" style="width:104%">
                     <div>
-                        <h4 class="mb-3">제품 목록</h4>
-                        <p class="mb-0">등록된 제품 목록을 보여줍니다.</p>
+                        <h4 class="mb-3" style="color: black;font-weight: 600; font-size: 25px;">제품 목록</h4>
+                      
                     </div>
-                    <button class="btnpr btnpr-add adminelement" style="display: none;  background-color:  #8ecae6 ;"><div class="addnewproductbtnpr">신규 제품 등록</div></button>
-                    
+               <div class="row" style="width: 17%; margin-right:2%">
+                       <button class="btnpr btnpr-add adminelement" style="display: none; width: 40%; background-color:  #219EBC ;"><div class="addnewproductbtnpr">신규 제품 등록</div></button>
+                     <button class="btnpr btnpr-add" style="width: 40%; margin-bottom: 10px; margin-left: 5px; background: #F05D5E;"><div class="addnewproductbtnpr">Delete All</div></button>
+               </div>
                 </div>
                        <div class="sortaddpart">
                 
-                       <div class="form-group" id="formfloat">
+                       <div class="form-group" id="formfloat" style="width: 25%;">
                       <div class="input-group mb-3">
                       
                         <select  class="custom-select sortProdSelection" id="inputGroupSelect03">
                            <option value="" selected>Sort by...</option>
-                           <option value="2">Sort by  Model name</option>
-                           <option value="5">Sort by Registration date</option>
-                            <option value="6">Sort by Registration status</option>
+                           <option value="4">Sort by  Model name</option>
+                           <option value="7">Sort by Registration date</option>
+                            <option value="8">Sort by Registration status</option>
                         </select>
                            <div class="input-group-append">
                            <span class="input-group-text" id="basic-addon5"><i class="bx bx-sort font-size-20"></i></span>
@@ -253,6 +267,7 @@
                      </div>
                          </div>
             </div>
+
 
 
      
@@ -270,14 +285,12 @@
 
  <div class="tabledata">
    
-    <div class="table-wrapper table-responsive rounded mb-3" style="overflow-x: hidden; height: 459px;
+    <div class="table-wrapper table-responsive rounded mb-3" style="overflow-x: hidden; 
     overflow-y: scroll;">
-    <div class="deleterow align-items-center float-right" >
-            <button class="btnpr btnpr-add" style="width: 10%; margin-bottom: 10px; background: red;"><div class="addnewproductbtnpr">Delete All</div></button>
-          </div>
+   
           <div class="loadingtitle"></div>
           
-      <table class="table-users  mb-0 prod-table" >
+      <table class="table-users  prod-table mb-0 " >
     <thead class="bg-white text-uppercase" style="position: sticky; top: 0; z-index: 1;">
   <tr class="ligth ligth-data">
                 <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
@@ -293,10 +306,13 @@
           <th>Registration Date</th>
            <th>Registration Status</th>
           <th>Memo</th>
-           <th>Action</th>
+           <th style="width: 13%;">Action</th>
         </tr>
   
     </thead>
+    <tbody class=" ">
+
+    </tbody>
    
    
       </table>
@@ -694,7 +710,7 @@
     </div>
 
      <div class="addPPmodaly modaly-wrapper" style="padding-top: 50px;">
-      <div class="modaly">
+      <div class="modaly" style="width: 71%; left: 16%; margin-top:3%">
      <div class="card-header d-flex justify-content-between">
                
                   </div>
@@ -769,11 +785,11 @@
                                     </div>
                                 </div> 
                                 <div class="col-md-2">
-                                    <nav class="navbary" style="    margin-top: 35px;">
+                                    <nav class="navbary" style="  background-color: #219EBC; margin-top: 35px;">
 	
-                     <a href="#" class="navbary__link">
-                        <span class=" getPPdata" ><i class='ri-cloud-line' style="color: white; font-size: 15px;" ></i></span>
-                        <span class="navbary__label">Fetch Data</span>
+                     <a href="#" class="navbary__link" >
+                        <span class=" getPPdata" style="color: white;" > 부품 등록</span>
+                    
                      </a>
                   </nav>
 
@@ -804,7 +820,7 @@
                                 </div> 
                               <div class="col-md-2"> 
                                     <div class="form-group">
-                                        <label>부품중량 *</label>
+                                        <label>부품중량 </label>
                                         <input readonly type="number" class="form-control" id='partWeight'placeholder="---" data-errors="---" name="addpartMassg" value="" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
@@ -836,32 +852,17 @@
                         </fieldset>
                         
                      </form>
-<!--                      
-                                       <form id="upload">    
-                     
-  <div class="input-group" style="margin-top: 5%; width: 30%; margin-left: 70%;">
-   
-     
-  <div class="custom-file" >
-   
-                           <input type="file" class="filey custom-file-input" id="inputGroupFile04" accept=".json">
-                           <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-                             
-                        </div>
-                         <div class="input-group-append">
-                           <button class="btn btn-outline-secondary" type="submit" style="margin: 0; padding-bottom: 1px;">Upload</button>
-                        </div>
-                     
-                     </div>
-    </form> -->
+
                      
        <div class="row" style="align-items: center;">
         <div class="col-md-2">
-     <div class="table-responsive" style="    height: 310px; overflow: auto;">
-                        <table id="tree-table-1" class="table table-hover table-bordered iq-bg-white tree" style="    overflow: auto;">
-                           <thead class="bg-white" style="position: sticky; top: 0;">
+     <div class="table-responsive" style="  border-radius: 10px;  height: 310px; overflow: auto;">
+                        <table id="tree-table-1" class="table table-hover table-bordered iq-bg-white tree" style="    border-collapse: collapse;
+  border-radius: 1em;
+  overflow: hidden;">
+                           <thead class="" style="position: sticky; top: 0; background-color: #219EBC;">
                               <tr>
-                                 <th class="breadproductname"></th>
+                                 <th class="breadproductname" style="color: white;"></th>
                               </tr>
                            </thead>
                            <tbody class="breadbody">
@@ -872,9 +873,9 @@
                      </div>
         </div>
          <div class="col-md-10">
-              <div  class="table-wrapper"> 
+              <div  class="table-wrapper" style="    height: 427px;"> 
                <div class="deleterow align-items-center float-right" >
-             <button class="btnpr btnpr-add" style="width: 10%; margin-bottom: 10px; background: red;"><div class="addnewproductbtnpr">Delete All</div></button>
+             <button class="btnpr btnpr-add" style="width: 10%; margin-bottom: 10px; background: #F05D5E;"><div class="addnewproductbtnpr">Delete All</div></button>
           </div>
                                <table class="table-parts">
                                 <tr>
@@ -889,7 +890,7 @@
                                      <th>Registration Date</th>
                                        <th>Quantity</th>
                                    <th>Memo</th>
-                                   <th>Action</th>
+                                   <th style="width:16%">Action</th>
                               
                                 </tr>
                         
@@ -1285,22 +1286,22 @@
 </a>
                         </li>
                         <li class="nav-item">
-                           <a class="nav-link" id="pills-profile-tab-fill" data-toggle="pill" href="#profile" role="tab" aria-controls="profile" aria-selected="false">재활용함유율평가[EN4557]</a>
+                           <a class="nav-link" id="pills-profile-tab-fill" data-toggle="pill" href="#profile" role="tab" aria-controls="profile" aria-selected="false">재활용함유율평가[EN45557]</a>
                         </li>
                           <li class="nav-item">
-                           <a class="nav-link" id="pills-Accessment-tab-fill" data-toggle="pill" href="#Accessment" role="tab" aria-controls="Accessment" aria-selected="false">희소물질선언[EN4558]</a>
+                           <a class="nav-link" id="pills-Accessment-tab-fill" data-toggle="pill" href="#Accessment" role="tab" aria-controls="Accessment" aria-selected="false">희소물질선언[EN45558]</a>
                         </li>
                      
                      </ul>
                      <div class="tab-content" id="myTabContent-2">
                         <div class="tab-pane fade show active " id="home" role="tabpanel" aria-labelledby="home-tab">
                  
-                              <div class="row downloadtitle">
+                              <!-- <div class="row downloadtitle" style="    padding-right: 2%;">
                        
-                                    <button type="button"  id="edit" class="btn btn-secondary reportbtn float-right" style="  position: -webkit-sticky; position: sticky;"  > Download Assessment Report [EN4555] </button>
-                            </div>
-                            <div class="" style="margin-left: 15px; margin-right: 15px; margin-top: 15px;">
-                              <div class="report">
+                                    <button type="button"  id="edit" class="btn btn-secondary reportbtn float-right" style="  position: -webkit-sticky; position: sticky;"  > Download Assessment Report [EN45555] </button>
+                            </div> -->
+                            <div class="" style="margin-left: 30px; margin-right: 30px; margin-top: 15px;">
+                              <div class="report" style="margin-right: 2%; margin-left: 2%; margin-top: 2%;">
                                <div class="row" style="align-items: center;">
                           <div class="col-md-4">
                                 <tr data-id="2" data-parent="1" data-level="2">
@@ -1414,7 +1415,7 @@
                               <td class="energyRecoveryWeightperc"></td>
                            </tr>
                              <tr>
-                              <th scope="row">Total Weight</th>
+                              <th scope="row">Product Weight</th>
                               <td class="sumTotalWeightg"></td>
                               <td class="sumTotalWeightPerc"></td>
                            </tr>
@@ -1432,9 +1433,21 @@
                    </div>
                    <!--Table EN45555-->
                                <div class="row downloadtitle">
-                                    <button type="button"  id="edit" class="btn btn-dark reportTablebtn float-right" style="  position: -webkit-sticky; position: sticky;"  > Download Assessment Table [EN4555] </button>
+                                   <nav class="navbary"  style="background-color:  #219EBC; width: 15%; ";>
+
+  	<a href="#" class="navbary__link reportTablebtn"  style="background-color:  #219EBC">
+		<span class=""  ><i class='bx bxs-file-pdf' style="color: white; font-size: 30px;"></i></span>
+		<span class="navbary__label" style="background-color:  #219EBC; top: -45px;  width: 200px;">PDF 다운로드 [EN45555]</span>
+	</a>
+   	<a href="#" class="navbary__link reportTablebtn"  style="background-color:  #219EBC">
+		<span class=""  ><svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" style="color: white; font-size: 30px;" fill="currentColor" class="bi bi-filetype-csv" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM3.517 14.841a1.13 1.13 0 0 0 .401.823c.13.108.289.192.478.252.19.061.411.091.665.091.338 0 .624-.053.859-.158.236-.105.416-.252.539-.44.125-.189.187-.408.187-.656 0-.224-.045-.41-.134-.56a1.001 1.001 0 0 0-.375-.357 2.027 2.027 0 0 0-.566-.21l-.621-.144a.97.97 0 0 1-.404-.176.37.37 0 0 1-.144-.299c0-.156.062-.284.185-.384.125-.101.296-.152.512-.152.143 0 .266.023.37.068a.624.624 0 0 1 .246.181.56.56 0 0 1 .12.258h.75a1.092 1.092 0 0 0-.2-.566 1.21 1.21 0 0 0-.5-.41 1.813 1.813 0 0 0-.78-.152c-.293 0-.551.05-.776.15-.225.099-.4.24-.527.421-.127.182-.19.395-.19.639 0 .201.04.376.122.524.082.149.2.27.352.367.152.095.332.167.539.213l.618.144c.207.049.361.113.463.193a.387.387 0 0 1 .152.326.505.505 0 0 1-.085.29.559.559 0 0 1-.255.193c-.111.047-.249.07-.413.07-.117 0-.223-.013-.32-.04a.838.838 0 0 1-.248-.115.578.578 0 0 1-.255-.384h-.765ZM.806 13.693c0-.248.034-.46.102-.633a.868.868 0 0 1 .302-.399.814.814 0 0 1 .475-.137c.15 0 .283.032.398.097a.7.7 0 0 1 .272.26.85.85 0 0 1 .12.381h.765v-.072a1.33 1.33 0 0 0-.466-.964 1.441 1.441 0 0 0-.489-.272 1.838 1.838 0 0 0-.606-.097c-.356 0-.66.074-.911.223-.25.148-.44.359-.572.632-.13.274-.196.6-.196.979v.498c0 .379.064.704.193.976.131.271.322.48.572.626.25.145.554.217.914.217.293 0 .554-.055.785-.164.23-.11.414-.26.55-.454a1.27 1.27 0 0 0 .226-.674v-.076h-.764a.799.799 0 0 1-.118.363.7.7 0 0 1-.272.25.874.874 0 0 1-.401.087.845.845 0 0 1-.478-.132.833.833 0 0 1-.299-.392 1.699 1.699 0 0 1-.102-.627v-.495Zm8.239 2.238h-.953l-1.338-3.999h.917l.896 3.138h.038l.888-3.138h.879l-1.327 4Z"/>
+</svg></span>
+		<span class="navbary__label" style="background-color:#219EBC; top: -45px; left: -48px; width: 200px;">CSV 다운로드 [EN45555]</span>
+	</a>
+   </nav>
                             </div>
-                            <div class="reportTable">
+                            <div class="reportTable" style="margin-right: 2%; margin-left: 2%;">
                          <div class="row">
                       <table class="table sumAssess">
                         <thead class="thead-dark">
@@ -1470,14 +1483,14 @@
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         
                         <div  class="table-wrapper"> 
-                          
-                                      <div class="row downloadtitle">
-                                    <button type="button"  id="edit" class="btn btn-secondary reportbtnEN4557 float-right" style="  position: -webkit-sticky; position: sticky;"  > Download Assessment Report [EN4557] </button>
-                                      <!-- <button type="button"  id="edit" class="btn btn-secondary exporttocsv float-right" style="  position: -webkit-sticky; position: sticky;"  > Download CSV Report [EN4557] </button> -->
-                            </div>
+<!--                           
+                                      <div class="row downloadtitle" style="    padding-right: 2%;">
+                                    <button type="button"  id="edit" class="btn btn-secondary reportbtnEN4557 float-right" style="  position: -webkit-sticky; position: sticky;"  > Download Assessment Report [EN45557] </button>
+                                      <button type="button"  id="edit" class="btn btn-secondary exporttocsv float-right" style="  position: -webkit-sticky; position: sticky;"  > Download CSV Report [EN4557] </button>
+                            </div> -->
                 
-                               <div class="" style="margin-left: 15px; margin-right: 15px; margin-top: 15px;">
-                                 <div class="reportEN4557">
+                               <div class="" style="margin-left: 15px; margin-right: 30px; margin-top: 30px;">
+                                 <div class="reportEN4557" style="margin-right: 2%; margin-left: 2%; margin-top: 2%;">
                                <div class="row" style="align-items: center;">
                           <div class="col-md-4">
                                 <tr data-id="2" data-parent="1" data-level="2">
@@ -1569,7 +1582,7 @@
                            </tr>
                            </tr>
                              <tr>
-                              <th scope="row">Total Weight</th>
+                              <th scope="row">Product Weight</th>
                               <td class="sumTotalWeightg"></td>
                               <td class="sumTotalWeightPerc"></td>
                            
@@ -1587,10 +1600,23 @@
                          </div>
                               </div>
                               <!--Table EN45557-->
-                              <div class="row downloadtitle">
-                                    <button type="button"  id="edit" class="btn btn-dark reportTablebtnEN4557 float-right" style="  position: -webkit-sticky; position: sticky;"  > Download Assessment Report [EN4557] </button>
+                                     
+                              <div class="row downloadtitle" style="    padding-right: 2%;">
+                                <nav class="navbary"  style="background-color:  #219EBC; width: 15%; ";>
+
+  	<a href="#" class="navbary__link reportTablebtnEN4557"  style="background-color:  #219EBC">
+		<span class=""  ><i class='bx bxs-file-pdf' style="color: white; font-size: 30px;"></i></span>
+		<span class="navbary__label" style="background-color:  #219EBC; top: -45px;  width: 200px;">PDF 다운로드 [EN45557]</span>
+	</a>
+   	<a href="#" class="navbary__link reportTablebtn"  style="background-color:  #219EBC">
+		<span class=""  ><svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" style="color: white; font-size: 30px;" fill="currentColor" class="bi bi-filetype-csv" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM3.517 14.841a1.13 1.13 0 0 0 .401.823c.13.108.289.192.478.252.19.061.411.091.665.091.338 0 .624-.053.859-.158.236-.105.416-.252.539-.44.125-.189.187-.408.187-.656 0-.224-.045-.41-.134-.56a1.001 1.001 0 0 0-.375-.357 2.027 2.027 0 0 0-.566-.21l-.621-.144a.97.97 0 0 1-.404-.176.37.37 0 0 1-.144-.299c0-.156.062-.284.185-.384.125-.101.296-.152.512-.152.143 0 .266.023.37.068a.624.624 0 0 1 .246.181.56.56 0 0 1 .12.258h.75a1.092 1.092 0 0 0-.2-.566 1.21 1.21 0 0 0-.5-.41 1.813 1.813 0 0 0-.78-.152c-.293 0-.551.05-.776.15-.225.099-.4.24-.527.421-.127.182-.19.395-.19.639 0 .201.04.376.122.524.082.149.2.27.352.367.152.095.332.167.539.213l.618.144c.207.049.361.113.463.193a.387.387 0 0 1 .152.326.505.505 0 0 1-.085.29.559.559 0 0 1-.255.193c-.111.047-.249.07-.413.07-.117 0-.223-.013-.32-.04a.838.838 0 0 1-.248-.115.578.578 0 0 1-.255-.384h-.765ZM.806 13.693c0-.248.034-.46.102-.633a.868.868 0 0 1 .302-.399.814.814 0 0 1 .475-.137c.15 0 .283.032.398.097a.7.7 0 0 1 .272.26.85.85 0 0 1 .12.381h.765v-.072a1.33 1.33 0 0 0-.466-.964 1.441 1.441 0 0 0-.489-.272 1.838 1.838 0 0 0-.606-.097c-.356 0-.66.074-.911.223-.25.148-.44.359-.572.632-.13.274-.196.6-.196.979v.498c0 .379.064.704.193.976.131.271.322.48.572.626.25.145.554.217.914.217.293 0 .554-.055.785-.164.23-.11.414-.26.55-.454a1.27 1.27 0 0 0 .226-.674v-.076h-.764a.799.799 0 0 1-.118.363.7.7 0 0 1-.272.25.874.874 0 0 1-.401.087.845.845 0 0 1-.478-.132.833.833 0 0 1-.299-.392 1.699 1.699 0 0 1-.102-.627v-.495Zm8.239 2.238h-.953l-1.338-3.999h.917l.896 3.138h.038l.888-3.138h.879l-1.327 4Z"/>
+</svg></span>
+		<span class="navbary__label" style="background-color:#219EBC; top: -45px; left: -48px; width: 200px;">CSV 다운로드 [EN45557]</span>
+	</a>
+   </nav>
                             </div>
-                            <div class="reportTableEN4557">
+                            <div class="reportTableEN4557" style="margin-right: 2%; margin-left: 2%;">
                                <div class="row">
                     <table class="table materialChart">
                         <thead class="thead-dark">
@@ -1600,7 +1626,7 @@
                                     <th scope="col">Material Mass (g) </th>
                                        <th scope="col">Recycled rate(%)</th>
                                                    <th scope="col">Recycled Material Mass(g)</th>
-                                     <th scope="col">Recycled Material Mass(%)</th>
+                                   
                            </tr>
                         </thead>
                         <tbody class="renderEN4557">
@@ -1618,12 +1644,12 @@
                          <div class="tab-pane fade" id="Accessment" role="tabpanel" aria-labelledby="Accessment-tab">
                         
                         <div  class="table-wrapper"> 
-                                      <div class="row downloadtitle">
-                                    <button type="button"  id="edit" class="btn btn-secondary reportbtnEN4558 float-right" style="  position: -webkit-sticky; position: sticky;"  > Download Assessment Report [EN4558] </button>
-                            </div>
+                                      <!-- <div class="row downloadtitle" style="    padding-right: 2%;">
+                                    <button type="button"  id="edit" class="btn btn-secondary reportbtnEN4558 float-right" style="  position: -webkit-sticky; position: sticky;"  > Download Assessment Report [EN45558] </button>
+                            </div> -->
                   
-                               <div class="" style="margin-left: 15px; margin-right: 15px; margin-top: 15px;">
-                                 <div class="reportEN4558">
+                               <div class="" style="margin-left: 15px; margin-right: 30px; margin-top: 30px;">
+                                 <div class="reportEN4558" style="margin-right: 2%; margin-left: 2%; margin-top: 2%;">
                               <div class="row" style="align-items: center;">
                           <div class="col-md-4">
                                 <tr data-id="2" data-parent="1" data-level="2">
@@ -1714,7 +1740,7 @@
                            
                            </tr>
                              <tr>
-                              <th scope="row">Total Weight</th>
+                              <th scope="row">Product Weight</th>
                               <td class="sumTotalWeightg"></td>
                               <td class="sumTotalWeightPerc"></td>
                            
@@ -1733,10 +1759,23 @@
                                  </div>
                               
                       <!-- Table EN45558-->
-                      <div class="row downloadtitle">
-                                    <button type="button"  id="edit" class="btn btn-dark reportbtnTableEN4558 float-right" style="  position: -webkit-sticky; position: sticky;"  > Download Assessment Report [EN4558] </button>
+                      <div class="row downloadtitle" style="    padding-right: 2%;">
+                        <nav class="navbary"  style="background-color:  #219EBC; width: 15%; ";>
+
+  	<a href="#" class="navbary__link reportTablebtnEN4557"  style="background-color:  #219EBC">
+		<span class=""  ><i class='bx bxs-file-pdf' style="color: white; font-size: 30px;"></i></span>
+		<span class="navbary__label" style="background-color:  #219EBC; top: -45px;  width: 200px;">PDF 다운로드 [EN45558]</span>
+	</a>
+   	<a href="#" class="navbary__link reportTablebtn"  style="background-color:  #219EBC">
+		<span class=""  ><svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" style="color: white; font-size: 30px;" fill="currentColor" class="bi bi-filetype-csv" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM3.517 14.841a1.13 1.13 0 0 0 .401.823c.13.108.289.192.478.252.19.061.411.091.665.091.338 0 .624-.053.859-.158.236-.105.416-.252.539-.44.125-.189.187-.408.187-.656 0-.224-.045-.41-.134-.56a1.001 1.001 0 0 0-.375-.357 2.027 2.027 0 0 0-.566-.21l-.621-.144a.97.97 0 0 1-.404-.176.37.37 0 0 1-.144-.299c0-.156.062-.284.185-.384.125-.101.296-.152.512-.152.143 0 .266.023.37.068a.624.624 0 0 1 .246.181.56.56 0 0 1 .12.258h.75a1.092 1.092 0 0 0-.2-.566 1.21 1.21 0 0 0-.5-.41 1.813 1.813 0 0 0-.78-.152c-.293 0-.551.05-.776.15-.225.099-.4.24-.527.421-.127.182-.19.395-.19.639 0 .201.04.376.122.524.082.149.2.27.352.367.152.095.332.167.539.213l.618.144c.207.049.361.113.463.193a.387.387 0 0 1 .152.326.505.505 0 0 1-.085.29.559.559 0 0 1-.255.193c-.111.047-.249.07-.413.07-.117 0-.223-.013-.32-.04a.838.838 0 0 1-.248-.115.578.578 0 0 1-.255-.384h-.765ZM.806 13.693c0-.248.034-.46.102-.633a.868.868 0 0 1 .302-.399.814.814 0 0 1 .475-.137c.15 0 .283.032.398.097a.7.7 0 0 1 .272.26.85.85 0 0 1 .12.381h.765v-.072a1.33 1.33 0 0 0-.466-.964 1.441 1.441 0 0 0-.489-.272 1.838 1.838 0 0 0-.606-.097c-.356 0-.66.074-.911.223-.25.148-.44.359-.572.632-.13.274-.196.6-.196.979v.498c0 .379.064.704.193.976.131.271.322.48.572.626.25.145.554.217.914.217.293 0 .554-.055.785-.164.23-.11.414-.26.55-.454a1.27 1.27 0 0 0 .226-.674v-.076h-.764a.799.799 0 0 1-.118.363.7.7 0 0 1-.272.25.874.874 0 0 1-.401.087.845.845 0 0 1-.478-.132.833.833 0 0 1-.299-.392 1.699 1.699 0 0 1-.102-.627v-.495Zm8.239 2.238h-.953l-1.338-3.999h.917l.896 3.138h.038l.888-3.138h.879l-1.327 4Z"/>
+</svg></span>
+		<span class="navbary__label" style="background-color:#219EBC; top: -45px; left: -48px; width: 200px;">CSV 다운로드 [EN45558]</span>
+	</a>
+   </nav>
+                                   
                             </div>
-                              <div class="reportTableEN4558">
+                              <div class="reportTableEN4558" style=" margin-left: 2%;   margin-right: 2%;">
                          <div class="row">
                     <table class="table subsAssess">
                         <thead class="thead-dark">
@@ -1960,92 +1999,93 @@
                 const reportTablebtn = document.querySelector('.reportTablebtn')
                 const reportTable = document.querySelector('.reportTable')
                 
-window.onload = function () {
-       reportbtn
-        .addEventListener("click", () => {
-            const invoice = report;
-            console.log(invoice);
-            console.log(window);
-            var opt = {
-                margin: 0.1,
-                filename: 'Assessment Report.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'cm', format: 'A2', orientation: 'portrait' }
-            };
-            html2pdf().from(invoice).set(opt).save();
-        })
+                
+// window.onload = function () {
+//        reportbtn
+//         .addEventListener("click", () => {
+//             const invoice = report;
+//             console.log(invoice);
+//             console.log(window);
+//             var opt = {
+//                 margin: 0.1,
+//                 filename: 'Assessment Report.pdf',
+//                 image: { type: 'jpeg', quality: 0.98 },
+//                 html2canvas: { scale: 2 },
+//                 jsPDF: { unit: 'cm', format: 'A2', orientation: 'portrait' }
+//             };
+//             html2pdf().from(invoice).set(opt).save();
+//         })
 
-    reportbtnEN4558
-        .addEventListener("click", () => {
-            const invoice = reportEN4558;
-            console.log(invoice);
-            console.log(window);
-            var opt = {
-                margin: 0.1,
-                filename: 'Assessment Report EN4558.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'cm', format: 'A2', orientation: 'portrait' }
-            };
-            html2pdf().from(invoice).set(opt).save();
-        })
+//     reportbtnEN4558
+//         .addEventListener("click", () => {
+//             const invoice = reportEN4558;
+//             console.log(invoice);
+//             console.log(window);
+//             var opt = {
+//                 margin: 0.1,
+//                 filename: 'Assessment Report EN4558.pdf',
+//                 image: { type: 'jpeg', quality: 0.98 },
+//                 html2canvas: { scale: 2 },
+//                 jsPDF: { unit: 'cm', format: 'A2', orientation: 'portrait' }
+//             };
+//             html2pdf().from(invoice).set(opt).save();
+//         })
 
      
-       reportbtnEN4557.addEventListener("click", () => {
-            const invoice = reportEN4557;
-            console.log(invoice);
-            console.log(window);
-            var opt = {
-                margin: 0.1,
-                filename: 'Assessment Report EN4557.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'cm', format: 'A2', orientation: 'portrait' }
-            };
-            html2pdf().from(invoice).set(opt).save();
-        })
+//        reportbtnEN4557.addEventListener("click", () => {
+//             const invoice = reportEN4557;
+//             console.log(invoice);
+//             console.log(window);
+//             var opt = {
+//                 margin: 0.1,
+//                 filename: 'Assessment Report EN4557.pdf',
+//                 image: { type: 'jpeg', quality: 0.98 },
+//                 html2canvas: { scale: 2 },
+//                 jsPDF: { unit: 'cm', format: 'A2', orientation: 'portrait' }
+//             };
+//             html2pdf().from(invoice).set(opt).save();
+//         })
           
-        reportTablebtnEN4557.addEventListener("click", () => {
-            const invoice = reportTableEN4557;
-            console.log(invoice);
-            console.log(window);
-            var opt = {
-                margin: 0.1,
-                filename: 'Assessment Report EN4557.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'cm', format: 'A2', orientation: 'portrait' }
-            };
-            html2pdf().from(invoice).set(opt).save();
-        })
-             reportbtnTableEN4558.addEventListener("click", () => {
-            const invoice = reportTableEN4558;
-            console.log(invoice);
-            console.log(window);
-            var opt = {
-                margin: 0.1,
-                filename: 'Assessment Report EN4557.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'cm', format: 'A2', orientation: 'portrait' }
-            };
-            html2pdf().from(invoice).set(opt).save();
-        })
-             reportTablebtn.addEventListener("click", () => {
-            const invoice = reportTable;
-            console.log(invoice);
-            console.log(window);
-            var opt = {
-                margin: 0.1,
-                filename: 'Assessment Report EN4557.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'cm', format: 'A2', orientation: 'portrait' }
-            };
-            html2pdf().from(invoice).set(opt).save();
-        })
-}
+//         reportTablebtnEN4557.addEventListener("click", () => {
+//             const invoice = reportTableEN4557;
+//             console.log(invoice);
+//             console.log(window);
+//             var opt = {
+//                 margin: 0.1,
+//                 filename: 'Assessment Report EN4557.pdf',
+//                 image: { type: 'jpeg', quality: 0.98 },
+//                 html2canvas: { scale: 2 },
+//                 jsPDF: { unit: 'cm', format: 'A2', orientation: 'portrait' }
+//             };
+//             html2pdf().from(invoice).set(opt).save();
+//         })
+//              reportbtnTableEN4558.addEventListener("click", () => {
+//             const invoice = reportTableEN4558;
+//             console.log(invoice);
+//             console.log(window);
+//             var opt = {
+//                 margin: 0.1,
+//                 filename: 'Assessment Report EN4557.pdf',
+//                 image: { type: 'jpeg', quality: 0.98 },
+//                 html2canvas: { scale: 2 },
+//                 jsPDF: { unit: 'cm', format: 'A2', orientation: 'portrait' }
+//             };
+//             html2pdf().from(invoice).set(opt).save();
+//         })
+//              reportTablebtn.addEventListener("click", () => {
+//             const invoice = reportTable;
+//             console.log(invoice);
+//             console.log(window);
+//             var opt = {
+//                 margin: 0.1,
+//                 filename: 'Assessment Report EN4557.pdf',
+//                 image: { type: 'jpeg', quality: 0.98 },
+//                 html2canvas: { scale: 2 },
+//                 jsPDF: { unit: 'cm', format: 'A2', orientation: 'portrait' }
+//             };
+//             html2pdf().from(invoice).set(opt).save();
+//         })
+// }
 
      </script>
      <!-- <script>	

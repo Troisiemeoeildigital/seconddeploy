@@ -113,10 +113,7 @@ let id;
 // // }
 
 // Create element and render users
-document.querySelector('.loadingtitle').innerHTML = "Data is loading - Please wait... ⌛"
-  document.querySelector('.loadingtitle').style.fontWeight = "600"
-  document.querySelector('.loadingtitle').style.color = "black"
-    document.querySelector('.loadingtitle').style.marginLeft = "43%";
+
 const renderUser = doc => {
 
 
@@ -162,6 +159,14 @@ const renderUser = doc => {
       	<a href="#" class="navbary__link">
 		<span class="btnpr-delete" ><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
 		<span class="navbary__label" style="left: -36px; background-color: orange;">Delete Part</span>
+	</a>
+</nav>
+
+    <nav class="navbary" style="margin-left: -12px; width:40px; background-color: orange;">
+	<a href="#" class="navbary__link">
+		<span class="" data-id='${doc.id}'><i class='bx bx-duplicate' style="    color: white;
+    font-size: 17px;"></i></i></span>
+		<span class="navbary__label" style="background-color: orange;">Duplicate Part</span>
 	</a>
 </nav>
     </div>
@@ -1088,12 +1093,22 @@ window.addEventListener('click', e => {
   }
 });
 
+  auth.onAuthStateChanged(user => {
+     if(user) {
+      
+ const userRef = db.collection('users').where('userID', '==', user.uid).get()
 
-// Get all users
+userRef.then((querySnapshot) => {
+ querySnapshot.forEach((doc) => {
+  console.log( doc.data().userCompanyname)
 
-
-// Real time listener
-db.collection('recycledparts').onSnapshot(snapshot => {
+    
+    console.log('hey')
+    document.querySelector('.loadingtitle').innerHTML = "Data is loading - Please wait... ⌛"
+  document.querySelector('.loadingtitle').style.fontWeight = "600"
+  document.querySelector('.loadingtitle').style.color = "black"
+    document.querySelector('.loadingtitle').style.marginLeft = "43%";
+db.collection('recycledparts').where("supplierName", '==',  doc.data().userCompanyname).onSnapshot(snapshot => {
   snapshot.docChanges().forEach(change => {
     if(change.type === 'added') {
       renderUser(change.doc);
@@ -1112,7 +1127,26 @@ db.collection('recycledparts').onSnapshot(snapshot => {
         // renderTest(change.doc);
     }
   })
+  document.querySelector('.loadingtitle').innerHTML ="   "
 })
+  
+ })
+})}
+  })
+
+//   auth.onAuthStateChanged(user => {
+
+//     if(user) {
+      
+//  const userRef = db.collection('users').where('userID', '==', user.uid).get()
+
+// userRef.then((querySnapshot) => {
+//    querySnapshot.forEach((doc) => {
+
+//    })})}})
+
+// Real time listener
+
 
    auth.onAuthStateChanged(user => {
 
