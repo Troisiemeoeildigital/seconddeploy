@@ -399,9 +399,9 @@ let chartthreeref = new ApexCharts(chartsthree, optionsthreeref);
 })
  
 
-//TESTING OUT FUNCTION 
-var tableJSON = document.querySelector('.materialChart').tableToJSON()
-console.log(tableJSON);
+// //TESTING OUT FUNCTION 
+// var tableJSON = document.querySelector('.materialChart').tableToJSON()
+// console.log(tableJSON);
 //TESTING OUT FUNCTION
 
 
