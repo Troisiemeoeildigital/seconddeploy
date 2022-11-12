@@ -47,17 +47,13 @@
       <div class="sidebar" style="background: #219EBC;">
     <div class="logo-details">
      
-        <div class="logo_name">KitechCRM</div>
+        <div class="logo_name">Kitech</div>
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list">
+  
       <li>
-          <i class='bx bx-search' style="background: #fff; color:#000"></i>
-         <input type="text" placeholder="Search..." style="background: #fff; color:#000">
-         <span class="tooltip">Search</span>
-      </li>
-      <li>
-        <a class="adminelement" href="./dashboard"style="display: none; background: #219EBC;">
+        <a class="adminelement" href="./dashboard"style="display: none; ">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">대시보드</span>
         </a>
@@ -71,7 +67,7 @@
          <span class="tooltip">대시보드</span>
       </li>
       <li>
-       <a class="adminelement" href="./listofproducts" style="display: none; background: #219EBC;">
+       <a class="adminelement" href="./listofproducts" style="display: none; ">
        
               <i class='bx bxs-cube-alt'></i>
          <span class="links_name">제품목록</span>
@@ -86,7 +82,7 @@
        <span class="tooltip">부품목록</span>
      </li>
        <li>
-       <a class="adminelement" href="./partslist" style="display: none; background: #219EBC;">
+       <a class="adminelement" href="./partslist" style="display: none; ">
  <i class='bx bxs-component' ></i>
          <span class="links_name">부품목록</span>
        </a>
@@ -106,13 +102,16 @@
        </a>
        <span class="tooltip">물질목록</span>
      </li>
-          <li>
-       <a class="adminelement" href="#" style="display: none; background: #219EBC;">
-        <i class='bx bx-bell' ></i>
+     
+
+           <li>
+       <a class="adminelement" href="#" style="display: none;">
+       <i class="bx bx-bell"></i>
          <span class="links_name">공지사항</span>
        </a>
        <span class="tooltip">공지사항</span>
      </li>
+
      <li>
        <a class="notadmin" href="#" style="display: none;">
        <i class='bx bx-bell' ></i>
@@ -120,7 +119,20 @@
        </a>
        <span class="tooltip">공지사항</span>
      </li>
-        
+       <li>
+       <a class="notadmin" href="#" style="display: none;">
+       <i class="ri-question-line"></i>
+         <span class="links_name">자주 묻는 질문</span>
+       </a>
+       <span class="tooltip">자주 묻는 질문</span>
+     </li>
+          <li>
+       <a class="adminelement" href="#" style="display: none;">
+       <i class="ri-question-line"></i>
+         <span class="links_name">자주 묻는 질문</span>
+       </a>
+       <span class="tooltip">자주 묻는 질문</span>
+     </li>
     
      <li class="profile" style="margin-bottom: 30px; background: #219EBC;">
          <div class="profile-details">
@@ -326,30 +338,12 @@
     <!-- Add modaly -->
     <div class="add-modaly modaly-wrapper">
       <div class="modaly">
-        <div class="modaly-header"></div>
+        <div class="modaly-header"> <span style="font-size: 150%; color:black;">Product Identification</span></div>
         <div class="modaly-body">
           <div class="card-body">
                      <div >
                         <form class="form" autocomplete="off"  data-toggle="validator" id="form-wizard1">
-                             <ul id="top-tab-list" class="p-0">
-                           
-                           <li id="personal">
-                              <a href="#personal">
-                              <i class="ri-user-fill"></i><span>Product Identification</span>
-                              </a>
-                           </li>
-                       
-                        
-                        </ul>
-                           <div class="row">
-                                 <div class="col-5">
-                                    <h3 class="mb-4">Enter Product Identification:</h3>
-                                 </div>
-                                 <div class="col-5">
-                        
-                                      
-                                 </div>
-                              </div>
+                 
                       <!-- fieldsets -->
                          
                         <fieldset id="personal">
@@ -525,15 +519,14 @@
 
     <!-- Edit modaly -->
     <div class="edit-modaly modaly-wrapper">
-      <div class="modaly" style="top:7%">
+      <div class="modaly" >
         <div class="modaly-body">
+          <div class="modaly-header">  <span class="editheader" style="font-size: 150%; color:black;"></span></div>
              <div class="card-body">
                   <div class="card-body">
                      <ul class="nav nav-pills mb-3 nav-fill" id="pills-tab-1" role="tablist" style="    width: 50%;
     margin-left: 26%;">
-                        <li class="nav-item">
-                           <a class="nav-link active" id="pills-home-tab-fill" data-toggle="pill" href="#pills-home-fill" role="tab" aria-controls="pills-home" aria-selected="true">  <span class="editheader"></span></a>
-                        </li>
+                       
                       
                      </ul>
                      <div class="tab-content" id="pills-tabContent-1">
@@ -711,10 +704,9 @@
 
      <div class="addPPmodaly modaly-wrapper" style="padding-top: 50px;">
       <div class="modaly" style="width: 71%; left: 16%; margin-top:3%">
-     <div class="card-header d-flex justify-content-between">
-               
-                  </div>
+
         <div class="modaly-body">
+         <div class="modaly-header"> <span class="setPPheader" style="font-size: 150%; color:black;"> </span></div>
           <div class="card-body">
                      <div class="container-fluid">
          <div class="row">
@@ -723,17 +715,7 @@
                 
                   <div class="iq-card-body">
                      <form id="form-wizard1" class="addPPForm text-center mt-4">
-                        <ul id="top-tab-list" class="p-0">
-                         
-                      
-                            <li id="personal">
-                              <a href="javascript:void();">
-                              <i class="ri-user-fill"></i><span>제품 내 부품 등록하기</span>
-                              </a>
-                           </li>
-                        </ul>
-                        <!-- fieldsets -->
-                        
+                
                               
                               <fieldset>
                            
@@ -1120,14 +1102,9 @@
   <div class="modal fade" id="partproductmaterial" tabindex="-1" role="dialog" aria-labelledby="partproductmaterial" style="z-index: 99999;" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-scrollable" role="document">
                            <div class="modal-content">
-                              <div class="modal-header">
-                                 <h5 class="modal-title " id="partproductmaterialTitle"><span class="treeproducttitle"></span></h5>
-                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                 <span aria-hidden="true">&times;</span>
-                                 </button>
-                              </div>
+                      
                               <div class="modal-body">
-                          
+                            <div class="modaly-header"> <span class="setPPheaderMat" style="font-size: 150%; color:black;"> </span></div>
       <div class="container-fluid">
         <div class="row" style="align-items: center;">
         <!-- <div class="col-md-2">
@@ -1186,14 +1163,9 @@
  <div class="modal fade" id="partproductmaterialsubs" tabindex="-1" role="dialog" aria-labelledby="partproductmaterialsubs" style="z-index: 99999;" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-scrollable" role="document">
                            <div class="modal-content">
-                              <div class="modal-header">
-                                 <h5 class="modal-title " id="partproductmaterialsubsTitle"><span class="treeproducttitle"></span></h5>
-                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                 <span aria-hidden="true">&times;</span>
-                                 </button>
-                              </div>
+                           
                               <div class="modal-body">
-                          
+                            <div class="modaly-header"> <span class="setPPheaderSubs" style="font-size: 150%; color:black;"> </span></div>
       <div class="container-fluid">
 <div class="col-md-6 float-right">
    
@@ -1820,14 +1792,9 @@
      <div class="modal fade" id="addsubsproduct" tabindex="-1" role="dialog" aria-labelledby="addsubsproduct" style="z-index: 99999;" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-scrollable" role="document">
                            <div class="modal-content">
-                              <div class="modal-header">
-                                 <h5 class="modal-title " id="partproductmaterialsubsTitle"><span class="treeproducttitle"></span></h5>
-                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                 <span aria-hidden="true">&times;</span>
-                                 </button>
-                              </div>
-                              <div class="modal-body">
                           
+                              <div class="modal-body">
+                            <div class="modaly-header"> <span class="addPPheaderSubs" style="font-size: 150%; color:black;"> </span></div>
       <div class="container-fluid">
 
                     <form id="form-wizard1" class="addSubsForm text-center mt-4" name="formwizard" >
@@ -2051,45 +2018,6 @@ window.onload = function () {
             html2pdf().from(invoice).set(opt).save();
         })
           
-//         reportTablebtnEN4557.addEventListener("click", () => {
-//             const invoice = reportTableEN4557;
-//             console.log(invoice);
-//             console.log(window);
-//             var opt = {
-//                 margin: 0.1,
-//                 filename: 'Assessment Report EN4557.pdf',
-//                 image: { type: 'jpeg', quality: 0.98 },
-//                 html2canvas: { scale: 2 },
-//                 jsPDF: { unit: 'cm', format: 'A2', orientation: 'portrait' }
-//             };
-//             html2pdf().from(invoice).set(opt).save();
-//         })
-//              reportbtnTableEN4558.addEventListener("click", () => {
-//             const invoice = reportTableEN4558;
-//             console.log(invoice);
-//             console.log(window);
-//             var opt = {
-//                 margin: 0.1,
-//                 filename: 'Assessment Report EN4557.pdf',
-//                 image: { type: 'jpeg', quality: 0.98 },
-//                 html2canvas: { scale: 2 },
-//                 jsPDF: { unit: 'cm', format: 'A2', orientation: 'portrait' }
-//             };
-//             html2pdf().from(invoice).set(opt).save();
-//         })
-//              reportTablebtn.addEventListener("click", () => {
-//             const invoice = reportTable;
-//             console.log(invoice);
-//             console.log(window);
-//             var opt = {
-//                 margin: 0.1,
-//                 filename: 'Assessment Report EN4557.pdf',
-//                 image: { type: 'jpeg', quality: 0.98 },
-//                 html2canvas: { scale: 2 },
-//                 jsPDF: { unit: 'cm', format: 'A2', orientation: 'portrait' }
-//             };
-//             html2pdf().from(invoice).set(opt).save();
-//         })
 }
 
      </script>

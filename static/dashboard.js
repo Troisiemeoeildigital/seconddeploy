@@ -56,8 +56,8 @@ const editUI = (user) => {
       const userDisplayName = firebase.auth().currentUser.displayName
     console.log(user.metadata.lastSignInTime)
     console.log(firebase.auth().currentUser.displayName)
-    firstcreation.innerHTML = "Since "  + firstcreationtime;
-    userDisplay.innerHTML = userDisplayName;
+    // firstcreation.innerHTML = "Since "  + firstcreationtime;
+    // userDisplay.innerHTML = userDisplayName;
 
 
    

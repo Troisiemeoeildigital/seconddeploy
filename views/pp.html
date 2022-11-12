@@ -42,20 +42,16 @@
   <body style="overflow-y: hidden;">
 
     <!-- Wrapper Start -->
-    <div class="sidebar" style="background: #219EBC;">
+       <div class="sidebar" style="background: #219EBC;">
     <div class="logo-details">
      
-        <div class="logo_name">KitechCRM</div>
+        <div class="logo_name">Kitech</div>
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list">
+  
       <li>
-          <i class='bx bx-search' style="background: #fff; color:#000"></i>
-         <input type="text" placeholder="Search..." style="background: #fff; color:#000">
-         <span class="tooltip">Search</span>
-      </li>
-      <li>
-        <a class="adminelement" href="./dashboard"style="display: none; background: #219EBC;">
+        <a class="adminelement" href="./dashboard"style="display: none; ">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">대시보드</span>
         </a>
@@ -69,7 +65,7 @@
          <span class="tooltip">대시보드</span>
       </li>
       <li>
-       <a class="adminelement" href="./listofproducts" style="display: none; background: #219EBC;">
+       <a class="adminelement" href="./listofproducts" style="display: none; ">
        
               <i class='bx bxs-cube-alt'></i>
          <span class="links_name">제품목록</span>
@@ -84,7 +80,7 @@
        <span class="tooltip">부품목록</span>
      </li>
        <li>
-       <a class="adminelement" href="./partslist" style="display: none; background: #219EBC;">
+       <a class="adminelement" href="./partslist" style="display: none; ">
  <i class='bx bxs-component' ></i>
          <span class="links_name">부품목록</span>
        </a>
@@ -104,13 +100,16 @@
        </a>
        <span class="tooltip">물질목록</span>
      </li>
-          <li>
-       <a class="adminelement" href="#" style="display: none; background: #219EBC;">
-        <i class='bx bx-bell' ></i>
+     
+
+           <li>
+       <a class="adminelement" href="#" style="display: none;">
+       <i class="bx bx-bell"></i>
          <span class="links_name">공지사항</span>
        </a>
        <span class="tooltip">공지사항</span>
      </li>
+
      <li>
        <a class="notadmin" href="#" style="display: none;">
        <i class='bx bx-bell' ></i>
@@ -118,7 +117,20 @@
        </a>
        <span class="tooltip">공지사항</span>
      </li>
-        
+       <li>
+       <a class="notadmin" href="#" style="display: none;">
+       <i class="ri-question-line"></i>
+         <span class="links_name">자주 묻는 질문</span>
+       </a>
+       <span class="tooltip">자주 묻는 질문</span>
+     </li>
+          <li>
+       <a class="adminelement" href="#" style="display: none;">
+       <i class="ri-question-line"></i>
+         <span class="links_name">자주 묻는 질문</span>
+       </a>
+       <span class="tooltip">자주 묻는 질문</span>
+     </li>
     
      <li class="profile" style="margin-bottom: 30px; background: #219EBC;">
          <div class="profile-details">
@@ -958,13 +970,9 @@
    <div class="modal fade" id="exampleModalScrollableSubstances" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableSubstances" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-scrollable" role="document">
                            <div class="modal-content">
-                              <div class="modal-header">
-                                 <h5 class="modal-title materialtitle" id="exampleModalScrollableTitle"></h5>
-                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                 <span aria-hidden="true">&times;</span>
-                                 </button>
-                              </div>
+                                <div class="modaly-header"> <span class="setPSubsheader" style="font-size: 150%; color:black;"> </span></div>
                               <div class="modal-body">
+                               
                                 <div class="row float-right">
                                        <div class="sortaddpart" style="width: 90%;">
                 
@@ -987,7 +995,7 @@
 
 
                                 <div class="table-responsive">
-                    <div  class="table-wrapper"> 
+                    <div  class="table-wrapper" style="height: auto;"> 
                                <table class="table-parts table-subs">
                             
                                 <tr>
@@ -1006,7 +1014,7 @@
                             </tbody>
                            </table>
                         </div>
-                         <div class="modal-footer" style="margin-top: 30%;">
+                         <div class="modal-footer" >
                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                           
                               </div>
@@ -1019,7 +1027,9 @@
  <!--View Data table tree materials-->
     <div class="viewMatTable modaly-wrapper" >
       <div class="modaly">
+          <div class="modaly-header"> <span class="setPMatheader" style="font-size: 150%; color:black;"> </span></div>
         <div class="modaly-body">
+          
           <div class="card-body">
                 <div class="form-group" id="formfloat">
                      <div class="input-group" >
@@ -1069,7 +1079,7 @@
                             </tbody>
                            </table>
                         </div>
-                         <div class="modal-footer" style="margin-top: 30%;">
+                         <div class="modal-footer" >
                                  <button type="button" class="btn btn-secondary action-button-close" data-dismiss="modal">Close</button>
                           
                               </div>
@@ -1272,7 +1282,7 @@ const firebaseConfig = {
     <!-- Table Treeview JavaScript -->
     <script src="./table-treeview.js"></script>
  <script  type="module" src="./pp.js" defer></script>
-     <script   src="./sidemenu.js" ></script>
+     <!-- <script   src="./sidemenu.js" ></script> -->
  
 
     

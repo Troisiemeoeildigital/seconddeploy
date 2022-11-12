@@ -144,7 +144,7 @@ const renderUser = doc => {
     
  <nav class="navbary" style="background-color:  #219EBC; ">
 	<a href="#" class="navbary__link"   ;>
-		<span class=" btnpr-addPP"  id='${doc.id}' part-weight='${doc.data().productWeight}'><i class="bx bx-plus" style="color: white; font-size: 15px;"></i></span>
+		<span class=" btnpr-addPP"  id='${doc.id}' part-weight='${doc.data().productWeight}' product-name='${doc.data().productName}' ><i class="bx bx-plus" style="color: white; font-size: 15px;"></i></span>
 		<span class="navbary__label" style="background-color:  #219EBC">Add Parts</span>
 	</a>
 	<a href="#" class="navbary__link"  >
@@ -211,7 +211,7 @@ console.log(dataPN)
     // inject data from firebase document to the tree element and display them
      id = doc.id;
      
-     treeproducttitle.innerHTML = 'View ' + doc.data().productName
+     treeproducttitle.innerHTML = '자원효율성 평가 : ' + doc.data().productName
      productCategory.forEach((el)=>{
       el.value = doc.data().productCategory;
      })
@@ -964,8 +964,17 @@ btnpraddParts.addEventListener('click', () => {
   const addedpartslist = document.querySelector('.addedpartslist')
    const btnpraddRef = btnpraddParts.getAttribute('id');
     const btnpraddWeightRef = btnpraddParts.getAttribute('part-weight');
+     const btnpraddNameRef = btnpraddParts.getAttribute('product-name');
     console.log(btnpraddWeightRef)
   addedpartslist.innerHTML = "";
+  const setPPheader = document.querySelector('.setPPheader')
+  const setPPheaderMat = document.querySelector('.setPPheaderMat')
+   const setPPheaderSubs = document.querySelector('.setPPheaderSubs')
+    const addPPheaderSubs = document.querySelector('.addPPheaderSubs')
+  setPPheader.innerHTML = '부품등록 : ' + btnpraddNameRef
+   setPPheaderMat.innerHTML = '소재목록 : ' + btnpraddNameRef
+    setPPheaderSubs.innerHTML = '물질목록 : ' + btnpraddNameRef
+       addPPheaderSubs.innerHTML = '물질추가 : ' + btnpraddNameRef
  console.log(btnpraddRef)
 
 
@@ -997,7 +1006,7 @@ console.log(  typeof(btnpraddWeightRef))
      
            console.log(partWeightRef)
           console.log(partWeightRef < btnpraddWeightRef)
-           if (partWeightRef < btnpraddWeightRef) {
+           if (partWeightRef <= btnpraddWeightRef) {
                partId.value = doc.id
              partname.value = doc.data().partName
           partSize.value = doc.data().partSize
@@ -1538,7 +1547,7 @@ console.log(deleteData)
     editmodaly.classList.add('modaly-show');
     const editHeader = document.querySelector('.editheader')
     id = doc.id;
-    editHeader.innerHTML = 'Edit ' + doc.data().productName
+    editHeader.innerHTML = '제품정보수정 ' + doc.data().productName
      editmodalyForm.productCategory.value = doc.data().productCategory;
     editmodalyForm.productName.value = doc.data().productName;
        editmodalyForm.editmodelName.value = doc.data().productMN;
@@ -1851,7 +1860,7 @@ editFormProd.addEventListener('click', e => {
 firebase.auth().onAuthStateChanged(user => {
   const userEmailCard = document.getElementById('useremailcard')
  
-  userEmailCard.innerHTML = user.email
+  userEmailCard.innerHTML = user.userEmail;
   
 })
 

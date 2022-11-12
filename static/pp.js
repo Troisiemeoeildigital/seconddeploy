@@ -121,7 +121,7 @@ const renderUser = doc => {
          <td>
   <nav class="navbary">
 	<a href="#" class="navbary__link">
-		<span class=" viewbtn" id="btnprview"  data-toggle="modal" data-target="#exampleModalScrollable" data-id='${doc.id}'><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
+		<span class=" viewbtn" id="btnprview"  data-toggle="modal" data-target="#exampleModalScrollable" partname='${doc.data().partName}' data-id='${doc.id}'><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
 		<span class="navbary__label" style="left: -36px;">View Materials</span>
 	</a>
 </nav>
@@ -129,7 +129,7 @@ const renderUser = doc => {
       </td>
     </tr>
   `;
-console.log('Hi')
+
 
   const parttable = document.querySelector('.parttable')
   parttable.insertAdjacentHTML('beforeend', tr);
@@ -139,6 +139,11 @@ console.log('Hi')
   viewbtn.addEventListener('click', (e)=> {
 e.preventDefault()
 viewMatTable.classList.add('modaly-show');
+
+const setPSubsheader = document.querySelector('.setPSubsheader')
+setPSubsheader.innerHTML =  `물질목록 : ${doc.data().partName}`
+const setPMatheader = document.querySelector('.setPMatheader')
+setPMatheader.innerHTML =  `소재목록 : ${doc.data().partName}`
       const breadbody = document.querySelector('.breadbody')
       breadbody.innerHTML = ""
     const breadpartname = document.querySelector('.breadpartname')
