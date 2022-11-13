@@ -479,7 +479,7 @@ buildTable(materialDataUniq)
     //  const RecycMatg = materialMass * recycleRate
         // Recycled Material Mass (g), Formula: PartA's material mass * Recycled rate
      let RecycMatg = (recycMat * secondmaterialMass)
-   let RecycMatPerc = (RecycMatg * recycleRate / 100).toFixed(2)
+   let RecycMatPerc = (secondMatarrUniq[i].materialMassg * recycleRate / 100).toFixed(2)
       energyrecovarr.push(energyRecoMassgAssess)
       energyrecovarrperc.push(energyRecoMassPercAssess)
 			var row = `<tr>
