@@ -1026,18 +1026,18 @@ addModalyParts.reset();
     let obj = jsonData[i];
 
        db.collection('recycledparts').doc().set({
-   
-            partName: obj.partName,
-            partWeight: obj.partWeight,
-            partSize: obj.partSize,
-            partRegisteredDate: obj.partRegisteredDate,
             supplierName	: obj.supplierName,
-            partMemo: obj.partMemo,
+            partName: obj.partName,
+            partCode: obj.partCode,
+            partWeight: obj.partWeight,
+            partWidth: obj.Width,
+            partDepth: obj.Depth,
+            partHeight: obj.Height,
+            sizeUnit: obj.sizeUnit,
+            partRegisteredDate: obj.partRegisteredDate,
             reusedPart: obj.reusedPart,
-            partCode: obj.partCode
-        
-       
-        }, {merge: true}) .then(()=> {
+            partMemo: obj.partMemo
+           }, {merge: true}) .then(()=> {
       console.log("Documents Added!")
     });
 }

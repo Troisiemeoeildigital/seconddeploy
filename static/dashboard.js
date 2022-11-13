@@ -38,12 +38,13 @@ const editUI = (user) => {
   if (user) {
     const userTitleCard = document.getElementById('usertitle')
      const notadminElement = document.querySelectorAll('.notadmin')
-     
+      let sidebar = document.querySelector(".sidebar");
+            let sidebarlogOut = document.querySelector("#log_out");
       
     if(user.admin) {
-      // document.addEventListener('DOMContentLoaded', ()=> {
-        
-      // })
+     
+sidebar.style.backgroundColor  = "#219EBC"
+sidebarlogOut.style.backgroundColor  = "#219EBC"
     const firstcreation = document.getElementById('lastsignin')
      const userDisplay = document.getElementById('userDisplay')
       const adminElement = document.querySelectorAll('.adminelement');
@@ -63,6 +64,8 @@ const editUI = (user) => {
    
    
     } else {
+      sidebar.style.backgroundColor  = "#fb8500"
+sidebarlogOut.style.backgroundColor  = "#fb8500"
        const userTitleCard = document.getElementById('usertitle')
        
        const lastsignin = document.getElementById('lastsignin')
@@ -84,3 +87,4 @@ const editUI = (user) => {
     console.log("not an admin")
   }
 }
+
