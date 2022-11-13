@@ -585,8 +585,8 @@ buildTable(result)
 			var recycarr = `<tr>
           
 							<td>${result[i].materialname}</td>
-              <td>${result[i].recycledmaterialmass}</td>
-           
+              <td>${result[i].recycledmaterialmass.toFixed(2)}</td>
+              <td>${(result[i].recycledmaterialmass / prodWeightRef * 100).toFixed(2)} </td>
                   
 					  </tr>`
 		summedrecyc.innerHTML += recycarr
@@ -949,7 +949,7 @@ series: [{
     y: materialnum - 1
   }, {
     x: 'Recycled Material(%)',
-    y: parseFloat(sumValPerc)
+    y: parseFloat(sumValPerc).toFixed(2)
   }]
 }]
 }
