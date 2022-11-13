@@ -182,6 +182,7 @@ closebtn.forEach((eachClose)=> {
 const subsmodalclose = document.querySelector('#subsmodalclose')
 subsmodalclose.onclick = function() {
 document.querySelector('#addsubsproduct').classList.remove('show');
+document.querySelector('#addsubsproduct').style.display = "none";
 }
 
 // Click on view product button to view assessment
@@ -430,6 +431,7 @@ let secondMatarrUniq = [...new Map(materialData.map(v => [JSON.stringify([v.mate
 buildTable(materialDataUniq)
 
 	function buildTable(materialDataUniq){
+ 
    let energyrecovarr = []
     let energyrecovarrperc = []
     
@@ -448,17 +450,20 @@ buildTable(materialDataUniq)
       // Reuse Mass (g)
       let reuseMassgAssess = reuseMat * materialMass
         console.log(reuseMassgAssess)
+           let prodWeightRefValue = viewassess.getAttribute('prodWeight');
       // Reuse Mass (%)
-      let reuseMassPerAssess = reuseMassgAssess / PartMass
+      let reuseMassPerAssess = reuseMassgAssess / prodWeightRefValue * 100
     
       // Recycle Mass (g),  Formula: material mass * Recycle factor
-      let recycleMassgAssess = materialMass * recycMat
+      let recycleMassgAssess = materialMass * recycMat 
       // Recycle Mass (%),  Formula: (material mass * Recycle factor) / Part Mass
-      let recycleMassPercAssess = recycleMassgAssess  / PartMass
+   
+      let recycleMassPercAssess = recycleMassgAssess  / prodWeightRefValue * 100
+      console.log(recycleMassPercAssess)
        //Recovery Mass (g),  Formula: material mass * Recovery factor
       let recovMassgAssess = materialMass * recovMat 
      //Recovery Mass (%),  Formula: (material mass * Recovery factor) / Part Mass
-      let recovMassPercAssess = recovMassgAssess / PartMass
+      let recovMassPercAssess = recovMassgAssess / prodWeightRefValue * 100
       //  console.log(recovMassPercAssess.toFixed(2))
       // Disposable Mass (g), Formulat: Material total mass - Recovery mass 
       let disposabaleMassg = (materialMass - recovMassgAssess).toFixed(2)
@@ -727,8 +732,9 @@ sumReuseWeight.forEach((el)=> {
   var sumAssess = document.querySelector(".sumAssess"),
   sumVal = 0;
 for (var i = 1; i < sumAssess.rows.length; i++) {
-  sumVal = sumVal + parseFloat(sumAssess.rows[i].cells[5].innerHTML);
+  sumVal = sumVal + parseFloat(sumAssess.rows[i].cells[4].innerHTML);
 }
+  let ReusesumValPerc = sumVal / prodWeightRef * 100
 const sumReuseWeightPerc = document.querySelectorAll('.sumReuseWeightPerc')
 sumReuseWeightPerc.forEach((el)=> {
   el.innerHTML = sumVal.toFixed(2)
@@ -749,11 +755,14 @@ sumRecycWeightg.forEach((el)=> {
   var sumAssess = document.querySelector(".sumAssess"),
   sumVal = 0;
 for (var i = 1; i < sumAssess.rows.length; i++) {
-  sumVal = sumVal + parseFloat(sumAssess.rows[i].cells[7].innerHTML);
+  sumVal = sumVal + parseFloat(sumAssess.rows[i].cells[6].innerHTML);
 }
+
+let RecycSumValPerc = (sumVal / prodWeightRef) * 100
+console.log(RecycSumValPerc)
 const sumRecycWeightPerc = document.querySelectorAll('.sumRecycWeightPerc')
 sumRecycWeightPerc.forEach((el)=> {
-  el.innerHTML = sumVal.toFixed(2)
+  el.innerHTML = RecycSumValPerc.toFixed(2)
 })
 
 // Summary Recovering Weight (g)
@@ -771,11 +780,12 @@ sumRecovWeightg.forEach((el)=> {
   var sumAssess = document.querySelector(".sumAssess"),
   sumVal = 0;
 for (var i = 1; i < sumAssess.rows.length; i++) {
-  sumVal = sumVal + parseFloat(sumAssess.rows[i].cells[9].innerHTML);
+  sumVal = sumVal + parseFloat(sumAssess.rows[i].cells[8].innerHTML);
 }
+  let RecovSumValPerc = sumVal / prodWeightRef * 100
 const sumRecovWeightPerc = document.querySelectorAll('.sumRecovWeightPerc')
 sumRecovWeightPerc.forEach((el)=> {
-  el.innerHTML = sumVal.toFixed(2)
+  el.innerHTML = RecovSumValPerc.toFixed(2)
 })
 
 // Summary Total Weight (g)
@@ -1186,7 +1196,8 @@ let idref = guid()
   <td>
                                 <div class="checkbox " style="  display: inline-table;  width: 15px;
     height: 15px;">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox2">
+                                    <input type="checkbox" class="checkbox-input" id="checkbox2" style="height: 15px;
+    width: 15px;">
                                     <label for="checkbox2" class="mb-0"></label>
                                 </div>
                             </td>
@@ -1300,7 +1311,8 @@ Swal.fire({
       <td>
                                 <div class="checkbox" style="  display: inline-table;  width: 20px;
     height: 15px;">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox2">
+                                    <input type="checkbox" class="checkbox-input" id="checkbox2" style="height: 15px;
+    width: 15px;">
                                     <label for="checkbox2" class="mb-0"></label>
                                 </div>
                             </td>
@@ -1355,6 +1367,7 @@ Swal.fire({
     for (let i = 0; i < addProdmatsub.length; i++) {
     
  addProdmatsub[i].addEventListener('click', ()=>{
+  document.querySelector('#addsubsproduct').style.display = "block"
   const getprodsubstancetype = document.querySelector('.getprodsubstancetype')
    const getprodsubstancelist = document.querySelector('.getprodsubstancelist')
      let matWeightRef = addProdmatsub[i].getAttribute("mat-Weight");
@@ -1463,17 +1476,19 @@ addSubs.onclick = function(e) {
 		for (var i = 0; i < arrUniq.length; i++){
 			var row = `<tr  id= '${arrUniq[i].subProdid}' >
        <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox2">
+                                <div class="checkbox d-inline-block" style="display: flex;
+    align-items: center;justify-content: center;">
+                                    <input type="checkbox" class="checkbox-input" id="checkbox2" style="height: 15px;
+    width: 15px;">
                                     <label for="checkbox2" class="mb-0"></label>
                                 </div>
                             </td>
 							<td>${arrUniq[i].substanceName}</td>
               <td>${arrUniq[i].casnumber}</td>
-                <td>${arrUniq[i].crm}</td>
-                    <td>${arrUniq[i].rohs}</td>
-							<td>${arrUniq[i].substanceMassg}</td>
-							<td>${arrUniq[i].substanceMassPerc}</td>
+                <td style="width: 15px;">${arrUniq[i].crm}</td>
+                    <td style="width: 15px;">${arrUniq[i].rohs}</td>
+							<td style="width: 15px;">${arrUniq[i].substanceMassg}</td>
+							<td style="width: 15px;">${arrUniq[i].substanceMassPerc}</td>
               <td>
 
 

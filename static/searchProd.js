@@ -1,16 +1,6 @@
 // substance product search
 let searchProdSubChoice = document.querySelector(".searchProdSubSelection")
-searchProdSubChoice.addEventListener('change', ()=>{
-if (searchProdSubChoice.value == 1) {
-document.getElementsByName('myInputSub')[0].placeholder = 'Search by Substance Name'
-}
-else if (searchProdSubChoice.value == 3) {
-document.getElementsByName('myInputSub')[0].placeholder = 'Search by CRM'
-}
-else if (searchProdSubChoice.value == 4) {
-document.getElementsByName('myInputSub')[0].placeholder = 'Search by ROHS'
-}
-})
+
   
 function subSearch() {
              let filter,  tr, td, txtValue, input, table;
@@ -24,7 +14,7 @@ function subSearch() {
          
     
             for (let i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[searchProdSubChoice.value];
+                td = tr[i].getElementsByTagName("td")[1];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -76,3 +66,6 @@ function prodSearch() {
             
 
         };
+
+
+

@@ -1189,17 +1189,27 @@
 <div class="col-md-6 float-right">
    
                        <div class="input-group mb-3">
-                        <div class="input-group-prepend" style="width: 77%;">
-                           <input type="text" class="form-control" id="myInputSub" style="margin: 0; border-radius: 10px 0 0 10px; height:46px;" onkeyup='subSearch()' name="myInputSub" placeholder="Search by..." aria-label="Search Part Name"
-                           aria-describedby="basic-addon5">
-                        </div>
-                        <select  class="custom-select searchProdSubSelection" id="inputGroupSelect03">
-                           <option selected>Choose...</option>
-                           <option value="1">Substance Name </option>
-                           <option value="3">CRM</option>
-                           <option value="4">ROHS</option>
+                        
+                       <div class="form-group" id="formfloat" style="width: 50%;">
+                      <div class="input-group mb-3">
+                      
+                        <select  class="custom-select sortSubsSelection" id="inputGroupSelect03">
+                           <option value="" selected>Sort by...</option>
+                           <option value="4">Sort by  CRM</option>
+                           <option value="3">Sort by ROHS</option>
+                   
                         </select>
                            <div class="input-group-append">
+                           <span class="input-group-text" id="basic-addon5"><i class="bx bx-sort font-size-20"></i></span>
+                        </div>
+                     </div>
+                     </div>
+                        <div class="input-group-prepend" style="width: 40%; margin-left: 2%;">
+                           <input type="text" class="form-control" id="myInputSub" style="margin: 0; border-radius: 10px 0 0 10px; height:46px;" onkeyup='subSearch()' name="myInputSub" placeholder="Search Substance Name" aria-label="Search Part Name"
+                           aria-describedby="basic-addon5">
+                        </div>
+                        
+                           <div class="input-group-append" style="height: 46px;">
                            <span class="input-group-text" id="basic-addon5"><i class="las la-search font-size-20"></i></span>
                         </div>
                      </div>
@@ -1438,7 +1448,7 @@
                             
                          <div class="row">
                       <table class="table sumAssess">
-                        <thead class="thead-dark">
+                        <thead class="thead" style="background-color: #219EBC; color: white;">
                            <tr>
                               <th scope="col">Part</th>
                               <th scope="col">Part Mass(g)
@@ -1617,7 +1627,7 @@
                              
                                <div class="row">
                     <table class="table materialChart">
-                        <thead class="thead-dark">
+                        <thead class="thead" style="background-color: #219EBC; color: white;">
                            <tr>
                               <th scope="col">Material Group </th>
                                  <th scope="col">Material Name </th>
@@ -1773,7 +1783,7 @@
                     
                          <div class="row">
                     <table class="table subsAssess">
-                        <thead class="thead-dark">
+                        <thead class="thead" style="background-color: #219EBC; color: white;"> 
                            <tr>
                               <th scope="col">Part Name</th>
                                  <th scope="col">Part Mass(g)</th>
