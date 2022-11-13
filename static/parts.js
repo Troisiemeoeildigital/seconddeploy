@@ -1007,8 +1007,8 @@ addModalyParts.reset();
 
 
    subsmodalclose.addEventListener('click', () =>{
-    addModalyParts.classList.remove('modaly-show');
-    editMatmodaly.classList.remove('modaly-show');
+    addmodalySubssSingle.classList.remove('modaly-show');
+    // editMatmodaly.classList.remove('modaly-show');
    })
 }
 
