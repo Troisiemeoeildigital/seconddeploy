@@ -272,7 +272,7 @@ console.log(crmWeightSum)
 
 const crmweightg = document.querySelectorAll('.crmweightg')
 crmweightg.forEach((el)=> {
-  el.innerHTML = crmWeightSum
+  el.innerHTML = crmWeightSum.toFixed(2)
 })
 
      // CRM Weight (%)
@@ -479,23 +479,23 @@ buildTable(materialDataUniq)
     //  const RecycMatg = materialMass * recycleRate
         // Recycled Material Mass (g), Formula: PartA's material mass * Recycled rate
      let RecycMatg = (recycMat * secondmaterialMass)
-   let RecycMatPerc = (RecycMatg * PartMass / 100).toFixed(2)
+   let RecycMatPerc = (RecycMatg * recycleRate / 100).toFixed(2)
       energyrecovarr.push(energyRecoMassgAssess)
       energyrecovarrperc.push(energyRecoMassPercAssess)
 			var row = `<tr>
               <td>${materialDataUniq[i].partRef}</td>
-							<td>${PartMass}</td>
+							<td>${PartMass.toFixed(2)}</td>
               <td>${materialDataUniq[i].materialName}</td>
-              <td>${materialMass}</td>
-              <td>${reuseMassgAssess}</td>
+              <td>${materialMass.toFixed(2)}</td>
+              <td>${reuseMassgAssess.toFixed(2)}</td>
               <td>${reuseMassPerAssess.toFixed(2)}</td>
-              <td>${recycleMassgAssess}</td>
+              <td>${recycleMassgAssess.toFixed(2)}</td>
               <td>${recycleMassPercAssess.toFixed(2)}</td>
-              <td>${recovMassgAssess}</td>
+              <td>${recovMassgAssess.toFixed(2)}</td>
               <td>${recovMassPercAssess.toFixed(2)}</td>
-              <td>${disposabaleMassg}</td>
+              <td>${parseFloat(disposabaleMassg).toFixed(2)}</td>
               <td>${disposabalePercMass.toFixed(2)}</td>
-              <td>${PartMass}</td>
+              <td>${PartMass.toFixed(2)}</td>
               <td>100</td>
 					  </tr>`
 
@@ -507,9 +507,9 @@ buildTable(materialDataUniq)
          <tr> 
          <td>${secondMatarrUniq[i].materialGroup}</td>
          <td>${secondMatarrUniq[i].materialName}</td>
-         <td>${secondMatarrUniq[i].materialMassg}</td>
-         <td>${recycleRate} %</td>
-         <td>${RecycMatg} (g)</td>
+         <td>${secondMatarrUniq[i].materialMassg.toFixed(2)}</td>
+         <td>${recycleRate.toFixed(2)} %</td>
+         <td>${parseFloat(RecycMatPerc).toFixed(2)} (g)</td>
                </tr>
       `
     
@@ -799,7 +799,7 @@ for (var i = 1; i < sumAssess.rows.length; i++) {
 }
 let sumTotalWeightg = document.querySelectorAll('.sumTotalWeightg')
 sumTotalWeightg.forEach((el)=> {
-  el.innerHTML = prodWeightRef
+  el.innerHTML = parseFloat(prodWeightRef).toFixed(2)
 })
 
 // Summary Total Weight (%)
