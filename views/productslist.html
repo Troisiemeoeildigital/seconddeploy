@@ -17,15 +17,12 @@
       <link rel="stylesheet" href="./line-awesome.min.css">
       <link rel="stylesheet" href="./remixicon.css">
       <style>
-                @media only screen and (max-width: 50em) {
-  .table-wrapper {
-    height: fit-content;
-  }
-}
+
          @media only screen and (min-width: 86em) {
   .table-wrapper {
-    height: fit-content;
+    height: 70%;
   }
+    
 }
       </style>
         <!-- <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js"></script>
@@ -153,8 +150,8 @@
   <section class="home-section">
         
 <div class="content-page">
-     <div class="container-fluid" style="    padding-top: 60px;">
-           <div class="iq-top-navbar">
+     <div class="container-fluid" style="    padding-top: 80px;">
+           <div class="iq-top-navbar" style="box-shadow: 0 16px 15px 0 rgb(33, 158, 188, 0.07)">
           <div class="iq-navbar-custom">
               <nav class="navbar navbar-expand-lg navbar-light p-0">
             
@@ -312,15 +309,15 @@
         <!--Here starts the form-->
         
 
-
+ 
+          
  <div class="tabledata">
    
     <div class="table-wrapper table-responsive rounded mb-3" style="overflow-x: hidden; 
-    overflow-y: scroll;">
+    overflow-y: scroll;  height: 48%;">
    
-          <div class="loadingtitle"></div>
-          
-      <table class="table-users  prod-table mb-0 " >
+         
+      <table class="table-users  prod-table mb-0 "  style="height: 70%;">
     <thead class="bg-white text-uppercase" style="position: sticky; top: 0;">
   <tr class="ligth ligth-data">
                 <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
@@ -338,9 +335,10 @@
           <th>Memo</th>
            <th style="width: 13%;">Action</th>
         </tr>
+    <div class="loadingtitle" style="margin-bottom: 10%;"></div>
   
     </thead>
-    <tbody class=" ">
+    <tbody class="prodTabledata">
 
     </tbody>
    
@@ -357,7 +355,9 @@
     <div class="add-modaly modaly-wrapper">
       <div class="modaly">
         <div class="modaly-header"> <span style="font-size: 150%; color:black;">Product Identification</span></div>
-        <div class="modaly-body">
+        <div class="modaly-body" style="    overflow-y: scroll;
+    height: 630px;
+    overflow-x: hidden;">
           <div class="card-body">
                      <div >
                         <form class="form" autocomplete="off"  data-toggle="validator" id="form-wizard1">
@@ -538,9 +538,11 @@
     <!-- Edit modaly -->
     <div class="edit-modaly modaly-wrapper">
       <div class="modaly" >
-        <div class="modaly-body">
+        <div class="modaly-body" style="    overflow-y: scroll;
+    height: 630px;
+    overflow-x: hidden;">
           <div class="modaly-header">  <span class="editheader" style="font-size: 150%; color:black;"></span></div>
-             <div class="card-body">
+             <div class="card-body" style="padding: 0;">
                   <div class="card-body">
                      <ul class="nav nav-pills mb-3 nav-fill" id="pills-tab-1" role="tablist" style="    width: 50%;
     margin-left: 26%;">
@@ -722,7 +724,8 @@
     </div>
 
      <div class="addPPmodaly modaly-wrapper" style="padding-top: 50px;">
-      <div class="modaly" style="width: 71%; left: 16%; margin-top:3%">
+      <div class="modaly" style="    width: 80%;
+    left: 12%; margin-top:3%">
 
         <div class="modaly-body">
          <div class="modaly-header"> <span class="setPPheader" style="font-size: 150%; color:black;"> </span></div>
@@ -855,7 +858,7 @@
                      </form>
 
                      
-       <div class="row" style="align-items: center;">
+       <div class="row" style="align-items: baseline;">
         <div class="col-md-2">
      <div class="table-responsive" style="  border-radius: 10px;  height: 310px; overflow: auto;">
                         <table id="tree-table-1" class="table table-hover table-bordered iq-bg-white tree" style="    border-collapse: collapse;
@@ -874,7 +877,7 @@
                      </div>
         </div>
          <div class="col-md-10">
-              <div  class="table-wrapper" style="    height: 427px;"> 
+              <div  class="table-wrapper" style="    height: auto;"> 
                <div class="deleterow align-items-center float-right" >
              <button class="btnpr btnpr-add" style="width: 10%; margin-bottom: 10px; background: #F05D5E;"><div class="addnewproductbtnpr">Delete All</div></button>
           </div>

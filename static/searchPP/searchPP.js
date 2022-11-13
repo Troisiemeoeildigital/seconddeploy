@@ -40,7 +40,7 @@ let searchChoice = document.querySelector(".searchPartSelection")
             //Intialising Variables
             input = document.getElementById("myInputMat");
             filter = input.value.toUpperCase();
-            table = document.getElementById("myTableMat");
+            table = document.querySelector(".myTableMat");
             tr = table.getElementsByTagName("tr");
          
     
@@ -89,7 +89,7 @@ let searchChoice = document.querySelector(".searchPartSelection")
 sortPartSelection.addEventListener('change', ()=>{
 if (sortPartSelection.value == 1) {
 var tableusersSort, rows, switching, i, x, y, shouldSwitch;
-var tableusersSort = document.querySelector("#myTableMat")
+var tableusersSort = document.querySelector(".myTableMat")
   switching = true;
   /*Make a loop that will continue until
   no switching has been done:*/
@@ -125,7 +125,7 @@ else if (sortPartSelection.value == 2) {
 
 
 var tableusersSort, rows, switching, i, x, y, shouldSwitch;
-var tableusersSort = document.querySelector("#myTableMat")
+var tableusersSort = document.querySelector(".myTableMat")
   switching = true;
   /*Make a loop that will continue until
   no switching has been done:*/

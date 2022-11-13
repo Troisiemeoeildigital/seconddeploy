@@ -164,7 +164,8 @@ const renderUser = doc => {
       </td>
     </tr>
   `;
-  tableUsers.insertAdjacentHTML('beforeend', tr);
+  const prodTabledata = document.querySelector('.prodTabledata')
+  prodTabledata.insertAdjacentHTML('beforeend', tr);
    document.querySelector('.loadingtitle').style.display = "none"
 
 

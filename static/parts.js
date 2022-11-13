@@ -167,7 +167,7 @@ const renderUser = doc => {
 	<a href="#" class="navbary__link">
 		<span class="" data-id='${doc.id}'><i class='bx bx-duplicate' style="    color: white;
     font-size: 17px;"></i></i></span>
-		<span class="navbary__label" style="background-color: #fb8500;">Duplicate Part</span>
+		<span class="navbary__label" style="background-color: #fb8500; left:-55px;">Duplicate Part</span>
 	</a>
 </nav>
     </div>
@@ -299,6 +299,79 @@ btnpmedit.forEach((eachbtnpmedit)=>{
  eachbtnpmedit.onclick = function(e) {
   
 editMatmodaly.classList.add('modaly-show');
+ 
+  var addpartsRef = db.collectionGroup('materialsdb');
+addpartsRef
+.get()
+  .then(query=>{
+    // let data = query.docs.map(doc=>{
+    //     let x = doc.data()
+    //         return x;
+    // })
+    // console.log(data)
+        let data = query.docs.map(doc=>{
+        let x = doc.data()
+            return x;
+    })
+    console.log(data)
+    const matHashMap = {}
+    data = data.filter((item, _)=>{
+      let alreadyExists = matHashMap.hasOwnProperty(item.MaterialGroup)
+      return alreadyExists ? false: matHashMap[item.MaterialGroup] = 1
+    })
+    console.log(data)
+
+
+        buildTable(data)
+	function buildTable(data){
+
+		for (var i = 0; i < data.length; i++){
+			var row = `
+							<option value="${data[i].MaterialGroup}">${data[i].MaterialGroup}</option>
+              
+					  `
+		
+       PMmaterialGroup.innerHTML += row
+
+		}}
+  })
+
+
+  var addpartsRef = db.collectionGroup('materialsdb');
+addpartsRef
+.get()
+  .then(query=>{
+    // let data = query.docs.map(doc=>{
+    //     let x = doc.data()
+    //         return x;
+    // })
+    // console.log(data)
+        let data = query.docs.map(doc=>{
+        let x = doc.data()
+            return x;
+    })
+    console.log(data)
+    const matHashMap = {}
+    data = data.filter((item, _)=>{
+      let alreadyExists = matHashMap.hasOwnProperty(item.재료명)
+      return alreadyExists ? false: matHashMap[item.재료명] = 1
+    })
+    console.log(data)
+
+
+        buildTable(data)
+	function buildTable(data){
+
+		for (var i = 0; i < data.length; i++){
+			var row = `
+							<option value="${data[i].재료명}">${data[i].재료명}</option>
+              
+					  `
+		
+       PMmaterialName.innerHTML += row
+
+		}}
+  })
   let editData = eachbtnpmedit.getAttribute("data-id");
   console.log(editData)
   e.preventDefault()
@@ -330,19 +403,9 @@ document.querySelector(".editfiles").addEventListener("change", function(e) {
   }
 });
 
-editMat.onclick = function(e) {
-  e.preventDefault();
-   materiallist.innerHTML = ""
-  Swal.fire({
-  title: 'Do you want to save the changes?',
-  showDenyButton: true,
-  showCancelButton: true,
-  confirmButtonText: 'Save',
-  denyButtonText: `Don't save`,
-}).then((result) => {
-  /* Read more about isConfirmed, isDenied below */
-  if (result.isConfirmed) {
-
+const updateProof = document.querySelector('.updateProof')
+updateProof.onclick = function(e) {
+  e.preventDefault()
     //Loops through all the selected editfiles
     for (let i = 0; i < editfiles.length; i++) {
       //create a storage reference
@@ -375,16 +438,45 @@ editMat.onclick = function(e) {
                   .getDownloadURL()
                   .then(function(url) {
                     console.log(url);
+                       db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${editData}`).update({
+                        proofurl: url
+                       })
+})
+                .then(()=>{
+                   Swal.fire(
+  'Success!',
+  'Proof File updated successfully!',
+  'success'
+)
+                })
+        }
+      );
+    }
+}
+
+editMat.onclick = function(e) {
+  e.preventDefault();
+  //  materiallist.innerHTML = ""
+  Swal.fire({
+  title: 'Do you want to save the changes?',
+  showDenyButton: true,
+  showCancelButton: true,
+  confirmButtonText: 'Save',
+  denyButtonText: `Don't save`,
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
 
 
-      db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${editData}`).update({
+  
+	     db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${editData}`).update({
     materialGroup: PMmaterialGroup.value,
     materialName: PMmaterialName.value,
     materialRecycleContent: PMmaterialRecycleContent.value,
     materialRecycleType: PMMaterialRecycleType.value,
     materialMassg: PMmaterialMassg.value,
     materialMassPerc: PMMaterialMassPerc.value,
-	proofurl: url,
+	
    
   })
   
@@ -393,16 +485,13 @@ editMat.onclick = function(e) {
   'Material updated successfully!',
   'success'
 )
-})
-        }
-      );
-    }
-  
-	
 
 } else if (result.isDenied) {
     Swal.fire('Changes are not saved', '', 'info')
   }
+
+
+
 })
   };
 }
@@ -687,10 +776,16 @@ addpartsRef
               
 					  `
 			editmaterialGroup.innerHTML += row
-       PMmaterialGroup.innerHTML += row
+    
 
 		}}
+    
+
+
   })
+
+ 
+  
 
 
 
