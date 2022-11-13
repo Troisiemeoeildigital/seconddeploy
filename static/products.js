@@ -279,7 +279,7 @@ crmweightg.forEach((el)=> {
 
 const crmweightPerc = document.querySelectorAll('.crmweightPerc')
 crmweightPerc.forEach((el)=> {
-  el.innerHTML = (crmWeightSum / 2500 * 100).toFixed(2)
+  el.innerHTML = (crmWeightSum / prodWeightRef * 100).toFixed(2)
 })
 
 
@@ -907,8 +907,8 @@ const sumRecycWeight = document.querySelectorAll('.sumRecycWeight')
 sumRecycWeight.forEach((el)=> {
   el.innerHTML = sumVal
 
-
-let materialnum = materialChart.rows.length
+const tableMatSummarry = document.querySelector('.tableMatSummarry')
+let materialnum = tableMatSummarry.rows.length
    let optionsref = {
   chart: {
     type: 'bar'
