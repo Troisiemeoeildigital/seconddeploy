@@ -508,7 +508,7 @@ buildTable(materialDataUniq)
          <td>${secondMatarrUniq[i].materialGroup}</td>
          <td>${secondMatarrUniq[i].materialName}</td>
          <td>${secondMatarrUniq[i].materialMassg.toFixed(2)}</td>
-         <td>${recycleRate.toFixed(2)} %</td>
+         <td>${recycleRate.toFixed(2)} </td>
          <td>${parseFloat(RecycMatPerc).toFixed(2)} (g)</td>
                </tr>
       `
