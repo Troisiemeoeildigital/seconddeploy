@@ -177,6 +177,9 @@ const renderUser = doc => {
   `;
 
 
+
+
+
   const parttable = document.querySelector('.parttable')
   parttable.insertAdjacentHTML('beforeend', tr);
    document.querySelector('.loadingtitle').style.display = "none"
@@ -185,11 +188,13 @@ const renderUser = doc => {
   viewbtn.addEventListener('click', (e)=> {
 e.preventDefault()
 viewMatTable.classList.add('modaly-show');
+const setMatheader = document.querySelector('.setMatheader')
       const breadbody = document.querySelector('.breadbody')
       breadbody.innerHTML = ""
     const breadpartname = document.querySelector('.breadpartname')
     breadpartname.innerHTML = `${doc.data().partName}`
   materialtitle.innerHTML = `${doc.data().partName}`
+  setMatheader.innerHTML = `소재목록 - ${doc.data().partName}`
   const partRef = `${doc.id}`
   console.log(partRef)
  const materiallist = document.querySelector('.materiallist')
@@ -226,7 +231,7 @@ viewMatTable.classList.add('modaly-show');
 
        <nav class="navbary" style="background-color: #fb8500; width: 80%;">
 	<a href="#" class="navbary__link" >
-		<span class="btnpmviewSubs"  data-id='${doc.id}'  data-id='${doc.id}' data-toggle="modal" data-target="#exampleModalScrollableSubstances"><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
+		<span class="btnpmviewSubs"    data-id='${doc.id}' data-toggle="modal" data-target="#exampleModalScrollableSubstances"><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
 		<span class="navbary__label" style="background-color: #fb8500;">View Substances</span>
 	</a>
 
@@ -236,7 +241,7 @@ viewMatTable.classList.add('modaly-show');
 	</a>
 
 <a href="#" class="navbary__link">
-		<span class="btnpmSubs"  matWeight="${doc.data().materialMassg}" data-id='${doc.id}'><i class="bx bx-plus" style="color: white; font-size: 15px; "></i></span>
+		<span class="btnpmSubs" matName="${doc.data().materialName}"  matWeight="${doc.data().materialMassg}" data-id='${doc.id}'><i class="bx bx-plus" style="color: white; font-size: 15px; "></i></span>
 		<span class="navbary__label" style="background-color: #fb8500;">Add New Substances </span>
 	</a>
 
@@ -303,7 +308,7 @@ editMatmodaly.classList.add('modaly-show');
          const editMatHeader = document.querySelector('.editMatHeader')
          console.log(doc.data())
     id = doc.id;
-    editMatHeader.innerHTML = ' ' + doc.data().materialName
+    editMatHeader.innerHTML = '소재정보수정 -' + doc.data().materialName
     PMmaterialGroup.value = doc.data().materialGroup;
     PMmaterialName.value = doc.data().materialName;
     PMmaterialRecycleContent.value = doc.data().materialRecycleContent;
@@ -448,9 +453,14 @@ btnpmSubs.forEach((eachbtnpmSubs)=> {
   //add a new substance to a specific material
  eachbtnpmSubs.onclick = function (e) {
   e.preventDefault()
+addmodalySubssSingle.classList.add('modaly-show');
   let matId = eachbtnpmSubs.getAttribute("data-id");
   let matWeightRef = eachbtnpmSubs.getAttribute("matWeight");
-addmodalySubssSingle.classList.add('modaly-show');
+    let matNametRef = eachbtnpmSubs.getAttribute("matName");
+        const setAddSubsHeader = document.querySelector('.setAddSubsHeader')
+  
+    setAddSubsHeader.innerHTML = '물질추가 - ' + `${matNametRef}`
+
   console.log(matId)
   getsubstancetype.onchange = function(e) {
     e.preventDefault()
@@ -529,7 +539,8 @@ btnpmviewSubs.forEach((eachbtnpmviewSubs)=>{
    const subsmatId = eachbtnpmviewSubs.getAttribute("data-id");
 eachbtnpmviewSubs.onclick = function() {
 substancelisttable.innerHTML = "";
- 
+   const addPartSubsHeader = document.querySelector('.addPartSubsHeader')
+  addPartSubsHeader.innerHTML = `물질목록   - ${doc.data().partName}`
   console.log(`${subsmatId}`)
       //Start work here
 db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${subsmatId}`).collection('substances').get()
@@ -621,6 +632,10 @@ eachbtnpartsubdelete.onclick = function(e){
 btnpraddParts.onclick =  function(e)  {
   e.preventDefault();
   addmodalyPartsSingle.classList.add('modaly-show');
+  const addPartHeader = document.querySelector('.addPartHeader')
+  addPartHeader.innerHTML = `소재추가  - ${doc.data().partName}`
+
+
   const getPMatRef = btnpraddParts.getAttribute('data-id')
   console.log(getPMatRef)
   const addmaterialOptions = document.querySelector('#selectiveMat')
@@ -918,7 +933,7 @@ addModalyParts.reset();
     editmodaly.classList.add('modaly-show');
     const editHeader = document.querySelector('.editheader')
     id = doc.id;
-    editHeader.innerHTML = 'Edit ' + doc.data().partName
+    editHeader.innerHTML = '부품정보수정  ' + doc.data().partName
     editmodalyForm.editsupplierName.value = doc.data().supplierName;
     editmodalyForm.editpartName.value = doc.data().partName;
     editmodalyForm.editpartClass.value = doc.data().partCode;
