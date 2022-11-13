@@ -19,12 +19,12 @@
       <style>
                 @media only screen and (max-width: 50em) {
   .table-wrapper {
-    height: 200px;
+    height: fit-content;
   }
 }
          @media only screen and (min-width: 86em) {
   .table-wrapper {
-    height: 645px;
+    height: fit-content;
   }
 }
       </style>
@@ -261,6 +261,24 @@
                      <button class="btnpr btnpr-add" style="width: 40%; margin-bottom: 10px; margin-left: 5px; background: #F05D5E;"><div class="addnewproductbtnpr">Delete All</div></button>
                </div>
                 </div>
+                <div class="col-md-3 float-right">
+   
+                       <div class="input-group mb-3">
+                        <div class="input-group-prepend" style="width: 60%;">
+                           <input type="text" class="form-control" id="myInputProduct" style="margin: 0; border-radius: 10px 0 0 10px; height:46px;" onkeyup='prodSearch()' name="myInputProduct" placeholder="Search by..." aria-label="Search Product Name"
+                           aria-describedby="basic-addon5">
+                        </div>
+                        <select  class="custom-select searchProdSelection" id="inputGroupSelect03">
+                           <option selected>Choose...</option>
+                           <option value="3">Prodcut Name </option>
+                           <option value="4">Model Name</option>
+                  
+                        </select>
+                           <div class="input-group-append">
+                           <span class="input-group-text" id="basic-addon5"><i class="las la-search font-size-20"></i></span>
+                        </div>
+                     </div>
+</div>
                        <div class="sortaddpart">
                 
                        <div class="form-group" id="formfloat" style="width: 25%;">
@@ -303,7 +321,7 @@
           <div class="loadingtitle"></div>
           
       <table class="table-users  prod-table mb-0 " >
-    <thead class="bg-white text-uppercase" style="position: sticky; top: 0; z-index: 1;">
+    <thead class="bg-white text-uppercase" style="position: sticky; top: 0;">
   <tr class="ligth ligth-data">
                 <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
   <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
@@ -593,6 +611,7 @@
 <option>이동전화</option>
 <option>스마트폰</option>
 <option>태블릿</option>
+<option>Others</option>
                                            </select>
                                         <!-- <input type="text" class="form-control" id='editproductName' placeholder="Enter Product Name" data-errors="Please Enter Product Name." name="productName" required> -->
                                   
@@ -770,7 +789,7 @@
                                     <nav class="navbary" style="  background-color: #219EBC; margin-top: 35px;">
 	
                      <a href="#" class="navbary__link" >
-                        <span class=" getPPdata" style="color: white;" > 부품 등록</span>
+                        <span class=" getPPdata" style="color: white;" >부품 조회</span>
                     
                      </a>
                   </nav>
@@ -1146,7 +1165,7 @@
                             </tbody>
                            </table>
                         </div>
-                         <div class="modal-footer" style="margin-top: 30%;">
+                         <div class="modal-footer" >
                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                           
                               </div>
@@ -1176,9 +1195,9 @@
                         </div>
                         <select  class="custom-select searchProdSubSelection" id="inputGroupSelect03">
                            <option selected>Choose...</option>
-                           <option value="0">Substance Name </option>
-                           <option value="2">CRM</option>
-                           <option value="3">ROHS</option>
+                           <option value="1">Substance Name </option>
+                           <option value="3">CRM</option>
+                           <option value="4">ROHS</option>
                         </select>
                            <div class="input-group-append">
                            <span class="input-group-text" id="basic-addon5"><i class="las la-search font-size-20"></i></span>
@@ -1213,7 +1232,7 @@
                             </tbody>
                            </table>
                         </div>
-                         <div class="modal-footer" style="margin-top: 30%;">
+                         <div class="modal-footer" >
                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                           
                               </div>

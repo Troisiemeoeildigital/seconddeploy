@@ -1022,10 +1022,11 @@ console.log(  typeof(btnpraddWeightRef))
       buttonaddParts.style.display = "none";
        Swal.fire({
         
-  icon: 'error',
-  title: 'Warning!',
-  text: `The selected part weight  ${quantity.value} x ${doc.data().partName} (${partWeightRef} g) can't exceed the product weight. (${btnpraddWeightRef} g) `,
-  footer: '<a href="">Why do I have this issue?</a>',
+  icon: 'warning',
+  title: '알림',
+
+  html: `조회하신 부품 [${doc.data().partName} x ${quantity.value} (${partWeightRef} g)]이` + '<b> ' + `제품 중량(${btnpraddWeightRef} g) 을 초과했습니다. 다시 입력해주세요. `,
+  footer: '<a href="" style="display: none;">Why do I have this issue?</a>',
   keydownListenerCapture:true
 })
       }
@@ -1194,20 +1195,20 @@ let idref = guid()
         <td style="color: black; font-weight: 600;">${doc.data().partWeight}</td>
         <td style="color: black; font-weight: 600;">${doc.data().partSize}</td>
         <td style="color: black; font-weight: 600;">${doc.data().partRegisteredDate}</td>
-           <td style="color: black; font-weight: 600;">${doc.data().quantity}</td>
+           <td style="color: black; font-weight: 600;"><input type="number" style="border: 0; text-align: center;" value="${doc.data().quantity}" placeholder="${doc.data().quantity}" name="" id=""></td>
         <td style="color: black; font-weight: 600;">${doc.data().partMemo}</td>
 
           <td>
   <nav class="navbary"  style="background-color:  #219EBC" ;>
-
+ 	<a href="#" class="navbary__link"  style="background-color:  #219EBC">
+		<span class="viewpartmat"data-toggle="modal" data-target="#partproductmaterial" data-PN= '${doc.data().partname}' data-id='${doc.id}'><i class="ri-eye-line" style="color: white; font-size: 15px;"></i></span>
+		<span class="navbary__label">View Materials</span>
+	</a>
   	<a href="#" class="navbary__link"  style="background-color:  #219EBC">
 		<span class="btnprodpartdelete" data-Part='${doc.id}' ><i class='ri-delete-bin-line' style="color: white; font-size: 15px;" ></i></span>
 		<span class="navbary__label">Delete Part</span>
 	</a>
-    	<a href="#" class="navbary__link"  style="background-color:  #219EBC">
-		<span class="viewpartmat"data-toggle="modal" data-target="#partproductmaterial" data-PN= '${doc.data().partname}' data-id='${doc.id}'><i class="ri-eye-line" style="color: white; font-size: 15px;"></i></span>
-		<span class="navbary__label">View Materials</span>
-	</a>
+   
 </nav>
    
       </td>
@@ -1310,9 +1311,9 @@ Swal.fire({
       <td>${doc.data().materialMassg}</td>
         <td>${doc.data().materialMassPerc}</td>
      
-
+ 
          <td>
-     <nav class="navbary"  style="background-color:  #219EBC ;>
+     <nav class="navbary"  style="background-color:  #219EBC ";>
 	<a href="#" class="navbary__link"  style="background-color:  #219EBC">
 		<span class=" viewmatsub" id="btnprview" data-toggle="modal" data-target="#partproductmaterialsubs"  data-id='${doc.id}'><i class="ri-eye-line" style="color: white; font-size: 15px;"></i></span>
 		<span class="navbary__label">View Substances</span>
@@ -1357,6 +1358,8 @@ Swal.fire({
   const getprodsubstancetype = document.querySelector('.getprodsubstancetype')
    const getprodsubstancelist = document.querySelector('.getprodsubstancelist')
      let matWeightRef = addProdmatsub[i].getAttribute("mat-Weight");
+      db.collection('warmdb').add({
+      text: "get warm",})
  addsubstanceMassg.onchange = function(e){
   e.preventDefault()
   addsubstanceMassPerc.value = (addsubstanceMassg.value / parseFloat(matWeightRef) * 100).toFixed(2)
@@ -1384,7 +1387,7 @@ Swal.fire({
     })
   })
 
-   getprodsubstancelist.addEventListener('change', ()=> {
+   getprodsubstancelist.onchange = function() {
  db.collection("substances").where("subtanceName", "==", getprodsubstancelist.value).where(getprodsubstancetype.value, "==", "Y").get()
       .then((querySnapshot)=> {
            querySnapshot.forEach((doc) => {
@@ -1396,11 +1399,11 @@ Swal.fire({
 
         });
       })
-      })
+      }
 
    const addmatsubRef = addProdmatsub[i].getAttribute('data-id');
    console.log(addmatsubRef)
-             let guid = () => {
+           let guid = () => {
     let s4 = () => {
         return Math.floor((1 + Math.random()) * 0x10000)
             .toString(16)
@@ -1409,13 +1412,13 @@ Swal.fire({
     //return id of format 'aaaaaaaa'-'aaaa'-'aaaa'-'aaaa'-'aaaaaaaaaaaa'
     return s4() + s4() + s4() 
 }
-const idref = guid()
+let idref = guid()
 const addSubs = document.querySelector('#addSubs')
 addSubs.onclick = function(e) {
   e.preventDefault()
      db.collection('recycledproducts').doc(`${btnpraddRef}`).collection('selectedParts').doc(`${partmatRef}`).collection('selectedMaterials').doc(`${addmatsubRef}`).collection('selectedSubs').doc(idref).set({
       subProdid: idref,
-        substanceName: getprodsubstancelist.value,
+    substanceName: getprodsubstancelist.value,
     casnumber: addcas.value,
     crm: addcrm.value,
     rohs: addrohs.value,
@@ -1423,16 +1426,12 @@ addSubs.onclick = function(e) {
     substanceMassPerc: addsubstanceMassPerc.value,
    }, {merge: true})
 .then(()=>{
-    // let data = query.docs.map(doc=>{
-    //     let x = doc.data()
-    //         return x;
-    // })
-    // console.log(data)
-    alert('New substance Added Successfully!')
+
+  Swal.fire('Saved!', '', 'success')
     const addSubsForm = document.querySelector('.addSubsForm')
     addSubsForm.reset()
   })
-  e.stopPropagation()
+ 
 }
   })}
 
@@ -1479,11 +1478,12 @@ addSubs.onclick = function(e) {
 
 
 
-  <nav class="navbary"  style="background-color:  #219EBC ;>
+  <nav class="navbary"  style="background-color:  #219EBC ";>
 	<a href="#" class="navbary__link" >
 		<span class="btnprsubdelete"  data-id= '${arrUniq[i].subProdid}'><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
 		<span class="navbary__label">Delete Substance</span>
 	</a>
+  </nav>
               </td>
              </tr>`
 			document.querySelector('.substancelist').innerHTML += row
@@ -1524,8 +1524,6 @@ console.log(deleteData)
     Swal.fire('Changes are not saved', '', 'info')
   }
 })
-      
-    event.stopPropagation();
 
   })
 }
@@ -1547,7 +1545,7 @@ console.log(deleteData)
     editmodaly.classList.add('modaly-show');
     const editHeader = document.querySelector('.editheader')
     id = doc.id;
-    editHeader.innerHTML = '제품정보수정 ' + doc.data().productName
+    editHeader.innerHTML = '제품정보수정 : ' + doc.data().productName
      editmodalyForm.productCategory.value = doc.data().productCategory;
     editmodalyForm.productName.value = doc.data().productName;
        editmodalyForm.editmodelName.value = doc.data().productMN;
