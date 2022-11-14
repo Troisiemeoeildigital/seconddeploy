@@ -37,12 +37,13 @@ auth.onAuthStateChanged(user => {
 const editUI = (user) => {
   if (user) {
     const userTitleCard = document.getElementById('usertitle')
-     const notadminElement = document.querySelectorAll('.notadmin')
+     const userBadge = document.querySelector('.userBadge')
+    const notadminElement = document.querySelectorAll('.notadmin')
       let sidebar = document.querySelector(".sidebar");
             let sidebarlogOut = document.querySelector("#log_out");
       
     if(user.admin) {
-     
+     userBadge.style.backgroundColor  = "#219EBC"
 sidebar.style.backgroundColor  = "#219EBC"
 sidebarlogOut.style.backgroundColor  = "#219EBC"
     const firstcreation = document.getElementById('lastsignin')
@@ -64,6 +65,7 @@ sidebarlogOut.style.backgroundColor  = "#219EBC"
    
    
     } else {
+       userBadge.style.backgroundColor  = "#fb8500"
       sidebar.style.backgroundColor  = "#fb8500"
 sidebarlogOut.style.backgroundColor  = "#fb8500"
        const userTitleCard = document.getElementById('usertitle')

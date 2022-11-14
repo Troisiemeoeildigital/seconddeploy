@@ -194,7 +194,7 @@ const setMatheader = document.querySelector('.setMatheader')
     const breadpartname = document.querySelector('.breadpartname')
     breadpartname.innerHTML = `${doc.data().partName}`
   materialtitle.innerHTML = `${doc.data().partName}`
-  setMatheader.innerHTML = `소재목록 - ${doc.data().partName}`
+  setMatheader.innerHTML = `  소재목록 - ${doc.data().partName}`
   const partRef = `${doc.id}`
   console.log(partRef)
  const materiallist = document.querySelector('.materiallist')
@@ -257,7 +257,7 @@ const setMatheader = document.querySelector('.setMatheader')
       html+=li
        const bpart = `
        <tr data-id="1" data-parent="0" data-level="1">
-                                 <td data-column="name">${doc.data().materialName}</td>
+                                 <td data-column="name">ㄴ ${doc.data().materialName}</td>
                               </tr>
 
       `;
@@ -908,7 +908,7 @@ addMatPartBtn.onclick = function(e) {
   e.preventDefault()
   e.stopPropagation()
   //checks if files are selected
-  if (files.length != 0) {
+ 
     //Loops through all the selected files
     for (let i = 0; i < files.length; i++) {
       //create a storage reference
@@ -940,7 +940,13 @@ addMatPartBtn.onclick = function(e) {
                 storage
                   .getDownloadURL()
                   .then(function(url) {
-                    console.log(url);
+                    console.log(url);  })
+
+         
+        }
+      );
+    }
+
     let guid = () => {
     let s4 = () => {
         return Math.floor((1 + Math.random()) * 0x10000)
@@ -970,8 +976,8 @@ addMatPartBtn.onclick = function(e) {
     selecrecycMat: selecrecycMat.value,
     selecreuseMat: selecreuseMat.value,
     matnameSelect: matnameSelect.value,
-    selectiveMat: selectiveMat.value, 
-    proofurl: url
+    selectiveMat: selectiveMat.value
+    // proofurl: url
     
   })
   console.log('Material Added! ')
@@ -984,21 +990,7 @@ setTimeout(resetForm, 0);
  function resetForm() {
 addModalyParts.reset();
 }
-                  })
-                  .catch(function(error) {
-                    console.log("error encountered");
-                  });
-        }
-      );
-    }
-  } else {
-   Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: 'You need to upload your proof file first!',
-  footer: '<a href="">Why do I have this issue?</a>'
-})
-  }
+
 };
 
 // function getFileUrl() {

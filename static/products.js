@@ -713,9 +713,10 @@ sumDisposableWeightg.forEach((el)=> {
 for (var i = 1; i < sumAssess.rows.length; i++) {
   sumVal = sumVal + parseFloat(sumAssess.rows[i].cells[11].innerHTML);
 }
+ let DisposabalsumValPerc = sumVal / prodWeightRef * 100
 const sumDisposableWeightPerc = document.querySelectorAll('.disposalWeightPerc')
 sumDisposableWeightPerc.forEach((el)=> {
-  el.innerHTML = sumVal
+  el.innerHTML = DisposabalsumValPerc.toFixed(2)
 })
 
   // Summary Reuse Weight (g)
@@ -738,7 +739,7 @@ for (var i = 1; i < sumAssess.rows.length; i++) {
   let ReusesumValPerc = sumVal / prodWeightRef * 100
 const sumReuseWeightPerc = document.querySelectorAll('.sumReuseWeightPerc')
 sumReuseWeightPerc.forEach((el)=> {
-  el.innerHTML = sumVal.toFixed(2)
+  el.innerHTML = ReusesumValPerc.toFixed(2)
 })
 
 // Summary Recycling Weight (g)
