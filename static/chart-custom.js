@@ -2720,29 +2720,29 @@ if (jQuery("#radar-multiple-chart").length) {
 
       /* Add data */
       chart.data = [ {
-        "direction": "N",
-        "value": 8
+        "direction": "냉장고",
+        "value": 23
       }, {
-        "direction": "NE",
-        "value": 9
+        "direction": "에어컨",
+        "value": 15
       }, {
-        "direction": "E",
-        "value": 4.5
+        "direction": "노트북",
+        "value": 56
       }, {
-        "direction": "SE",
-        "value": 3.5
+        "direction": "청소기",
+        "value": 32
       }, {
-        "direction": "S",
-        "value": 9.2
+        "direction": "의류건조기",
+        "value": 20
       }, {
-        "direction": "SW",
-        "value": 8.4
+        "direction": "영상재생기기",
+        "value": 33
       }, {
-        "direction": "W",
-        "value": 11.1
+        "direction": "스마트폰",
+        "value": 19
       }, {
-        "direction": "NW",
-        "value": 10
+        "direction": "기타",
+        "value": 5
       } ];
 
       /* Create axes */
@@ -2753,20 +2753,20 @@ if (jQuery("#radar-multiple-chart").length) {
       //valueAxis.renderer.gridType = "polygons";
 
       var range = categoryAxis.axisRanges.create();
-      range.category = "NW";
-      range.endCategory = "NW";
+      range.category = "에어컨";
+      range.endCategory = "에어컨";
       range.axisFill.fill = am4core.color("#4788ff");
       range.axisFill.fillOpacity = 0.3;
 
       var range2 = categoryAxis.axisRanges.create();
-      range2.category = "N";
-      range2.endCategory = "N";
+      range2.category = "냉장고";
+      range2.endCategory = "냉장고";
       range2.axisFill.fill = am4core.color("#ff4b4b");
       range2.axisFill.fillOpacity = 0.3;
 
       var range3 = categoryAxis.axisRanges.create();
-      range3.category = "SE";
-      range3.endCategory = "SW";
+      range3.category = "영상재생기기";
+      range3.endCategory = "청소기";
       range3.axisFill.fill = am4core.color("#37e6b0");
       range3.axisFill.fillOpacity = 0.3;
       range3.locations.endCategory = 0;
@@ -5217,28 +5217,28 @@ if (jQuery("#editor").length) {
     
     // Add data
     chart.data = [{
-      "country": "Jan",
-      "visits": 3025
+      "country": "2015",
+      "visits": 225
     }, {
-      "country": "Feb",
-      "visits": 1882
+      "country": "2016",
+      "visits": 82
     }, {
-      "country": "Mar",
-      "visits": 1809
+      "country": "2017",
+      "visits": 309
     }, {
-      "country": "Apr",
-      "visits": 1322
+      "country": "2018",
+      "visits": 722
     }, {
-      "country": "May",
-      "visits": 1122
+      "country": "2019",
+      "visits": 552
     }, {
-      "country": "Jun",
-      "visits": 1114
+      "country": "2020",
+      "visits": 914
     }, {
-      "country": "Jul",
-      "visits": 984
+      "country": "2021",
+      "visits": 804
     }, {
-      "country": "Aug",
+      "country": "2022",
       "visits": 711
     }];
     
@@ -5256,7 +5256,7 @@ if (jQuery("#editor").length) {
         for(var i = 0; i < chart.data.length; i++){
             var value = chart.data[i].visits;
             sum += value;   
-            chart.data[i].pareto = sum / total * 100;
+            chart.data[i].pareto = sum / total * 50;
         }    
     }
     

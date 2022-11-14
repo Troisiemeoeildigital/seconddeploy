@@ -9,8 +9,10 @@
      
  <link rel="stylesheet" href="./products.css" />
   <link rel="stylesheet" href="./parts.css" />
+    <link rel="stylesheet" href="./dashboard.css" />
  <link rel="stylesheet" href="./addbtn.css" />
    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.1/css/bulma.min.css">
       <link rel="stylesheet" href="./backend.css" />
       <link rel="stylesheet" href="./backend-plugin.min.css">
        <link rel="stylesheet" href="./all.min.css">
@@ -239,7 +241,7 @@
     
     
     
-<div class="content-page">
+<div class="content-page" style="padding: 73px 5px 0;">
      <div class="container-fluid">
         <div class="row">
             <div class="col-lg-4">
@@ -262,8 +264,8 @@
 
                                     </div>
                                     <div>
-                                        <p class="mb-2">Total Parts</p>
-                                        <h4>31,50k</h4>
+                                        <p class="mb-2">등록 제품 수량</p>
+                                        <h4>88</h4>
                                     </div>
                                 </div>                                
                                 <div class="iq-progress-bar mt-2">
@@ -281,8 +283,8 @@
                                         <i class="ri-bubble-chart-line"></i>
                                     </div>
                                     <div>
-                                        <p class="mb-2">Total Material</p>
-                                        <h4>45,98k</h4>
+                                        <p class="mb-2">등록 부품사</p>
+                                        <h4>52</h4>
                                     </div>
                                 </div>
                                 <div class="iq-progress-bar mt-2">
@@ -300,8 +302,8 @@
                                    <i class="ri-drop-line"></i>
                                     </div>
                                     <div>
-                                        <p class="mb-2">Total Substance</p>
-                                        <h4>25,89k</h4>
+                                        <p class="mb-2">등록 부품 수량</p>
+                                        <h4>827</h4>
                                     </div>
                                 </div>
                                 <div class="iq-progress-bar mt-2">
@@ -313,7 +315,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 adminelement" style="display: none;">
                 <div class="card card-block card-stretch card-height">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
@@ -339,11 +341,11 @@
                   </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 adminelement" style="display: none;">
                 <div class="card card-block card-stretch card-height">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Total Recycled Products</h4>
+                            <h4 class="card-title">  연도별 등록 제품 수량</h4>
                         </div>
                         <!-- <div class="card-header-toolbar d-flex align-items-center">
                             <div class="dropdown">
@@ -365,169 +367,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8">
+                 
+        
+            <div class="col-lg-12 notadmin">  
                 <div class="card card-block card-stretch card-height">
-                    <div class="card-header d-flex align-items-center justify-content-between">
-                        <div class="header-title">
-                            <h4 class="card-title">Top Recycled Products</h4>
-                        </div>
-                        
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-unstyled row top-product mb-0">
-                            <li class="col-lg-3">
-                                <div class="card card-block card-stretch card-height mb-0">
-                                    <div class="card-body">
-                                        <div class="bg-warning-light rounded">
-                                          <div class="style-img img-fluid m-auto p-3" > </div>
-                                        </div>
-                                        <div class="style-text text-left mt-3">
-                                            <h5 class="mb-1">Air Conditioner</h5>
-                                            <p class="mb-0">789 Item</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="col-lg-3">
-                                <div class="card card-block card-stretch card-height mb-0">
-                                    <div class="card-body">
-                                        <div class="bg-danger-light rounded">
-                                        <div class="style-img img-fluid m-auto p-3" > </div>
-                                        </div>
-                                        <div class="style-text text-left mt-3">
-                                            <h5 class="mb-1">Water Pumps</h5>
-                                            <p class="mb-0">657 Item</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="col-lg-3">
-                                <div class="card card-block card-stretch card-height mb-0">
-                                    <div class="card-body">
-                                        <div class="bg-info-light rounded">
-                                            <div class="style-img img-fluid m-auto p-3" > </div>
-                                        </div>
-                                        <div class="style-text text-left mt-3">
-                                            <h5 class="mb-1">Welding Equipement</h5>
-                                            <p class="mb-0">489 Item</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="col-lg-3">
-                                <div class="card card-block card-stretch card-height mb-0">
-                                    <div class="card-body">
-                                        <div class="bg-success-light rounded">
-                                            <div class="style-img img-fluid m-auto p-3" > </div>
-                                        </div>
-                                        <div class="style-text text-left mt-3">
-                                            <h5 class="mb-1">Smartphones</h5>
-                                            <p class="mb-0">468 Item</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">  
-                <div class="card card-transparent card-block card-stretch mb-4">
-                    <div class="card-header d-flex align-items-center justify-content-between p-0">
-                        <div class="header-title">
-                            <h4 class="card-title mb-0">Top Recycled Material</h4>
-                        </div>
-                        <div class="card-header-toolbar d-flex align-items-center">
-                            <div><a href="#" class="btn btn-primary view-btn font-size-14">View All</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card card-block card-stretch card-height-helf">
-                    <div class="card-body card-item-right">
-                        <div class="d-flex align-items-top">
-                            <div class="bg-warning-light rounded">
-                                <div class="style-img img-fluid m-2 p-4" > </div>
-                            </div>
-                            <div class="style-text text-left">
-                                <h5 class="mb-2">Stainless Steel</h5>
-                                <p class="mb-2">Material ID: M-100</p>
-                                <!-- <p class="mb-0">Total Earned : $45,89 M</p> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card card-block card-stretch card-height-helf">
-                    <div class="card-body card-item-right">
-                        <div class="d-flex align-items-top">
-                            <div class="bg-success-light rounded">
-                                <div class="style-img img-fluid m-2 p-4" > </div>
-                            </div>
-                            <div class="style-text text-left">
-                                <h5 class="mb-2">Platinum</h5>
-                                <p class="mb-2">Material ID: M-151</p>
-                                <!-- <p class="mb-0">Total Earned : $45,50 M</p> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>            
-            <div class="col-lg-4">  
-                <div class="card card-block card-stretch card-height-helf">
-                    <div class="card-body">
-                        <div class="d-flex align-items-top justify-content-between">
-                            <div class="">
-                                <p class="mb-0">Total Material Categories</p>
-                                <h5>12</h5>
-                            </div>
-                            <!-- <div class="card-header-toolbar d-flex align-items-center">
-                                <div class="dropdown">
-                                    <span class="dropdown-toggle dropdown-bg btn" id="dropdownMenuButton003"
-                                        data-toggle="dropdown">
-                                        This Month<i class="ri-arrow-down-s-line ml-1"></i>
-                                    </span>
-                                    <div class="dropdown-menu dropdown-menu-right shadow-none"
-                                        aria-labelledby="dropdownMenuButton003">
-                                        <a class="dropdown-item" href="#">Year</a>
-                                        <a class="dropdown-item" href="#">Month</a>
-                                        <a class="dropdown-item" href="#">Week</a>
-                                    </div>
-                                </div>
-                            </div> -->
-                        </div>
-                        <div id="layout1-chart-3" class="layout-chart-1"></div>
-                    </div>
-                </div>
-                <div class="card card-block card-stretch card-height-helf">
-                    <div class="card-body">
-                        <div class="d-flex align-items-top justify-content-between">
-                            <div class="">
-                                <p class="mb-0">Total Substance Categories</p>
-                                <h5>198</h5>
-                            </div>
-                            <!-- <div class="card-header-toolbar d-flex align-items-center">
-                                <div class="dropdown">
-                                    <span class="dropdown-toggle dropdown-bg btn" id="dropdownMenuButton004"
-                                        data-toggle="dropdown">
-                                        This Month<i class="ri-arrow-down-s-line ml-1"></i>
-                                    </span>
-                                    <div class="dropdown-menu dropdown-menu-right shadow-none"
-                                        aria-labelledby="dropdownMenuButton004">
-                                        <a class="dropdown-item" href="#">Year</a>
-                                        <a class="dropdown-item" href="#">Month</a>
-                                        <a class="dropdown-item" href="#">Week</a>
-                                    </div>
-                                </div>
-                            </div> -->
-                        </div>
-                        <div id="layout1-chart-4" class="layout-chart-2"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8">  
-                <div class="card card-block card-stretch card-height">
-                    <div class="card-header d-flex justify-content-between">
-                        <div class="header-title">
-                            <h4 class="card-title">User Summary</h4>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div class="header-title align-items-center" style="text-align: center;">
+                            <h2 class="card-title">자원효율성 평가 방식</h2>
+                          
                         </div>                        
                         <!-- <div class="card-header-toolbar d-flex align-items-center">
                             <div class="dropdown">
@@ -545,42 +392,61 @@
                         </div> -->
                     </div> 
                     <div class="card-body">
-                        <div class="d-flex flex-wrap align-items-center mt-2">
-                            <div class="d-flex align-items-center progress-order-left">
-                                <div class="progress progress-round m-0 orange conversation-bar" data-percent="63">
-                                    <span class="progress-left">
-                                        <span class="progress-bar"></span>
-                                    </span>
-                                    <span class="progress-right">
-                                        <span class="progress-bar"></span>
-                                    </span>
-                                    <div class="progress-value text-secondary">63%</div>
-                                </div>
-                                <div class="progress-value ml-3 pr-5 border-right">
-                                    <h5>1389 </h5>
-                                    <p class="mb-0">Total Product Manufacturers</p>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center ml-5 progress-order-right">
-                                <div class="progress progress-round m-0 primary conversation-bar" data-percent="27">
-                                    <span class="progress-left">
-                                        <span class="progress-bar"></span>
-                                    </span>
-                                    <span class="progress-right">
-                                        <span class="progress-bar"></span>
-                                    </span>
-                                    <div class="progress-value text-primary">27%</div>
-                                </div>
-                                <div class="progress-value ml-3">
-                                    <h5>421 </h5>
-                                    <p class="mb-0">Total Parts Suppliers</p>
-                                </div>
-                            </div>
-                        </div>
+                    <section class="section">
+  <div class="container">
+
+    <!-- FIRST ROW -->
+    <div class="tile is-ancestor">
+      <div class="tile is-parent">
+        <article class="tile is-child green post">
+          <a class="post__category" href="">EN45554</a>
+          <h2 class="post__title">1. 수리/재사용/ 업그레이드용이성</h2>
+          <div class="post__content"> 에너지 관련 제품 수리, 재사용, 업그레이드 평가방법 <br> (General methods for the assessment of the ability to repair, reuse and upgrade energy-related 
+products)</div>
+        
+        </article>
+      </div>
+
+      <div class="tile is-parent">
+        <article class="tile is-child pink post">
+          <a class="post__category" href="">EN45555</a>
+          <h2 class="post__title">2. 재활용 / 재생가능율</h2>
+          <div class="post__content">에너지 관련 제품의 재활용 및 재생 가능률에 관한 일반 평가방법 <br>(General methods for assessing the recyclability and recoverability of energy related products)
+        </div>
+        </article>
+      </div>
+
+      <div class="tile  is-parent">
+        <article class="tile is-child blue post">
+          <a class="post__category" href="">EN45557</a>
+          <h2 class="post__title">3. 재활용원료함유율관리</h2>
+          <div class="post__content">에너지 관련 제품의 재활용 함유율 산정에 관한 일반 평가방법
+            (General methods for assessing the proportion of recycled material content in energy in energy-related 
+products)
+          </div>
+    
+        </article>
+          </div>
+        <div class="tile  is-parent">
+        <article class="tile is-child gold post">
+          <a class="post__category" href="">EN45558</a>
+          <h2 class="post__title">4. 희소물질(CRM) 사용선언</h2>
+          <div class="post__content">에너지 관련 제품 희소물질(CRM) 의 사용 선언방법 <br>
+            (General method to declare the use of critical raw materials in energy-related products)
+
+          </div>
+  
+        </article>
+        </div>
+    </div>
+
+ 
+
+  </div>
+  <!-- /container -->
+</section>
                     </div>
-                    <div class="card-body pt-0">
-                        <div id="layout1-chart-5"></div>
-                    </div>
+                 
                 </div>
             </div>
         </div>
@@ -588,27 +454,7 @@
     </div>
       </div>
     </div>
-    <!-- Wrapper End-->
-    <footer class="iq-footer">
-            <div class="container-fluid">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item"><a href="../backend/privacy-policy.html">Privacy Policy</a></li>
-                                <li class="list-inline-item"><a href="../backend/terms-of-service.html">Terms of Use</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6 text-right">
-                            <span class="mr-1"><script>document.write(new Date().getFullYear())</script>©</span> <a href="#" class="">CRM Dashbord</a>
-                         
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+
  
 
      
