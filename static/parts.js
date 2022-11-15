@@ -163,11 +163,10 @@ const renderUser = doc => {
 	</a>
 </nav>
 
-    <nav class="navbary" style="margin-left: -12px; width:40px; background-color: #fb8500;">
-	<a href="#" class="navbary__link">
-		<span class="" data-id='${doc.id}'><i class='bx bx-duplicate' style="    color: white;
-    font-size: 17px;"></i></i></span>
-		<span class="navbary__label" style="background-color: #fb8500; left:-55px;">Duplicate Part</span>
+    <nav class="navbary duplicatePart" data-id='${doc.id}'  style="margin-left: -12px; width:40px; background-color: #fb8500;">
+	<a href="#" class="navbary__link" >
+		<span class="" ><i class='bx bx-duplicate' style="color: white; font-size: 17px;"></i></i></span>
+		<span class="navbary__label" style="background-color: #fb8500; left:-55px;" >Duplicate Part</span>
 	</a>
 </nav>
     </div>
@@ -175,6 +174,9 @@ const renderUser = doc => {
       </td>
     </tr>
   `;
+
+
+
 
 
 
@@ -291,6 +293,9 @@ const setMatheader = document.querySelector('.setMatheader')
    let btnpmedit = document.querySelectorAll(".btnpmedit");
   let btnpmSubs = document.querySelectorAll(".btnpmSubs");
    let btnpmviewSubs = document.querySelectorAll(".btnpmviewSubs");
+
+
+
 
 
       
@@ -714,6 +719,95 @@ eachbtnpartsubdelete.onclick = function(e){
 })}})})})
 
 
+let duplicatePart = document.querySelectorAll('.duplicatePart')
+	duplicatePart.forEach(eachDuplicatePart=>{
+eachDuplicatePart.onclick = function(e) {
+    e.preventDefault()
+     var duplicatePartRef = eachDuplicatePart.getAttribute('data-id')
+      db.collection('recycledparts').doc(duplicatePartRef).get().then((doc)=>{
+        if (doc.exists) {
+                let masterPart = doc.id
+                   db.collection('recycledparts').add({
+                    partCode: doc.data().partCode,
+                     partDepth: doc.data().partDepth,
+                      partHeight: doc.data().partHeight,
+                       partMemo: doc.data().partMemo,
+                        partName: doc.data().partName + "(Duplicated)",
+                         partRegisteredDate: doc.data().partRegisteredDate,
+                          partWeight: doc.data().partWeight,
+                           partWidth: doc.data().partWidth,
+                            reusedPart: doc.data().reusedPart,
+                             sizeUnit: doc.data().sizeUnit,
+                              supplierName: doc.data().supplierName
+                   }).then((doc)=> {
+                    let childPart = doc.id
+                     console.log(childPart)
+                    console.log(masterPart)
+                    db.collection('recycledparts').doc(duplicatePartRef).collection('materials').get().then((querySnapshot) => {
+                        querySnapshot.forEach((doc) => {
+                            // doc.data() is never undefined for query doc snapshots
+                            let masterPtMat = doc.id
+                            // console.log(doc.id, " => ", doc.data());
+                             db.collection('recycledparts').doc(childPart).collection('materials').add({
+                             materialClassId: doc.data().materialClassId,
+                             materialGroup: doc.data().materialGroup,
+                             materialMassPerc: doc.data().materialMassPerc,
+                             materialRecycleContent: doc.data().materialRecycleContent,
+                             materialRecycleType: doc.data().materialRecycleType,
+                             matnameSelect: doc.data().matnameSelect,
+
+                             partRef: doc.data().partRef,
+                             partRefWeight: doc.data().partRefWeight,
+                            //  proofurl: doc.data().proofurl,
+                             recovMat: doc.data().recovMat,
+                             recycMat: doc.data().recycMat,
+                             reuseMat: doc.data().reuseMat,
+
+                                selecrecovMat: doc.data().selecrecovMat,
+                             selecrecycMat: doc.data().selecrecycMat,
+                             selecreuseMat: doc.data().selecreuseMat,
+                             selectiveMat: doc.data().selectiveMat,
+                             materialMassg: doc.data().materialMassg,
+                             materialName: doc.data().materialName
+                             })
+                             .then((doc)=>{
+                               let childPartMat = doc.id
+                     console.log(childPartMat)
+                              db.collection('recycledparts').doc(duplicatePartRef).collection('materials').doc(masterPtMat).collection('substances').get().then((querySnapshot)=>{
+                                querySnapshot.forEach((doc) =>{
+                                  let masterPtMatSub = doc.id
+                                       console.log(doc.data())
+                                   db.collection('recycledparts').doc(childPart).collection('materials').doc(childPartMat).collection('substances').add({
+                                             casnumber: doc.data().casnumber,
+                             crm: doc.data().crm,
+                             rohs: doc.data().rohs,
+                             subidRef: doc.data().subidRef,
+                             substanceMassg: doc.data().substanceMassg,
+                              substanceMassPerc: doc.data().substanceMassPerc,
+                             substanceName: doc.data().substanceName
+                                   })
+                                })
+                              })
+                             })
+                                });
+                            })
+                            .catch((error) => {
+                                console.log("Error getting documents: ", error);
+                                }); 
+                   
+                   })
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+      })
+   }
+  })
+   
+  
+
+
+
 
 //add materials 
  const btnpraddParts = document.querySelector(`[data-id='${doc.id}'] .btnpr-addParts`);
@@ -1039,8 +1133,11 @@ addModalyParts.reset();
 
   // Click delete user
   const btnprDelete = document.querySelector(`[data-id='${doc.id}'] .btnpr-delete`);
+   let path = db.collection('recycledparts').doc(`${doc.id}`);
+
   btnprDelete.onclick = function(e) {
     e.preventDefault()
+       console.log(path.path + typeof(path.path))
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -1051,11 +1148,16 @@ addModalyParts.reset();
         confirmButtonText: 'Yes, delete it!'
 }).then((result) => {
   if (result.isConfirmed) {
-        db.collection('recycledparts').doc(`${doc.id}`).delete().then(() => {
-      console.log('Document succesfully deleted!');
-    }).catch(err => {
-      console.log('Error removing document', err);
-    });
+     var deleteFn = firebase.functions().httpsCallable('recursiveDelete');
+    deleteFn({ path: `${path.path}`})
+        .then(function(result) {
+            console.log('Hurray! Delete success: ' + JSON.stringify(result));
+        })
+    //     db.collection('recycledparts').doc(`${doc.id}`).delete().then(() => {
+    //   console.log('Document succesfully deleted!');
+    // }).catch(err => {
+    //   console.log('Error removing document', err);
+    // });
     
     Swal.fire(
       'Deleted!',
@@ -1066,9 +1168,6 @@ addModalyParts.reset();
 })
 
   }
-
-
-
 }
 
 
@@ -1147,7 +1246,7 @@ addModalyParts.reset();
             }catch(e){
                 console.error(e);
             }
-      }
+}
 
 
 

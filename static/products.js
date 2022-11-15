@@ -1368,7 +1368,8 @@ Swal.fire({
           const addProdmatsub = document.querySelectorAll('.addProdmatsub')
     for (let i = 0; i < addProdmatsub.length; i++) {
     
- addProdmatsub[i].addEventListener('click', ()=>{
+ addProdmatsub[i].onclick= function(e){
+
   document.querySelector('#addsubsproduct').style.display = "block"
   const getprodsubstancetype = document.querySelector('.getprodsubstancetype')
    const getprodsubstancelist = document.querySelector('.getprodsubstancelist')
@@ -1448,7 +1449,7 @@ addSubs.onclick = function(e) {
   })
  
 }
-  })}
+  }}
 
 
     const viewmatsub = document.querySelectorAll('.viewmatsub')
@@ -1513,12 +1514,12 @@ addSubs.onclick = function(e) {
       let btnprsubdelete = document.querySelectorAll(".btnprsubdelete");
      for (let i = 0; i < btnprsubdelete.length; i++) {
  
- btnprsubdelete[i].addEventListener('click', (event) => {
+ btnprsubdelete[i].onclick = function(event) {
   event.preventDefault()
   Swal.fire({
-  title: 'Do you want to save the changes?',
+  title: `Do you want to Delete the Substance ?`,
   showDenyButton: true,
-  showCancelButton: true,
+  showCancelButton: false,
   confirmButtonText: 'Save',
   denyButtonText: `Don't save`,
 }).then((result) => {
@@ -1542,7 +1543,7 @@ console.log(deleteData)
   }
 })
 
-  })
+  }
 }
   })
    
@@ -1972,6 +1973,38 @@ productsRef
     console.log("Error getting document:", error);
 });
 
+// const fetchData = document.querySelector('.fetchData')
+// fetchData.onclick = function(e){
+//   e.preventDefault()
+//     let prodTableTest = document.querySelector('.prodTabledata')
+//       function tableToJson(table) {
+//     var data = [];
+
+//     // first row needs to be headers
+//     var headers = [];
+//     for (var i=0; i<table.rows[0].cells.length; i++) {
+//         headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');
+//     }
+
+//     // go through cells
+   
+
+//         var tableRow = table.rows[5];
+//         var rowData = {};
+
+//         for (var j=2; j<tableRow.cells.length -1 ; j++) {
+
+//             rowData[ headers[j] ] = tableRow.cells[j].innerHTML;
+
+//         }
+
+//         data.push(rowData);
+//    console.log(data, typeof(data))
+  
+//   }
+         
+//     JSON.stringify(tableToJson(prodTableTest))
+// }
 
 
 // get all data in json array: 
@@ -2017,45 +2050,7 @@ partsRef
 });
 
 
-//   var addpartsRef = db.collectionGroup('recycledparts');
-// addpartsRef
-// .get()
-//  .then(query=>{
-//     let data = query.docs.map(doc=>{
-//         let x = doc.data()
-//             return x;
-//     })
-//      let dataPartWeight = query.docs.map(doc=>{
-//         let x = doc.data().substanceMassg
 
-         
-//             return x;
-//     })
-  
-//     console.log(data)
-//   })
-
-// buildTable(newArray)
-// 	function buildTable(newArray){
-
-// 		for (var i = 0; i < newArray.length; i++){
-// 			var row = `<tr>
-// 							<td>${newArray[i].partRef}</td>
-//               <td>${newArray[i].partWeight}</td>
-//                 <td>${newArray[i].materialNameRef}</td>
-//                     <td>${newArray[i].materialWeightgRef}</td>
-// 							<td>${newArray[i].substanceName}</td>
-// 							<td>${newArray[i].casnumber}</td>
-//               	<td>${newArray[i].substanceMassg}</td>
-// 							<td>${newArray[i].substanceMassPerc}</td>
-//               	<td>${newArray[i].crm}</td>
-//                 	<td>${newArray[i].rohs}</td>
-// 					  </tr>`
-// 			table.innerHTML += row
-
-
-// 		}
-// 	}
 
   var addpartsRef = db.collectionGroup('recycledparts');
 addpartsRef
@@ -2088,21 +2083,7 @@ addpartsRef
   })
 
 
-      
-// db.collection("recycledparts")
-//     .get()
-//     .then((querySnapshot) => {
-//         querySnapshot.forEach((doc) => {
-//             // doc.data() is never undefined for query doc snapshots
-//             console.log(doc.id, " => ", doc.data());
-//            const tm = `
-//       <option value="${doc.data().supplierName}">${doc.data().supplierName}</option>
-//   `;
 
-//    supplierName.innerHTML += tm;
- 
-//         });
-//     })
 
 
  supplierName.addEventListener('change', ()=>{
@@ -2163,3 +2144,7 @@ partCode.insertAdjacentHTML('beforeend', tm);
         console.log("Error getting documents: ", error);
     });
   })
+
+
+
+  
