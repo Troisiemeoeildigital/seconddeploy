@@ -445,9 +445,9 @@ buildTable(materialDataUniq)
       let reuseMat = parseFloat(materialDataUniq[i].reuseMat)
       let recovMat = parseFloat(materialDataUniq[i].recovMat)
       let materialMass = parseFloat(materialDataUniq[i].materialMassg)
-      let secondmaterialMass = parseFloat(secondMatarrUniq[i].materialMassg)
+      // let secondmaterialMass = parseFloat(secondMatarrUniq[i].materialMassg)
       let PartMass = parseFloat(materialDataUniq[i].partWeight)
-         let recycleRate = parseFloat(secondMatarrUniq[i].materialRecycleContent)
+         let recycleRate = parseFloat(materialDataUniq[i].materialRecycleContent)
       // Reuse Mass (g)
       let reuseMassgAssess = reuseMat * materialMass
         console.log(reuseMassgAssess)
@@ -479,8 +479,8 @@ buildTable(materialDataUniq)
       // Recycled Material Mass (g), Formula: PartA's material mass * Recycled rate
     //  const RecycMatg = materialMass * recycleRate
         // Recycled Material Mass (g), Formula: PartA's material mass * Recycled rate
-     let RecycMatg = (recycMat * secondmaterialMass)
-   let RecycMatPerc = (secondMatarrUniq[i].materialMassg * recycleRate / 100).toFixed(2)
+    //  let RecycMatg = (recycMat * secondmaterialMass)
+   let RecycMatPerc = (materialDataUniq[i].materialMassg * recycleRate / 100).toFixed(2)
       energyrecovarr.push(energyRecoMassgAssess)
       energyrecovarrperc.push(energyRecoMassPercAssess)
 			var row = `<tr>
@@ -506,9 +506,9 @@ buildTable(materialDataUniq)
 
       var rowMat = `
          <tr> 
-         <td>${secondMatarrUniq[i].materialGroup}</td>
-         <td>${secondMatarrUniq[i].materialName}</td>
-         <td>${secondMatarrUniq[i].materialMassg.toFixed(2)}</td>
+         <td>${materialDataUniq[i].materialGroup}</td>
+         <td>${materialDataUniq[i].materialName}</td>
+         <td>${materialDataUniq[i].materialMassg.toFixed(2)}</td>
          <td>${recycleRate.toFixed(2)} </td>
          <td>${parseFloat(RecycMatPerc).toFixed(2)} (g)</td>
                </tr>
@@ -704,7 +704,7 @@ for (var i = 1; i < sumAssess.rows.length; i++) {
 }
 const sumDisposableWeightg = document.querySelectorAll('.disposalWeightg')
 sumDisposableWeightg.forEach((el)=> {
-  el.innerHTML = sumVal
+  el.innerHTML = sumVal.toFixed(2)
 })
 
   // Summary (not table) Disposable Weight (%)
@@ -727,7 +727,7 @@ for (var i = 1; i < sumAssess.rows.length; i++) {
 }
 const sumReuseWeight = document.querySelectorAll('.sumReuseWeight')
 sumReuseWeight.forEach((el)=> {
-  el.innerHTML = sumVal
+  el.innerHTML = sumVal.toFixed(2)
 })
 
 // Summary Reuse Weigth (%)
@@ -750,7 +750,7 @@ for (var i = 1; i < sumAssess.rows.length; i++) {
 }
 const sumRecycWeightg = document.querySelectorAll('.sumRecycWeightg')
 sumRecycWeightg.forEach((el)=> {
-  el.innerHTML = sumVal
+  el.innerHTML = sumVal.toFixed(2)
 })
 
 // Summary Recycling Weight (%)
@@ -775,7 +775,7 @@ for (var i = 1; i < sumAssess.rows.length; i++) {
 }
 const sumRecovWeightg = document.querySelectorAll('.sumRecovWeightg')
 sumRecovWeightg.forEach((el)=> {
-  el.innerHTML = sumVal
+  el.innerHTML = sumVal.toFixed(2)
 })
 
 // Summary Recovering Weight (%)
