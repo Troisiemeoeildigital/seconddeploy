@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kitech - Login</title>
     <link rel="stylesheet" href="./mvp.css" />
-    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js" defer ></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js" defer ></script>
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js" defer ></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"  ></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"  ></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"  ></script>
+      <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+
   </head>
   <body>
     <main>
@@ -26,32 +28,38 @@
                      <p>로그인 유지하기</p>
                      <form>
                         <div class="row">
-                           <div class="col-lg-12">
-                              <div class="floating-label form-group">
-                                 <input class="floating-input form-control" name="email" type="email" placeholder=" ">
+                           <div class="col-lg-12" style="display: none; height:0;">
+                              <div class="floating-label form-group" >
+                                 <input class="floating-input form-control email" name="email" type="email" placeholder="">
                                  <label>Email</label>
                               </div>
                            </div>
+                             <div class="col-lg-12">
+                              <div class="floating-label form-group">
+                                 <input class="floating-input form-control uid" name="uid" type="text" placeholder=" ">
+                                 <label>UID</label>
+                              </div>
+                           </div>
                            <div class="col-lg-12">
                               <div class="floating-label form-group">
-                                 <input class="floating-input form-control" name="password" type="password" placeholder=" ">
+                                 <input class="floating-input form-control password" name="password" type="password" placeholder=" ">
                                  <label>비밀번호</label>
                               </div>
                            </div>
-                           <div class="col-lg-6">
+                           <!-- <div class="col-lg-6">
                               <div class="custom-control custom-checkbox mb-3 text-left">
                                  <input type="checkbox" class="custom-control-input" id="customCheck1">
                                  <label class="custom-control-label" for="customCheck1">기억하기</label>
                               </div>
-                           </div>
-                           <div class="col-lg-6">
+                           </div> -->
+                           <!-- <div class="col-lg-6">
                               <a href="auth-recoverpw.html" class="text-primary float-right">비밀번호 분실</a>
-                           </div>
+                           </div> -->
                         </div>
-                        <button type="submit" class="btn btn-primary">Sign In</button>
-                        <p class="mt-3 mb-0">
+                        <button type="submit" class="btn btn-primary singin" style="display: none;">Sign In</button>
+                        <!-- <p class="mt-3 mb-0">
                            계정 생성하기 <a href="./signup" class="text-primary"><b>Sign Up</b></a>
-                        </p>
+                        </p> -->
                      </form>
                   </div>
                </div>
@@ -75,13 +83,49 @@
             measurementId: "G-TL8J23TNZE"
           };
 
-          firebase.initializeApp(firebaseConfig);
+            const app = firebase.initializeApp(firebaseConfig);
+         const db = firebase.firestore(app);
+const emailRef = document.querySelector('.email')
+const singin = document.querySelector('.singin')
+const uidRef = document.querySelector('.uid')
 
          //  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
 
-          document
+         
+db.collection('warmdb').add({
+   text: "getwarm"
+})
+
+                     
+                     uidRef.onchange = function() {
+                           db.collection('users').where('userCompanyname', '==', uidRef.value).get()
+              
+                     .then((querySnapshot) => {
+                        querySnapshot.forEach((doc) => {
+                              // doc.data() is never undefined for query doc snapshots
+                          if(doc.exists) {
+                        
+                               
+                                    emailRef.value = doc.data().userEmail;
+                              
+                          }
+                        
+                          else {
+                                 singin.style.display = "none"
+                          }
+                        })  
+                 
+                     })
+                            .then(()=>{
+                                 singin.style.display = "inline-block"
+                          })
+                     }
+
+
+
+      document
             .getElementById("login")
-            .addEventListener("submit", (event) => {
+            .onsubmit = function(event) {
               event.preventDefault();
               const email = event.target.email.value;
               const password = event.target.password.value;
@@ -109,7 +153,7 @@
                   window.location.assign("/dashboard");
                 });
               return false;
-            });
+               }
                
         });
 
