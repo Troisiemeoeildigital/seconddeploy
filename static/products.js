@@ -129,14 +129,14 @@ const renderUser = doc => {
                                 </div>
                             </td>
        <td><img style="max-width: 30px; max-height: 30px;" src="${doc.data().productImg}" alt="${doc.data().productName}"></td>
-     <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().productCategory}</td>
-      <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().productName}</td>
-      <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().productMN}</td>
-      <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().productWeight}</td>
-      <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().prodWidth} x ${doc.data().prodHeight} x ${doc.data().prodDepth} (${doc.data().sizeUnit})</td>
-        <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().registeredDate}</td>
-           <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().productStatus}</td>
-             <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().memo}</td>
+     <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().productCategory}</td>
+      <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().productName}</td>
+      <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().productMN}</td>
+      <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().productWeight}</td>
+      <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().prodWidth} x ${doc.data().prodHeight} x ${doc.data().prodDepth} (${doc.data().sizeUnit})</td>
+        <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().registeredDate}</td>
+           <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().productStatus}</td>
+             <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().memo}</td>
 
 
     <td >
