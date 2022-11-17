@@ -1265,16 +1265,16 @@
 </div>
 
     <!--View Data table tree-->
-     <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+     <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true" style="   width: 115%; left: -5%;">
                         <div class="modal-dialog modal-dialog-scrollable" role="document">
-                           <div class="modal-content">
+                           <div class="modal-content" style="    overflow-x: hidden;">
                               <div class="modal-header">
                                  <h5 class="modal-title " id="exampleModalScrollableTitle"><span class="treeproducttitle"></span></h5>
                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                  <span aria-hidden="true">&times;</span>
                                  </button>
                               </div>
-                              <div class="modal-body">
+                              <div class="modal-body" style="    overflow-x: hidden;">
                           
       <div class="container-fluid" style="margin-left: 15px; margin-right: 15px;">
 
@@ -1448,11 +1448,11 @@
 ">
                                    <nav class="navbary"  style="background-color:  #219EBC; width: 15%; ";>
 
-  	<a href="#" class="navbary__link reportbtn"  style="background-color:  #219EBC">
+  	<a href="#" class="navbary__link convertPerc" style="background-color:  #219EBC">
 		<span class=""  ><i class='bx bx-droplet' style="color: white; font-size: 18px;"></i></span>
 		<span class="navbary__label" style="background-color:  #219EBC; top: -45px;  width: 200px;">Convert to Gram</span>
 	</a>
-   	<a href="#" class="navbary__link reportbtn"  style="background-color:  #219EBC">
+   	<a href="#" class="navbary__link  convertG"  style="background-color:  #219EBC">
 		<span class=""  ><i class="ri-percent-line" style="color: white; font-size: 18px;"></i></span>
 		<span class="navbary__label" style="background-color:#219EBC; top: -45px; left: -24px; width: 200px;">Convert to %</span>
 	</a>
@@ -1460,7 +1460,38 @@
                             </div>
                          <div class="row">
                           
-                      <table class="table sumAssess">
+                  <div class="table-wrapper" style="max-height: 50%;
+    display: block;
+    overflow-x: scroll; height: 500px;">
+                         <table class="table sumAssess" id="table">
+                        
+                        <thead class="thead" style="background-color: #219EBC; color: white; text-align: center;">
+                           <tr>
+                              <th scope="col" >Part</th>
+                              <th scope="col" class="toggleG ">Part Mass(g)</th>
+                              <th scope="col" >Material</th>
+                              <th scope="col" class="toggleG ">Material Mass(g) </th>
+                              <th scope="col" class="toggleG ">Reusablity Mass(g)</th>
+                              <th scope="col" class="togglePerc ">Reusablity  Mass(%)</th>
+                              <th scope="col" class="toggleG ">Recyclability  Mass(g)</th>
+                              <th scope="col" class="togglePerc ">Recyclability  Mass(%)</th>
+                              <th scope="col" class="toggleG ">Recoverability  Mass(g)</th>
+                              <th scope="col" class="togglePerc ">Recoverability  Mass(%)</th>
+                              <th scope="col" class="toggleG ">Disposable Mass(g)</th>
+                              <th scope="col" class="togglePerc ">Disposable Mass(%)</th>
+                              <th scope="col" class="toggleG ">Total Mass(g)</th>
+                              <th scope="col" class="togglePerc ">Total Mass(%)</th>
+                            
+                           </tr>
+                        </thead>
+                        <tbody class="renderEN4555" style="text-align: center;">
+                         
+                        </tbody>
+                     </table>
+                     
+
+
+                           <!-- <table class="table sumAssessG">
                         
                         <thead class="thead" style="background-color: #219EBC; color: white; text-align: center;">
                            <tr>
@@ -1470,22 +1501,23 @@
                               <th scope="col">Material</th>
                               <th scope="col">Material Mass(g) </th>
                               <th scope="col">Reusablity Mass(g)</th>
-                              <th scope="col">Reusablity  Mass(%)</th>
+                  
                               <th scope="col">Recyclability  Mass(g)</th>
-                              <th scope="col">Recyclability  Mass(%)</th>
+                           
                               <th scope="col">Recoverability  Mass(g)</th>
-                              <th scope="col">Recoverability  Mass(%)</th>
+                              
                               <th scope="col">Disposable Mass(g)</th>
-                              <th scope="col">Disposable Mass(%)</th>
+               
                               <th scope="col">Total Mass(g)</th>
-                              <th scope="col">Total Mass(%)</th>
+
                             
                            </tr>
                         </thead>
-                        <tbody class="renderEN4555" style="text-align: center;">
+                        <tbody class="renderEN4555G" style="text-align: center;">
                          
                         </tbody>
-                     </table>
+                     </table> -->
+                  </div>
                          </div>
                          </div>
                           <!--End Table EN45555-->
@@ -2025,8 +2057,8 @@ window.onload = function () {
                 margin: 0.1,
                 filename: 'Assessment Report.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'cm', format: 'A2', orientation: 'portrait' }
+                html2canvas: { scale: 1 },
+                jsPDF: { unit: 'cm', format: 'A1', orientation: 'portrait' }
             };
             html2pdf().from(invoice).set(opt).save();
         })
@@ -2065,20 +2097,20 @@ window.onload = function () {
 
      </script>
      <script>	
-   // document.querySelector('.reportbtnCSV').onclick = function() {
-   //    TableToExcel.convert(document.querySelector(".sumAssess"));
+   document.querySelector('.reportbtnCSV').onclick = function() {
+      TableToExcel.convert(document.querySelector(".sumAssess"));
 
-   // }
+   }
 
-   //   document.querySelector('.reportTableCSVEN45557').onclick = function() {
-   //    TableToExcel.convert(document.querySelector(".materialChart"));
+     document.querySelector('.reportTableCSVEN45557').onclick = function() {
+      TableToExcel.convert(document.querySelector(".materialChart"));
 
-   // }
+   }
 
-   //  document.querySelector('.reportTableCSVEN45558').onclick = function() {
-   //    TableToExcel.convert(document.querySelector(".subsAssess"));
+    document.querySelector('.reportTableCSVEN45558').onclick = function() {
+      TableToExcel.convert(document.querySelector(".subsAssess"));
 
-   // }
+   }
    </script>
   </body>
 </html>

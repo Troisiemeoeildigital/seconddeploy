@@ -1,176 +1,216 @@
-     <div class="sidebar adminelement" style="display: none; background: #219EBC;">
-    <div class="logo-details">
-     
-        <div class="logo_name">Kitech</div>
-        <i class='bx bx-menu' id="btn" ></i>
-    </div>
-    <ul class="nav-list">
-  
-      <li>
-        <a class="adminelement" href="./dashboard"style="display: none; ">
-          <i class='bx bx-grid-alt'></i>
-          <span class="links_name">대시보드</span>
-        </a>
-         <span class="tooltip">대시보드</span>
-      </li>
-    
-      <li>
-       <a class="adminelement" href="./listofproducts" style="display: none; ">
-       
-              <i class='bx bxs-cube-alt'></i>
-         <span class="links_name">제품목록</span>
-       </a>
-       <span class="tooltip">제품목록</span>
-     </li>
-   
-       <li>
-       <a class="adminelement" href="./partslist" style="display: none; ">
- <i class='bx bxs-component' ></i>
-         <span class="links_name">부품목록</span>
-       </a>
-       <span class="tooltip">부품목록</span>
-     </li>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>HTML DOM - Show or hide table columns</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="/assets/css/demo.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap">
+        <style>
+            .container2 {
+                position: relative;
+            }
+            .container__menu {
+                /* Absolute position */
+                position: absolute;
 
-     
+                /* Reset */
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
 
-           <li>
-       <a class="adminelement" href="#" style="display: none;">
-       <i class="bx bx-bell"></i>
-         <span class="links_name">공지사항</span>
-       </a>
-       <span class="tooltip">공지사항</span>
-     </li>
+                /* Misc */
+                background-color: #f7fafc;
+                border: 1px solid #cbd5e0;
+                border-radius: 0.25rem;
+                padding: 0.5rem;
+            }
+            .container__menu--hidden {
+                display: none;
+            }
+          
+        </style>
+    </head>
+    <body>
+        <div class="container2">
+          
+<div class="table-wrapper container2" style="max-height: 50%;
+    display: block;
+    overflow-x: scroll; height: 500px;">
+                      <table id="table" class="table sumAssess">
+                <thead class="thead" style="background-color: #219EBC; color: white; text-align: center;">
+                    <tr>
+                     <th data-column-index="0" data-shown="true">Part</th>
+                              <th class="toggleG" data-column-index="1" data-shown="true">Part Mass(g)</th>
+                              <th data-column-index="2" data-shown="true">Material</th>
+                              <th class="toggleG" data-column-index="3" data-shown="true">Material Mass(g) </th>
+                              <th class="toggleG" data-column-index="4" data-shown="true">Reusablity Mass(g)</th>
+                              <th class="togglePerc" data-column-index="5" data-shown="true">Reusablity  Mass(%)</th>
+                              <th class="toggleG" data-column-index="6" data-shown="true">Recyclability  Mass(g)</th>
+                              <th class="togglePerc" data-column-index="7" data-shown="true">Recyclability  Mass(%)</th>
+                              <th class="toggleG" data-column-index="8" data-shown="true">Recoverability  Mass(g)</th>
+                              <th class="togglePerc" data-column-index="9" data-shown="true">Recoverability  Mass(%)</th>
+                              <th class="toggleG" data-column-index="10" data-shown="true">Disposable Mass(g)</th>
+                              <th class="togglePerc" data-column-index="11" data-shown="true">Disposable Mass(%)</th>
+                              <th class="toggleG" data-column-index="12" data-shown="true">Total Mass(g)</th>
+                              <th class="togglePerc" data-column-index="13" data-shown="true">Total Mass(%)</th>
+                    </tr>
+                </thead>
+                <tbody class="renderEN4555" style="text-align: center;"><tr>
+              <td>PCB_LAG</td>
+							<td class="toggleG displayAll">124.00</td>
+              <td>Copper and its alloys</td>
+              <td class="toggleG displayAll">85.00</td>
+              <td class="toggleG displayAll">0.00</td>
+              <td class="togglePerc displayAll">0.00</td>
+              <td class="toggleG  displayAll">85.00</td>
+              <td class="togglePerc displayAll">10.00</td>
+              <td class="toggleG displayAll">85.00</td>
+              <td class="togglePerc displayAll">10.00</td>
+              <td class="toggleG displayAll">0.00</td>
+              <td class="togglePerc displayAll">0.00</td>
+              <td class="toggleG displayAll">124.00</td>
+              <td class="togglePerc displayAll">100</td>
+					  </tr></tbody>
+            </table>
+                      <ul id="menu" class="container__menu container__menu--hidden"><li><label style="display: flex; align-items: center;"><input type="checkbox" checked="true" data-column-index="0" style="margin-right: 0.25rem;">Part</label></li><li><label style="display: flex; align-items: center;"><input type="checkbox" checked="true" data-column-index="1" style="margin-right: 0.25rem;">Part Mass(g)</label></li><li><label style="display: flex; align-items: center;"><input type="checkbox" checked="true" data-column-index="2" style="margin-right: 0.25rem;">Material</label></li><li><label style="display: flex; align-items: center;"><input type="checkbox" checked="true" data-column-index="3" style="margin-right: 0.25rem;">Material Mass(g) </label></li><li><label style="display: flex; align-items: center;"><input type="checkbox" checked="true" data-column-index="4" style="margin-right: 0.25rem;">Reusablity Mass(g)</label></li><li><label style="display: flex; align-items: center;"><input type="checkbox" checked="true" data-column-index="5" style="margin-right: 0.25rem;">Reusablity  Mass(%)</label></li><li><label style="display: flex; align-items: center;"><input type="checkbox" checked="true" data-column-index="6" style="margin-right: 0.25rem;">Recyclability  Mass(g)</label></li><li><label style="display: flex; align-items: center;"><input type="checkbox" checked="true" data-column-index="7" style="margin-right: 0.25rem;">Recyclability  Mass(%)</label></li><li><label style="display: flex; align-items: center;"><input type="checkbox" checked="true" data-column-index="8" style="margin-right: 0.25rem;">Recoverability  Mass(g)</label></li><li><label style="display: flex; align-items: center;"><input type="checkbox" checked="true" data-column-index="9" style="margin-right: 0.25rem;">Recoverability  Mass(%)</label></li><li><label style="display: flex; align-items: center;"><input type="checkbox" checked="true" data-column-index="10" style="margin-right: 0.25rem;">Disposable Mass(g)</label></li><li><label style="display: flex; align-items: center;"><input type="checkbox" checked="true" data-column-index="11" style="margin-right: 0.25rem;">Disposable Mass(%)</label></li><li><label style="display: flex; align-items: center;"><input type="checkbox" checked="true" data-column-index="12" style="margin-right: 0.25rem;">Total Mass(g)</label></li><li><label style="display: flex; align-items: center;"><input type="checkbox" checked="true" data-column-index="13" style="margin-right: 0.25rem;">Total Mass(%)</label></li></ul>
 
 
-
-          <li>
-       <a class="adminelement" href="#" style="display: none;">
-       <i class="ri-question-line"></i>
-         <span class="links_name">자주 묻는 질문</span>
-       </a>
-       <span class="tooltip">자주 묻는 질문</span>
-     </li>
-    
-     <li class="profile" style="margin-bottom: 30px; background: #219EBC;">
-         <div class="profile-details">
-           <!--<img src="profile.jpg" alt="profileImg">-->
-           <div class="name_job">
-             <div class="name">Logout</div>
-             <div class="job">2022 - 2023</div>
+                           <!-- <table class="table sumAssessG">
+                        
+                        <thead class="thead" style="background-color: #219EBC; color: white; text-align: center;">
+                           <tr>
+                              <th scope="col">Part</th>
+                              <th scope="col">Part Mass(g)
+</th>
+                              <th scope="col">Material</th>
+                              <th scope="col">Material Mass(g) </th>
+                              <th scope="col">Reusablity Mass(g)</th>
+                  
+                              <th scope="col">Recyclability  Mass(g)</th>
+                           
+                              <th scope="col">Recoverability  Mass(g)</th>
+                              
+                              <th scope="col">Disposable Mass(g)</th>
                
-           </div>
-         </div>
-        <a href="/sessionLogout"  > <i style="background: #219EBC;" class='bx bx-log-out' id="log_out" ></i> </a>
-       
-     </li>
-    </ul>
-  </div>
+                              <th scope="col">Total Mass(g)</th>
 
+                            
+                           </tr>
+                        </thead>
+                        <tbody class="renderEN4555G" style="text-align: center;">
+                         
+                        </tbody>
+                     </table> -->
+                  </div>
+            <ul id="menu" class="container__menu container__menu--hidden"></ul>
+        </div>
 
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const menu = document.getElementById('menu');
+                  const tablesumAssess = document.querySelector('.sumAssess');
+                const headers = [].slice.call(tablesumAssess.querySelectorAll('th'));
+                const cells = [].slice.call(tablesumAssess.querySelectorAll('th, td'));
+                const numColumns = headers.length;
 
-  // dashboard for part supplier
+                const thead = tablesumAssess.querySelector('thead');
+                thead.addEventListener('contextmenu', function (e) {
+                    e.preventDefault();
 
-       <div class="sidebar" style="background: #219EBC;">
-    <div class="logo-details">
-     
-        <div class="logo_name">Kitech</div>
-        <i class='bx bx-menu' id="btn" ></i>
-    </div>
-    <ul class="nav-list">
-  
-      <li>
-        <a class="adminelement" href="./dashboard"style="display: none; ">
-          <i class='bx bx-grid-alt'></i>
-          <span class="links_name">대시보드</span>
-        </a>
-         <span class="tooltip">대시보드</span>
-      </li>
-       <li>
-        <a class="notadmin" href="./dashboard"  style="display: none;">
-          <i class='bx bx-grid-alt'></i>
-          <span class="links_name">대시보드</span>
-        </a>
-         <span class="tooltip">대시보드</span>
-      </li>
-      <li>
-       <a class="adminelement" href="./listofproducts" style="display: none; ">
-       
-              <i class='bx bxs-cube-alt'></i>
-         <span class="links_name">제품목록</span>
-       </a>
-       <span class="tooltip">제품목록</span>
-     </li>
-      <li>
-       <a class="notadmin" href="./parts" style="display: none; ">
-    <i class='bx bxs-component' ></i>
-         <span class="links_name">부품목록</span>
-       </a>
-       <span class="tooltip">부품목록</span>
-     </li>
-       <li>
-       <a class="adminelement" href="./partslist" style="display: none; ">
- <i class='bx bxs-component' ></i>
-         <span class="links_name">부품목록</span>
-       </a>
-       <span class="tooltip">부품목록</span>
-     </li>
-     <li>
-       <a class="notadmin" href="./materialsdb" style="display: none;">
- <i class='bx bx-pie-chart-alt-2' ></i>
-         <span class="links_name">소재목록</span>
-       </a>
-       <span class="tooltip">소재목록</span>
-     </li>
-     <li>
-       <a class="notadmin" href="./substances" style="display: none; ">
-  <i class='bx bx-dna' ></i>
-         <span class="links_name">물질목록</span>
-       </a>
-       <span class="tooltip">물질목록</span>
-     </li>
-     
+                    const rect = thead.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
 
-           <li>
-       <a class="adminelement" href="#" style="display: none;">
-       <i class="ri-question-line"></i>
-         <span class="links_name">공지사항</span>
-       </a>
-       <span class="tooltip">공지사항</span>
-     </li>
+                    menu.style.top = `${y}px`;
+                    menu.style.left = `${x}px`;
+                    menu.classList.toggle('container__menu--hidden');
 
-     <li>
-       <a class="notadmin" href="#" style="display: none;">
-       <i class='bx bx-bell' ></i>
-         <span class="links_name">공지사항</span>
-       </a>
-       <span class="tooltip">공지사항</span>
-     </li>
-       <li>
-       <a class="notadmin" href="#" style="display: none;">
-       <i class="ri-question-line"></i>
-         <span class="links_name">자주 묻는 질문</span>
-       </a>
-       <span class="tooltip">자주 묻는 질문</span>
-     </li>
-          <li>
-       <a class="adminelement" href="#" style="display: none;">
-       <i class="ri-question-line"></i>
-         <span class="links_name">자주 묻는 질문</span>
-       </a>
-       <span class="tooltip">자주 묻는 질문</span>
-     </li>
-    
-     <li class="profile" style="margin-bottom: 30px; background: #219EBC;">
-         <div class="profile-details">
-           <!--<img src="profile.jpg" alt="profileImg">-->
-           <div class="name_job">
-             <div class="name">Logout</div>
-             <div class="job">2022 - 2023</div>
-               
-           </div>
-         </div>
-        <a href="/sessionLogout"  > <i style="background: #219EBC;" class='bx bx-log-out' id="log_out" ></i> </a>
-       
-     </li>
-    </ul>
-  </div>
+                    document.addEventListener('click', documentClickHandler);
+                });
+
+                // Hide the menu when clicking outside of it
+                const documentClickHandler = function (e) {
+                    const isClickedOutside = !menu.contains(e.target);
+                    if (isClickedOutside) {
+                        menu.classList.add('container__menu--hidden');
+                        document.removeEventListener('click', documentClickHandler);
+                    }
+                };
+
+                const showColumn = function (index) {
+                    cells
+                        .filter(function (cell) {
+                            return cell.getAttribute('data-column-index') === `${index}`;
+                        })
+                        .forEach(function (cell) {
+                            cell.style.display = '';
+                            cell.setAttribute('data-shown', 'true');
+                        });
+
+                    menu.querySelectorAll(`[type="checkbox"][disabled]`).forEach(function (checkbox) {
+                        checkbox.removeAttribute('disabled');
+                    });
+                };
+
+                const hideColumn = function (index) {
+                    cells
+                        .filter(function (cell) {
+                            return cell.getAttribute('data-column-index') === `${index}`;
+                        })
+                        .forEach(function (cell) {
+                            cell.style.display = 'none';
+                            cell.setAttribute('data-shown', 'false');
+                        });
+                    // How many columns are hidden
+                    const numHiddenCols = headers.filter(function (th) {
+                        return th.getAttribute('data-shown') === 'false';
+                    }).length;
+                    if (numHiddenCols === numColumns - 1) {
+                        // There's only one column which isn't hidden yet
+                        // We don't allow user to hide it
+                        const shownColumnIndex = thead
+                            .querySelector('[data-shown="true"]')
+                            .getAttribute('data-column-index');
+
+                        const checkbox = menu.querySelector(
+                            `[type="checkbox"][data-column-index="${shownColumnIndex}"]`
+                        );
+                        checkbox.setAttribute('disabled', 'true');
+                    }
+                };
+
+                cells.forEach(function (cell, index) {
+                    cell.setAttribute('data-column-index', index % numColumns);
+                    cell.setAttribute('data-shown', 'true');
+                });
+
+                headers.forEach(function (th, index) {
+                    // Build the menu item
+                    const li = document.createElement('li');
+                    const label = document.createElement('label');
+                    const checkbox = document.createElement('input');
+                    checkbox.setAttribute('type', 'checkbox');
+                    checkbox.setAttribute('checked', 'true');
+                    checkbox.setAttribute('data-column-index', index);
+                    checkbox.style.marginRight = '.25rem';
+
+                    const text = document.createTextNode(th.textContent);
+
+                    label.appendChild(checkbox);
+                    label.appendChild(text);
+                    label.style.display = 'flex';
+                    label.style.alignItems = 'center';
+                    li.appendChild(label);
+                    menu.appendChild(li);
+
+                    // Handle the event
+                    checkbox.addEventListener('change', function (e) {
+                        e.target.checked ? showColumn(index) : hideColumn(index);
+                        menu.classList.add('container__menu--hidden');
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

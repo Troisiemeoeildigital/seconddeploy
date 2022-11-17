@@ -104,6 +104,65 @@ const sumTotalWeightPerc = document.querySelectorAll('.sumTotalWeightPerc')
 
 let id;
 
+auth.onAuthStateChanged(user => {
+    if(user) {
+        user.getIdTokenResult().then(idTokenResult => {
+            user.admin = idTokenResult.claims.admin
+            editUI(user)
+        })
+    }
+    else {
+        console.log("There's nothing here!")
+    }
+})
+
+const editUI = (user) => {
+  if (user) {
+    const userTitleCard = document.getElementById('usertitle')
+     const notadminElement = document.querySelectorAll('.notadmin')
+     
+      
+    if(user.admin) {
+      // document.addEventListener('DOMContentLoaded', ()=> {
+        
+      // })
+    const firstcreation = document.getElementById('lastsignin')
+     const userDisplay = document.getElementById('userDisplay')
+      const adminElement = document.querySelectorAll('.adminelement');
+    adminElement.forEach(item => item.style.display = 'flex');
+     notadminElement.forEach(item => item.style.display = 'none');
+     
+      userTitleCard.innerHTML = 'Product Manufacturer'
+      console.log("This User is an admin")
+      const firstcreationtime = firebase.auth().currentUser.metadata.creationTime
+      const userDisplayName = firebase.auth().currentUser.displayName
+    console.log(user.metadata.lastSignInTime)
+    console.log(firebase.auth().currentUser.displayName)
+    // firstcreation.innerHTML = "Since "  + firstcreationtime;
+    // userDisplay.innerHTML = userDisplayName;
+    } else {
+       const userTitleCard = document.getElementById('usertitle')
+       
+       const lastsignin = document.getElementById('lastsignin')
+        const adminElement = document.querySelectorAll('.adminelement');
+        const notadminElement = document.querySelectorAll('.notadmin')
+    adminElement.forEach(item => item.style.display = 'none');
+    notadminElement.forEach(item => item.style.display = 'flex');
+      userTitleCard.innerHTML = 'Part Supplier'
+    // lastsignindata = firebase.auth().currentUser.metadata.lastSignInTime
+    // console.log(lastsignindata)
+    // notadminElement.style.display = 'flex'
+ 
+    //  lastsignin.innerHTML = ''
+
+    }
+
+  } else {
+   
+    console.log("not an admin")
+  }
+}
+
 
 // const renderTest = doc => {
 // //   console.log(doc)
@@ -165,7 +224,7 @@ const renderUser = doc => {
     </tr>
   `;
   const prodTabledata = document.querySelector('.prodTabledata')
-  prodTabledata.insertAdjacentHTML('beforeend', tr);
+  prodTabledata.insertAdjacentHTML('afterbegin', tr);
    document.querySelector('.loadingtitle').style.display = "none"
 
 
@@ -197,9 +256,11 @@ let prodWeightRef = viewassess.getAttribute('prodWeight');
 console.log(dataPN)
    		var table = document.querySelector('.renderParts')
       var renderEN4555 = document.querySelector('.renderEN4555')
+          let renderEN4555G = document.querySelector('.renderEN4555G')
     table.innerHTML = "";
     renderEN4555.innerHTML = "";
     renderEN4557.innerHTML = " ";
+    //  renderEN4555G.innerHTML = " ";
       // Get a reference from the dom to the tree elements
       const treeproducttitle = document.querySelector('.treeproducttitle')
       const productCategory = document.querySelectorAll('.productCategory')
@@ -485,22 +546,41 @@ buildTable(materialDataUniq)
       energyrecovarrperc.push(energyRecoMassPercAssess)
 			var row = `<tr>
               <td>${materialDataUniq[i].partRef}</td>
-							<td>${PartMass.toFixed(2)}</td>
+							<td class="toggleG " >${PartMass.toFixed(2)}</td>
               <td>${materialDataUniq[i].materialName}</td>
-              <td>${materialMass.toFixed(2)}</td>
-              <td>${reuseMassgAssess.toFixed(2)}</td>
-              <td>${reuseMassPerAssess.toFixed(2)}</td>
-              <td>${recycleMassgAssess.toFixed(2)}</td>
-              <td>${recycleMassPercAssess.toFixed(2)}</td>
-              <td>${recovMassgAssess.toFixed(2)}</td>
-              <td>${recovMassPercAssess.toFixed(2)}</td>
-              <td>${parseFloat(disposabaleMassg).toFixed(2)}</td>
-              <td>${disposabalePercMass.toFixed(2)}</td>
-              <td>${PartMass.toFixed(2)}</td>
-              <td>100</td>
+              <td class="toggleG ">${materialMass.toFixed(2)}</td>
+              <td class="toggleG ">${reuseMassgAssess.toFixed(2)}</td>
+              <td class="togglePerc ">${reuseMassPerAssess.toFixed(2)}</td>
+              <td class="toggleG  ">${recycleMassgAssess.toFixed(2)}</td>
+              <td class="togglePerc ">${recycleMassPercAssess.toFixed(2)}</td>
+              <td class="toggleG ">${recovMassgAssess.toFixed(2)}</td>
+              <td class="togglePerc ">${recovMassPercAssess.toFixed(2)}</td>
+              <td class="toggleG ">${parseFloat(disposabaleMassg).toFixed(2)}</td>
+              <td class="togglePerc ">${disposabalePercMass.toFixed(2)}</td>
+              <td class="toggleG ">${PartMass.toFixed(2)}</td>
+              <td class="togglePerc ">100</td>
 					  </tr>`
 
 			renderEN4555.innerHTML += row
+
+      // 		var row = `<tr>
+      //         <td>${materialDataUniq[i].partRef}</td>
+			// 				<td>${PartMass.toFixed(2)}</td>
+      //         <td>${materialDataUniq[i].materialName}</td>
+      //         <td>${materialMass.toFixed(2)}</td>
+      //         <td>${reuseMassgAssess.toFixed(2)}</td>
+        
+      //         <td>${recycleMassgAssess.toFixed(2)}</td>
+              
+      //         <td>${recovMassgAssess.toFixed(2)}</td>
+          
+      //         <td>${parseFloat(disposabaleMassg).toFixed(2)}</td>
+          
+      //         <td>${PartMass.toFixed(2)}</td>
+        
+			// 		  </tr>`
+  
+			// renderEN4555G.innerHTML += row
 
      
 
@@ -964,8 +1044,40 @@ let chartsecondref = new ApexCharts(chartsecond, optionsref);
 })
 })
 })
+ const convertG = document.querySelector('.convertG')
+  convertG.onclick = function(e) {
+    e.preventDefault()
+        const toggleG = document.querySelectorAll('.toggleG')
+    toggleG.forEach((el)=>{
+   el.classList.toggle("hide")
+})
+
+
+
+
+  
+  }
+
+   const convertPerc = document.querySelector('.convertPerc')
+  convertPerc.onclick = function(e) {
+    e.preventDefault()
+ 
+       const togglePerc = document.querySelectorAll('.togglePerc')
+    togglePerc.forEach((el)=>{
+   el.classList.toggle("hide")
+})
+
+  
+  }
+
+
+
+
+  
 
 }
+
+  
 
 //add parts tp specific product
  const btnpraddParts = document.querySelector(`[data-id='${doc.id}'] .btnpr-addPP`);
@@ -1661,7 +1773,7 @@ window.addEventListener('click', e => {
 // });
 
 // Real time listener
-db.collection('recycledproducts').onSnapshot(snapshot => {
+db.collection('recycledproducts').orderBy("createdAt").onSnapshot(snapshot => {
   snapshot.docChanges().forEach(change => {
     if(change.type === 'added') {
       renderUser(change.doc);
@@ -1749,7 +1861,10 @@ document.querySelector(".files").addEventListener("change", function(e) {
     registeredDate: addregisteredDate.value,
     productStatus: addproductStatus.value,
     memo: addMemo.value,
-    productImg: url
+    productImg: url,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+
+
   })
   
     Swal.fire(
@@ -1880,65 +1995,6 @@ firebase.auth().onAuthStateChanged(user => {
   
 })
 
-auth.onAuthStateChanged(user => {
-    if(user) {
-        user.getIdTokenResult().then(idTokenResult => {
-            user.admin = idTokenResult.claims.admin
-            editUI(user)
-        })
-    }
-    else {
-        console.log("There's nothing here!")
-    }
-})
-
-const editUI = (user) => {
-  if (user) {
-    const userTitleCard = document.getElementById('usertitle')
-     const notadminElement = document.querySelectorAll('.notadmin')
-     
-      
-    if(user.admin) {
-      // document.addEventListener('DOMContentLoaded', ()=> {
-        
-      // })
-    const firstcreation = document.getElementById('lastsignin')
-     const userDisplay = document.getElementById('userDisplay')
-      const adminElement = document.querySelectorAll('.adminelement');
-    adminElement.forEach(item => item.style.display = 'flex');
-     notadminElement.forEach(item => item.style.display = 'none');
-     
-      userTitleCard.innerHTML = 'Product Manufacturer'
-      console.log("This User is an admin")
-      const firstcreationtime = firebase.auth().currentUser.metadata.creationTime
-      const userDisplayName = firebase.auth().currentUser.displayName
-    console.log(user.metadata.lastSignInTime)
-    console.log(firebase.auth().currentUser.displayName)
-    // firstcreation.innerHTML = "Since "  + firstcreationtime;
-    // userDisplay.innerHTML = userDisplayName;
-    } else {
-       const userTitleCard = document.getElementById('usertitle')
-       
-       const lastsignin = document.getElementById('lastsignin')
-        const adminElement = document.querySelectorAll('.adminelement');
-        const notadminElement = document.querySelectorAll('.notadmin')
-    adminElement.forEach(item => item.style.display = 'none');
-    notadminElement.forEach(item => item.style.display = 'flex');
-      userTitleCard.innerHTML = 'Part Supplier'
-    // lastsignindata = firebase.auth().currentUser.metadata.lastSignInTime
-    // console.log(lastsignindata)
-    // notadminElement.style.display = 'flex'
- 
-    //  lastsignin.innerHTML = ''
-
-    }
-
-  } else {
-   
-    console.log("not an admin")
-  }
-}
-const multiParts = document.querySelector('.multiParts')
 
 
   
