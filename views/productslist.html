@@ -255,26 +255,29 @@
                 </div>
                 <div class="col-md-3 float-right">
    
-                       <div class="input-group mb-3">
-                        <div class="input-group-prepend" style="width: 60%;">
-                           <input type="text" class="form-control" id="myInputProduct" style="margin: 0; border-radius: 10px 0 0 10px; height:46px;" onkeyup='prodSearch()' name="myInputProduct" placeholder="Search by..." aria-label="Search Product Name"
+                       <div class="input-group mb-3" style="left: 25%;">
+                        <div class="input-group-prepend" >
+                           <input type="text"  class="form-control" id="myInputProduct" style="margin: 0; border-radius: 10px 0 0 10px; height:46px;" onkeyup='prodSearch()' name="myInputProduct" placeholder="Search by..." aria-label="Search Product Name"
                            aria-describedby="basic-addon5">
                         </div>
-                        <select  class="custom-select searchProdSelection" id="inputGroupSelect03">
+                       <div class="selectwrapp" style="width: 10%; border-radius: 0;">
+                         <select style=" border-radius: 0;" class="custom-select searchProdSelection" id="inputGroupSelect03">
                            <option selected>Choose...</option>
                            <option value="3">Prodcut Name </option>
                            <option value="4">Model Name</option>
                   
                         </select>
+                       </div>
                            <div class="input-group-append">
                            <span class="input-group-text" id="basic-addon5"><i class="las la-search font-size-20"></i></span>
+                           
                         </div>
                      </div>
 </div>
                        <div class="sortaddpart">
                 
-                       <div class="form-group" id="formfloat" style="width: 25%;">
-                      <div class="input-group mb-3">
+                       <div class="form-group" id="formfloat" style="width: 10%;">
+                      <div class="input-group mb-3" style="left: 60%;">
                       
                         <select  class="custom-select sortProdSelection" id="inputGroupSelect03">
                            <option value="" selected>Sort by...</option>
@@ -1447,12 +1450,15 @@
                               <div class="row downloadtitle" style="    margin-right: -5%;
 ">
                                    <nav class="navbary"  style="background-color:  #219EBC; width: 15%; ";>
-
-  	<a href="#" class="navbary__link convertPerc" style="background-color:  #219EBC">
+ 	<a href="#" class="navbary__link convertAll" style="background-color:  #219EBC">
+		<span class=""  ><i class='ri-eye-line' style="color: white; font-size: 18px;"></i></span>
+		<span class="navbary__label" style="background-color:  #219EBC; top: -45px;  width: 200px;">Show All</span>
+	</a>
+  	<a href="#" class="navbary__link convertG" style="background-color:  #219EBC">
 		<span class=""  ><i class='bx bx-droplet' style="color: white; font-size: 18px;"></i></span>
 		<span class="navbary__label" style="background-color:  #219EBC; top: -45px;  width: 200px;">Convert to Gram</span>
 	</a>
-   	<a href="#" class="navbary__link  convertG"  style="background-color:  #219EBC">
+   	<a href="#" class="navbary__link  convertPerc"  style="background-color:  #219EBC">
 		<span class=""  ><i class="ri-percent-line" style="color: white; font-size: 18px;"></i></span>
 		<span class="navbary__label" style="background-color:#219EBC; top: -45px; left: -24px; width: 200px;">Convert to %</span>
 	</a>
@@ -1460,12 +1466,13 @@
                             </div>
                          <div class="row">
                           
-                  <div class="table-wrapper" style="max-height: 50%;
+                  <div class="table-wrapper" style="
     display: block;
-    overflow-x: scroll; height: 500px;">
+    overflow-x: scroll; ">
+                         <div class="fulldata">
                          <table class="table sumAssess" id="table">
-                        
-                        <thead class="thead" style="background-color: #219EBC; color: white; text-align: center;">
+                       
+                               <thead class="thead" style="background-color: #219EBC; color: white; text-align: center;">
                            <tr>
                               <th scope="col" >Part</th>
                               <th scope="col" class="toggleG ">Part Mass(g)</th>
@@ -1487,8 +1494,56 @@
                         <tbody class="renderEN4555" style="text-align: center;">
                          
                         </tbody>
-                     </table>
+                  
                      
+                      
+                    
+                     </table>
+                           </div>
+                         <div class="convertedToGram" style="display: none; height: 0;">
+                        <table class="table sumAssess" id="table">
+                           
+                               <thead class="thead" style="background-color: #219EBC; color: white; text-align: center;">
+                           <tr>
+                              <th scope="col" >Part</th>
+                              <th scope="col" class="toggleG ">Part Mass(g)</th>
+                              <th scope="col" >Material</th>
+                              <th scope="col" class="toggleG ">Material Mass(g) </th>
+                              <th scope="col" class="toggleG ">Reusablity Mass(g)</th>               
+                              <th scope="col" class="toggleG ">Recyclability  Mass(g)</th>                        
+                              <th scope="col" class="toggleG ">Recoverability  Mass(g)</th>                           
+                              <th scope="col" class="toggleG ">Disposable Mass(g)</th>            
+                              <th scope="col" class="toggleG ">Total Mass(g)</th>                            
+                           </tr>
+                        </thead>
+                        <tbody class="renderEN4555ToG" style="text-align: center;">
+                         
+                        </tbody>                     
+                       </table>
+                         </div>
+
+
+                        <div class="convertedToPerc" style="display: none; height: 0;">
+                       <table class="table sumAssess" id="table">
+                              
+                               <thead class="thead" style="background-color: #219EBC; color: white; text-align: center;">
+                           <tr>
+                              <th scope="col" >Part</th>
+                              <th scope="col" >Material</th>                           
+                              <th scope="col" class="togglePerc ">Reusablity  Mass(%)</th>                           
+                              <th scope="col" class="togglePerc ">Recyclability  Mass(%)</th>                              
+                              <th scope="col" class="togglePerc ">Recoverability  Mass(%)</th>               
+                              <th scope="col" class="togglePerc ">Disposable Mass(%)</th>
+                              <th scope="col" class="togglePerc ">Total Mass(%)</th>
+                            
+                           </tr>
+                        </thead>
+                        <tbody class="renderEN4555ToPerc" style="text-align: center;">
+                         
+                        </tbody>
+                      
+                       </table>
+                       </div>
 
 
                            <!-- <table class="table sumAssessG">

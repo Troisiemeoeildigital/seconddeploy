@@ -256,9 +256,12 @@ let prodWeightRef = viewassess.getAttribute('prodWeight');
 console.log(dataPN)
    		var table = document.querySelector('.renderParts')
       var renderEN4555 = document.querySelector('.renderEN4555')
-          let renderEN4555G = document.querySelector('.renderEN4555G')
+          let renderEN4555ToG = document.querySelector('.renderEN4555ToG')
+              let renderEN4555ToPerc = document.querySelector('.renderEN4555ToPerc')
     table.innerHTML = "";
     renderEN4555.innerHTML = "";
+     renderEN4555ToG.innerHTML = "";
+          renderEN4555ToPerc.innerHTML = "";
     renderEN4557.innerHTML = " ";
     //  renderEN4555G.innerHTML = " ";
       // Get a reference from the dom to the tree elements
@@ -431,6 +434,7 @@ buildTable(arrUniq)
       y: 0
     }]
   }]
+  
 }
   let optionsthree = {
   chart: {
@@ -563,24 +567,35 @@ buildTable(materialDataUniq)
 
 			renderEN4555.innerHTML += row
 
-      // 		var row = `<tr>
-      //         <td>${materialDataUniq[i].partRef}</td>
-			// 				<td>${PartMass.toFixed(2)}</td>
-      //         <td>${materialDataUniq[i].materialName}</td>
-      //         <td>${materialMass.toFixed(2)}</td>
-      //         <td>${reuseMassgAssess.toFixed(2)}</td>
+      		var row = `<tr>
+              <td>${materialDataUniq[i].partRef}</td>
+							<td>${PartMass.toFixed(2)}</td>
+              <td>${materialDataUniq[i].materialName}</td>
+              <td>${materialMass.toFixed(2)}</td>
+              <td>${reuseMassgAssess.toFixed(2)}</td>
         
-      //         <td>${recycleMassgAssess.toFixed(2)}</td>
+              <td>${recycleMassgAssess.toFixed(2)}</td>
               
-      //         <td>${recovMassgAssess.toFixed(2)}</td>
+              <td>${recovMassgAssess.toFixed(2)}</td>
           
-      //         <td>${parseFloat(disposabaleMassg).toFixed(2)}</td>
+              <td>${parseFloat(disposabaleMassg).toFixed(2)}</td>
           
-      //         <td>${PartMass.toFixed(2)}</td>
+              <td>${PartMass.toFixed(2)}</td>
         
-			// 		  </tr>`
+					  </tr>`
   
-			// renderEN4555G.innerHTML += row
+			renderEN4555ToG.innerHTML += row
+
+        		var row = `<tr>
+              <td>${materialDataUniq[i].partRef}</td>
+              <td>${materialDataUniq[i].materialName}</td>
+              <td class="togglePerc ">${reuseMassPerAssess.toFixed(2)}</td>
+              <td class="togglePerc ">${recycleMassPercAssess.toFixed(2)}</td>
+              <td class="togglePerc ">${recovMassPercAssess.toFixed(2)}</td>
+              <td class="togglePerc ">${disposabalePercMass.toFixed(2)}</td>
+              <td class="togglePerc ">100</td>
+					  </tr>`
+			renderEN4555ToPerc.innerHTML += row
 
      
 
@@ -656,6 +671,67 @@ resMap.forEach((value, key) => {
     })
 })
 console.log(result);
+
+let materialNameValues = result.map(function (el) {
+  return el.materialname
+})
+console.log(materialNameValues)
+
+let recycledmaterialmassValues = result.map(function (el) {
+  return el.recycledmaterialmass
+})
+console.log(recycledmaterialmassValues)
+let nullVal = 0
+let nullNameVal = []
+
+     var optionsref = {
+          series: [{
+          data:  nullVal
+        }],
+          chart: {
+          type: 'bar',
+          height: 350
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 4,
+            horizontal: true,
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        xaxis: {
+          categories: nullNameVal,
+        }
+        };
+     var optionstwo = {
+          series: [{
+          data:  recycledmaterialmassValues
+        }],
+          chart: {
+          type: 'bar',
+          height: 350
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 4,
+            horizontal: true,
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        xaxis: {
+          categories: materialNameValues,
+        }
+        };
+
+let chartsecondref = new ApexCharts(chartsecond, optionsref);
+  let chartssecond = new ApexCharts(chartsecond, optionstwo);
+  chartsecond.innerHTML = " "
+        chartssecond.render();
+ 
 const summedrecyc = document.querySelector('.summedrecyc')
 summedrecyc.innerHTML = ""
 
@@ -991,86 +1067,45 @@ sumRecycWeight.forEach((el)=> {
 
 const tableMatSummarry = document.querySelector('.tableMatSummarry')
 let materialnum = tableMatSummarry.rows.length
-   let optionsref = {
-  chart: {
-    type: 'bar'
-  },
-  plotOptions: {
-    bar: {
-      horizontal: true
-    }
-  },
-
- //Chart for 2nd assessement
-series: [{
-  data: [{
-    x: 'No. of Recycled Materials',
-    y: 0
-  }, {
-    x: 'Recycled Material(%)',
-    y: 0
-  }]
-}]
-
-
-}
-   let optionstwo = {
-  chart: {
-    type: 'bar'
-  },
-  plotOptions: {
-    bar: {
-      horizontal: true
-    }
-  },
-
- //Chart for 2nd assessement
-series: [{
-  data: [{
-    x: 'No. of Recycled Materials',
-    y: materialnum - 1
-  }, {
-    x: 'Recycled Material(%)',
-    y: parseFloat(sumValPerc).toFixed(2)
-  }]
-}]
-}
-
-let chartsecondref = new ApexCharts(chartsecond, optionsref);
-  let chartssecond = new ApexCharts(chartsecond, optionstwo);
-  chartsecond.innerHTML = " "
-        chartssecond.render();
+   
 
 })
 })
 })
  const convertG = document.querySelector('.convertG')
-  convertG.onclick = function(e) {
-    e.preventDefault()
-        const toggleG = document.querySelectorAll('.toggleG')
-    toggleG.forEach((el)=>{
-   el.classList.toggle("hide")
-})
-
-
-
-
-  
-  }
-
    const convertPerc = document.querySelector('.convertPerc')
-  convertPerc.onclick = function(e) {
-    e.preventDefault()
+      const convertAll = document.querySelector('.convertAll')
+   const fulldata = document.querySelector('.fulldata')
+   const convertedToGram = document.querySelector('.convertedToGram')
+   const convertedToPerc = document.querySelector('.convertedToPerc')
  
-       const togglePerc = document.querySelectorAll('.togglePerc')
-    togglePerc.forEach((el)=>{
-   el.classList.toggle("hide")
-})
-
+ 
+//Convert Table to Gram
+convertG.onclick = function(e) {
+  e.preventDefault()
+  convertedToGram.style.display = "table-cell"
+    convertedToGram.style.height = "auto"
+  fulldata.style.display = "none"
+  convertedToPerc.style.display = "none"
   
-  }
 
+}
 
+convertPerc.onclick = function(e) {
+  e.preventDefault()
+  convertedToPerc.style.display = "table-cell"
+    convertedToPerc.style.height = "auto"
+  fulldata.style.display = "none"
+  convertedToGram.style.display = "none"
+}
+
+convertAll.onclick = function(e) {
+  e.preventDefault()
+  fulldata.style.display = "inline-block"
+    fulldata.style.height = "auto"
+  convertedToPerc.style.display = "none"
+  convertedToGram.style.display = "none"
+}
 
 
   
