@@ -99,7 +99,15 @@ let selecrecovMat = document.querySelector('#selecrecovMat');
 let selectiveMat = document.querySelector('#selectiveMat')
 const addmaterialOptions = document.querySelector('#editmaterialName')
    const editmaterialOptions = document.querySelector('.editmaterialName')
-// order and filtering 
+// Edit Substances
+const editSubmodaly = document.querySelector('.editSubmodaly')
+const EditPMSubsName = document.querySelector('#EditPMSubsName')
+const EditPMSubsCAS = document.querySelector('#EditPMSubsCAS')
+const EditPMSubsCRM = document.querySelector('#EditPMSubsCRM')
+const EditPMSubsROHS = document.querySelector('#EditPMSubsROHS')
+const EditPMSubsMassg = document.querySelector('#EditPMSubsMassg')
+const EditPMSubsMassPerc = document.querySelector('#EditPMSubsMassPerc')
+const editSub = document.querySelector('#editSub')
 let id;
 
 
@@ -677,13 +685,13 @@ db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${s
        
                     <td>
              <nav class="navbary" style="background-color: #fb8500;">
+             	<a href="#" class="navbary__link btnEditSubs" data-Part='${arrUniq[i].subidRef}'>
+		<span  ><i class="bx bxs-edit-alt" style="color: white; font-size: 15px; "></i></span>
+		<span class="navbary__label" style="background-color: #fb8500;">Edit Substances</span>
+	</a>
 	<a href="#" class="navbary__link">
 		<span class="btnpartsubdelete"  data-Part='${arrUniq[i].subidRef}'><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style="background-color: #fb8500;">delete Substance</span>
-	</a>
-  	<a href="#" class="navbary__link">
-		<span class=""  data-Part='${arrUniq[i].subidRef}'><i class="bx bxs-edit-alt" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style="background-color: #fb8500;">Edit Substances</span>
+		<span class="navbary__label" style="background-color: #fb8500;">Delete Substance</span>
 	</a>
   </nav>
       </td>
@@ -693,6 +701,79 @@ db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${s
 		}}
   })
 .then(()=> {
+    const btnEditSubs = document.querySelectorAll('.btnEditSubs')
+      
+btnEditSubs.forEach((eachbtnEditSubs)=>{
+// edit a material of a specific part
+ eachbtnEditSubs.onclick = function(e) {
+
+editSubmodaly.classList.add('modaly-show');
+ 
+ 
+  const EditSubRef = eachbtnEditSubs.getAttribute('data-part')
+  console.log(EditSubRef)
+  e.preventDefault()
+ db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${subsmatId}`).collection('substances').doc(`${EditSubRef}`).get().then((doc)=> {
+  if (doc.exists) {
+        console.log("Document data:", doc.id, doc.data());
+         const editSubHeader = document.querySelector('.editSubHeader')
+         console.log(doc.data())
+
+    id = doc.id;
+    editSubHeader.innerHTML = '물질 정보 수정 -' + doc.data().substanceName
+    EditPMSubsName.value = doc.data().substanceName;
+    EditPMSubsCAS.value = doc.data().casnumber;
+    EditPMSubsCRM.value = doc.data().crm;
+    EditPMSubsROHS.value = doc.data().rohs;
+    EditPMSubsMassg.value = doc.data().substanceMassg;
+    EditPMSubsMassPerc.value = doc.data().substanceMassPerc;
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+ })
+
+
+
+editSub.onclick = function(e) {
+  e.preventDefault();
+  //  materiallist.innerHTML = ""
+  Swal.fire({
+  title: 'Do you want to save the changes?',
+  showDenyButton: true,
+  showCancelButton: true,
+  confirmButtonText: 'Save',
+  denyButtonText: `Don't save`,
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  
+
+
+  
+	     db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${subsmatId}`).collection('substances').doc(`${EditSubRef}`).update({
+    substanceName: EditPMSubsName.value,
+    casnumber: EditPMSubsCAS.value,
+    crm: EditPMSubsCRM.value,
+    rohs: EditPMSubsROHS.value,
+    substanceMassg: EditPMSubsMassg.value,
+    substanceMassPerc: EditPMSubsMassPerc.value,
+	
+   
+  })
+  
+    Swal.fire(
+  'Success!',
+  'Susbstance updated successfully!',
+  'success'
+)
+
+})
+  };
+}
+})
+    
+
+
     const btnpartsubdelete = document.querySelectorAll('.btnpartsubdelete');
     btnpartsubdelete.forEach((eachbtnpartsubdelete) => {
 eachbtnpartsubdelete.onclick = function(e){
@@ -1302,6 +1383,9 @@ window.addEventListener('click', e => {
   }
       if(e.target === viewMatTable ) {
     viewMatTable.classList.remove('modaly-show');
+  }
+       if(e.target === editSubmodaly ) {
+    editSubmodaly.classList.remove('modaly-show');
   }
 });
 

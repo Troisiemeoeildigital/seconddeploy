@@ -1229,17 +1229,17 @@
 </nav>
                      </div>
          
-               <nav class="navbary deleteProof" style="margin-left: -12px; width:40px; background-color: #fb8500;">
-	<a href="#" class="navbary__link">
-		<span class="" ><i class="bx bx-cloud-upload" style=" color: white;
-    font-size: 17px;"></i></span>
-		<span class="navbary__label " style="background-color: #fb8500; left:-55px;">Delete Proof File</span>
-	</a>
-</nav>
+     
 
                             </div>
-                               <div class="col-md-6">
-
+                               <div class="col-md-6" style=" display: flex;margin-top: 1%;align-items: center;justify-content: flex-end;align-content: center;">
+                                          <nav class="navbary deleteProof" style="width:30%; background-color: #F05D5E;">
+	<a href="#" class="navbary__link">
+		<span class="" ><i class="ri-delete-bin-line" style=" color: white;
+    font-size: 17px;"></i></span>
+		<span class="navbary__label " style="background-color: #F05D5E; left:-55%;">Delete Proof File</span>
+	</a>
+</nav>
                                </div>
                               </div>
                             </form>
@@ -1351,7 +1351,103 @@
         </div>
       </div>
     </div>
+             
+ <!--Edit Substance-->
+                      <div class="editSubmodaly modaly-wrapper" style="z-index: 92999;">
+      <div class="modaly">
+   
+                     <div class="modaly-header" style="text-align:center">  <span class="editSubHeader"  style="font-size: 150%; color:black;"></span></div>
+
+        <div class="modaly-body">
+          <div class="card-body">
+                     <div class="">
+                      
+                          <form class="form"   data-toggle="validator" id="form-wizard1">
+                     
+                        <!-- fieldsets -->
+                        <fieldset>
+                           <div class="form-card text-left">
+                              <div class="row">
+                                 <div class="col-7">
+                                    <h3 class="mb-4">Edit Substance Details:</h3>
+                                 </div>
+                               
+                              </div>
                     
+                              
+                           <div class="row">
+                                           <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Substance Name </label>
+                                          <input type="text" class="form-control"  id='EditPMSubsName' name="EditPMSubsName" placeholder="Please Enter Susbtance Name" data-errors="Please Enter Susbtance Name"  >
+                                        
+                                      
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>  
+                   
+                                  <div class="col-md-6">                
+                                            <div class="form-group">
+                                        <label>CAS Number </label>
+                                    
+                                          <input type="text" class="form-control"  id='EditPMSubsCAS' name="EditPMSubsCAS" placeholder="Please Enter CAS Number" data-errors="Please Enter CAS Number"  >
+                                      
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>  
+                           </div> 
+                
+                               <div class="row">
+                                     <div class="col-md-3"> 
+                                    <div class="form-group">
+                                         <label>CRM </label>
+                                    
+                                          <input type="text" class="form-control"  id='EditPMSubsCRM' name="EditPMSubsCRM" placeholder="Please Enter CRM value" data-errors="Please Enter CRM value"  >
+                                        
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+
+                                  <div class="col-md-3"> 
+                                    <div class="form-group">
+                                         <label>ROHS </label>
+                                    
+                                          <input type="text" class="form-control"  id='EditPMSubsROHS' name="EditPMSubsROHS" placeholder="Please Enter ROHS value" data-errors="Please Enter ROHS value"  >
+                                        
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                          
+                           
+                                     <div class="col-md-3"> 
+                                    <div class="form-group">
+                                        <label>Susbtance Mass (g) </label>
+                                        <input type="number" class="form-control" id='EditPMSubsMassg' name="EditPMSubsMassg" placeholder="Please enter Susbtance mass (g)" data-errors="Please Substance mass (g)." >
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                 <div class="col-md-3"> 
+                                    <div class="form-group">
+                                        <label>Susbtance Mass (%) *</label>
+                                        <input type="number" class="form-control" id='EditPMSubsMassPerc' placeholder="Please enter Material mass (%)" data-errors="Please Susbtance mass (%)." name="EditPMSubsMassPerc" >
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                            </div>
+                           </div>
+                    
+                    </fieldset>
+                        <button type="button"  id="editSub"  class="btn btn-primary btn-dark  float-right mr-3" >소재 편집</button>
+                            <button type="button" id="subsmodalclose" class="btn btn-secondary action-button-closeMat"  >Close</button>
+                     
+                      
+                   </form>
+                 </div>
+            <!-- Modal -->
+             </div>
+        </div>
+      </div>
+    </div>      
     <!-- Wrapper End-->
     <footer class="iq-footer">
             <div class="container-fluid">

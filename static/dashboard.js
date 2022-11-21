@@ -15,6 +15,81 @@ const auth = firebase.auth(app);
 const db = firebase.firestore(app);
 const functions = firebase.functions();
 
+
+  var matRef = db.collectionGroup('recycledproducts').orderBy("createdAt").limit(5);
+matRef
+.get()
+ .then(query=>{
+    let data = query.docs.map(doc=>{
+        let x = doc.data()
+            return x;
+            
+    })
+    console.log(data)
+    buildTable(data)
+	function buildTable(data){
+
+		for (var i = 0; i < data.length; i++){
+			var row = `   <tr style=" height: 60px;  border-bottom: 0.5px solid grey; padding-bottom: 10px;">
+      
+   <td style="
+    display: inline-block;
+    margin-top: 10%;
+">  <img  style=" max-width: 30px; max-height: 30px;" src="${data[i].productImg}" alt="${data[i].productImg}"></td>
+					
+    
+                <td style="vertical-align: middle; text-align:center; ">${data[i].productCategory}</td>
+                    <td style="vertical-align: middle; text-align:center;">${data[i].productName}</td>
+							<td style="vertical-align: middle; text-align:center;">${data[i].productMN}</td>
+							<td style="vertical-align: middle; text-align:center;">${data[i].productWeight}</td>
+              	<td style="vertical-align: middle; text-align:center;">${data[i].prodWidth} x ${data[i].prodHeight} x ${data[i].prodDepth}</td>
+							<td style="vertical-align: middle; text-align:center;">${data[i].registeredDate}</td>
+              	<td style="vertical-align: middle; text-align:center;">${data[i].productStatus}</td>
+                	<td style="vertical-align: middle; text-align:center;">${data[i].memo}</td>
+    </tr>`
+	 const prodTabledata = document.querySelector('.prodTabledata')
+  prodTabledata.insertAdjacentHTML('afterbegin', row);
+
+
+		}
+	}
+  })
+
+
+    var matRef = db.collectionGroup('recycledparts').limit(5);
+matRef
+.get()
+ .then(query=>{
+    let data = query.docs.map(doc=>{
+        let x = doc.data()
+            return x;
+            
+    })
+    console.log(data)
+    buildTable(data)
+	function buildTable(data){
+
+		for (var i = 0; i < data.length; i++){
+			var row = `   <tr style=" height: 60px;  border-bottom: 0.5px solid grey; padding-bottom: 10px;">
+ 
+ <td style="color: black;font-weight: 600; font-size: 15px;">${data[i].supplierName}</td>
+     <td style="color: black;font-weight: 600; font-size: 15px;">${data[i].partName}</td>
+      <td style="color: black;font-weight: 600; font-size: 15px;">${data[i].partCode}</td>
+        <td style="color: black;font-weight: 600; font-size: 15px;">${data[i].partWeight}</td>
+         <td style="color: black;font-weight: 600; font-size: 15px;">${data[i].partWidth} x ${data[i].partHeight} x ${data[i].partDepth} (${data[i].sizeUnit}) </td>
+           <td style="color: black;font-weight: 600; font-size: 15px;">${data[i].reusedPart}</td>
+     <td style="color: black;font-weight: 600; font-size: 15px;">${data[i].partRegisteredDate}</td>
+           <td style="color: black;font-weight: 600; font-size: 15px;">${data[i].partMemo}</td>
+
+    </tr>`
+	 const parttable = document.querySelector('.parttable')
+  parttable.insertAdjacentHTML('afterbegin', row);
+
+
+		}
+	}
+  })
+
 firebase.auth().onAuthStateChanged(user => {
   const userEmailCard = document.getElementById('useremailcard')
  
@@ -33,6 +108,9 @@ auth.onAuthStateChanged(user => {
         console.log("There's nothing here!")
     }
 })
+
+
+
 
 const editUI = (user) => {
   if (user) {
