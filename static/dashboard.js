@@ -16,6 +16,63 @@ const db = firebase.firestore(app);
 const functions = firebase.functions();
 
 
+//  auth.onAuthStateChanged(user => {
+//      if(user) {
+      
+//  const userRef = db.collection('users').where('userID', '==', user.uid).get()
+
+// userRef.then((querySnapshot) => {
+//  querySnapshot.forEach((doc) => {
+//   console.log( doc.data().userCompanyname)
+
+    
+//   //   console.log('hey')
+//   //   document.querySelector('.loadingtitle').innerHTML = "Data is loading - Please wait... ⌛"
+//   // document.querySelector('.loadingtitle').style.fontWeight = "600"
+//   // document.querySelector('.loadingtitle').style.color = "black"
+//   //   document.querySelector('.loadingtitle').style.marginLeft = "43%";
+//   var matRef = db.collectionGroup('recycledproducts').where("productManufacturer", '==',  doc.data().userCompanyname).orderBy("createdAt").limit(5);
+// matRef
+// .get()
+//  .then(query=>{
+//     let data = query.docs.map(doc=>{
+//         let x = doc.data()
+//             return x;
+            
+//     })
+//     console.log(data)
+//     buildTable(data)
+// 	function buildTable(data){
+
+// 		for (var i = 0; i < data.length; i++){
+// 			var row = `   <tr style=" height: 60px;  border-bottom: 0.5px solid grey; padding-bottom: 10px;">
+      
+//    <td style="
+//     display: inline-block;
+//     margin-top: 10%;
+// ">  <img  style=" max-width: 30px; max-height: 30px;" src="${data[i].productImg}" alt="${data[i].productImg}"></td>
+					
+    
+//                 <td style="vertical-align: middle; text-align:center; ">${data[i].productCategory}</td>
+//                     <td style="vertical-align: middle; text-align:center;">${data[i].productName}</td>
+// 							<td style="vertical-align: middle; text-align:center;">${data[i].productMN}</td>
+// 							<td style="vertical-align: middle; text-align:center;">${data[i].productWeight}</td>
+//               	<td style="vertical-align: middle; text-align:center;">${data[i].prodWidth} x ${data[i].prodHeight} x ${data[i].prodDepth}</td>
+// 							<td style="vertical-align: middle; text-align:center;">${data[i].registeredDate}</td>
+//               	<td style="vertical-align: middle; text-align:center;">${data[i].productStatus}</td>
+//                 	<td style="vertical-align: middle; text-align:center;">${data[i].memo}</td>
+//     </tr>`
+// 	 const prodTabledata = document.querySelector('.prodTabledata')
+//   prodTabledata.insertAdjacentHTML('afterbegin', row);
+
+
+// 		}
+// 	}
+//   })
+  
+//  })
+// })}
+//   })
   var matRef = db.collectionGroup('recycledproducts').orderBy("createdAt").limit(5);
 matRef
 .get()
@@ -54,6 +111,9 @@ matRef
 		}
 	}
   })
+  
+
+
 
 
     var matRef = db.collectionGroup('recycledparts').limit(5);
@@ -72,14 +132,14 @@ matRef
 		for (var i = 0; i < data.length; i++){
 			var row = `   <tr style=" height: 60px;  border-bottom: 0.5px solid grey; padding-bottom: 10px;">
  
- <td style="color: black;font-weight: 600; font-size: 15px;">${data[i].supplierName}</td>
-     <td style="color: black;font-weight: 600; font-size: 15px;">${data[i].partName}</td>
-      <td style="color: black;font-weight: 600; font-size: 15px;">${data[i].partCode}</td>
-        <td style="color: black;font-weight: 600; font-size: 15px;">${data[i].partWeight}</td>
-         <td style="color: black;font-weight: 600; font-size: 15px;">${data[i].partWidth} x ${data[i].partHeight} x ${data[i].partDepth} (${data[i].sizeUnit}) </td>
-           <td style="color: black;font-weight: 600; font-size: 15px;">${data[i].reusedPart}</td>
-     <td style="color: black;font-weight: 600; font-size: 15px;">${data[i].partRegisteredDate}</td>
-           <td style="color: black;font-weight: 600; font-size: 15px;">${data[i].partMemo}</td>
+ <td style="color: black;font-weight: 600; font-size: 15px;vertical-align: middle; text-align:center;">${data[i].supplierName}</td>
+     <td style="color: black;font-weight: 600; font-size: 15px;vertical-align: middle; text-align:center;">${data[i].partName}</td>
+      <td style="color: black;font-weight: 600; font-size: 15px;vertical-align: middle; text-align:center;">${data[i].partCode}</td>
+        <td style="color: black;font-weight: 600; font-size: 15px;vertical-align: middle; text-align:center;">${data[i].partWeight}</td>
+         <td style="color: black;font-weight: 600; font-size: 15px;vertical-align: middle; text-align:center;">${data[i].partWidth} x ${data[i].partHeight} x ${data[i].partDepth} (${data[i].sizeUnit}) </td>
+           <td style="color: black;font-weight: 600; font-size: 15px;vertical-align: middle; text-align:center;">${data[i].reusedPart}</td>
+     <td style="color: black;font-weight: 600; font-size: 15px;vertical-align: middle; text-align:center;">${data[i].partRegisteredDate}</td>
+           <td style="color: black;font-weight: 600; font-size: 15px;vertical-align: middle; text-align:center;">${data[i].partMemo}</td>
 
     </tr>`
 	 const parttable = document.querySelector('.parttable')

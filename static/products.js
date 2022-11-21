@@ -251,6 +251,7 @@ document.querySelector('#addsubsproduct').style.display = "none";
   const viewassess = document.querySelector(`[data-id='${doc.id}'] .viewbtn`);
   viewassess.onclick= function (e) {
     e.preventDefault()
+    let dataPWeightRef = viewassess.getAttribute('data-id');
 let dataPN = viewassess.getAttribute('data-PN');
 let prodWeightRef = viewassess.getAttribute('prodWeight');
 console.log(dataPN)
@@ -490,14 +491,30 @@ matRef
 }
 );
    console.log(materialData)
+
+//       let partdata = query.docs.map(doc=>{
+//         let x = doc.data().partRef
+//             return x;
+//     })
+//        var partdataRef = partdata.filter(function (el)
+// {
+//   return el.productRef === dataPN;
+// }
+// );
+
+//    console.log(partdataRef)
+ 
    let materialDataUniq = [...new Map(materialData.map(v => [JSON.stringify([v.materialGroup,v.materialMassPerc,v.materialMassg,v.materialName,v.materialRecycleContent,v.materialRecycleType,v.matnameSelect,v.partRef,v.partWeight,v.productRef,v.recovMat,v.recycMat,v.reuseMat]), v])).values()]
 
+ 
+
 console.log(materialDataUniq)
-let secondMatarrUniq = [...new Map(materialData.map(v => [JSON.stringify([v.materialGroup,v.materialName,v.materialMassg]), v])).values()]
+
+
 buildTable(materialDataUniq)
 
 	function buildTable(materialDataUniq){
- 
+
    let energyrecovarr = []
     let energyrecovarrperc = []
     
@@ -506,6 +523,7 @@ buildTable(materialDataUniq)
      let sumenergyrecovmassPerc = energyrecovarrperc.reduce((partialSumPer, b) => partialSumPer + b, 0);
       console.log(sumenergyrecovmassPerc)
 		for (var i = 0; i < materialDataUniq.length; i++){
+  
       let recycMat = parseFloat(materialDataUniq[i].recycMat)
       let reuseMat = parseFloat(materialDataUniq[i].reuseMat)
       let recovMat = parseFloat(materialDataUniq[i].recovMat)
@@ -524,17 +542,17 @@ buildTable(materialDataUniq)
       let recycleMassgAssess = materialMass * recycMat 
       // Recycle Mass (%),  Formula: (material mass * Recycle factor) / Part Mass
    
-      let recycleMassPercAssess = recycleMassgAssess  / prodWeightRefValue * 100
+      let recycleMassPercAssess = recycleMassgAssess  / materialMass * 100
       console.log(recycleMassPercAssess)
        //Recovery Mass (g),  Formula: material mass * Recovery factor
       let recovMassgAssess = materialMass * recovMat 
      //Recovery Mass (%),  Formula: (material mass * Recovery factor) / Part Mass
-      let recovMassPercAssess = recovMassgAssess / prodWeightRefValue * 100
+      let recovMassPercAssess = recovMassgAssess / materialMass * 100
       //  console.log(recovMassPercAssess.toFixed(2))
       // Disposable Mass (g), Formulat: Material total mass - Recovery mass 
       let disposabaleMassg = (materialMass - recovMassgAssess).toFixed(2)
       // Disposable Mass (%), Formula: (Material total mass - Recovery mass) / Material mass
-      let disposabalePercMass = disposabaleMassg / materialMass
+      let disposabalePercMass = disposabaleMassg / materialMass * 100
       // Energy Recovery Mass (g), Formula: Recovery mass - Reuse mass - Recycling mass 
       let energyRecoMassgAssess = recovMassgAssess - reuseMassgAssess - recycleMassgAssess
      
@@ -548,9 +566,12 @@ buildTable(materialDataUniq)
    let RecycMatPerc = (materialDataUniq[i].materialMassg * recycleRate / 100).toFixed(2)
       energyrecovarr.push(energyRecoMassgAssess)
       energyrecovarrperc.push(energyRecoMassPercAssess)
-			var row = `<tr>
+        //quantity  solution starts here
+  
+      console.log(doc.data().quantity)
+      		var row = `<tr>
               <td>${materialDataUniq[i].partRef}</td>
-							<td class="toggleG " >${PartMass.toFixed(2)}</td>
+							<td class="toggleG " >${(PartMass).toFixed(2)}</td>
               <td>${materialDataUniq[i].materialName}</td>
               <td class="toggleG ">${materialMass.toFixed(2)}</td>
               <td class="toggleG ">${reuseMassgAssess.toFixed(2)}</td>
@@ -566,6 +587,9 @@ buildTable(materialDataUniq)
 					  </tr>`
 
 			renderEN4555.innerHTML += row
+  
+  
+	
 
       		var row = `<tr>
               <td>${materialDataUniq[i].partRef}</td>
@@ -864,11 +888,6 @@ sumDisposableWeightg.forEach((el)=> {
 })
 
   // Summary (not table) Disposable Weight (%)
-  var sumAssess = document.querySelector(".sumAssess"),
-  sumVal = 0;
-for (var i = 1; i < sumAssess.rows.length; i++) {
-  sumVal = sumVal + parseFloat(sumAssess.rows[i].cells[11].innerHTML);
-}
  let DisposabalsumValPerc = sumVal / prodWeightRef * 100
 const sumDisposableWeightPerc = document.querySelectorAll('.disposalWeightPerc')
 sumDisposableWeightPerc.forEach((el)=> {
@@ -1355,22 +1374,22 @@ let idref = guid()
         <td style="color: black; font-weight: 600;">${doc.data().partWeight}</td>
         <td style="color: black; font-weight: 600;">${doc.data().partSize}</td>
         <td style="color: black; font-weight: 600;">${doc.data().partRegisteredDate}</td>
-           <td style="color: black; font-weight: 600;"><input type="number" class="quantityPart" style="border: 0; text-align: center;" data-Part='${doc.id}' value="${doc.data().quantity}" placeholder="${doc.data().quantity}" name="" id=""></td>
+           <td style="color: black; font-weight: 600;"><input type="number" class="quantityPart" style="border: 1px solid #ddd; text-align: center;" data-Part='${doc.id}' min="0" value="${doc.data().quantity}" placeholder="${doc.data().quantity}" name="" id=""></td>
         <td style="color: black; font-weight: 600;">${doc.data().partMemo}</td>
 
           <td>
   <nav class="navbary"  style="background-color:  #219EBC" ;>
  	<a href="#" class="navbary__link"  style="background-color:  #219EBC">
 		<span class="viewpartmat"data-toggle="modal" data-target="#partproductmaterial" data-PN= '${doc.data().partname}' data-id='${doc.id}'><i class="ri-eye-line" style="color: white; font-size: 15px;"></i></span>
-		<span class="navbary__label">View Materials</span>
+		<span class="navbary__label" style="background-color:  #219EBC">View Materials</span>
 	</a>
     	<a href="#" class="navbary__link"  style="background-color:  #219EBC">
 		<span class="btnprodpartedit" data-Part='${doc.id}' ><i class='bx bxs-edit-alt' style="color: white; font-size: 15px;" ></i></span>
-		<span class="navbary__label">Edit Part</span>
+		<span class="navbary__label" style="background-color:  #219EBC; top:-47px">Edit Part</span>
 	</a>
   	<a href="#" class="navbary__link"  style="background-color:  #219EBC">
 		<span class="btnprodpartdelete" data-Part='${doc.id}' ><i class='ri-delete-bin-line' style="color: white; font-size: 15px;" ></i></span>
-		<span class="navbary__label">Delete Part</span>
+		<span class="navbary__label" style="background-color:  #219EBC">Delete Part</span>
 	</a>
    
 </nav>
@@ -1955,11 +1974,30 @@ document.querySelector(".files").addEventListener("change", function(e) {
       );
     }
   } else {
-        Swal.fire(
-  'warning',
-  'No file chosen!',
-  'warning'
+    db.collection('recycledproducts').add({
+    productManufacturer: productManufacturer.value,
+    productCategory: addproductCategory.value,
+    productName: addproductName.value,
+    productMN: addproductMN.value,
+    productWeight: addproductWeight.value,
+    prodWidth: addprodWidth.value,
+    prodDepth: addprodDepth.value,
+    prodHeight: addprodHeight.value,
+    sizeUnit: selectUnit.value,
+    registeredDate: addregisteredDate.value,
+    productStatus: addproductStatus.value,
+    memo: addMemo.value,
+    productImg: 'https://firebasestorage.googleapis.com/v0/b/projectcrm-f4e5f.appspot.com/o/image%20(2).png?alt=media&token=44677c17-1b79-4b1b-82d6-8bd872254af8',
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+
+
+  }).then(()=>{
+      Swal.fire(
+  'Success!',
+  'A new product is added!',
+  'success'
 )
+  })
     
   }
 
@@ -1980,8 +2018,9 @@ document.querySelector(".editfiles").addEventListener("change", function(e) {
   }
 });
 
-editFormProd.addEventListener('click', e => {
-  e.preventDefault();
+const updateProdImg = document.querySelector(".updateProdImg")
+updateProdImg.onclick = function(e) {
+  e.preventDefault()
   Swal.fire({
   title: 'Do you want to save the changes?',
   showDenyButton: true,
@@ -1989,8 +2028,7 @@ editFormProd.addEventListener('click', e => {
   confirmButtonText: 'Save',
   denyButtonText: `Don't save`,
 }).then((result) => {
-  /* Read more about isConfirmed, isDenied below */
-  if (result.isConfirmed) {
+   if (result.isConfirmed) {
      if (editfiles.length != 0) {
     //Loops through all the selected editfiles
     for (let i = 0; i < editfiles.length; i++) {
@@ -2029,22 +2067,14 @@ editFormProd.addEventListener('click', e => {
 
   // console.log(doc.id, " => ", doc.data());
    db.collection('recycledproducts').doc(id).update({
-    productCategory: editmodalyForm.productCategory.value,
-    productMN: editmodalyForm.editmodelName.value,
-    productWeight: editmodalyForm.productWeight.value,
-    registeredDate: editmodalyForm.editregisteredDate.value,
-   productStatus: editmodalyForm.editproductStatus.value,
-   memo: editmodalyForm.editMemo.value,
-    productImg: url,
-     prodWidth:editprodWidth.value,
-    prodDepth:editprodDepth.value,
-    prodHeight:editprodHeight.value,
-    sizeUnit:editselectUnit.value,
+
+    productImg: url
+  
   })
   
     Swal.fire(
   'Success!',
-  'New product added successfully!',
+  'Product Image updated successfully!',
   'success'
 )
 })
@@ -2057,6 +2087,39 @@ editFormProd.addEventListener('click', e => {
   'No file chosen!',
   'warning'
 )}
+	
+  } else if (result.isDenied) {
+    Swal.fire('Changes are not saved', '', 'info')
+  }
+})
+}
+
+editFormProd.addEventListener('click', e => {
+  e.preventDefault();
+  Swal.fire({
+  title: 'Do you want to save the changes?',
+  showDenyButton: true,
+  showCancelButton: true,
+  confirmButtonText: 'Save',
+  denyButtonText: `Don't save`,
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+ 
+  // console.log(doc.id, " => ", doc.data());
+   db.collection('recycledproducts').doc(id).update({
+    productCategory: editmodalyForm.productCategory.value,
+    productMN: editmodalyForm.editmodelName.value,
+    productWeight: editmodalyForm.productWeight.value,
+    registeredDate: editmodalyForm.editregisteredDate.value,
+   productStatus: editmodalyForm.editproductStatus.value,
+   memo: editmodalyForm.editMemo.value,
+    productImg: url,
+     prodWidth:editprodWidth.value,
+    prodDepth:editprodDepth.value,
+    prodHeight:editprodHeight.value,
+    sizeUnit:editselectUnit.value,
+  })
 	
   } else if (result.isDenied) {
     Swal.fire('Changes are not saved', '', 'info')

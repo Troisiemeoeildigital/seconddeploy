@@ -82,6 +82,7 @@ html {
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
+  #id-213-title {display:none !important;}
 
 body {
   margin: 0;

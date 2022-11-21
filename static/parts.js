@@ -47,6 +47,7 @@ const partsName = document.querySelector('.partsName')
 const materiallist = document.querySelector('.materiallist')
 const closebtn = document.querySelectorAll('.action-button-close')
 const closebtnMat = document.querySelectorAll('.action-button-closeMat')
+const closebtnSub = document.querySelectorAll('.action-button-closeSub')
 const subslist = document.querySelector('.subslist')
 const addPartsForm = document.querySelector('#addPartsForm')
 
@@ -390,6 +391,14 @@ addpartsRef
   e.preventDefault()
  db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${editData}`).get().then((doc)=> {
   if (doc.exists) {
+
+        const PMmaterialMassg = document.querySelector('#PMmaterialMassg')
+ PMmaterialMassg.onchange = function(e){
+  e.preventDefault()
+       const PMMaterialMassPerc = document.querySelector('#PMMaterialMassPerc')
+  
+  PMMaterialMassPerc.value = (PMmaterialMassg.value / doc.data().partRefWeight * 100).toFixed(2)
+}
         console.log("Document data:", doc.id, doc.data());
          const editMatHeader = document.querySelector('.editMatHeader')
          console.log(doc.data())
@@ -405,7 +414,11 @@ addpartsRef
         // doc.data() will be undefined in this case
         console.log("No such document!");
     }
+
+
  })
+
+  
 
 var editfiles = [];
 document.querySelector(".editfiles").addEventListener("change", function(e) {
@@ -1652,5 +1665,11 @@ closebtn.forEach((eachClose)=> {
 closebtnMat.forEach((eachCloseMat)=> {
   eachCloseMat.addEventListener('click', () =>{
     editMatmodaly.classList.remove('modaly-show');
+   })
+})
+
+closebtnSub.forEach((eachCloseSub)=> {
+  eachCloseSub.addEventListener('click', () =>{
+    editSubmodaly.classList.remove('modaly-show');
    })
 })
