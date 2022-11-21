@@ -90,7 +90,7 @@
        <span class="tooltip">부품목록</span>
      </li>
      <li>
-       <a class="notadmin" href="./materialsdb" style="display: none;">
+       <a class="notadmin" href="./materials" style="display: none;">
  <i class='bx bx-pie-chart-alt-2' ></i>
          <span class="links_name">소재목록</span>
        </a>
@@ -155,7 +155,7 @@
         
 <div class="content-page">
      <div class="container-fluid">
-           <div class="iq-top-navbar">
+           <div class="iq-top-navbar" style="box-shadow: 0 16px 15px 0 rgba(252, 170, 19, 0.075)">
           <div class="iq-navbar-custom">
               <nav class="navbar navbar-expand-lg navbar-light p-0">
             
@@ -263,14 +263,68 @@
                 </div>
             </div>
 
+            
 
+<div class="col-lg-12">
+  <div class="row justify-content-end mb-3">
+                              <div class="col-2">
+                        
+                              </div>
+                              <div class="col-2">
+                            
+                              </div><div class="col-8">
+                                <div class="row" style="
+    justify-content: end;
+    gap: 4%;
+">
+                                    <div class="" id="formfloat">
+                      <div class="input-group mb-3">
+                      
+                        <select class="custom-select sortSubsSelection" id="inputGroupSelect03">
+                           <option value="6" selected="">Choose...</option>
+                           <option value="0">Sort by Substance Name</option>
+                           <option value="1">Sorty by CAS number</option>
+                        </select>
+                           <div class="input-group-append">
+                           <span class="input-group-text" id="basic-addon5"><i class="bx bx-sort font-size-20"></i></span>
+                        </div>
+                     </div>
+                     </div>
+
+
+
+                      <div class="row" style="width: 27%;">
+                        <div class="input-group-prepend" style="width: 60%;/* margin: 0; */">
+                           <input type="text" class="form-control" id="myInputSub" style="margin: 0; border-radius: 10px 0 0 10px; height:46px;"  name="myInputSub" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon5">
+                        </div>
+                        <select class="custom-select searchSubSelection" id="inputGroupSelect03" style="
+    width: 10%;
+    border-radius: 0;
+">
+                           <option selected="">Choose...</option>
+                           <option value="0">Substance Name</option>
+                           <option value="1">CAS Number</option>
+                        </select>
+                           <div class="input-group-append" style="
+    border-radius: 0;
+">
+                           <span class="input-group-text" id="basic-addon5" style="
+    height: 74%;
+    border-radius: 0 10px 10px 0;
+"><i class="las la-search font-size-20"></i></span>
+                        </div>
+                     </div>
+                                </div>
+                              </div>
+                           </div>
+</div>
             
         <!--Here starts the form-->
         
  <div class="tabledata">
    
     <div class="table-wrapper" style="
-    overflow-y: scroll; height: 545px;">
+    overflow-y: scroll; height: auto;">
       <table class="table-users" style="position: sticky; top: 0; z-index: 1;">
        <thead>
         
@@ -282,7 +336,9 @@
           <th>NONE </th>
        </thead>
       </table>
-    
+    <tbody class="table-users">
+      <button class="loadMore">Load More</button>
+    </tbody>
     </div>
     </div>
 

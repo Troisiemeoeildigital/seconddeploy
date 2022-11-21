@@ -56,7 +56,7 @@ let id;
 // Create element and render users
 const renderUser = doc => {
   const tr = `
-       <tr data-id='${doc.id}'>
+       <tr data-id='${doc.id}' style="    border-bottom: 0.5px solid grey;">
       <td>${doc.data().MaterialGroup}</td>
      <td>${doc.data().재료명}</td>
       <td>${doc.data().Reusabiity}</td>
@@ -385,5 +385,41 @@ const editUI = (user) => {
 
 
 
+let searchMatSelection = document.querySelector(".searchMatSelection")
+  
+searchMatSelection.addEventListener('change', ()=>{
+if (searchMatSelection.value == 0) {
+document.getElementsByName('myInputMat')[0].placeholder = 'Search by Material Group'
+}
+else if (searchMatSelection.value == 1) {
+document.getElementsByName('myInputMat')[0].placeholder = 'Search by Material Name'
+}
+
+})
+const myInputSub = document.querySelector('#myInputMat')
+myInputSub.onkeyup = function() {
+     let filter,  tr, td, txtValue, input, table;
+                input = document.getElementById("myInputMat");
+                table = document.querySelector(".table-users");
+            //Intialising Variables
+          
+            filter = input.value.toUpperCase();
+          
+            tr = table.getElementsByTagName("tr");
+         
+    
+            for (let i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[searchMatSelection.value];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+} 
+  
 
 

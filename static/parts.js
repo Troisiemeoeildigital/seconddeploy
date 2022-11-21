@@ -408,6 +408,14 @@ document.querySelector(".editfiles").addEventListener("change", function(e) {
   }
 });
 
+const deleteProof = document.querySelector('.deleteProof')
+deleteProof.onclick = function(e) {
+  e.preventDefault()
+   db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${editData}`).update({
+                        proofurl: "https://kitech.onrender.com/undefined"
+                       })
+}
+
 const updateProof = document.querySelector('.updateProof')
 updateProof.onclick = function(e) {
   e.preventDefault()

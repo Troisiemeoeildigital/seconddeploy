@@ -87,7 +87,7 @@
        <span class="tooltip">부품목록</span>
      </li>
      <li>
-       <a class="notadmin" href="./materialsdb" style="display: none;">
+       <a class="notadmin" href="./materials" style="display: none;">
  <i class='bx bx-pie-chart-alt-2' ></i>
          <span class="links_name">소재목록</span>
        </a>
@@ -152,7 +152,7 @@
         
 <div class="content-page">
      <div class="container-fluid" style="    padding-top: 60px;">
-           <div class="iq-top-navbar">
+           <div class="iq-top-navbar" style="box-shadow: 0 16px 15px 0 rgb(33, 158, 188, 0.07)">
           <div class="iq-navbar-custom">
               <nav class="navbar navbar-expand-lg navbar-light p-0">
             
@@ -343,32 +343,17 @@
                  <h4 class="mb-3" style="color: black;font-weight: 600; font-size: 25px;">부품목록</h4>  
               </div>
                 
-               <div class="col-lg-8">
-            <div class="searchandaddpart">
+        <div class="col-lg-8">
+            <div class="row searchandaddpart">
                  
-                    <div class="form-group" id="formfloat" style="width: 100%; margin:0;">
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend" style="width: 50%;">
-                           <input type="text" class="form-control" id="myInputMat" style="margin: 0; border-radius: 10px 0 0 10px; height:46px;" onkeyup='materialSearch()' name="myInputMat" placeholder="Search Part Name" aria-label="Search Part Name"
-                           aria-describedby="basic-addon5">
-                        </div>
-                        <select  class="custom-select searchPartSelection" id="inputGroupSelect03">
-                           <option selected>Choose...</option>
-                           <option value="1">Part Name</option>
-                           <option value="2">Part Code</option>
-                        </select>
-                           <div class="input-group-append">
-                           <span class="input-group-text" id="basic-addon5"><i class="las la-search font-size-20"></i></span>
-                        </div>
-                     </div>
-                     </div>
-                                  <div class="sortaddpart" style="width: 40%;">
-                
-                       <div class="form-group" id="formfloat" style="width: 100%; margin:0;">
+              
+                                  <div class="sortaddpart">
+
+  <div class="form-group" id="formfloat" style="width: 41%;margin:0;">
                       <div class="input-group mb-3">
                       
-                        <select  class="custom-select sortPartSelection" id="inputGroupSelect03">
-                           <option value="0" selected>Choose...</option>
+                        <select class="custom-select sortPartSelection" id="inputGroupSelect03">
+                           <option value="0" selected="">Choose...</option>
                            <option value="1">Sort by Part Name</option>
                            <option value="2">Sorty by Part Code</option>
                         </select>
@@ -377,6 +362,22 @@
                         </div>
                      </div>
                      </div>
+                                       <div class="form-group" id="formfloat" style="width: 48%;margin:0;">
+                      <div class="input-group mb-3">
+                       <input type="text" class="form-control" id="myInputMat" style="margin: 0;border-radius: 10px 0 0 10px;height:46px;width: 66%;" onkeyup="materialSearch()" name="myInputMat" placeholder="Search by Part Code" aria-label="Search Part Name" aria-describedby="basic-addon5">
+                        <select class="custom-select searchPartSelection" id="inputGroupSelect03">
+                           <option selected="">Choose...</option>
+                           <option value="1">Part Name</option>
+                           <option value="2">Part Code</option>
+                        </select>
+                           <div class="input-group-append">
+                           <span class="input-group-text" id="basic-addon5"><i class="las la-search font-size-20"></i></span>
+                        </div>
+                     </div>
+                     </div>
+
+                
+                     
             </div>
             </div>
 
@@ -396,7 +397,7 @@
  <div class="tabledata" >
     <div class="table-wrapper" style="
     overflow-y: scroll;"> 
-      <table class="table-users parttable" id="myTableMat" >
+      <table class="table-users parttable myTableMat" id="myTableMat" >
         <thead style="position: sticky; top: 0; z-index: 1;">
                  <th>Supplier Name</th>
              <th>Part Name</th>

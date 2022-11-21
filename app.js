@@ -128,7 +128,7 @@ app.get("/selectivematerials", function (req, res) {
     });
 });
 
-app.get("/materialsdb", function (req, res) {
+app.get("/materials", function (req, res) {
    const sessionCookie = req.cookies.session || "";
 
   admin
@@ -136,7 +136,7 @@ app.get("/materialsdb", function (req, res) {
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
       console.log("Logged in:", userData.email)
-      res.render("materialsdb.html");
+      res.render("materials.html");
     })
     .catch((error) => {
       res.redirect("/login");

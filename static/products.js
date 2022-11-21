@@ -173,9 +173,9 @@ const editUI = (user) => {
 // // }
 
 // Create element and render users
-document.querySelector('.loadingtitle').innerHTML = "Data is loading - Please wait... ⌛"
-  document.querySelector('.loadingtitle').style.fontWeight = "600"
-  document.querySelector('.loadingtitle').style.color = "black"
+// document.querySelector('.loadingtitle').innerHTML = "Data is loading - Please wait... ⌛"
+//   document.querySelector('.loadingtitle').style.fontWeight = "600"
+//   document.querySelector('.loadingtitle').style.color = "black"
 const renderUser = doc => {
 
   const tr = `
@@ -1355,7 +1355,7 @@ let idref = guid()
         <td style="color: black; font-weight: 600;">${doc.data().partWeight}</td>
         <td style="color: black; font-weight: 600;">${doc.data().partSize}</td>
         <td style="color: black; font-weight: 600;">${doc.data().partRegisteredDate}</td>
-           <td style="color: black; font-weight: 600;"><input type="number" style="border: 0; text-align: center;" value="${doc.data().quantity}" placeholder="${doc.data().quantity}" name="" id=""></td>
+           <td style="color: black; font-weight: 600;"><input type="number" class="quantityPart" style="border: 0; text-align: center;" data-Part='${doc.id}' value="${doc.data().quantity}" placeholder="${doc.data().quantity}" name="" id=""></td>
         <td style="color: black; font-weight: 600;">${doc.data().partMemo}</td>
 
           <td>
@@ -1363,6 +1363,10 @@ let idref = guid()
  	<a href="#" class="navbary__link"  style="background-color:  #219EBC">
 		<span class="viewpartmat"data-toggle="modal" data-target="#partproductmaterial" data-PN= '${doc.data().partname}' data-id='${doc.id}'><i class="ri-eye-line" style="color: white; font-size: 15px;"></i></span>
 		<span class="navbary__label">View Materials</span>
+	</a>
+    	<a href="#" class="navbary__link"  style="background-color:  #219EBC">
+		<span class="btnprodpartedit" data-Part='${doc.id}' ><i class='bx bxs-edit-alt' style="color: white; font-size: 15px;" ></i></span>
+		<span class="navbary__label">Edit Part</span>
 	</a>
   	<a href="#" class="navbary__link"  style="background-color:  #219EBC">
 		<span class="btnprodpartdelete" data-Part='${doc.id}' ><i class='ri-delete-bin-line' style="color: white; font-size: 15px;" ></i></span>
@@ -1391,7 +1395,21 @@ let idref = guid()
   addedpartslist.innerHTML = " "
   setupPartsProducts(snapshot.docs)
 
-//delete material specific to a part
+
+//Edit Part specific to a product
+
+   let quantityPart = document.querySelectorAll(".quantityPart");
+     for (let i = 0; i < quantityPart.length; i++) {
+ 
+ quantityPart[i].onchange = function() {
+   let editData = quantityPart[i].getAttribute("data-part");
+   db.collection('recycledproducts').doc(`${btnpraddRef}`).collection('selectedParts').doc(`${editData}`).update({
+    quantity: quantityPart[i].value
+   })
+ }}
+
+
+//delete part specific to a product
    let btnprodpartdelete = document.querySelectorAll(".btnprodpartdelete");
      for (let i = 0; i < btnprodpartdelete.length; i++) {
  
@@ -1807,8 +1825,22 @@ window.addEventListener('click', e => {
 //   })
 // });
 
-// Real time listener
-db.collection('recycledproducts').orderBy("createdAt").onSnapshot(snapshot => {
+ auth.onAuthStateChanged(user => {
+     if(user) {
+      
+ const userRef = db.collection('users').where('userID', '==', user.uid).get()
+
+userRef.then((querySnapshot) => {
+ querySnapshot.forEach((doc) => {
+  console.log( doc.data().userCompanyname)
+
+    
+    console.log('hey')
+    document.querySelector('.loadingtitle').innerHTML = "Data is loading - Please wait... ⌛"
+  document.querySelector('.loadingtitle').style.fontWeight = "600"
+  document.querySelector('.loadingtitle').style.color = "black"
+    document.querySelector('.loadingtitle').style.marginLeft = "43%";
+db.collection('recycledproducts').where("productManufacturer", '==',  doc.data().userCompanyname).orderBy("createdAt").onSnapshot(snapshot => {
   snapshot.docChanges().forEach(change => {
     if(change.type === 'added') {
       renderUser(change.doc);
@@ -1828,14 +1860,24 @@ db.collection('recycledproducts').orderBy("createdAt").onSnapshot(snapshot => {
     }
   })
 })
-
-
-  // btnpDelete.addEventListener('click', () => {
-    
-  //   console.log("hello world!")
   
-  
-  // });
+ })
+})}
+  })
+
+auth.onAuthStateChanged(user => {
+
+    if(user) {
+     console.log("add: ", user.uid)    
+ const userRef = db.collection('users').where('userID', '==', user.uid).get()
+
+userRef.then((querySnapshot) => {
+   querySnapshot.forEach((doc) => {
+    console.log("add: ", doc.data().userCompanyname)
+const productManufacturer = document.querySelector('#productManufacturer')
+productManufacturer.value = doc.data().userCompanyname
+   })})}})
+
 var files = [];
 document.querySelector(".files").addEventListener("change", function(e) {
   files = e.target.files;
@@ -1885,6 +1927,7 @@ document.querySelector(".files").addEventListener("change", function(e) {
 
   // console.log(doc.id, " => ", doc.data());
    db.collection('recycledproducts').add({
+    productManufacturer: productManufacturer.value,
     productCategory: addproductCategory.value,
     productName: addproductName.value,
     productMN: addproductMN.value,
@@ -2026,7 +2069,7 @@ editFormProd.addEventListener('click', e => {
 firebase.auth().onAuthStateChanged(user => {
   const userEmailCard = document.getElementById('useremailcard')
  
-  userEmailCard.innerHTML = user.userEmail;
+  userEmailCard.innerHTML = user.email;
   
 })
 

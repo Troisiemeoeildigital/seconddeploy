@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" style="font-size:13px;">
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -87,7 +87,7 @@
        <span class="tooltip">부품목록</span>
      </li>
      <li>
-       <a class="notadmin" href="./materialsdb" style="display: none;">
+       <a class="notadmin" href="./materials" style="display: none;">
  <i class='bx bx-pie-chart-alt-2' ></i>
          <span class="links_name">소재목록</span>
        </a>
@@ -338,13 +338,12 @@
             <div class="row mb-3" >
                               <div class="col-12 col-md-8">  <h4 class="mb-3" style="color: black;font-weight: 600; font-size: 25px;">부품목록</h4></div>
                               <div class="row col-6 col-md-4" style="gap: 2px; justify-content: end;"> 
-                                <button class="btnpr btnpr-add" style=" width: 50%; background-color: #fb8500 ; "><div class="addnewproductbtnpr">새 부품 등록</div></button>
+                                <button class="btnpr btnpr-add" style=" width: 30%; background-color: #fb8500 ; "><div class="addnewproductbtnpr">새 부품 등록</div></button>
 
                                 <button class="btnpr btnpr-add" style=" width: 30%; background: #F05D5E;"><div class="addnewproductbtnpr">Delete All</div></button></div>
                            </div>
 
-
-                           <div class="row justify-content-end mb-3">
+<div class="row justify-content-end mb-3">
                               <div class="col-2">
                         
                               </div>
@@ -372,11 +371,11 @@
 
 
                       <div class="row" style="width: auto;">
-                        <div class="input-group-prepend" style="width: 50%;/* margin: 0; */">
-                           <input type="text" class="form-control" id="myInputMat" style="margin: 0; border-radius: 10px 0 0 10px; height:46px;" onkeyup="materialSearch()" name="myInputMat" placeholder="Search Part Name" aria-label="Search Part Name" aria-describedby="basic-addon5">
+                        <div class="input-group-prepend" style="width: 60%;/* margin: 0; */">
+                           <input type="text" class="form-control" id="myInputMat" style="margin: 0; border-radius: 10px 0 0 10px; height:46px;" onkeyup="materialSearch()" name="myInputMat" placeholder="Search by Part Code" aria-label="Search Part Name" aria-describedby="basic-addon5">
                         </div>
                         <select class="custom-select searchPartSelection" id="inputGroupSelect03" style="
-    width: 29%;
+    width: 10%;
     border-radius: 0;
 ">
                            <option selected="">Choose...</option>
@@ -384,10 +383,10 @@
                            <option value="3">Part Code</option>
                         </select>
                            <div class="input-group-append" style="
-    border-radius: 0;
+    border-radius: 0; height: 79%;
 ">
                            <span class="input-group-text" id="basic-addon5" style="
-    height: 74%;
+    
     border-radius: 0 10px 10px 0;
 "><i class="las la-search font-size-20"></i></span>
                         </div>
@@ -429,7 +428,7 @@
 
       <table class="table-users parttable" id="myTableMat" >
     
-        <thead style="position: sticky; top: 0; ">
+        <thead style="position: sticky; top: 0; font-size: 13px;">
             
             <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
   <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
@@ -1076,15 +1075,68 @@
         <div class="modaly-body">
            
           <div class="card-body">
-                <div class="form-group" id="formfloat">
-                     <div class="input-group" >
-                        <input type="text" class="form-control" id="myInput" style="margin: 0;" onkeyup='tableSearch()' placeholder="Search Material Name" aria-label="Search Material Name"
-                           aria-describedby="basic-addon5">
-                        <div class="input-group-append">
-                           <span class="input-group-text" id="basic-addon5"><i class="las la-search font-size-20"></i></span>
+            <div class="row col-md-12 justify-content-end mb-3">
+                              <div class="col-2">
+                        
+                              </div>
+                              <div class="col-2">
+                            
+                              </div><div class="col-8">
+                                <div class="row" style="justify-content: end; gap: 5%; ">
+                                    <div class="" id="formfloat" style="width: 37%;height: fit-contnet;">
+                      <div class="input-group mb-3">
+                      
+                   <div class="row">
+                       <div class="input-group-prepend" style="
+    width: 75%;
+">
+                                              <input type="text" class="form-control" id="myInputPM" style="margin: 0;border-radius: 10px 0 0 10px;height:46px;width: 75%;margin-left: 25%;" onkeyup="tableSearch()" name="myInputProduct" placeholder="Search by Material Name" aria-label="Search by Material Name" aria-describedby="basic-addon5">
+                        </div>
+                       <div class="selectwrapp" style="width: 0%; border-radius: 0;">
+                         <select style=" border-radius: 0;" class="custom-select searchProdSelection" id="inputGroupSelect03">
+                           <option selected="">Choose...</option>
+                           <option value="3">Prodcut Name </option>
+                           <option value="4">Model Name</option>
+                  
+                        </select>
+                       </div>
+                           <div class="input-group-append" style="
+    border-radius: 0;
+">
+                           <span class="input-group-text" id="basic-addon5" style="
+    border-radius: 0 10px 10px 0;
+"><i class="las la-search font-size-20"></i></span>
+                           
+                        </div>
+                   </div>
+                     </div>
+                     </div>
+
+
+
+                      <div class="row" style="width: auto;">
+                      <select class="custom-select sortPMSelection" id="inputGroupSelect03" style="
+    border-radius: 10px 0 0 10px;
+    width: 70%;
+">
+                           <option value="" selected="">Sort by...</option>
+                           <option value="1">Sort by Material Group</option>
+                           <option value="2">Sort by Material Name</option>
+    
+                        </select>
+                           <div class="input-group-append" style="
+    max-height: 78%;
+">
+                           <span class="input-group-text" id="basic-addon5" style="
+    border-radius: 0 10px 10px 0;
+    /* max-height: 78%; */
+"><i class="bx bx-sort font-size-20"></i></span>
                         </div>
                      </div>
                                 </div>
+                              </div>
+                           </div>
+    
 
 
                      <div class="row col-md-12" style="align-items: center;">
@@ -1109,7 +1161,7 @@
                <div class="table-responsive" style="overflow-x: hidden;">
              
                     <div  class="table-wrapper" style="height: auto;"> 
-                        <table class="table-parts" id="myTable" >
+                        <table class="table-parts" id="myTable" style="font-size: 13px;" >
                             <thead>
                                 <tr>
                                        <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
@@ -1159,7 +1211,7 @@
                            <form class="form" data-toggle="validator" id="form-wizard1">
                              <div class="row">
                                    <div class="col-md-6">
-                                            <label>Proof File </label>
+                                            <h2>Proof File </h2>
                     <div class=" row input-group mb-4" style="    align-items: baseline;">
                         <div class="custom-file mb-3" style="    margin-right: 5%;">
                         
@@ -1172,15 +1224,23 @@
 	<a href="#" class="navbary__link">
 		<span class="" ><i class="bx bx-cloud-upload" style=" color: white;
     font-size: 17px;"></i></span>
-		<span class="navbary__label " style="background-color: #fb8500; left:-55px;">Confirm</span>
+		<span class="navbary__label " style="background-color: #fb8500; left:-55px;">Upload Proof File</span>
 	</a>
 </nav>
                      </div>
          
-
+               <nav class="navbary deleteProof" style="margin-left: -12px; width:40px; background-color: #fb8500;">
+	<a href="#" class="navbary__link">
+		<span class="" ><i class="bx bx-cloud-upload" style=" color: white;
+    font-size: 17px;"></i></span>
+		<span class="navbary__label " style="background-color: #fb8500; left:-55px;">Delete Proof File</span>
+	</a>
+</nav>
 
                             </div>
-                               
+                               <div class="col-md-6">
+
+                               </div>
                               </div>
                             </form>
                           <form class="form"   data-toggle="validator" id="form-wizard1">

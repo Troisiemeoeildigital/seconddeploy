@@ -59,7 +59,7 @@ const renderUser = doc => {
    
      
       
-       <tr data-id='${doc.id}'>
+       <tr data-id='${doc.id}' style="    border-bottom: 0.5px solid grey;">
 
       <td style="padding:20px" class="substxt">${doc.data().subtanceName}</td>
      <td class="substxt">${doc.data().casnumber}</td>
@@ -196,7 +196,7 @@ window.addEventListener('click', e => {
 // });
 
 // Real time listener
-db.collection('substances').onSnapshot(snapshot => {
+db.collection('substances').limit(6).onSnapshot(snapshot => {
   snapshot.docChanges().forEach(change => {
     if(change.type === 'added') {
       renderUser(change.doc);
@@ -321,7 +321,117 @@ const editUI = (user) => {
 }
 
 
+  let sortSubsSelection = document.querySelector(".sortSubsSelection")
+sortSubsSelection.addEventListener('change', ()=>{
+if (sortSubsSelection.value == 0) {
 
 
+var tablesubs, rows, switching, i, x, y, shouldSwitch;
+var tablesubs = document.querySelector(".table-users")
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = tablesubs.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[0];
+      y = rows[i + 1].getElementsByTagName("TD")[0];
+      //check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+else if (sortSubsSelection.value == 1) {
+
+
+var tablesubs, rows, switching, i, x, y, shouldSwitch;
+var tablesubs = document.querySelector(".table-users")
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = tablesubs.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[1];
+      y = rows[i + 1].getElementsByTagName("TD")[1];
+      //check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+})
+
+let searchSubSelection = document.querySelector(".searchSubSelection")
+  
+searchSubSelection.addEventListener('change', ()=>{
+if (searchSubSelection.value == 0) {
+document.getElementsByName('myInputSub')[0].placeholder = 'Search by Substance Name'
+}
+else if (searchSubSelection.value == 1) {
+document.getElementsByName('myInputSub')[0].placeholder = 'Search by CAS Number'
+}
+
+})
+const myInputSub = document.querySelector('#myInputSub')
+myInputSub.onkeyup = function() {
+     let filter,  tr, td, txtValue, input, table;
+                input = document.getElementById("myInputSub");
+                table = document.querySelector(".table-users");
+            //Intialising Variables
+          
+            filter = input.value.toUpperCase();
+          
+            tr = table.getElementsByTagName("tr");
+         
+    
+            for (let i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[searchSubSelection.value];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+} 
+  
 
 
