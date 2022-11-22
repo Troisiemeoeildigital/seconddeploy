@@ -18,16 +18,15 @@
       <link rel="stylesheet" href="./remixicon.css">
            <link rel="stylesheet" href="./substances.css">
          <style>
-                @media only screen and (min-width: 60em) {
+              @media only screen and (max-width: 1599px ) {
   .table-wrapper {
-    height: 443px;
+    height: 35em;
   }
 }
-         @media only screen and (min-width: 86em) {
+              @media only screen and (min-width: 1650px ) {
   .table-wrapper {
-    height: 645px;
-  }
-}
+    height: 50em;
+  } }
       </style>
         <!-- <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js"></script>
    
@@ -325,7 +324,7 @@
  <div class="tabledata">
    
     <div class="table-wrapper" style="
-    overflow-y: scroll; height: auto;">
+    overflow-y: scroll;">
       <table class="table-users" style="position: sticky; top: 0; z-index: 1;">
        <thead>
         
@@ -338,7 +337,7 @@
        </thead>
       </table>
     <tbody class="table-users">
-      <button class="loadMore">Load More</button>
+      <button class="btn btn-light loadMore" style="margin-top: 3%;">Load More</button>
     </tbody>
     </div>
     </div>
