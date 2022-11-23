@@ -2114,7 +2114,7 @@ editFormProd.addEventListener('click', e => {
     registeredDate: editmodalyForm.editregisteredDate.value,
    productStatus: editmodalyForm.editproductStatus.value,
    memo: editmodalyForm.editMemo.value,
-    productImg: url,
+
      prodWidth:editprodWidth.value,
     prodDepth:editprodDepth.value,
     prodHeight:editprodHeight.value,
