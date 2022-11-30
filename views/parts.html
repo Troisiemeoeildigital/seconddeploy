@@ -339,6 +339,11 @@
                               <div class="col-12 col-md-8">  <h4 class="mb-3" style="color: black;font-weight: 600; font-size: 25px;">부품목록</h4></div>
                               <div class="row col-6 col-md-4" style="gap: 2px; justify-content: end;"> 
                                 <button class="btnpr btnpr-add" style=" width: 30%; background-color: #fb8500 ; "><div class="addnewproductbtnpr">새 부품 등록</div></button>
+                                  <button class="btnpr btnpr-add" style="color: white;
+                                                                        font-size: small; 
+                                                                        width: 30%; 
+                                                                        background-color: #fb8500 ; ">
+                                  <div class="batchUploadPM">Bulk Upload</div></button>
 
                                 <button class="btnpr btnpr-add" style=" width: 30%; background: #F05D5E;"><div class="addnewproductbtnpr">Delete All</div></button></div>
                            </div>
@@ -391,6 +396,7 @@
 "><i class="las la-search font-size-20"></i></span>
                         </div>
                      </div>
+                     
                                 </div>
                               </div>
                            </div>
@@ -1305,9 +1311,9 @@
                                         <label>Recycle Type *</label>
                                          <select name="editMaterialRecycleType" id="PMMaterialRecycleType" class="form-control" data-style="py-0">
                                            <option>Select Option</option>
-                                       <option>Pre Consumer </option>
+                                       <option value="Pre Consumer">Pre Consumer </option>
                                        <option>Post Consumer </option>
-                                       <option >Pre+Post Consumer</option>
+                                       <option value="Pre+Post Consumer" >Pre+Post Consumer</option>
                                        <option>Unspecified</option>
                                     
                                     

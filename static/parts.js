@@ -1,3 +1,5 @@
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyAq2QjImxRXEtRHN-N6u2YEod-wUJMtI1s",
   authDomain: "projectcrm-f4e5f.firebaseapp.com",
@@ -328,12 +330,18 @@ addpartsRef
             return x;
     })
     console.log(data)
-    const matHashMap = {}
-    data = data.filter((item, _)=>{
-      let alreadyExists = matHashMap.hasOwnProperty(item.MaterialGroup)
-      return alreadyExists ? false: matHashMap[item.MaterialGroup] = 1
-    })
-    console.log(data)
+    // const matHashMap = {}
+    // data = data.filter((item, _)=>{
+    //   let alreadyExists = matHashMap.hasOwnProperty(item.MaterialGroup)
+    //   return alreadyExists ? false: matHashMap[item.MaterialGroup] = 1
+    // })
+    // console.log(data)
+
+              data = data.filter((value, index, self) =>
+  index === self.findIndex((t) => (
+    t.MaterialGroup === value.MaterialGroup 
+  ))
+)
 
 
         buildTable(data)
@@ -364,13 +372,13 @@ addpartsRef
         let x = doc.data()
             return x;
     })
-    console.log(data)
+    // console.log(data)
     const matHashMap = {}
     data = data.filter((item, _)=>{
       let alreadyExists = matHashMap.hasOwnProperty(item.재료명)
       return alreadyExists ? false: matHashMap[item.재료명] = 1
     })
-    console.log(data)
+    // console.log(data)
 
 
         buildTable(data)
@@ -1325,25 +1333,113 @@ addModalyParts.reset();
                   
                 //displaying the json result in string format
                 console.log(JSON.stringify(jsonData));
-                for(let i = 0; i < jsonData.length; i++) {
-    let obj = jsonData[i];
+                let jsonDatUniq = jsonData
+                jsonDatUniq = jsonData.filter((value, index, self) =>
+  index === self.findIndex((t) => (
+    t.partCode === value.partCode 
+  ))
+)
+  // console.log(jsonData)
+  //   console.log(jsonDatUniq)
 
-       db.collection('recycledparts').doc().set({
-            supplierName	: obj.supplierName,
+      for(let i = 0; i < jsonDatUniq.length; i++) { 
+    let obj = jsonDatUniq[i]
+          var partsCodeRef = db.collectionGroup('recycledparts');
+partsCodeRef
+.get()
+ .then(query=>{
+    var data = query.docs.map(doc=>{
+        let x = doc.data().partCode
+            return x;
+    })
+    // console.log(data)
+       const checkUsername = element => element == `${obj.partCode}`;
+      console.log(data.some(checkUsername) )
+      if (data.some(checkUsername) == false) { //document don't exist
+        console.log("document do not exist")
+           db.collection('recycledparts').doc().set({
+            supplierName: "part6Company",
             partName: obj.partName,
             partCode: obj.partCode,
             partWeight: obj.partWeight,
-            partWidth: obj.Width,
-            partDepth: obj.Depth,
-            partHeight: obj.Height,
+
+            partWidth: obj.partWidth,
+            partDepth: obj.partDepth,
+            partHeight: obj.partHeight,
+
             sizeUnit: obj.sizeUnit,
             partRegisteredDate: obj.partRegisteredDate,
             reusedPart: obj.reusedPart,
             partMemo: obj.partMemo
-           }, {merge: true}) .then(()=> {
-      console.log("Documents Added!")
-    });
+           },{merge:true}) 
+        
+            
+        
+      }
+      else if (data.some(checkUsername) == true) { //document exist
+        console.log("document already exists")
+      }
+  })
+
+   
+  
+  }
+
+setTimeout(addMaterial, '7000')
+    function addMaterial() {
+     for(let i = 0; i < jsonData.length; i++) {
+    let obj = jsonData[i];
+
+// console.log(obj.partCode)
+  var partsCodeRef = db.collectionGroup('recycledparts');
+partsCodeRef
+.get()
+ .then(query=>{
+    let data = query.docs.map(doc=>{
+        let x = doc.data().partCode
+            return x;
+    })
+    // console.log(data)
+const checkUsername = element => element == `${obj.partCode}`;
+console.log(data.some(checkUsername) )
+
+
+if (data.some(checkUsername) == true) {
+     console.log("doc exists")
+    db.collection('recycledparts').where("partCode", "==", `${obj.partCode}`).get() .then((querySnapshot) => {
+                
+                 querySnapshot.forEach((doc) => {
+       db.collection('recycledparts').doc(doc.id).collection('materials').add({
+              materialGroup	: obj.materialGroup,
+            materialMassPerc: obj.materialMassPerc,
+            materialMassg: obj.materialMassg,
+            materialName: obj.materialName,
+
+            materialRecycleContent: obj.materialRecycleContent,
+            matnameSelect: obj.matnameSelect,
+            partRef: obj.partName,
+            partRefWeight: obj.partWeight,
+
+            recovMat: obj.recovMat,
+            recycMat: obj.recycMat,
+            reuseMat: obj.reuseMat,
+
+      })
+    })
+    })
+
 }
+
+})
+}
+  }   
+ 
+         
+
+
+
+
+
                 }
             }catch(e){
                 console.error(e);

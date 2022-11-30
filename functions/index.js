@@ -18,7 +18,7 @@ return admin.auth().getUserByEmail(data.email).then(user =>{
 })
 })
 
-
+// .region('asia-northeast3')
 exports.recursiveDelete = functions.runWith({timeoutSeconds: 540,memory: '2GB'}).https.onCall( (data, context) => {
     // Only allow admin users to execute this function.
     // if (!(context.auth && context.auth.token && context.auth.token.admin)) {
