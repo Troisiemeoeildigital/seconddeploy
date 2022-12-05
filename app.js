@@ -86,7 +86,7 @@ app.get("/partsupplier/parts", function (req, res) {
       res.render("partsupplier/parts.html");
       }
       else {
-           res.redirect("/main");
+           res.redirect("/404");
       }
       
     })
@@ -110,7 +110,7 @@ app.get("/partsupplier/dashboard", function (req, res) {
         res.render("partsupplier/dashboard.html");
       }
       else {
-           res.redirect("/main");
+           res.redirect("/404");
       }
       
     })
@@ -119,7 +119,7 @@ app.get("/partsupplier/dashboard", function (req, res) {
     });
 });
 
-app.get("/main", function (req, res) {
+app.get("/404", function (req, res) {
    const sessionCookie = req.cookies.session || "";
 
   admin
@@ -127,7 +127,7 @@ app.get("/main", function (req, res) {
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
       console.log("Logged in:", userData.email)
-      res.render("main.html");
+      res.render("404.html");
     })
     .catch((error) => {
       res.redirect("/login");
@@ -149,7 +149,7 @@ app.get("/productmanufacturer/dashboard", function (req, res) {
        res.render("productmanufacturer/dashboard.html");
       }
       else {
-           res.redirect("/main");
+           res.redirect("/404");
       }
   
     })
@@ -173,7 +173,7 @@ app.get("/partsupplier/selectivematerials", function (req, res) {
       res.render("partsupplier/selectivematerials.html");
       }
       else {
-           res.redirect("/main");
+           res.redirect("/404");
       }
       
     })
@@ -197,7 +197,7 @@ app.get("/partsupplier/materials", function (req, res) {
         res.render("partsupplier/materials.ejs");
       }
       else {
-           res.redirect("/main");
+           res.redirect("/404");
       }
   
     })
@@ -225,7 +225,7 @@ app.get("/partsupplier/substances", function (req, res) {
            res.render("partsupplier/substances.html");
       }
       else {
-           res.redirect("/main");
+           res.redirect("/404");
       }
     })
     .catch((error) => {
@@ -247,7 +247,7 @@ app.get("/productmanufacturer/parts", function (req, res) {
             res.render("productmanufacturer/parts.html");
       }
       else {
-           res.redirect("/main");
+           res.redirect("/404");
       }
 
     })
@@ -316,7 +316,7 @@ app.get("/productmanufacturer/listofproducts", function (req, res) {
            res.render("productmanufacturer/productslist.html");
       }
       else {
-           res.redirect("/main");
+           res.redirect("/404");
       }
   
 
