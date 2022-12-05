@@ -70,22 +70,32 @@ app.get("/signup", function (req, res) {
 });
 
 
-app.get("/parts", function (req, res) {
+app.get("/partsupplier/parts", function (req, res) {
    const sessionCookie = req.cookies.session || "";
 
   admin
     .auth()
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
+  
+      
+         if(userData.partSupplier == true) {
+            console.log(userData)
+  
       console.log("Logged in:", userData.email)
-      res.render("parts.html");
+      res.render("partsupplier/parts.html");
+      }
+      else {
+           res.redirect("/main");
+      }
+      
     })
     .catch((error) => {
       res.redirect("/login");
     });
 });
 
-app.get("/dashboard", function (req, res) {
+app.get("/partsupplier/dashboard", function (req, res) {
    const sessionCookie = req.cookies.session || "";
 
   admin
@@ -93,7 +103,31 @@ app.get("/dashboard", function (req, res) {
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
       console.log("Logged in:", userData.email)
-      res.render("dashboard.html");
+          if(userData.partSupplier == true) {
+            console.log(userData)
+  
+      console.log("Logged in:", userData.email)
+        res.render("partsupplier/dashboard.html");
+      }
+      else {
+           res.redirect("/main");
+      }
+      
+    })
+    .catch((error) => {
+      res.redirect("/login");
+    });
+});
+
+app.get("/main", function (req, res) {
+   const sessionCookie = req.cookies.session || "";
+
+  admin
+    .auth()
+    .verifySessionCookie(sessionCookie, true /** checkRevoked */)
+    .then((userData) => {
+      console.log("Logged in:", userData.email)
+      res.render("main.html");
     })
     .catch((error) => {
       res.redirect("/login");
@@ -108,44 +142,62 @@ app.get("/productmanufacturer/dashboard", function (req, res) {
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
       console.log("Logged in:", userData.email)
-      res.render("productmanufacturer/dashboard.html");
-    })
-    .catch((error) => {
-      res.redirect("/login");
-    });
-});
-
-app.get("/selectivematerials", function (req, res) {
-   const sessionCookie = req.cookies.session || "";
-
-  admin
-    .auth()
-    .verifySessionCookie(sessionCookie, true /** checkRevoked */)
-    .then((userData) => {
-      console.log("Logged in:", userData.email)
-      res.render("selectivematerials.html");
-    })
-    .catch((error) => {
-      res.redirect("/login");
-    });
-});
-
-app.get("/materials", function (req, res) {
-   const sessionCookie = req.cookies.session || "";
-
-  admin
-    .auth()
-    .verifySessionCookie(sessionCookie, true /** checkRevoked */)
-    .then((userData) => {
-      console.log(userData)
-      if(userData.admin === false) {
+         if(userData.productManu == true) {
             console.log(userData)
   
       console.log("Logged in:", userData.email)
-      res.render("materials.ejs");
+       res.render("productmanufacturer/dashboard.html");
       }
       else {
-           res.redirect("/dashboard");
+           res.redirect("/main");
+      }
+  
+    })
+    .catch((error) => {
+      res.redirect("/login");
+    });
+});
+
+app.get("/partsupplier/selectivematerials", function (req, res) {
+   const sessionCookie = req.cookies.session || "";
+
+  admin
+    .auth()
+    .verifySessionCookie(sessionCookie, true /** checkRevoked */)
+    .then((userData) => {
+
+        if(userData.partSupplier == true) {
+       
+  
+      console.log("Logged in:", userData.email)
+      res.render("partsupplier/selectivematerials.html");
+      }
+      else {
+           res.redirect("/main");
+      }
+      
+    })
+    .catch((error) => {
+      res.redirect("/login");
+    });
+});
+
+app.get("/partsupplier/materials", function (req, res) {
+   const sessionCookie = req.cookies.session || "";
+
+  admin
+    .auth()
+    .verifySessionCookie(sessionCookie, true /** checkRevoked */)
+    .then((userData) => {
+   
+       if(userData.partSupplier == true) {
+            console.log(userData)
+  
+      console.log("Logged in:", userData.email)
+        res.render("partsupplier/materials.ejs");
+      }
+      else {
+           res.redirect("/main");
       }
   
     })
@@ -157,7 +209,7 @@ app.get("/materials", function (req, res) {
 
 
 
-app.get("/substances", function (req, res) {
+app.get("/partsupplier/substances", function (req, res) {
    const sessionCookie = req.cookies.session || "";
 
   admin
@@ -165,7 +217,16 @@ app.get("/substances", function (req, res) {
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
       console.log("Logged in:", userData.email)
-      res.render("substances.html");
+ 
+         if(userData.partSupplier == true) {
+            console.log(userData)
+  
+      console.log("Logged in:", userData.email)
+           res.render("partsupplier/substances.html");
+      }
+      else {
+           res.redirect("/main");
+      }
     })
     .catch((error) => {
       res.redirect("/login");
@@ -179,7 +240,6 @@ app.get("/productmanufacturer/parts", function (req, res) {
     .auth()
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
-      console.log("Logged in:", userData.email)
           if(userData.productManu == true) {
             console.log(userData)
   
@@ -187,7 +247,7 @@ app.get("/productmanufacturer/parts", function (req, res) {
             res.render("productmanufacturer/parts.html");
       }
       else {
-           res.redirect("/dashboard");
+           res.redirect("/main");
       }
 
     })
@@ -256,7 +316,7 @@ app.get("/productmanufacturer/listofproducts", function (req, res) {
            res.render("productmanufacturer/productslist.html");
       }
       else {
-           res.redirect("/dashboard");
+           res.redirect("/main");
       }
   
 

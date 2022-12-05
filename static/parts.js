@@ -1353,20 +1353,24 @@ partsCodeRef
             return x;
     })
     // console.log(data)
-       const checkUsername = element => element == `${obj.partCode}`;
+    auth.onAuthStateChanged(user => {
+    if(user) {
+      db.collection("users").where('userEmail', '==', user.email).get()
+       .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+         console.log(doc.data().userCompanyname)
+              const checkUsername = element => element == `${obj.partCode}`;
       console.log(data.some(checkUsername) )
       if (data.some(checkUsername) == false) { //document don't exist
         console.log("document do not exist")
            db.collection('recycledparts').doc().set({
-            supplierName: "part6Company",
+            supplierName: doc.data().userCompanyname,
             partName: obj.partName,
             partCode: obj.partCode,
             partWeight: obj.partWeight,
-
             partWidth: obj.partWidth,
             partDepth: obj.partDepth,
             partHeight: obj.partHeight,
-
             sizeUnit: obj.sizeUnit,
             partRegisteredDate: obj.partRegisteredDate,
             reusedPart: obj.reusedPart,
@@ -1379,6 +1383,16 @@ partsCodeRef
       else if (data.some(checkUsername) == true) { //document exist
         console.log("document already exists")
       }
+        });
+    })
+      
+    
+    }
+    else {
+        console.log("There's no such user!")
+    }
+})
+   
   })
 
    

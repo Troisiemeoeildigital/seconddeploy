@@ -118,6 +118,46 @@ auth.onAuthStateChanged(user => {
     }
 })
 
+ auth.onAuthStateChanged(user => {
+     if(user) {
+      
+ const userRef = db.collection('users').where('userID', '==', user.uid).get()
+
+userRef.then((querySnapshot) => {
+ querySnapshot.forEach((doc) => {
+  console.log( doc.data().userCompanyname)
+
+    
+    console.log('hey')
+    document.querySelector('.loadingtitle').innerHTML = "Data is loading - Please wait... ⌛"
+  document.querySelector('.loadingtitle').style.fontWeight = "600"
+  document.querySelector('.loadingtitle').style.color = "black"
+    document.querySelector('.loadingtitle').style.marginLeft = "43%";
+db.collection('recycledproducts').where("productManufacturer", '==',  doc.data().userCompanyname).orderBy("createdAt").onSnapshot(snapshot => {
+  snapshot.docChanges().forEach(change => {
+    if(change.type === 'added') {
+      renderUser(change.doc);
+        // renderTest(change.doc);
+    }
+    if(change.type === 'removed') {
+      let tr = document.querySelector(`[data-id='${change.doc.id}']`);
+      let tbody = tr.parentElement;
+      tableUsers.removeChild(tbody);
+    }
+    if(change.type === 'modified') {
+      let tr = document.querySelector(`[data-id='${change.doc.id}']`);
+      let tbody = tr.parentElement;
+      tableUsers.removeChild(tbody);
+      renderUser(change.doc);
+        // renderTest(change.doc);
+    }
+  })
+})
+  
+ })
+})}
+  })
+
 const editUI = (user) => {
   if (user) {
     const userTitleCard = document.getElementById('usertitle')
@@ -1846,50 +1886,12 @@ window.addEventListener('click', e => {
 //   })
 // });
 
- auth.onAuthStateChanged(user => {
-     if(user) {
-      
- const userRef = db.collection('users').where('userID', '==', user.uid).get()
 
-userRef.then((querySnapshot) => {
- querySnapshot.forEach((doc) => {
-  console.log( doc.data().userCompanyname)
-
-    
-    console.log('hey')
-    document.querySelector('.loadingtitle').innerHTML = "Data is loading - Please wait... ⌛"
-  document.querySelector('.loadingtitle').style.fontWeight = "600"
-  document.querySelector('.loadingtitle').style.color = "black"
-    document.querySelector('.loadingtitle').style.marginLeft = "43%";
-db.collection('recycledproducts').where("productManufacturer", '==',  doc.data().userCompanyname).orderBy("createdAt").onSnapshot(snapshot => {
-  snapshot.docChanges().forEach(change => {
-    if(change.type === 'added') {
-      renderUser(change.doc);
-        // renderTest(change.doc);
-    }
-    if(change.type === 'removed') {
-      let tr = document.querySelector(`[data-id='${change.doc.id}']`);
-      let tbody = tr.parentElement;
-      tableUsers.removeChild(tbody);
-    }
-    if(change.type === 'modified') {
-      let tr = document.querySelector(`[data-id='${change.doc.id}']`);
-      let tbody = tr.parentElement;
-      tableUsers.removeChild(tbody);
-      renderUser(change.doc);
-        // renderTest(change.doc);
-    }
-  })
-})
-  
- })
-})}
-  })
 
 auth.onAuthStateChanged(user => {
 
     if(user) {
-     console.log("add: ", user.uid)    
+    //  console.log("add: ", user.uid)    
  const userRef = db.collection('users').where('userID', '==', user.uid).get()
 
 userRef.then((querySnapshot) => {
@@ -2149,28 +2151,28 @@ firebase.auth().onAuthStateChanged(user => {
 
 // get all data in json array: 
 //  var productsRef = db.collectionGroup('selectedproducts');
-  var productsRef = db.collectionGroup('recycledproducts');
-productsRef
-.get()
- .then(query=>{
-    let data = query.docs.map(doc=>{
-        let x = doc.data().productWeight
+//   var productsRef = db.collectionGroup('recycledproducts');
+// productsRef
+// .get()
+//  .then(query=>{
+//     let data = query.docs.map(doc=>{
+//         let x = doc.data().productWeight
          
-            return x;
-    })
+//             return x;
+//     })
   
-    console.log(data)
-    const sum = data.reduce((accumulator, value) => {
-  return accumulator + value;
-}, 0);
-// document.querySelector('.totalWeight').innerHTML = sum
-// document.querySelector('.totalWeightPerc').innerHTML = parseFloat((sum / 3000000)/100000000000)  .toFixed(2) + "%" 
-// console.log(sum); // 👉️ 65
-})
+//     // console.log(data)
+//     const sum = data.reduce((accumulator, value) => {
+//   return accumulator + value;
+// }, 0);
+// // document.querySelector('.totalWeight').innerHTML = sum
+// // document.querySelector('.totalWeightPerc').innerHTML = parseFloat((sum / 3000000)/100000000000)  .toFixed(2) + "%" 
+// // console.log(sum); // 👉️ 65
+// })
 
-.catch((error) => {
-    console.log("Error getting document:", error);
-});
+// .catch((error) => {
+//     console.log("Error getting document:", error);
+// });
 
 // const fetchData = document.querySelector('.fetchData')
 // fetchData.onclick = function(e){
@@ -2208,45 +2210,42 @@ productsRef
 
 // get all data in json array: 
 //  var productsRef = db.collectionGroup('selectedproducts');
-  var partsRef = db.collectionGroup('recycledparts');
-partsRef
-.get()
- .then(query=>{
-    let data = query.docs.map(doc=>{
-        let x = doc.data()
+//   var partsRef = db.collectionGroup('recycledparts');
+// partsRef
+// .get()
+//  .then(query=>{
+//     let data = query.docs.map(doc=>{
+//         let x = doc.data()
          
-            return x;
-    })
-    console.log(data.length)
+//             return x;
+//     })
+//     console.log(data.length)
 
-// document.querySelector('.nbrparts').innerHTML = data.length
-// document.querySelector('.totalWeightPerc').innerHTML = (sum / 30000) * 100 + "%" 
-
-})
+// })
 
 
 
 // get all data in json array: 
 //  var productsRef = db.collectionGroup('selectedproducts');
-  var partsRef = db.collectionGroup('materials');
-partsRef
-.get()
- .then(query=>{
-    let data = query.docs.map(doc=>{
-        let x = doc.data()
+//   var partsRef = db.collectionGroup('materials');
+// partsRef
+// .get()
+//  .then(query=>{
+//     let data = query.docs.map(doc=>{
+//         let x = doc.data()
          
-            return x;
-    })
-    console.log(data.length)
+//             return x;
+//     })
+//     console.log(data.length)
 
-// document.querySelector('.nbrmaterials').innerHTML = data.length
-// document.querySelector('.nbrmaterialsperc').innerHTML = parseFloat((data.length / 70) * 100 ).toFixed(2) + "%" 
+// // document.querySelector('.nbrmaterials').innerHTML = data.length
+// // document.querySelector('.nbrmaterialsperc').innerHTML = parseFloat((data.length / 70) * 100 ).toFixed(2) + "%" 
 
-})
+// })
 
-.catch((error) => {
-    console.log("Error getting document:", error);
-});
+// .catch((error) => {
+//     console.log("Error getting document:", error);
+// });
 
 
 
@@ -2266,7 +2265,7 @@ addpartsRef
       return alreadyExists ? false: matHashMap[item.supplierName] = 1
     })
  
-    console.log(data)
+    // console.log(data)
    
     buildTable(data)
 	function buildTable(data){

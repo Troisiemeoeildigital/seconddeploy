@@ -130,7 +130,12 @@ db.collection('warmdb').add({
                                     // Show admin UI.
                                     console.log("product manu detected")
                                           window.location.assign("/productmanufacturer/dashboard");
-                                 } else {
+                                 } 
+                                 else if (!!idTokenResult.claims.partSupplier) {
+                                     console.log("product manu detected")
+                                          window.location.assign("/partsupplier/dashboard");
+                                 }
+                                 else {
                                     // Show regular user UI.
                                     console.log("no one detected")
                                           window.location.assign("/dashboard");

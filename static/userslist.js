@@ -142,6 +142,22 @@ assignRole[i].onchange = function(e){
   })
   }
 
+     else if (e.target.value == 1) {
+        const addDefaultRole = functions.httpsCallable('addDefaultRole');
+  addDefaultRole({email: roleType}).then(result => {
+    console.log(result);
+    db.collection("users").doc(uid).update({
+      userRole: "Default",
+    }).then(()=>{
+      Swal.fire(
+  'Confirmed!',
+  'Default User Access Granted !',
+  'success'
+)
+    })
+  })
+  }
+
    else if (e.target.value == 3) {
         const addpartSupplierRole = functions.httpsCallable('addpartSupplierRole');
   addpartSupplierRole({email: roleType}).then(result => {
