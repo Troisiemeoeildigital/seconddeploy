@@ -190,12 +190,12 @@ db.collection('users').onSnapshot(snapshot => {
     if(change.type === 'removed') {
       let tr = document.querySelector(`[data-id='${change.doc.id}']`);
       let tbody = tr.parentElement;
-      tableUsers.removeChild(tbody);
+      listofusers.removeChild(tbody);
     }
     if(change.type === 'modified') {
       let tr = document.querySelector(`[data-id='${change.doc.id}']`);
       let tbody = tr.parentElement;
-      tableUsers.removeChild(tbody);
+      listofusers.removeChild(tbody);
       renderUser(change.doc);
     }
   })
