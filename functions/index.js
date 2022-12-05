@@ -17,6 +17,35 @@ return admin.auth().getUserByEmail(data.email).then(user =>{
     return err;
 })
 })
+// add product Manu user 
+exports.addproductManuRole = functions.https.onCall((data, context)=> {
+return admin.auth().getUserByEmail(data.email).then(user =>{
+    return admin.auth().setCustomUserClaims(user.uid, {
+        productManu: true
+    });
+}).then(()=> {
+    return {
+        message: `Success! ${data.email} has been made a product Manufacturer`
+    }
+}).catch(err => {
+    return err;
+})
+})
+
+// add part supplier  user 
+exports.addpartSupplierRole = functions.https.onCall((data, context)=> {
+return admin.auth().getUserByEmail(data.email).then(user =>{
+    return admin.auth().setCustomUserClaims(user.uid, {
+        partSupplier: true
+    });
+}).then(()=> {
+    return {
+        message: `Success! ${data.email} has been made a part supplier`
+    }
+}).catch(err => {
+    return err;
+})
+})
 
 // .region('asia-northeast3')
 exports.recursiveDelete = functions.runWith({timeoutSeconds: 540,memory: '2GB'}).https.onCall( (data, context) => {

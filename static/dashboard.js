@@ -181,9 +181,7 @@ const editUI = (user) => {
             let sidebarlogOut = document.querySelector("#log_out");
       
     if(user.admin) {
-     userBadge.style.backgroundColor  = "#219EBC"
-sidebar.style.backgroundColor  = "#219EBC"
-sidebarlogOut.style.backgroundColor  = "#219EBC"
+
     const firstcreation = document.getElementById('lastsignin')
      const userDisplay = document.getElementById('userDisplay')
       const adminElement = document.querySelectorAll('.adminelement');
@@ -203,9 +201,7 @@ sidebarlogOut.style.backgroundColor  = "#219EBC"
    
    
     } else {
-       userBadge.style.backgroundColor  = "#fb8500"
-      sidebar.style.backgroundColor  = "#fb8500"
-sidebarlogOut.style.backgroundColor  = "#fb8500"
+
        const userTitleCard = document.getElementById('usertitle')
        
        const lastsignin = document.getElementById('lastsignin')

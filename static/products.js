@@ -107,6 +107,8 @@ let id;
 auth.onAuthStateChanged(user => {
     if(user) {
         user.getIdTokenResult().then(idTokenResult => {
+          // console.log(idTokenResult)
+          // console.log(idTokenResult.claims)
             user.admin = idTokenResult.claims.admin
             editUI(user)
         })
@@ -177,7 +179,7 @@ const editUI = (user) => {
 //   document.querySelector('.loadingtitle').style.fontWeight = "600"
 //   document.querySelector('.loadingtitle').style.color = "black"
 const renderUser = doc => {
-
+   console.log(doc.ref.path)
   const tr = `
     <tr data-id='${doc.id}' style="  border-bottom: 0.5px solid grey;">
          <td >
@@ -2263,6 +2265,7 @@ addpartsRef
       let alreadyExists = matHashMap.hasOwnProperty(item.supplierName)
       return alreadyExists ? false: matHashMap[item.supplierName] = 1
     })
+ 
     console.log(data)
    
     buildTable(data)

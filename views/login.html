@@ -28,15 +28,16 @@
                      <p>자원효율성 평가 통합 시스템</p>
                      <form>
                         <div class="row">
-                           <div class="col-lg-12" style="display: none; height:0;">
-                              <!-- <div class="floating-label form-group" >
-                                 <input class="floating-input form-control email" name="email" type="email" placeholder="">
-                                 <label>Email</label>
-                              </div> -->
-                           </div>
-                             <div class="col-lg-12">
+                        
+                             <!-- <div class="col-lg-12">
                               <div class="floating-label form-group">
                                  <input class="floating-input form-control uid" name="uid" type="text" placeholder=" ">
+                                 <label>아이디</label>
+                              </div>
+                           </div> -->
+                             <div class="col-lg-12">
+                              <div class="floating-label form-group">
+                                 <input class="floating-input form-control email" name="email" type="email" placeholder=" ">
                                  <label>아이디</label>
                               </div>
                            </div>
@@ -56,7 +57,7 @@
                               <a href="auth-recoverpw.html" class="text-primary float-right">비밀번호 분실</a>
                            </div> -->
                         </div>
-                        <button type="submit" class="btn btn-primary singin" style="display: none;">Sign In</button>
+                        <button type="submit" class="btn btn-primary singin" >Sign In</button>
                         <!-- <p class="mt-3 mb-0">
                            계정 생성하기 <a href="./signup" class="text-primary"><b>Sign Up</b></a>
                         </p> -->
@@ -96,26 +97,18 @@ db.collection('warmdb').add({
    text: "getwarm"
 })
 
-                     
-                     uidRef.onchange = function() {
-                           db.collection('users').where('userCompanyname', '==', uidRef.value).get()
-              
-                     .then((querySnapshot) => {
-                        querySnapshot.forEach((doc) => {
-                              // doc.data() is never undefined for query doc snapshots
-                          if(doc.exists) {
-                                                singin.style.display = "inline-block"
-                                  document
+                           document
             .getElementById("login")
             .onsubmit = function(event) {
               event.preventDefault();
-              let email = doc.data().userEmail;
+              let email = event.target.email.value;
               let password = event.target.password.value;
 
               firebase
                 .auth()
                 .signInWithEmailAndPassword(email, password)
                 .then(({ user }) => {
+                  console.log({user})
                   return user.getIdToken().then((idToken) => {
                     return fetch("/sessionLogin", {
                       method: "POST",
@@ -127,26 +120,53 @@ db.collection('warmdb').add({
                       body: JSON.stringify({ idToken }),
                     });
                   });
+                 
                 })
-               //  .then(() => {
-               //    return firebase.auth().signOut();
-               //  })
                 .then(() => {
-                  window.location.assign("/dashboard");
-                });
+                                firebase.auth().currentUser.getIdTokenResult()
+                              .then((idTokenResult) => {
+                                 // Confirm the user is an Admin.
+                                 if (!!idTokenResult.claims.productManu) {
+                                    // Show admin UI.
+                                    console.log("product manu detected")
+                                          window.location.assign("/productmanufacturer/dashboard");
+                                 } else {
+                                    // Show regular user UI.
+                                    console.log("no one detected")
+                                          window.location.assign("/dashboard");
+                                 }
+                              })
+                              .catch((error) => {
+                                 console.log(error);
+                              });
+                })
+
+ 
+             
               return false;
                }
+
+                     
+                     // uidRef.onchange = function() {
+                     //       db.collection('users').where('userCompanyname', '==', uidRef.value).get()
+              
+                     // .then((querySnapshot) => {
+                     //    querySnapshot.forEach((doc) => {
+                     //          // doc.data() is never undefined for query doc snapshots
+                     //      if(doc.exists) {
+                     //                            singin.style.display = "inline-block"
+       
                               
-                          }
+                     //      }
                         
-                          else {
-                                 singin.style.display = "none"
-                          }
-                        })  
+                     //      else {
+                     //             singin.style.display = "none"
+                     //      }
+                     //    })  
                  
-                     })
+                     // })
                        
-                     }
+                     // }
 
      
                

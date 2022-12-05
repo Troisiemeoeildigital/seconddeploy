@@ -25,7 +25,7 @@ const editmodalyForm = document.querySelector('.edit-modaly .form');
 
 const btnprAdd = document.querySelector('.btnpr-add');
 
-const tableUsers = document.querySelector('.table-users');
+const listofusers = document.querySelector('.listofusers');
 
 
 let id;
@@ -33,6 +33,7 @@ let id;
 
 
 // Create element and render users
+
 const renderUser = (doc) => {
 
 
@@ -41,21 +42,48 @@ const renderUser = (doc) => {
       <td>${doc.data().userFirstname}</td>
       <td>${doc.data().userLastname}</td>
       <td>${doc.data().userEmail}</td>
-      <td>${doc.data().userID}</td>
-      <td>
-        <button type="button" class="viewbtn btn btn-primary mt-2" data-toggle="modal" data-target="#exampleModalScrollable">
-                     view
-                     </button>  
-        <button class=" btnpr-edit"> <a class="badge bg-success mr-2" class="btn btn-primary mt-2" data-toggle="modal" data-target="#exampleModalScrollableEDIT" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="#" ><i class="ri-pencil-line mr-0"></i></a></button>
+      <td>         <div class="input-group mb-3">
+                       <input type="text" readonly value="${doc.data().userRole}" class="form-control" style="margin: 0;border-radius: 10px 0 0 10px;height:46px;width: 35%;"   aria-describedby="basic-addon5">
+                          <select class="custom-select assignRole" user-email="${doc.data().userEmail}" user-id="${doc.id}" style="text-align: center;" id="inputGroupSelect03">
+                           <option value="1">Default</option>
+                        <option value="2">Prodcut Manufacturer</option>
+                           <option value="3">Part Supplier</option>
+                           
+                        </select>
+                           <div class="input-group-append">
+                           <span class="input-group-text" id="basic-addon5"><i class="las la-search font-size-20"></i></span>
+                        </div>
+                     </div>
+      </td>
+  
+        <td>
+    <div class="btngroup" style="margin:0;">
+             <nav class="navbary" style="background-color: #219EBC; width: 60%;">
+	<a href="#" class="navbary__link">
+		<span class="viewbtn" data-toggle="modal" data-target="#exampleModalScrollable"><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
+		<span class="navbary__label" style="background-color: #219EBC;">View User Details</span>
+	</a>
+  
+	<a href="#" class="navbary__link">
+		<span class="btnpr-edit" data-toggle="modal" data-target="#exampleModalScrollableEDIT"><i class="bx bxs-edit-alt" style="color: white; font-size: 15px; "></i></span>
+		<span class="navbary__label" style="background-color: #219EBC;">Edit User Details</span>
+	</a>
 
+ 
+</nav>
 
-        <button class=" btnpr-delete"><a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line mr-0"></i></a></button>
-
-
+    <nav class="navbary btnpr-delete"  style="margin-left: -12px; width:40px; background-color: #219EBC;">
+	<a href="#" class="navbary__link" >
+		<span class="" ><i class='ri-delete-bin-line' style="color: white; font-size: 17px;"></i></i></span>
+		<span class="navbary__label" style="background-color: #219EBC; left:-55px;" >Delete User</span>
+	</a>
+</nav>
+    </div>
+   
       </td>
     </tr>
   `;
-  tableUsers.insertAdjacentHTML('beforeend', tr);
+  listofusers.insertAdjacentHTML('beforeend', tr);
 
   // Click edit user
   const btnprEdit = document.querySelector(`[data-id='${doc.id}'] .btnpr-edit`);
@@ -63,11 +91,11 @@ const renderUser = (doc) => {
     editmodaly.classList.add('modaly-show');
     const editHeader = document.querySelector('.editheader')
     id = doc.id;
-    editHeader.innerHTML = 'Edit ' + doc.data().userFirstname
+    editHeader.innerHTML = 'Edit ' + doc.data().userFirstname + ' ' + doc.data().userLastname;
     editmodalyForm.userFirstname.value = doc.data().userFirstname;
     editmodalyForm.userLastname.value = doc.data().userLastname;
     editmodalyForm.userEmail.value = doc.data().userEmail;
-    editmodalyForm.userID.value = doc.data().userID;
+    // editmodalyForm.userID.value = doc.data().userID;
 
   });
 
@@ -80,6 +108,58 @@ const renderUser = (doc) => {
       console.log('Error removing document', err);
     });
   });
+
+  const assignRole = document.querySelectorAll('.assignRole');
+for (var i = 0; i < assignRole.length; i++){
+   const roleType = assignRole[i].getAttribute('user-email')
+    let uid = assignRole[i].getAttribute('user-id')
+assignRole[i].onchange = function(e){
+  e.preventDefault;
+ 
+  console.log(roleType)
+  console.log(e.target.value)
+  // if (assignRole.value = 'default') {
+  //    const addDefaultRole = functions.httpsCallable('addDefaultRole');
+  // addDefaultRole({email: roleType}).then(result => {
+  //   console.log(result);
+  // })
+  // }
+ 
+
+    if (e.target.value == 2) {
+        const addproductManuRole = functions.httpsCallable('addproductManuRole');
+  addproductManuRole({email: roleType}).then(result => {
+    console.log(result);
+    db.collection("users").doc(uid).update({
+      userRole: "productManu",
+    }).then(()=>{
+    Swal.fire(
+  'Confirmed!',
+  'Product Manufacturer Access Granted!',
+  'success'
+)
+    })
+  })
+  }
+
+   else if (e.target.value == 3) {
+        const addpartSupplierRole = functions.httpsCallable('addpartSupplierRole');
+  addpartSupplierRole({email: roleType}).then(result => {
+    console.log(result);
+    db.collection("users").doc(uid).update({
+      userRole: "Part Supplier",
+    }).then(()=>{
+      Swal.fire(
+  'Confirmed!',
+  'Part Supplier Access Granted !',
+  'success'
+)
+    })
+  })
+  }
+ 
+}
+}
 
 }
 
@@ -142,14 +222,15 @@ const editUI = ( user) => {
   userTitle.innerHTML = firebase.auth().currentUser.email
 }
 
-const adminForm = document.querySelector('.admin-actions');
-const makeAdmin = document.getElementById('makeAdmin');
-makeAdmin.addEventListener('click', e=> {
-  e.preventDefault;
-  const adminEmail = document.querySelector('.admin-email').value
-  const addAdminRole = functions.httpsCallable('addAdminRole');
-  addAdminRole({email: adminEmail}).then(result => {
-    console.log(result);
-  })
-})
+// const assignRole = document.getElementById('makeAdmin');
+// makeAdmin.addEventListener('click', e=> {
+//   e.preventDefault;
+//   const adminEmail = document.querySelector('.admin-email').value
+//   const addAdminRole = functions.httpsCallable('addAdminRole');
+//   addAdminRole({email: adminEmail}).then(result => {
+//     console.log(result);
+//   })
+// })
+
+
 

@@ -7,15 +7,15 @@
       
       <!-- Favicon -->
      
- <link rel="stylesheet" href="./products.css" />
-  <link rel="stylesheet" href="./parts.css" />
- <link rel="stylesheet" href="./addbtn.css" />
+ <link rel="stylesheet" href="../products.css" />
+  <link rel="stylesheet" href="../parts.css" />
+ <link rel="stylesheet" href="../addbtn.css" />
    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-      <link rel="stylesheet" href="./backend.css" />
-      <link rel="stylesheet" href="./backend-plugin.min.css">
-       <link rel="stylesheet" href="./all.min.css">
-      <link rel="stylesheet" href="./line-awesome.min.css">
-      <link rel="stylesheet" href="./remixicon.css">
+      <link rel="stylesheet" href="../backend.css" />
+      <link rel="stylesheet" href="../backend-plugin.min.css">
+       <link rel="stylesheet" href="../all.min.css">
+      <link rel="stylesheet" href="../line-awesome.min.css">
+      <link rel="stylesheet" href="../remixicon.css">
       <style>
 
          @media only screen and (min-width: 86em) {
@@ -50,86 +50,60 @@
     <ul class="nav-list">
   
       <li>
-        <a class="adminelement" href="./dashboard"style="display: none; ">
+        <a  href="./dashboard">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">대시보드</span>
         </a>
          <span class="tooltip">대시보드</span>
       </li>
-       <li>
-        <a class="notadmin" href="./dashboard"  style="display: none;">
-          <i class='bx bx-grid-alt'></i>
-          <span class="links_name">대시보드</span>
-        </a>
-         <span class="tooltip">대시보드</span>
-      </li>
+    
       <li>
-       <a class="adminelement" href="./listofproducts" style="display: none; ">
+       <a  href="./listofproducts" >
        
               <i class='bx bxs-cube-alt'></i>
          <span class="links_name">제품목록</span>
        </a>
        <span class="tooltip">제품목록</span>
      </li>
-      <li>
-       <a class="notadmin" href="./parts" style="display: none; ">
-    <i class='bx bxs-component' ></i>
-         <span class="links_name">부품목록</span>
-       </a>
-       <span class="tooltip">부품목록</span>
-     </li>
+ 
        <li>
-       <a class="adminelement" href="./partslist" style="display: none; ">
+       <a  href="./parts" >
  <i class='bx bxs-component' ></i>
          <span class="links_name">부품목록</span>
        </a>
        <span class="tooltip">부품목록</span>
      </li>
-     <li>
-       <a class="notadmin" href="./materials" style="display: none;">
+     <!-- <li>
+       <a  href="../materials" >
  <i class='bx bx-pie-chart-alt-2' ></i>
          <span class="links_name">소재목록</span>
        </a>
        <span class="tooltip">소재목록</span>
      </li>
      <li>
-       <a class="notadmin" href="./substances" style="display: none; ">
+       <a href="../substances">
   <i class='bx bx-dna' ></i>
          <span class="links_name">물질목록</span>
        </a>
        <span class="tooltip">물질목록</span>
      </li>
-     
+      -->
 
            <li>
-       <a class="adminelement" href="#" style="display: none;">
+       <a  href="#" >
        <i class="bx bx-bell"></i>
          <span class="links_name">공지사항</span>
        </a>
        <span class="tooltip">공지사항</span>
      </li>
-
-     <li>
-       <a class="notadmin" href="#" style="display: none;">
-       <i class='bx bx-bell' ></i>
-         <span class="links_name">공지사항</span>
-       </a>
-       <span class="tooltip">공지사항</span>
-     </li>
        <li>
-     <a class="notadmin" href="#" style="display: none;">
+     <a  href="#">
        <i class="ri-question-line"></i>
          <span class="links_name">자주 묻는 질문</span>
        </a>
        <span class="tooltip">자주 묻는 질문</span>
      </li>
-          <li>
-       <a class="adminelement" href="#" style="display: none;">
-       <i class="ri-question-line"></i>
-         <span class="links_name">자주 묻는 질문</span>
-       </a>
-       <span class="tooltip">자주 묻는 질문</span>
-     </li>
+   
     
      <li class="profile" style="margin-bottom: 30px; background: #219EBC;">
          <div class="profile-details">
@@ -213,15 +187,15 @@
                               <li class="nav-item nav-icon dropdown caption-content">
                                   <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton4"
                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      <img src="./1.png" class="img-fluid rounded" alt="user">
+                                      <img src="../1.png" class="img-fluid rounded" alt="user">
                                   </a>
                                   <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton">
                                       <div class="card shadow-none m-0">
                                           <div class="card-body p-0 text-center">
                                               <div class="media-body profile-detail text-center">
-                                                  <img src="./profile-bg.jpg" alt="profile-bg"
+                                                  <img src="../profile-bg.jpg" alt="profile-bg"
                                                       class="rounded-top img-fluid mb-4">
-                                                  <img src="./1.png" alt="profile-img"
+                                                  <img src="../1.png" alt="profile-img"
                                                       class="rounded profile-img img-fluid avatar-70">
                                               </div>
                                               <div class="p-3" >
@@ -297,7 +271,7 @@
                      </div>
                                        <div class="form-group" id="formfloat" style="width: 48%;margin:0;">
                       <div class="input-group mb-3">
-                       <input type="text" class="form-control" id="myInputProduct" style="margin: 0;border-radius: 10px 0 0 10px;height:46px;width: 66%;" onkeyup="prodSearch()" name="myInputProduct" placeholder="Search by Part Code" aria-label="Search Part Name" aria-describedby="basic-addon5">
+                       <input type="text" class="form-control" id="myInputProduct" style="margin: 0;border-radius: 10px 0 0 10px;height:46px;width: 66%;" onkeyup="prodSearch()" name="myInputProduct" placeholder="Search by " aria-label="Search Part Name" aria-describedby="basic-addon5">
                         <select class="custom-select searchProdSelection" id="inputGroupSelect03">
                         <option selected="">Choose...</option>
                            <option value="3">Product Name </option>
@@ -2112,29 +2086,28 @@
   <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-storage.js"></script>
   <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-functions.js"></script>
 
-   
     <!-- Backend Bundle JavaScript -->
-    <script src="./backend-bundle.min.js"></script>
+    <script src="../backend-bundle.min.js"></script>
 <!--     
       <script src="./multiselect-dropdown.js" ></script> -->
     <!-- Table Treeview JavaScript -->
-    <script src="./table-treeview.js"></script>
- <script  type="module" src="./products.js" ></script>
+    <script src="../table-treeview.js"></script>
+ <script  type="module" src="../products.js" ></script>
 
-    <script    src="./sidemenu.js" ></script>
-     <script  type="module" src="./addbtn.js" ></script>
-      <script   src="./uploadarea/uploadImgProd.js" ></script>
+    <script    src="../sidemenu.js" ></script>
+     <script  type="module" src="../addbtn.js" ></script>
+      <script   src="../uploadarea/uploadImgProd.js" ></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
     <!-- Chart Custom JavaScript -->
-    <script src="./customizer.js"></script>
-      <script  src="./searchProd.js" ></script>
-      <script type="text/javascript" src="./table-to-excel-master/dist/tableToExcel.js"></script>
-          <script  src="./sortandsearch/sortProd.js" ></script>
+    <script src="../customizer.js"></script>
+      <script  src="../searchProd.js" ></script>
+      <script type="text/javascript" src="../table-to-excel-master/dist/tableToExcel.js"></script>
+          <script  src="../sortandsearch/sortProd.js" ></script>
     <!-- Chart Custom JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     
     <!-- app JavaScript -->
-    <script src="./app.js"></script>
+    <script src="../app.js"></script>
      <!-- <script   type="module" src="./auth.js" ></script> -->
         <!-- <script>feather.replace()</script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>

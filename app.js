@@ -45,7 +45,7 @@ app.get("/login", function (req, res) {
     .then((userData) => {
       console.log("Logged in:", userData.userEmail)
       
-      res.render("productslist.html");
+      res.render("login.html");
     })
     .catch((error) => {
       res.render("login.html");
@@ -68,20 +68,7 @@ app.get("/signup", function (req, res) {
       res.render("signup.html");
     });
 });
-app.get("/datatree", function (req, res) {
-   const sessionCookie = req.cookies.session || "";
 
-  admin
-    .auth()
-    .verifySessionCookie(sessionCookie, true /** checkRevoked */)
-    .then((userData) => {
-      console.log("Logged in:", userData.email)
-      res.render("datatree.html");
-    })
-    .catch((error) => {
-      res.redirect("/login");
-    });
-});
 
 app.get("/parts", function (req, res) {
    const sessionCookie = req.cookies.session || "";
@@ -113,6 +100,21 @@ app.get("/dashboard", function (req, res) {
     });
 });
 
+app.get("/productmanufacturer/dashboard", function (req, res) {
+   const sessionCookie = req.cookies.session || "";
+
+  admin
+    .auth()
+    .verifySessionCookie(sessionCookie, true /** checkRevoked */)
+    .then((userData) => {
+      console.log("Logged in:", userData.email)
+      res.render("productmanufacturer/dashboard.html");
+    })
+    .catch((error) => {
+      res.redirect("/login");
+    });
+});
+
 app.get("/selectivematerials", function (req, res) {
    const sessionCookie = req.cookies.session || "";
 
@@ -135,28 +137,25 @@ app.get("/materials", function (req, res) {
     .auth()
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
+      console.log(userData)
+      if(userData.admin === false) {
+            console.log(userData)
+  
       console.log("Logged in:", userData.email)
-      res.render("materials.html");
+      res.render("materials.ejs");
+      }
+      else {
+           res.redirect("/dashboard");
+      }
+  
     })
     .catch((error) => {
+      console.log(error)
       res.redirect("/login");
     });
 });
 
-app.get("/dataview", function (req, res) {
-   const sessionCookie = req.cookies.session || "";
 
-  admin
-    .auth()
-    .verifySessionCookie(sessionCookie, true /** checkRevoked */)
-    .then((userData) => {
-      console.log("Logged in:", userData.email)
-      res.render("dataview.html");
-    })
-    .catch((error) => {
-      res.redirect("/login");
-    });
-});
 
 app.get("/substances", function (req, res) {
    const sessionCookie = req.cookies.session || "";
@@ -173,7 +172,7 @@ app.get("/substances", function (req, res) {
     });
 });
 
-app.get("/partslist", function (req, res) {
+app.get("/productmanufacturer/parts", function (req, res) {
    const sessionCookie = req.cookies.session || "";
 
   admin
@@ -181,27 +180,23 @@ app.get("/partslist", function (req, res) {
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
       console.log("Logged in:", userData.email)
-      res.render("pp.html");
-    })
-    .catch((error) => {
-      res.redirect("/login");
-    });
-});
-
-app.get("/form", function (req, res) {
-   const sessionCookie = req.cookies.session || "";
-
-  admin
-    .auth()
-    .verifySessionCookie(sessionCookie, true /** checkRevoked */)
-    .then((userData) => {
+          if(userData.productManu == true) {
+            console.log(userData)
+  
       console.log("Logged in:", userData.email)
-      res.render("form.html");
+            res.render("productmanufacturer/parts.html");
+      }
+      else {
+           res.redirect("/dashboard");
+      }
+
     })
     .catch((error) => {
       res.redirect("/login");
     });
 });
+
+
 
 
 
@@ -247,16 +242,25 @@ app.get("/userprofile", function (req, res) {
     });
 });
 
-app.get("/listofproducts", function (req, res) {
+app.get("/productmanufacturer/listofproducts", function (req, res) {
      const sessionCookie = req.cookies.session || "";
 
   admin
     .auth()
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
-
+      if(userData.productManu == true) {
+            console.log(userData)
+  
       console.log("Logged in:", userData.email)
-      res.render("productslist.html");
+           res.render("productmanufacturer/productslist.html");
+      }
+      else {
+           res.redirect("/dashboard");
+      }
+  
+
+   
     })
     .catch((error) => {
       res.redirect("/login");
@@ -310,11 +314,13 @@ app.post("/sessionLogin", (req, res) => {
         const options = { maxAge: expiresIn, httpOnly: true };
         res.cookie("session", sessionCookie, options);
         res.end(JSON.stringify({ status: "success" }));
+        
       },
+    
       (error) => {
         res.status(401).send("UNAUTHORIZED REQUEST!");
       }
-    );
+    )
 });
 
 app.get("/sessionLogout", (req, res) => {

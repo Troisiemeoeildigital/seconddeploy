@@ -294,3 +294,44 @@ myInputSub.onkeyup = function() {
 
 		}
 </script>
+
+
+<script>
+  
+      db.collection('recycledparts').doc(idref).set({
+            supplierName: "Kitech",
+            partName: obj.partName,
+            partCode: obj.partCode,
+            partWeight: obj.partWeight,
+
+            partWidth: obj.partWidth,
+            partDepth: obj.partDepth,
+            partHeight: obj.partHeight,
+
+            sizeUnit: obj.sizeUnit,
+            partRegisteredDate: obj.partRegisteredDate,
+            reusedPart: obj.reusedPart,
+            partMemo: obj.partMemo
+           },{merge:true}) .then((doc)=> {
+            console.log("Document Added")
+            
+                  let  partRef = doc.id 
+                   console.log("Documents Added!")
+      db.collection('recycledparts').doc(partRef).collection('materials').add({
+              materialGroup	: obj.materialGroup,
+            materialMassPerc: obj.materialMassPerc,
+            materialMassg: obj.materialMassg,
+            materialName: obj.materialName,
+
+            materialRecycleContent: obj.materialRecycleContent,
+            matnameSelect: obj.matnameSelect,
+            partRef: obj.partName,
+            partRefWeight: obj.partWeight,
+
+            recovMat: obj.recovMat,
+            recycMat: obj.recycMat,
+            reuseMat: obj.reuseMat,
+
+      })
+    })
+</script>

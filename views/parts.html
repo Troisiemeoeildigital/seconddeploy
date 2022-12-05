@@ -252,6 +252,69 @@
           </div>
       </div>
         <div class="row">
+
+               <div class="modal fade bd-example-modal-xl bulkUpload"  tabindex="-1" role="dialog"  aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                           <div class="modal-content">
+                              <div class="modal-header" style="align-items: center;">
+          
+                                 <h5 class="modal-title">Bulk Upload</h5>
+                                 <div class="modal-header-download" style="
+                                                                        width: 10%;
+                                                                        display: flex;
+                                                                        flex-direction: row;
+                                                                        align-content: center;
+                                                                        justify-content: center;
+                                                                        align-items: center;">
+                                  <nav class="navbary"  style="width: 40%; background-color: #fb8500;">
+                                    <a href="https://firebasestorage.googleapis.com/v0/b/projectcrm-f4e5f.appspot.com/o/Bulk%20parts%20materials%20upload%20(minimal%20adv).csv?alt=media&token=2b7e6b30-22be-47dc-83ec-72602c8c06d3" class="navbary__link" >
+                                      <span class="" ><svg xmlns="http://www.w3.org/2000/svg" style="fill: white;
+                                                                                                    width: 18px;
+                                                                                                    height: 18px;" 
+                                    viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM96 48c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16zm-6.3 71.8c3.7-14 16.4-23.8 30.9-23.8h14.8c14.5 0 27.2 9.7 30.9 23.8l23.5 88.2c1.4 5.4 2.1 10.9 2.1 16.4c0 35.2-28.8 63.7-64 63.7s-64-28.5-64-63.7c0-5.5 .7-11.1 2.1-16.4l23.5-88.2zM112 336c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H112z"/></svg></span>
+                                      <span class="navbary__label" style="background-color: #fb8500;width: 300px; left: -120px;" >Download Reference Upload File</span>
+
+                                   
+                                    </a>
+                                  </nav>
+      
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                                 </button>
+                                 </div>
+                                                
+                              </div>
+                              <div class="modal-body" style="height: 500px;">
+
+                                  <label for="csv" class="drop-container">
+                                        <figure>
+                                            <svg xmlns="http://www.w3.org/2000/svg" style="    width: 100px;
+                                                                                              fill: #0d45a5;" 
+                                              class="iborrainputfile"  viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg>
+                                         </figure>
+                                    <input type="file" class="filey" id="images" accept=".csv" required>
+                                  </label>
+
+
+                              </div>
+                              <div class="modal-footer" style="justify-content: space-between">
+                                 
+                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                 <!-- <button class="btn btn-secondary uploadbtn" style="width: 25%;" type="submit" >Upload</button> -->
+
+                                    <nav class="navbary uploadbtn" style="width:25%; background-color: #fb8500;">
+	<a href="#" class="navbary__link" >
+		<span class="" ><svg xmlns="http://www.w3.org/2000/svg" style="fill: white;
+                                                                  width: 18px;
+                                                                  height: 18px;" 
+  viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></span>
+		<span class="navbary__label" style="background-color: #fb8500;width: 252px; left: 10px ;" >Bulk Upload Parts & Materials</span>
+	</a>
+</nav>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
          
      <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog"  aria-hidden="true">
                         <div class="modal-dialog modal-xl">
@@ -339,12 +402,13 @@
                               <div class="col-12 col-md-8">  <h4 class="mb-3" style="color: black;font-weight: 600; font-size: 25px;">부품목록</h4></div>
                               <div class="row col-6 col-md-4" style="gap: 2px; justify-content: end;"> 
                                 <button class="btnpr btnpr-add" style=" width: 30%; background-color: #fb8500 ; "><div class="addnewproductbtnpr">새 부품 등록</div></button>
-                                  <button class="btnpr btnpr-add" style="color: white;
+                                  <button type="button" class="btnpr btnpr-add bulkUpload" data-toggle="modal" data-target=".bulkUpload"            style="color: white;
                                                                         font-size: small; 
                                                                         width: 30%; 
                                                                         background-color: #fb8500 ; ">
                                   <div class="batchUploadPM">Bulk Upload</div></button>
 
+                             
                                 <button class="btnpr btnpr-add" style=" width: 30%; background: #F05D5E;"><div class="addnewproductbtnpr">Delete All</div></button></div>
                            </div>
 
@@ -412,7 +476,7 @@
  <div class="tabledata" >
     <div class="table-wrapper" style="
     overflow-y: scroll; height: 480px;"> 
-        <div class=" deleterow align-items-center" >
+        <!-- <div class=" deleterow align-items-center" >
                    <div class="col-md-9"> 
                                   <form id="upload">
                            <div class="input-group" style="margin-bottom: 2%; width: 30%; margin-left: 70%;">
@@ -428,7 +492,7 @@
                       </form> 
                               </div>
      
-        </div>
+        </div> -->
         
 
 <div class="table-wrapper">
