@@ -62,6 +62,21 @@ return admin.auth().getUserByEmail(data.email).then(user =>{
 })
 })
 
+// add admin user 
+exports.addadminRole = functions.https.onCall((data, context)=> {
+return admin.auth().getUserByEmail(data.email).then(user =>{
+    return admin.auth().setCustomUserClaims(user.uid, {
+        admin: true
+    });
+}).then(()=> {
+    return {
+        message: `Success! ${data.email} has been made an admin`
+    }
+}).catch(err => {
+    return err;
+})
+})
+
 // .region('asia-northeast3')
 exports.recursiveDelete = functions.runWith({timeoutSeconds: 540,memory: '2GB'}).https.onCall( (data, context) => {
     // Only allow admin users to execute this function.

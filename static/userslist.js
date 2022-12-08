@@ -45,8 +45,10 @@ const renderUser = (doc) => {
       <td>         <div class="input-group mb-3">
                        <input type="text" readonly value="${doc.data().userRole}" class="form-control" style="margin: 0;border-radius: 10px 0 0 10px;height:46px;width: 35%;"   aria-describedby="basic-addon5">
                           <select class="custom-select assignRole" user-email="${doc.data().userEmail}" user-id="${doc.id}" style="text-align: center;" id="inputGroupSelect03">
-                           <option value="1">Default</option>
-                        <option value="2">Prodcut Manufacturer</option>
+                             <option  selected>Choose option</option>
+                            <option value="1">Default</option>
+                           <option value="4" >admin</option>
+                         <option value="2">Product Manufacturer</option>
                            <option value="3">Part Supplier</option>
                            
                         </select>

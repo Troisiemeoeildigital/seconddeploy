@@ -116,10 +116,7 @@ auth.onAuthStateChanged(user => {
         console.log("There's nothing here!")
     }
 })
-  document.querySelector('.loadingtitle').innerHTML = "Data is loading - Please wait... ⌛"
-  document.querySelector('.loadingtitle').style.fontWeight = "600"
-  document.querySelector('.loadingtitle').style.color = "black"
-    document.querySelector('.loadingtitle').style.marginLeft = "43%";
+
  auth.onAuthStateChanged(user => {
      if(user) {
       
@@ -129,8 +126,13 @@ userRef.then((querySnapshot) => {
  querySnapshot.forEach((doc) => {
   console.log( doc.data().userCompanyname)
 
-  
-db.collection('recycledproducts').where("productManufacturer", '==',  doc.data().userCompanyname).orderBy("createdAt").onSnapshot(snapshot => {
+    
+    console.log('hey')
+    document.querySelector('.loadingtitle').innerHTML = "Data is loading - Please wait... ⌛"
+  document.querySelector('.loadingtitle').style.fontWeight = "600"
+  document.querySelector('.loadingtitle').style.color = "black"
+    document.querySelector('.loadingtitle').style.marginLeft = "43%";
+db.collection('recycledproducts').onSnapshot(snapshot => {
   snapshot.docChanges().forEach(change => {
     if(change.type === 'added') {
       renderUser(change.doc);
@@ -2246,7 +2248,7 @@ firebase.auth().onAuthStateChanged(user => {
 // });
 
 
-
+addEventListener('DOMContentLoaded', (event) => {
   var addpartsRef = db.collectionGroup('recycledparts');
 addpartsRef
 .get()
@@ -2278,6 +2280,7 @@ addpartsRef
 		}}
   })
 
+});
 
 
 

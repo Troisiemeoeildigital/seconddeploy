@@ -92,11 +92,6 @@ const uidRef = document.querySelector('.uid')
 
          //  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
 
-         
-db.collection('warmdb').add({
-   text: "getwarm"
-})
-
                            document
             .getElementById("login")
             .onsubmit = function(event) {
@@ -135,10 +130,10 @@ db.collection('warmdb').add({
                                      console.log("product manu detected")
                                           window.location.assign("/partsupplier/dashboard");
                                  }
-                                 else {
+                                 else if(!!idTokenResult.claims.default) {
                                     // Show regular user UI.
-                                    console.log("no one detected")
-                                          window.location.assign("/dashboard");
+                                    console.log("default user detected")
+                                          window.location.assign("/main");
                                  }
                               })
                               .catch((error) => {
