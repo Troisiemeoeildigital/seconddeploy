@@ -1,4 +1,6 @@
-    console.clear();
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore(app)
 
 const loginBtn = document.getElementById('login');
 const signupBtn = document.getElementById('signup');
