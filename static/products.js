@@ -1,4 +1,4 @@
-"use strict"
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAq2QjImxRXEtRHN-N6u2YEod-wUJMtI1s",
@@ -103,20 +103,20 @@ const sumTotalWeightPerc = document.querySelectorAll('.sumTotalWeightPerc')
 
 let id;
 
-auth.onAuthStateChanged(user => {
-    if(user) {
-        user.getIdTokenResult().then(idTokenResult => {
-          // console.log(idTokenResult)
-          // console.log(idTokenResult.claims)
-            user.admin = idTokenResult.claims.admin
-            editUI(user)
-        })
-    }
-    else {
-        console.log("There's nothing here!")
-    }
-})
-  document.querySelector('.loadingtitle').innerHTML = "Data is loading - Please wait... ⌛"
+// auth.onAuthStateChanged(user => {
+//     if(user) {
+//         user.getIdTokenResult().then(idTokenResult => {
+//           // console.log(idTokenResult)
+//           // console.log(idTokenResult.claims)
+//             user.admin = idTokenResult.claims.admin
+//             editUI(user)
+//         })
+//     }
+//     else {
+//         console.log("There's nothing here!")
+//     }
+// })
+  document.querySelector('.loadingtitle').innerHTML = "Data is processing - Please wait... ⌛"
   document.querySelector('.loadingtitle').style.fontWeight = "600"
   document.querySelector('.loadingtitle').style.color = "black"
     document.querySelector('.loadingtitle').style.marginLeft = "43%";
@@ -265,6 +265,7 @@ const renderUser = doc => {
   `;
   const prodTabledata = document.querySelector('.prodTabledata')
   prodTabledata.insertAdjacentHTML('afterbegin', tr);
+  
    document.querySelector('.loadingtitle').style.display = "none"
 
 
@@ -2342,7 +2343,3 @@ partCode.insertAdjacentHTML('beforeend', tm);
         console.log("Error getting documents: ", error);
     });
   })
-
-
-
-  

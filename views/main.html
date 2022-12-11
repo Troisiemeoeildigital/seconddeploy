@@ -197,13 +197,21 @@
     align-items: center;">
 <div class="form-structor">
 	<div class="signup">
-		<h2 class="form-title" id="signup">Please make sure to send an access request to the administartor</h2>
+		<h2 class="requestInfo" id="signup">Please make sure to send an access request to the administartor</h2>
+      <div class="requestData">
+       
         
+      </div>
 			
                   <nav class="navbary" style="background-color: black; width: 50%; margin-top: 15%;">
-	<a href="#" class="navbary__link">
-		<span class="requestAccess" ><i class="ri-external-link-line" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style="background-color: black;">Learn more about Access types</span>
+	<a href="#" style="margin: 5%;">
+		<span  style="    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+
+    justify-content: space-between;" ><span style="color: white; font-size: 10px;" >LEARN MORE ABOUT ROLE TYPES</span> <i class="ri-external-link-line" style="color: white; font-size: 15px; "></i></span>
+		
 	</a>
     </nav>
 		
@@ -220,10 +228,10 @@
 ">
 				     <div class="input-group mb-3 form-holder" >
                       
-                        <select class="custom-select sortProdSelection" id="inputGroupSelect03">
+                        <select class="custom-select roleSelect" id="inputGroupSelect03">
                            <option value="" selected="">Choose...</option>
-                         <option value="1">Product Manufacturer</option>
-                           <option value="2">Part Supplier</option>
+                         <option value="Product Manufacturer">Product Manufacturer</option>
+                           <option value="Part Supplier">Part Supplier</option>
                         </select>
                            <div class="input-group-append">
                            <span class="input-group-text" id="basic-addon5"><i class='bx bx-lock-open' style="font-size: 20px;"></i></span>
@@ -233,8 +241,8 @@
 		
                   <nav class="navbary" style="background-color: black; width: 50%;">
 	<a href="#" class="navbary__link">
-		<span class="requestAccess" ><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style="background-color: black;">Submit</span>
+		<span class="requestAccess" style="color: white;" >Submit</span>
+	
 	</a>
     </nav>
 		</div>
@@ -251,33 +259,7 @@
  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
   <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
   <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
-    <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-functions.js"></script>
-<script  type="module">
 
-
-
-        
-
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAq2QjImxRXEtRHN-N6u2YEod-wUJMtI1s",
-  authDomain: "projectcrm-f4e5f.firebaseapp.com",
-  databaseURL: "https://projectcrm-f4e5f-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "projectcrm-f4e5f",
-  storageBucket: "projectcrm-f4e5f.appspot.com",
-  messagingSenderId: "404890912341",
-  appId: "1:404890912341:web:5b129be76ccdfeba8c76dc",
-  measurementId: "G-TL8J23TNZE"
-};
-
-
-
-</script>
 
   <!-- <script  type="module" src="../userslist.js" defer></script> -->
    <!-- <script>feather.replace()</script> -->

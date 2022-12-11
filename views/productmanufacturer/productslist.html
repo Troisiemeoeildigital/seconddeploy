@@ -25,15 +25,17 @@
     
 }
       </style>
-        <!-- <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js"></script>
-   
-    <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-auth.js" defer ></script> -->
-  
+      
+     
+ <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-storage.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-functions.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
   <!-- TODO: Add SDKs for Firebase products that you want to use
       https://firebase.google.com/docs/web/setup#available-libraries -->
-  <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-firestore.js"></script>
   
       </head>
   <body class="" style="overflow-y: hidden;">
@@ -41,8 +43,8 @@
    
     <!-- loader END -->
     <!-- Wrapper Start -->
-      <div class="sidebar" style="background: #219EBC;">
-    <div class="logo-details">
+    <div class="sidebar" style="background: #219EBC;">
+   <div class="logo-details">
      
         <div class="logo_name">Kitech</div>
         <i class='bx bx-menu' id="btn" ></i>
@@ -67,28 +69,19 @@
      </li>
  
        <li>
-       <a  href="./parts" >
+       <a  href="./listofparts" >
  <i class='bx bxs-component' ></i>
          <span class="links_name">부품목록</span>
        </a>
        <span class="tooltip">부품목록</span>
      </li>
-     <!-- <li>
-       <a  href="../materials" >
- <i class='bx bx-pie-chart-alt-2' ></i>
-         <span class="links_name">소재목록</span>
+          <li>
+       <a  href="./addparts/main">
+ <i class='bx bxs-data'></i>
+         <span class="links_name">Add parts</span>
        </a>
-       <span class="tooltip">소재목록</span>
+       <span class="tooltip">Add parts</span>
      </li>
-     <li>
-       <a href="../substances">
-  <i class='bx bx-dna' ></i>
-         <span class="links_name">물질목록</span>
-       </a>
-       <span class="tooltip">물질목록</span>
-     </li>
-      -->
-
            <li>
        <a  href="#" >
        <i class="bx bx-bell"></i>
@@ -121,39 +114,27 @@
   </div>
     
     
+    
   <section class="home-section">
         
 <div class="content-page">
      <div class="container-fluid" style="    padding-top: 80px;">
-           <div class="iq-top-navbar" style="box-shadow: 0 16px 15px 0 rgb(33, 158, 188, 0.07)">
+         <div class="iq-top-navbar" style="box-shadow: 0 16px 15px 0 rgb(33, 158, 188, 0.07)">
           <div class="iq-navbar-custom">
               <nav class="navbar navbar-expand-lg navbar-light p-0">
             
                
               
                   <div class="d-flex align-items-center">
-                    <div class="userroledisplay adminelement" style="display: none;">
-                         <div class="card-body">
-                  
-                      <button type="button" class="btn mb-1" style="background-color:rgb(33, 158, 188); font-size: 17px; color:white;">
-                      제품 제조사
-                      </button>
-                      <!-- <button type="button" class="btn mb-1 bg-success-light">
-                      Part Supplier <span class="badge badge-success ml-2">4</span>
-                      </button> -->
-                      <!-- <button type="button" class="btn mb-1 bg-danger-light">
-                      Notifications <span class="badge badge-danger ml-2">4</span>
-                      </button> -->
-                  </div>
-                  </div>
-                  <div class="userroledisplay">
+                     
+                  <div class="userroledisplay" >
                          <div class="card-body">
                   
                       <!-- <button type="button" class="btn mb-1 bg-primary-light">
                       Product Manufacturer
                       </button> -->
-                      <button type="button" class="btn mb-1" style="background-color: #219EBC; color: white;">
-                      부품 공급사 
+                      <button type="button" class="btn mb-1 " style="background-color: #219EBC; color:white">
+                      제품 제조사
                       </button>
                       
                       <!-- <button type="button" class="btn mb-1 bg-danger-light">
@@ -187,27 +168,31 @@
                               <li class="nav-item nav-icon dropdown caption-content">
                                   <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton4"
                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      <img src="../1.png" class="img-fluid rounded" alt="user">
+                                      <img src="../../1.png" class="img-fluid rounded" alt="user">
                                   </a>
                                   <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton">
                                       <div class="card shadow-none m-0">
                                           <div class="card-body p-0 text-center">
                                               <div class="media-body profile-detail text-center">
-                                                  <img src="../profile-bg.jpg" alt="profile-bg"
+                                                  <img src="../../profile-bg.jpg" alt="profile-bg"
                                                       class="rounded-top img-fluid mb-4">
-                                                  <img src="../1.png" alt="profile-img"
+                                                  <img src="../../1.png" alt="profile-img"
                                                       class="rounded profile-img img-fluid avatar-70">
                                               </div>
                                               <div class="p-3" >
                                                    <div class="mb-1">
-                                                    <h5 class="mb-1 " id="usertitle" ></h5>
+                                                    <div id="userDisplay"></div>
+                                                    <h5 class="mb-1 " >제품 제조사</h5>
                                                     <h5 class="mb-1 " id="useremailcard" ></h5>
                                                 </div>
                                                   
                                                   <p class="mb-0">계정 생성일: 2022/08/02</p>
+                                                    <div id="lastsignin"></div>
                                                   <div class="d-flex align-items-center justify-content-center mt-3">
+                                                      <button type="button" style="display: none;" class="btn border mr-2 notadmin" data-toggle="modal" data-target=".bd-example-modal-xl">권한</button>
                                                       <a href="./userprofile" class="btn border mr-2">내 계정</a>
                                                       <a href="/sessionLogout" class="btn border">로그아웃</a>
+
                                                   </div>
                                               </div>
                                           </div>
@@ -521,7 +506,7 @@
                                 </div> 
                                  </div>
                                      <div class="row">
-                                  <div class="col-md-6">
+                                  <div class="col-md-12">
                                     <div class="form-group">
                                      <label>Memo</label>
                                         <input type="text" class="form-control" id='addmemo' placeholder="Please Enter Memo." data-errors="Please Enter Memo." name="memo" required>
@@ -723,7 +708,7 @@
                                     </div>
                                        
                                 </div>
-                                    <div class="col-md-6"> 
+                                    <div class="col-md-12"> 
                                         
                                   <div class="form-group">
                                         <label>Memo</label>
@@ -2051,66 +2036,26 @@
 
 
                     
-    <!-- Wrapper End-->
-    <footer class="iq-footer">
-            <div class="container-fluid">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item"><a href="../backend/privacy-policy.html">Privacy Policy</a></li>
-                                <li class="list-inline-item"><a href="../backend/terms-of-service.html">Terms of Use</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6 text-right">
-                            <span class="mr-1"><script>document.write(new Date().getFullYear())</script>©</span> <a href="#" class="">CRM Dashbord</a>
-                         
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-  </section>
-    
 
     
-    
+
+
            
-     
- <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
-  <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
-  <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
-  <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-storage.js"></script>
-  <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-functions.js"></script>
 
     <!-- Backend Bundle JavaScript -->
-    <script src="../backend-bundle.min.js"></script>
-<!--     
-      <script src="./multiselect-dropdown.js" ></script> -->
-    <!-- Table Treeview JavaScript -->
-    <!-- <script src="../table-treeview.js"></script> -->
- <script  type="module" src="../products.js" ></script>
-
-    <script    src="../sidemenu.js" ></script>
-     <script  type="module" src="../addbtn.js" ></script>
-      <script   src="../uploadarea/uploadImgProd.js" ></script>
-     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script> -->
+   <script src="../backend-bundle.min.js"></script>
+   <script  type="module" src="../products.js" ></script>
+   <script    src="../sidemenu.js" ></script>
+   <script  type="module" src="../addbtn.js" ></script>
+   <script   src="../uploadarea/uploadImgProd.js" ></script>
+   <script  src="../searchProd.js" ></script>
+   <script  src="../sortandsearch/sortProd.js" ></script>
     <!-- Chart Custom JavaScript -->
-    <!-- <script src="../customizer.js"></script> -->
-      <script  src="../searchProd.js" ></script>
-      <script type="text/javascript" src="../table-to-excel-master/dist/tableToExcel.js"></script>
-          <script  src="../sortandsearch/sortProd.js" ></script>
-    <!-- Chart Custom JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     
     <!-- app JavaScript -->
-    <script src="../app.js"></script>
-     <!-- <script   type="module" src="./auth.js" ></script> -->
-        <!-- <script>feather.replace()</script> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+   <script src="../app.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
 
 
 

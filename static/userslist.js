@@ -1,3 +1,6 @@
+"use strict"
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyAq2QjImxRXEtRHN-N6u2YEod-wUJMtI1s",
   authDomain: "projectcrm-f4e5f.firebaseapp.com",
@@ -39,8 +42,8 @@ const renderUser = (doc) => {
 
   const tr = `
     <tr data-id='${doc.id}'>
-      <td>${doc.data().userFirstname}</td>
-      <td>${doc.data().userLastname}</td>
+      <td>${doc.data().userFirstname} ${doc.data().userLastname}</td>
+     
       <td>${doc.data().userEmail}</td>
       <td>         <div class="input-group mb-3">
                        <input type="text" readonly value="${doc.data().userRole}" class="form-control" style="margin: 0;border-radius: 10px 0 0 10px;height:46px;width: 35%;"   aria-describedby="basic-addon5">
@@ -86,6 +89,109 @@ const renderUser = (doc) => {
     </tr>
   `;
   listofusers.insertAdjacentHTML('beforeend', tr);
+
+
+
+      const setupUserReqList = (data) => {
+    let html = '';
+    data.forEach(doc=> {
+      const li = `
+       <tr data-id='${doc.id}'>
+      <td>${doc.data().userFirstname} ${doc.data().userLastname}</td>
+     
+      <td>${doc.data().userEmail}</td>
+        <td>${doc.data().userRole}</td>
+          <td>${doc.data().requestRole}</td>
+      <td>         <div class="input-group mb-3" style="margin-top: 5px;">
+                          <select class="custom-select assignRequestRole" user-email="${doc.data().userEmail}" user-id="${doc.id}" style="text-align: center;" id="inputGroupSelect03">
+                             <option  selected>Choose option</option>
+                            <option value="1">Default</option>
+                         <option value="2">Product Manufacturer</option>
+                           <option value="3">Part Supplier</option>
+                             <option value="4" >admin</option>
+                           
+                        </select>
+                           <div class="input-group-append">
+                           <span class="input-group-text" id="basic-addon5"><i class="las la-search font-size-20"></i></span>
+                        </div>
+                     </div>
+      </td>
+    </tr>
+      `;
+           html+=li
+    
+    })
+  
+    document.querySelector('.listofRoleRequests').insertAdjacentHTML('beforeend', html)
+  }
+    db.collection('users').where('requestType', '==', true).onSnapshot(snapshot => {
+      document.querySelector('.listofRoleRequests').innerHTML = '';
+
+    setupUserReqList(snapshot.docs) 
+      console.log("hey")
+
+  const assignRequestRole = document.querySelectorAll('.assignRequestRole');
+for (var i = 0; i < assignRequestRole.length; i++){
+   const requestRoleType = assignRequestRole[i].getAttribute('user-email')
+    let uid = assignRequestRole[i].getAttribute('user-id')
+assignRequestRole[i].onchange = function(e){
+  e.preventDefault;
+ 
+  console.log(requestRoleType)
+  console.log(e.target.value)
+    if (e.target.value == 2) {
+        const addproductManuRole = functions.httpsCallable('addproductManuRole');
+  addproductManuRole({email: requestRoleType}).then(result => {
+    console.log(result);
+    db.collection("users").doc(uid).update({
+      userRole: "Product Manufacturer",
+      requestType: false
+    }).then(()=>{
+    Swal.fire(
+  'Confirmed!',
+  'Product Manufacturer Access Granted!',
+  'success'
+)
+    })
+  })
+  }
+
+     else if (e.target.value == 1) {
+        const addDefaultRole = functions.httpsCallable('addDefaultRole');
+  addDefaultRole({email: requestRoleType}).then(result => {
+    console.log(result);
+    db.collection("users").doc(uid).update({
+      userRole: "Default",
+    }).then(()=>{
+      Swal.fire(
+  'Confirmed!',
+  'Default User Access Granted !',
+  'success'
+)
+    })
+  })
+  }
+
+   else if (e.target.value == 3) {
+        const addpartSupplierRole = functions.httpsCallable('addpartSupplierRole');
+  addpartSupplierRole({email: requestRoleType}).then(result => {
+    console.log(result);
+    db.collection("users").doc(uid).update({
+      userRole: "Part Supplier",
+      requestType: false,
+    }).then(()=>{
+      Swal.fire(
+  'Confirmed!',
+  'Part Supplier Access Granted !',
+  'success'
+)
+    })
+  })
+  }
+ 
+}
+}
+  })
 
   // Click edit user
   const btnprEdit = document.querySelector(`[data-id='${doc.id}'] .btnpr-edit`);
@@ -133,7 +239,7 @@ assignRole[i].onchange = function(e){
   addproductManuRole({email: roleType}).then(result => {
     console.log(result);
     db.collection("users").doc(uid).update({
-      userRole: "productManu",
+      userRole: "Product Manufacturer",
     }).then(()=>{
     Swal.fire(
   'Confirmed!',
@@ -178,8 +284,9 @@ assignRole[i].onchange = function(e){
  
 }
 }
-
 }
+
+
 
 // User click anyware outside the modaly
 window.addEventListener('click', e => {

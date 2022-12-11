@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      
+    <title>Kitech - Registration</title>
       <!-- Favicon -->
        <link rel="stylesheet" href="./mvp.css" />
       <style>
@@ -155,7 +155,10 @@ console.log("im updated!")
                   userEmail: user.email,
                   userCompanyname: companyname,
                   userID: user.uid,
-                  requestType: false
+                  requestType: false,
+                  requestStatus: "🔴",
+                  requestRole: "No Request has been sent.",
+                  userRole: "Default"
                })
               
                console.log(user.email)

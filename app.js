@@ -381,7 +381,7 @@ app.get("/productmanufacturer/dashboard", function (req, res) {
       res.redirect("/login");
     });
 });
-app.get("/productmanufacturer/parts", function (req, res) {
+app.get("/productmanufacturer/listofparts", function (req, res) {
    const sessionCookie = req.cookies.session || "";
 
   admin
@@ -392,7 +392,7 @@ app.get("/productmanufacturer/parts", function (req, res) {
             console.log(userData)
   
       console.log("Logged in:", userData.email)
-            res.render("productmanufacturer/parts.html");
+            res.render("productmanufacturer/listofparts.html");
       }
       else {
            res.redirect("/404");
@@ -415,6 +415,30 @@ app.get("/productmanufacturer/listofproducts", function (req, res) {
   
       console.log("Logged in:", userData.email)
            res.render("productmanufacturer/productslist.html");
+      }
+      else {
+           res.redirect("/404");
+      }
+  
+
+   
+    })
+    .catch((error) => {
+      res.redirect("/login");
+    });
+});
+app.get("/productmanufacturer/addparts/main", function (req, res) {
+     const sessionCookie = req.cookies.session || "";
+
+  admin
+    .auth()
+    .verifySessionCookie(sessionCookie, true /** checkRevoked */)
+    .then((userData) => {
+      if(userData.productManu == true) {
+            console.log(userData)
+  
+      console.log("Logged in:", userData.email)
+           res.render("productmanufacturer/addparts/parts.html");
       }
       else {
            res.redirect("/404");

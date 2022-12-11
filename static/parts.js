@@ -1735,7 +1735,7 @@ const editUI = (user) => {
         const notadminElement = document.querySelectorAll('.notadmin')
     adminElement.forEach(item => item.style.display = 'none');
     notadminElement.forEach(item => item.style.display = 'flex');
-    userTitleCard.innerHTML = 'Part Supplier'
+
     // lastsignindata = firebase.auth().currentUser.metadata.lastSignInTime
     // console.log(lastsignindata)
     // notadminElement.style.display = 'flex'

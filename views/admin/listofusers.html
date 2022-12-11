@@ -252,7 +252,7 @@
         <!--Here starts the form-->
 
 <div class="row col-lg-12">
-    <div class="col-lg-8">
+    <div class="col-lg-7">
          <div class="tabledata">
     <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
                     <div>
@@ -268,8 +268,7 @@
             <tr style="    position: sticky;
                        top: 0;
                        z-index: 1;">
-          <th>First Name</th>
-          <th>Last Name</th>
+          <th>Display Name</th>
           <th>Email Address</th>
          <th>Role Type</th>
           <th>Action</th>
@@ -283,7 +282,7 @@
     </div>
     </div>
     </div>
-     <div class="col-lg-4">
+     <div class="col-lg-5">
     <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
                     <div>
                         <h4 class="mb-3">List Of Access Requests</h4>
@@ -295,19 +294,21 @@
    
     <div class="table-wrapper" style=" 
     overflow-y: scroll;">
-      <table class="table-users">
+      <table class="table-users ">
     <thead>
             <tr style="    position: sticky;
                        top: 0;
                        z-index: 1;
                        font-size: medium;">
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Type of request</th>
+          <th>Display Name</th>
+          <th>Email</th>
+          <th>Current Access Role</th>
+          <th>Request Access Role</th>
+          <th>Assignment</th>
           
         </tr>
     </thead>
-
+    <tbody class="listofRoleRequests"></tbody>
 
 
       </table>
