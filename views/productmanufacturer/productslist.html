@@ -333,7 +333,7 @@
     <!-- Add modaly -->
     <div class="add-modaly modaly-wrapper">
       <div class="modaly">
-        <div class="modaly-header"> <span style="font-size: 150%; color:black;">Product Identification</span></div>
+        <div class="modaly-header"> <span style="font-size: 150%; color:black;">신규 제품 등록</span></div>
         <div class="modaly-body" style="    overflow-y: scroll;
     height: 630px;
     overflow-x: hidden;">
@@ -393,8 +393,8 @@
                                  </div>
                               <div class="col-md-6">
                                        <div class="form-group">
-                                        <label>Product Weight (g) *</label>
-                                        <input type="number" step=".01" class="form-control" id='addproductWeight'placeholder="Enter Code" data-errors="Please product weight." name="productWeight" required>
+                                        <label>Product Weight (kg) *</label>
+                                        <input type="number" step=".01" min="0" class="form-control" id='addproductWeight'placeholder="Enter Code" data-errors="Please product weight." name="productWeight" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                               </div>
@@ -469,7 +469,7 @@
                                 <div class="col-md-6"> 
                                     <div class="form-group">
                                         <label>Registered Date</label>
-                                        <input type="date" style=" font-size: 15px;" class="form-control" id='addregisteredDate' placeholder="Enter the registration date."  name="registeredDate"  >
+                                        <input readonly type="text" style=" font-size: 15px; padding:0;" class="form-control setDate" id='addregisteredDate' placeholder="Enter the registration date."  name="registeredDate"  >
                                     </div>
                                 </div> 
 
