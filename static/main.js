@@ -50,9 +50,9 @@ signupBtn.addEventListener('click', (e) => {
 const renderUser = doc => {
    console.log(doc.ref.path)
   const tr = `
-	      <h4 class="requestInfo">Current Role Type: <span>Default</span></h4>
-         <h4 class="requestInfo">Request Status: <span> ${doc.data().requestStatus} </span></h4>
-            <h4 class="requestInfo"> Request Role Type: <span> ${doc.data().requestRole} </span></h4>
+	      <h4 class="requestInfo">현재 권한: <span>Default</span></h4>
+         <h4 class="requestInfo">요청 상태: <span> ${doc.data().requestStatus} </span></h4>
+            <h4 class="requestInfo"> 요청 권한: <span> ${doc.data().requestRole} </span></h4>
   `
    const requestData = document.querySelector('.requestData')
   requestData.insertAdjacentHTML('beforeend', tr);
@@ -63,21 +63,6 @@ const requestStatus = document.querySelector('.requestStatus')
 const requestRoleType = document.querySelector('.requestRoleType')
 	auth.onAuthStateChanged(user => {
     if(user) {
-		
-// 		console.log(user.uid)
-// 			db.collection('users').where('userID', '==', `${user.uid}`).get()
-// 		.then((querySnapshot) => {
-//  querySnapshot.forEach((doc) => {
-// 		if (doc.data().requestType == false) {
-// 			requestStatus.textContent = "🔴"
-// 			requestRoleType.textContent = "No Request"
-// 		}
-// 			else if (doc.data().requestType = true) {
-// 			requestStatus.textContent = "🟢"
-// 			requestRoleType.textContent = `${doc.data().requestRole}`
-// 		}
-//  })})
-
  db.collection('users').where('userID', '==', `${user.uid}`).onSnapshot(snapshot => {
   snapshot.docChanges().forEach(change => {
     if(change.type === 'added') {

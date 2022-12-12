@@ -128,6 +128,73 @@ app.get("/admin/listofusers", function (req, res) {
     });
 });
 
+app.get("/admin/materials", function (req, res) {
+   const sessionCookie = req.cookies.session || "";
+
+  admin
+    .auth()
+    .verifySessionCookie(sessionCookie, true /** checkRevoked */)
+    .then((userData) => {
+          // if(userData.admin == true) {
+            console.log(userData)
+  
+      console.log("Logged in:", userData.email)
+            res.render("admin/materials.ejs");
+      // }
+      // else {
+      //      res.redirect("/404");
+      // }
+
+    })
+    .catch((error) => {
+      res.redirect("/login");
+    });
+});
+app.get("/admin/substances", function (req, res) {
+   const sessionCookie = req.cookies.session || "";
+
+  admin
+    .auth()
+    .verifySessionCookie(sessionCookie, true /** checkRevoked */)
+    .then((userData) => {
+          // if(userData.admin == true) {
+            console.log(userData)
+  
+      console.log("Logged in:", userData.email)
+            res.render("admin/substances.html");
+      // }
+      // else {
+      //      res.redirect("/404");
+      // }
+
+    })
+    .catch((error) => {
+      res.redirect("/login");
+    });
+});
+app.get("/admin/selectivesmaterials", function (req, res) {
+   const sessionCookie = req.cookies.session || "";
+
+  admin
+    .auth()
+    .verifySessionCookie(sessionCookie, true /** checkRevoked */)
+    .then((userData) => {
+          // if(userData.admin == true) {
+            console.log(userData)
+  
+      console.log("Logged in:", userData.email)
+            res.render("admin/selectivematerials.html");
+      // }
+      // else {
+      //      res.redirect("/404");
+      // }
+
+    })
+    .catch((error) => {
+      res.redirect("/login");
+    });
+});
+
 
 //main pages
 app.get("/main", function (req, res) {
@@ -269,7 +336,7 @@ app.get("/partsupplier/dashboard", function (req, res) {
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
       console.log("Logged in:", userData.email)
-          if(userData.partSupplier == true) {
+          if(userData.partSupplier == false) {
             console.log(userData)
   
       console.log("Logged in:", userData.email)
@@ -366,7 +433,7 @@ app.get("/productmanufacturer/dashboard", function (req, res) {
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
       console.log("Logged in:", userData.email)
-         if(userData.productManu == true) {
+         if(userData.productManu == false) {
             console.log(userData)
   
       console.log("Logged in:", userData.email)

@@ -48,15 +48,14 @@ const renderUser = (doc) => {
       <td>         <div class="input-group mb-3">
                        <input type="text" readonly value="${doc.data().userRole}" class="form-control" style="margin: 0;border-radius: 10px 0 0 10px;height:46px;width: 35%;"   aria-describedby="basic-addon5">
                           <select class="custom-select assignRole" user-email="${doc.data().userEmail}" user-id="${doc.id}" style="text-align: center;" id="inputGroupSelect03">
-                             <option  selected>Choose option</option>
-                            <option value="1">Default</option>
-                           <option value="4" >admin</option>
-                         <option value="2">Product Manufacturer</option>
-                           <option value="3">Part Supplier</option>
-                           
+                             <option  selected>선택하기</option>
+                            <option value="1">기본 사용자</option>
+                         <option value="2">제품 제조사</option>
+                           <option value="3">부품 공급사</option>
+                                <option value="4" >admin</option>
                         </select>
                            <div class="input-group-append">
-                           <span class="input-group-text" id="basic-addon5"><i class="las la-search font-size-20"></i></span>
+                           <span class="input-group-text" id="basic-addon5"><i class="bx bx-lock-open-alt font-size-20"></i></span>
                         </div>
                      </div>
       </td>
@@ -98,21 +97,21 @@ const renderUser = (doc) => {
       const li = `
        <tr data-id='${doc.id}'>
       <td>${doc.data().userFirstname} ${doc.data().userLastname}</td>
-     
+   
       <td>${doc.data().userEmail}</td>
         <td>${doc.data().userRole}</td>
           <td>${doc.data().requestRole}</td>
       <td>         <div class="input-group mb-3" style="margin-top: 5px;">
                           <select class="custom-select assignRequestRole" user-email="${doc.data().userEmail}" user-id="${doc.id}" style="text-align: center;" id="inputGroupSelect03">
-                             <option  selected>Choose option</option>
-                            <option value="1">Default</option>
-                         <option value="2">Product Manufacturer</option>
-                           <option value="3">Part Supplier</option>
+                             <option  selected>선택하기</option>
+                            <option value="1">기본 사용자</option>
+                         <option value="2">제품 제조사</option>
+                           <option value="3">부품 공급사</option>
                              <option value="4" >admin</option>
                            
                         </select>
                            <div class="input-group-append">
-                           <span class="input-group-text" id="basic-addon5"><i class="las la-search font-size-20"></i></span>
+                           <span class="input-group-text" id="basic-addon5"><i class="bx bx-lock-open-alt font-size-20"></i></span>
                         </div>
                      </div>
       </td>
@@ -148,8 +147,8 @@ assignRequestRole[i].onchange = function(e){
       requestType: false
     }).then(()=>{
     Swal.fire(
-  'Confirmed!',
-  'Product Manufacturer Access Granted!',
+  '완료',
+  '권한 할당이 적용되었습니다',
   'success'
 )
     })

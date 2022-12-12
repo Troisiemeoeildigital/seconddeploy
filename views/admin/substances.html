@@ -6,7 +6,7 @@
       <title>자원효율성 통합시스템 | Dashboard for managing recyclable products</title>
       
       <!-- Favicon -->
-     
+    
  <link rel="stylesheet" href="../products.css" />
   <link rel="stylesheet" href="../parts.css" />
  <link rel="stylesheet" href="../addbtn.css" />
@@ -16,8 +16,9 @@
        <link rel="stylesheet" href="../all.min.css">
       <link rel="stylesheet" href="../line-awesome.min.css">
       <link rel="stylesheet" href="../remixicon.css">
+           <link rel="stylesheet" href="../substances.css">
          <style>
-                @media only screen and (max-width: 1599px ) {
+              @media only screen and (max-width: 1599px ) {
   .table-wrapper {
     height: 35em;
   }
@@ -43,7 +44,7 @@
    
     <!-- loader END -->
     <!-- Wrapper Start -->
-      <div class="sidebar" style="background: #fb8500;">
+      <div class="sidebar" style="background: #023047;">
     <div class="logo-details">
      
         <div class="logo_name">Kitech</div>
@@ -51,24 +52,31 @@
     </div>
     <ul class="nav-list">
   
-      <!-- <li>
-        <a href="./dashboard">
+      <li>
+        <a  href="./dashboard">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">대시보드</span>
         </a>
          <span class="tooltip">대시보드</span>
-      </li> -->
- 
-   
+      </li>
+    
       <li>
+       <a  href="./listofproducts" >
+       
+              <i class='bx bxs-cube-alt'></i>
+         <span class="links_name">제품목록</span>
+       </a>
+       <span class="tooltip">제품목록</span>
+     </li>
+ 
+       <li>
        <a  href="./parts" >
-    <i class='bx bxs-component' ></i>
+ <i class='bx bxs-component' ></i>
          <span class="links_name">부품목록</span>
        </a>
        <span class="tooltip">부품목록</span>
      </li>
-  
-     <li>
+        <li>
        <a  href="./materials" >
  <i class='bx bx-pie-chart-alt-2' ></i>
          <span class="links_name">소재목록</span>
@@ -82,26 +90,32 @@
        </a>
        <span class="tooltip">물질목록</span>
      </li>
-     
 
-    
+       <li>
+       <a  href="./listofusers" >
+         <i class='bx bx-user'></i>
+         <span class="links_name">사용자 목록</span>
+       </a>
+       <span class="tooltip">사용자 목록</span>
+     </li>
 
-     <li>
+           <li>
        <a  href="#" >
-       <i class='bx bx-bell' ></i>
+       <i class="bx bx-bell"></i>
          <span class="links_name">공지사항</span>
        </a>
        <span class="tooltip">공지사항</span>
      </li>
        <li>
-       <a  href="#" >
+     <a  href="#">
        <i class="ri-question-line"></i>
          <span class="links_name">자주 묻는 질문</span>
        </a>
        <span class="tooltip">자주 묻는 질문</span>
      </li>
-     
-     <li class="profile" style="margin-bottom: 30px; background: #fb8500;">
+   
+    
+     <li class="profile" style="margin-bottom: 30px; background: #023047;">
          <div class="profile-details">
            <!--<img src="profile.jpg" alt="profileImg">-->
            <div class="name_job">
@@ -110,46 +124,34 @@
                
            </div>
          </div>
-        <a href="/sessionLogout"  > <i style="background: #fb8500;" class='bx bx-log-out' id="log_out" ></i> </a>
+        <a href="/sessionLogout"  > <i style="background: #023047;" class='bx bx-log-out' id="log_out" ></i> </a>
        
      </li>
     </ul>
   </div>
     
+    
   <section class="home-section">
         
-<div class="content-page" style="margin-top: 150px;">
+<div class="content-page">
      <div class="container-fluid">
-           <div class="iq-top-navbar" style="box-shadow: 0 16px 15px 0 rgba(252, 170, 19, 0.075)">
+           <div class="iq-top-navbar" style="box-shadow: 0 16px 15px 0 rgb(34 36 48 / 8%)">
           <div class="iq-navbar-custom">
               <nav class="navbar navbar-expand-lg navbar-light p-0">
             
                
               
                   <div class="d-flex align-items-center">
-                        <div class="userroledisplay adminelement" style="display: none;">
-                         <div class="card-body">
-                  
-                      <button type="button" class="btn mb-1" style="background: #fb8500; color:white;">
-                      제품 제조사
-                      </button>
-                      <!-- <button type="button" class="btn mb-1 bg-success-light">
-                      Part Supplier <span class="badge badge-success ml-2">4</span>
-                      </button> -->
-                      <!-- <button type="button" class="btn mb-1 bg-danger-light">
-                      Notifications <span class="badge badge-danger ml-2">4</span>
-                      </button> -->
-                  </div>
-                  </div>
-                  <div class="userroledisplay notadmin" style="display: none;" >
+                    
+                  <div class="userroledisplay " >
                          <div class="card-body">
                   
                       <!-- <button type="button" class="btn mb-1 bg-primary-light">
                       Product Manufacturer
                       </button> -->
-                     
-                      <button type="button" class="btn mb-1" style="background: #fb8500; color: white;">
-                      제품 제조사
+                      
+                      <button type="button" class="btn mb-1" style="background: #023047; color: white;">
+                      관리자
                       </button>
                       
                       <!-- <button type="button" class="btn mb-1 bg-danger-light">
@@ -216,52 +218,60 @@
               </nav>
           </div>
       </div>
+    
+<div class="content-page" style="padding: 98px 5px 0;">
+     <div class="container-fluid">
         <div class="row">
-            <div class="row col-lg-12">
-              <div class="col-lg-4">
-                  <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
+            <div class="col-lg-12">
+                <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
                     <div>
-                        <h4 class="mb-3" style="color: black;font-weight: 600; font-size: 25px;">소재 목록
-</h4>
+                        <h4 class="mb-3" style="color: black;font-weight: 600; font-size: 25px;">물질목록</h4>
                     </div>
-                    <button class="btnpr btnpr-add adminelement" style="display: none;"><div class="addnewproductbtnpr">Add New Material</div></button>
+                    <button class="btnpr btnpr-add adminelement" style="display: none;"><div class="addnewproductbtnpr">신규 제품 등록</div></button>
                 </div>
-              </div>
-                  <div class="col-lg-8">
+            </div>
+
+            
+
+<div class="col-lg-12">
+  <div class="row justify-content-end mb-3">
+                              <div class="col-2">
+                        
+                              </div>
+                              <div class="col-2">
+                            
+                              </div><div class="col-8">
                                 <div class="row" style="
     justify-content: end;
     gap: 4%;
 ">
-                           <div class="searchandaddpart">
-                
-                       <div class="form-group" id="formfloat" style="width: 100%; margin:0;">
+                                    <div class="" id="formfloat">
                       <div class="input-group mb-3">
-                    
-                        <select  class="custom-select searchPartSelection" id="inputGroupSelect03">
-                           <option value="0" selected>Choose...</option>
-                           <option value="0">Material Group</option>
-                           <option value="1">Material Name</option>
+                      
+                        <select class="custom-select sortSubsSelection" id="inputGroupSelect03">
+                           <option value="6" selected="">Choose...</option>
+                           <option value="0">Sort by Substance Name</option>
+                           <option value="1">Sorty by CAS number</option>
                         </select>
                            <div class="input-group-append">
                            <span class="input-group-text" id="basic-addon5"><i class="bx bx-sort font-size-20"></i></span>
                         </div>
                      </div>
                      </div>
-            </div>
 
 
 
-                      <div class="row" style="width: auto;">
+                      <div class="row" style="width: 27%;">
                         <div class="input-group-prepend" style="width: 60%;/* margin: 0; */">
-                           <input type="text" class="form-control" id="myInputMat" style="margin: 0; border-radius: 10px 0 0 10px; height:46px;"  name="myInputMat" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon5">
+                           <input type="text" class="form-control" id="myInputSub" style="margin: 0; border-radius: 10px 0 0 10px; height:46px;"  name="myInputSub" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon5">
                         </div>
-                        <select class="custom-select searchMatSelection" id="inputGroupSelect03" style="
+                        <select class="custom-select searchSubSelection" id="inputGroupSelect03" style="
     width: 10%;
     border-radius: 0;
 ">
                            <option selected="">Choose...</option>
-                           <option value="0">Material Group</option>
-                           <option value="1">Material Name</option>
+                           <option value="0">Substance Name</option>
+                           <option value="1">CAS Number</option>
                         </select>
                            <div class="input-group-append" style="
     border-radius: 0;
@@ -274,55 +284,29 @@
                      </div>
                                 </div>
                               </div>
-            </div>
-
-
-                   <!-- <div class="row  float-right" style="width:100%;">
-                    <div class="col-lg-5" style="    margin-left: 60%;">
-                        <div class="searchandaddpart">
-                
-                       <div class="form-group" id="formfloat" style="width: 100%; margin:0;">
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend" style="width: 15%;">
-                           <input readonly type="text" class="form-control" id="myInputMat" style="margin: 0; border-radius: 10px 0 0 10px; height:46px;" onkeyup='materialSearch()' name="myInputMat" placeholder="Sort by" aria-label="Search Part Name"
-                           aria-describedby="basic-addon5">
-                        </div>
-                        <select  class="custom-select searchPartSelection" id="inputGroupSelect03">
-                           <option value="0" selected>Choose...</option>
-                           <option value="0">Material Group</option>
-                           <option value="1">Material Name</option>
-                        </select>
-                           <div class="input-group-append">
-                           <span class="input-group-text" id="basic-addon5"><i class="bx bx-sort font-size-20"></i></span>
-                        </div>
-                     </div>
-                     </div>
-            </div>
-                    </div>
-          
-               </div>
-      -->
+                           </div>
+</div>
+            
         <!--Here starts the form-->
         
  <div class="tabledata">
    
     <div class="table-wrapper" style="
     overflow-y: scroll;">
-      <table class="table-users">
-      <thead style="position: sticky; top: 0; z-index: 1;">
-          <tr>
-          <th>Material Group</th>
-         
-            <th>Material name</th>
-       
-          <th>Reusability</th>
-          <th>Recyclability</th>
-        <th>Recoverability</th>
-          
-        </tr>
-      </thead>
+      <table class="table-users" style="position: sticky; top: 0; z-index: 1;">
+       <thead>
+        
+  
+            <th>Substance Name </th>
+             <th>CAS Number</th>
+          <th>CRM</th>
+          <th>ROHS </th>
+          <th>NONE </th>
+       </thead>
       </table>
-    
+    <tbody class="table-users">
+      <button class="btn btn-light loadMore" style="margin-top: 3%;">Load More</button>
+    </tbody>
     </div>
     </div>
 
@@ -332,11 +316,11 @@
     <!-- Add modaly -->
     <div class="add-modaly modaly-wrapper">
       <div class="modaly">
-        <div class="modaly-header"><h3>Add New Material</h3></div>
+        <div class="modaly-header"><h3>Add New Substance</h3></div>
         <div class="modaly-body">
           <div class="card-body">
                      <div class="">
-                                            <form id="upload">    
+                                <form id="upload">    
                   <label style="    font-size: 22px;
     color: #676e8a;
     font-weight: 600;
@@ -361,7 +345,7 @@
                            
                            <li id="personal">
                               <a href="#personal">
-                              <i class="ri-user-fill"></i><span>Material Identification</span>
+                              <i class="ri-user-fill"></i><span>Substance Identification</span>
                               </a>
                            </li>
                        
@@ -379,47 +363,49 @@
                               </div>
                             </div> -->
                                 <div class="row">
-                                    <div class="col-md-12">
-                                                         
-                   
-                                    </div>
                                 <div class="col-md-12">
                                 </div>  
-                                <div class="col-md-6">                      
+                                <div class="col-md-7">                      
                                     <div class="form-group">
-                                        <label>Selective Material Name *</label>
-                                        <input type="text" class="form-control" id='editpartName' placeholder="Please Enter Substance Name" data-errors="Please Enter Substance Name." name="selectiveMaterial" required>
+                                        <label>Substance Name *</label>
+                                        <input type="text" class="form-control" id='editpartName' placeholder="Please Enter Substance Name" data-errors="Please Enter Substance Name." name="substanceName" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
-                                </div>  
-                                <div class="col-md-6">                      
+                                </div>    
+                                <div class="col-md-5">
                                     <div class="form-group">
-                                        <label>ID *</label>
-                                        <input type="text" class="form-control" id='editpartName' placeholder="Please Enter Substance Name" data-errors="Please Enter Substance Name." name="selectiveMaterialID" required>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>  
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Reusability Factor *</label>
-                                        <input type="number" step=".01" class="form-control"  id='cas' placeholder="Please Enter Reusability" data-errors="Please Enter Reusability." name="reusability" required>
+                                        <label>CAS Number</label>
+                                        <input type="text" class="form-control"  id='cas' placeholder="Please CAS number" data-errors="Please CAS number." name="cas" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div> 
-                                <div class="col-md-4"> 
+                                <div class="col-md-12"> 
                                     <div class="form-group">
-                                        <label>Recyclability Fatctor *</label>
-                                         <input type="number" step=".01" class="form-control"  id='crm' placeholder="Please Enter Recyclability Fatctor." data-errors="Please Choose Y/N." name="recyclability" required>
+                                        <label>CRM</label>
+                                         <input type="text" class="form-control"  id='crm'placeholder="Please Choose Y/N." data-errors="Please Choose Y/N." name="crm" required>
                                       
                                   
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div> 
-                           
-                                    <div class="col-md-4"> 
+                                <div class="col-md-3"> 
                                     <div class="form-group">
-                                        <label>Recoverability Factor *</label>
-                                       <input type="number" class="form-control"  id='rohs'placeholder="Enter Yes or No" data-errors="Enter Yes or No." name="recoverability" required>
+                                        <label>ROHS</label>
+                                       <input type="text" class="form-control"  id='rohs'placeholder="Enter Yes or No" data-errors="Enter Yes or No." name="rohs" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                 <div class="col-md-3"> 
+                                    <div class="form-group">
+                                        <label>Substance Mass (g) *</label>
+                                        <input type="number" class="form-control" id='editpartMassg' placeholder="Please Substance Mass (g)." data-errors="Please Substance Mass (g)." name="substanceMassg" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                 <div class="col-md-6"> 
+                                    <div class="form-group">
+                                        <label>Substance Mass (%) *</label>
+                                        <input type="number" class="form-control" id='editpartMassPerc'placeholder="Please Substance Mass (%)." data-errors="Please Substance Mass (%)." name="substanceMassPerc" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div> 
@@ -434,7 +420,7 @@
                        
                            </div>
                              
-                              <button  id="edit" class="btn btn-primary btn-light  previous action-button-previous float-right mr-3" value="Previous" >Add Selective Material</button>
+                              <button  id="edit" class="btn btn-primary btn-light  previous action-button-previous float-right mr-3" value="Previous" >Add Substance</button>
                      
                       
                           
@@ -462,7 +448,7 @@
                                      <ul id="top-tab-list" class="p-0">
                            <li class="active" id="account" >
                               <a href="javascript:void();">
-                              <i class="ri-lock-unlock-line"></i><span>Material</span>
+                              <i class="ri-lock-unlock-line"></i><span>Substance</span>
                               </a>
                            </li>
                         
@@ -573,37 +559,7 @@
     </div>
  </div>
 </div>
-
-    <!--View Data table tree-->
-
-      
-
-                    
-    <!-- Wrapper End-->
-    <footer class="iq-footer">
-            <div class="container-fluid">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item"><a href="../backend/privacy-policy.html">Privacy Policy</a></li>
-                                <li class="list-inline-item"><a href="../backend/terms-of-service.html">Terms of Use</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6 text-right">
-                            <span class="mr-1"><script>document.write(new Date().getFullYear())</script>©</span> <a href="#" class="">CRM Dashbord</a>
-                         
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    
-    
-               </div>
+</div>
 
      
  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
@@ -638,13 +594,13 @@ const firebaseConfig = {
 
    
     <!-- Backend Bundle JavaScript -->
-    <script src="./backend-bundle.min.js"></script>
+    <script src="../backend-bundle.min.js"></script>
     
     <!-- Table Treeview JavaScript -->
     <script src="../table-treeview.js"></script>
- <script  type="module" src="../materialsdb.js" ></script>
-  <script   src="../sidemenu.js" ></script>
-    
+ <script  type="module" src="../substances.js" ></script>
+
+     <script    src="../sidemenu.js" ></script>
     <!-- Chart Custom JavaScript -->
     <script src="../customizer.js"></script>
     

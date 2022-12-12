@@ -43,7 +43,7 @@
    
     <!-- loader END -->
     <!-- Wrapper Start -->
-      <div class="sidebar" style="background: #fb8500;">
+           <div class="sidebar" style="background: #023047;">
     <div class="logo-details">
      
         <div class="logo_name">Kitech</div>
@@ -51,24 +51,31 @@
     </div>
     <ul class="nav-list">
   
-      <!-- <li>
-        <a href="./dashboard">
+      <li>
+        <a  href="./dashboard">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">대시보드</span>
         </a>
          <span class="tooltip">대시보드</span>
-      </li> -->
- 
-   
+      </li>
+    
       <li>
+       <a  href="./listofproducts" >
+       
+              <i class='bx bxs-cube-alt'></i>
+         <span class="links_name">제품목록</span>
+       </a>
+       <span class="tooltip">제품목록</span>
+     </li>
+ 
+       <li>
        <a  href="./parts" >
-    <i class='bx bxs-component' ></i>
+ <i class='bx bxs-component' ></i>
          <span class="links_name">부품목록</span>
        </a>
        <span class="tooltip">부품목록</span>
      </li>
-  
-     <li>
+        <li>
        <a  href="./materials" >
  <i class='bx bx-pie-chart-alt-2' ></i>
          <span class="links_name">소재목록</span>
@@ -82,26 +89,32 @@
        </a>
        <span class="tooltip">물질목록</span>
      </li>
-     
 
-    
+       <li>
+       <a  href="./listofusers" >
+         <i class='bx bx-user'></i>
+         <span class="links_name">사용자 목록</span>
+       </a>
+       <span class="tooltip">사용자 목록</span>
+     </li>
 
-     <li>
+           <li>
        <a  href="#" >
-       <i class='bx bx-bell' ></i>
+       <i class="bx bx-bell"></i>
          <span class="links_name">공지사항</span>
        </a>
        <span class="tooltip">공지사항</span>
      </li>
        <li>
-       <a  href="#" >
+     <a  href="#">
        <i class="ri-question-line"></i>
          <span class="links_name">자주 묻는 질문</span>
        </a>
        <span class="tooltip">자주 묻는 질문</span>
      </li>
-     
-     <li class="profile" style="margin-bottom: 30px; background: #fb8500;">
+   
+    
+     <li class="profile" style="margin-bottom: 30px; background: #023047;">
          <div class="profile-details">
            <!--<img src="profile.jpg" alt="profileImg">-->
            <div class="name_job">
@@ -110,46 +123,32 @@
                
            </div>
          </div>
-        <a href="/sessionLogout"  > <i style="background: #fb8500;" class='bx bx-log-out' id="log_out" ></i> </a>
+        <a href="/sessionLogout"  > <i style="background: #023047;" class='bx bx-log-out' id="log_out" ></i> </a>
        
      </li>
     </ul>
   </div>
-    
   <section class="home-section">
         
 <div class="content-page" style="margin-top: 150px;">
      <div class="container-fluid">
-           <div class="iq-top-navbar" style="box-shadow: 0 16px 15px 0 rgba(252, 170, 19, 0.075)">
+           <div class="iq-top-navbar" style="box-shadow: 0 16px 15px 0 rgb(34 36 48 / 8%)">
           <div class="iq-navbar-custom">
               <nav class="navbar navbar-expand-lg navbar-light p-0">
             
                
               
                   <div class="d-flex align-items-center">
-                        <div class="userroledisplay adminelement" style="display: none;">
-                         <div class="card-body">
-                  
-                      <button type="button" class="btn mb-1" style="background: #fb8500; color:white;">
-                      제품 제조사
-                      </button>
-                      <!-- <button type="button" class="btn mb-1 bg-success-light">
-                      Part Supplier <span class="badge badge-success ml-2">4</span>
-                      </button> -->
-                      <!-- <button type="button" class="btn mb-1 bg-danger-light">
-                      Notifications <span class="badge badge-danger ml-2">4</span>
-                      </button> -->
-                  </div>
-                  </div>
-                  <div class="userroledisplay notadmin" style="display: none;" >
+                     
+                  <div class="userroledisplay "  >
                          <div class="card-body">
                   
                       <!-- <button type="button" class="btn mb-1 bg-primary-light">
                       Product Manufacturer
                       </button> -->
                      
-                      <button type="button" class="btn mb-1" style="background: #fb8500; color: white;">
-                      제품 제조사
+                      <button type="button" class="btn mb-1" style="background: #023047; color: white;">
+                      관리자
                       </button>
                       
                       <!-- <button type="button" class="btn mb-1 bg-danger-light">

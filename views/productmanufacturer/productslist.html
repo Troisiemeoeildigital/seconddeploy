@@ -51,29 +51,30 @@
     </div>
     <ul class="nav-list">
   
-      <li>
+      <!-- <li>
         <a  href="./dashboard">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">대시보드</span>
         </a>
          <span class="tooltip">대시보드</span>
-      </li>
+      </li> -->
     
       <li>
        <a  href="./listofproducts" >
        
               <i class='bx bxs-cube-alt'></i>
-         <span class="links_name">제품목록</span>
+         <span class="links_name">제품등록/조회</span>
        </a>
-       <span class="tooltip">제품목록</span>
+       <span class="tooltip">부품등록/조회
+</span>
      </li>
  
        <li>
        <a  href="./listofparts" >
  <i class='bx bxs-component' ></i>
-         <span class="links_name">부품목록</span>
+         <span class="links_name">부품등록/조회</span>
        </a>
-       <span class="tooltip">부품목록</span>
+       <span class="tooltip">부품등록/조회</span>
      </li>
           <li>
        <a  href="./addparts/main">
@@ -189,7 +190,7 @@
                                                   <p class="mb-0">계정 생성일: 2022/08/02</p>
                                                     <div id="lastsignin"></div>
                                                   <div class="d-flex align-items-center justify-content-center mt-3">
-                                                      <button type="button" style="display: none;" class="btn border mr-2 notadmin" data-toggle="modal" data-target=".bd-example-modal-xl">권한</button>
+                                                    
                                                       <a href="./userprofile" class="btn border mr-2">내 계정</a>
                                                       <a href="/sessionLogout" class="btn border">로그아웃</a>
 
@@ -225,8 +226,6 @@
                          
             </div>
 
-    
-<!--Duplicated Sort and Seach (not working)-->
       <div class="col-lg-12">
             
                 <div class="d-flex flex-wrap flex-wrap align-items-center mb-4">
@@ -267,21 +266,11 @@
                         </div>
                      </div>
                      </div>
-
-                
-                     
-            </div>
-            </div>
-
-               </div>
-                   
-       
-          
-               
-     
-                  
-                </div>
-            </div>
+                     </div>
+                     </div>
+                        </div>
+                        </div>
+                     </div>
             
 
              
@@ -358,19 +347,7 @@
                     
                           
                         <div class="row">
-                                 <div class="col-md-6">
-                                            <label>Product Image *</label>
-                    <div class="input-group mb-4">
-                        <div class="custom-file mb-3">
-                        
-                           <input type="file" class="custom-file-input files" id="customFile">
-                           <label class="custom-file-label prodImgphld" for="customFile">Upload Product Image</label>
-                        </div>
-                     
-                     </div>
-                          
-                            </div>
-                                  <div class="col-md-6"> 
+                              <div class="col-md-6"> 
                                <div class="form-group">
                                         <label>Product Category *</label>
                                          <select class="partsName form-control"  id="addproductCategory" name="productCategory" data-errors="Please Enter Product Category."  required>
@@ -414,50 +391,60 @@
                                         <div class="help-block with-errors"></div>
                                     </div>
                                  </div>
-                                </div>
-                         
-        
-                           
-                               
-                                     <div class="row">
-                                             <div class="col-md-4">  <div class="form-group">
-                                        <label>Product Manufacturer </label>
-                                        <input readonly type="text" class="form-control" id='productManufacturer'  name="productManufacturer" required >
-                                        <div class="help-block with-errors"></div>
-                                    </div>   </div>   
-                                            <div class="col-md-4">  <div class="form-group">
-                                        <label>Product Name *</label>
-                                        <input type="text" class="form-control" id='addproductName' placeholder="Enter Product Name" data-errors="Please Enter Product Name." name="productName" required >
-                                        <div class="help-block with-errors"></div>
-                                    </div>   </div>                      
-                                       <div class="col-md-4">     <div class="form-group">
-                                        <label>Product Model Name *</label>
-                                        <input type="text" class="form-control" id='addproductMN' placeholder="Enter Product Model Name" data-errors="Please Enter Product Model Name." name="productMN" required>
-                                        <div class="help-block with-errors"></div>
-                                    </div> </div>
-                                 
-                                </div>    
-                                <div class="row">
-                                      <div class="col-md-6">
+                              <div class="col-md-6">
                                        <div class="form-group">
                                         <label>Product Weight (g) *</label>
                                         <input type="number" step=".01" class="form-control" id='addproductWeight'placeholder="Enter Code" data-errors="Please product weight." name="productWeight" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                               </div>
+                               
+                               
+                                </div>
+
+                                     <div class="row">
+                                             <div class="col-md-4">  <div class="form-group">
+                                        <label>Product Manufacturer </label>
+                                        <input readonly type="text" class="form-control" id='productManufacturer'  name="productManufacturer"  >
+                              
+                                    </div>   </div>   
+                                            <div class="col-md-4">  <div class="form-group">
+                                        <label>Product Name *</label>
+                                        <input type="text" class="form-control" id='addproductName' placeholder="Enter Product Name" data-errors="Please Enter Product Name." name="productName" required >
+                                        <div class="help-block with-errors"></div>
+                                    </div>   </div>       
+                                      <div class="col-md-4">
+                                            <label>Product Image *</label>
+                    <div class="input-group mb-4">
+                        <div class="custom-file mb-3">
+                        
+                           <input type="file" class="custom-file-input files" id="customFile">
+                           <label class="custom-file-label prodImgphld" for="customFile">Upload Product Image</label>
+                        </div>
+                         </div>
+                            </div>               
+                                   
+                                 
+                                </div>    
+                                <div class="row">
+                                       <div class="col-md-6">     <div class="form-group">
+                                        <label>Product Model Name *</label>
+                                        <input type="text" class="form-control" id='addproductMN' placeholder="Enter Product Model Name" data-errors="Please Enter Product Model Name." name="productMN" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div> </div>
                                   <div class="col-md-6">
                                     <div class="form-group">
                                      <label>Product Size</label>
                                          <div class="input-group mb-4" style="align-items: center;">
                         
                         <input type="text" class="form-control " id="addprodWidth" placeholder="Width" aria-label="Width"
-                           aria-describedby="basic-addon4" required>
+                           aria-describedby="basic-addon4" >
                     <i class="las la-times" style="margin: 4px;"></i>
                                 <input type="text" class="form-control " id="addprodDepth"  placeholder="Depth" aria-label="Depth"
-                           aria-describedby="basic-addon4" required>
+                           aria-describedby="basic-addon4" >
                    <i class="las la-times" style="margin: 4px;"></i>
                                 <input type="text" class="form-control " id="addprodHeight"  placeholder="Height" aria-label="Height"
-                           aria-describedby="basic-addon4" required>
+                           aria-describedby="basic-addon4" >
                               <div class="input-group-prepend">
                                  
                            <span class="input-group-text" id="basic-addon4" style="height: 2.8em;
@@ -469,24 +456,20 @@
                         </select>
                         </div>
                      </div>
-                                    </div>
-                                </div>
-                                </div>
+                  </div>
+                </div>
+            </div>
                            
                      
                       
                         
                         
                            <div class="form-card text-left">
-                          
-                                           
-                                  
                                <div class="row">  
                                 <div class="col-md-6"> 
                                     <div class="form-group">
                                         <label>Registered Date</label>
-                                        <input type="date" style=" font-size: 15px;" class="form-control" id='addregisteredDate' placeholder="Enter the registration date." data-errors="Please the right registration date." name="registeredDate" required >
-                                        <div class="help-block with-errors"></div>
+                                        <input type="date" style=" font-size: 15px;" class="form-control" id='addregisteredDate' placeholder="Enter the registration date."  name="registeredDate"  >
                                     </div>
                                 </div> 
 
@@ -495,13 +478,12 @@
                                     
                                   <div class="form-group">
                                         <label>Product Registration Status</label>
-                                         <select class="productStatus form-control" id="addproductStatus" name="productStatus" data-errors="Please Enter Product Registration Status." required >
+                                         <select class="productStatus form-control" id="addproductStatus" name="productStatus"  >
                                             <option value="Complete">Complete</option>
                                             <option value="Processing">Processing</option>
                                             <option value="Ready">Ready</option>
                                            
                                            </select>
-                                        <div class="help-block with-errors"></div>
                                     </div>
                                 </div> 
                                  </div>
@@ -509,8 +491,8 @@
                                   <div class="col-md-12">
                                     <div class="form-group">
                                      <label>Memo</label>
-                                        <input type="text" class="form-control" id='addmemo' placeholder="Please Enter Memo." data-errors="Please Enter Memo." name="memo" required>
-                                        <div class="help-block with-errors"></div>
+                                        <input type="text" class="form-control" id='addmemo' placeholder="Please Enter Memo."  name="memo" >
+                                      
                                     </div>
                                 </div>
                               
@@ -856,7 +838,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                      <label>메모</label>
-                                        <input readonly type="text" class="form-control" id='companyName' placeholder="---" data-errors="---" name="addsupplierInfo" required>
+                                        <input  type="text" class="form-control" id='companyName' placeholder="---" data-errors="---" name="addsupplierInfo" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
