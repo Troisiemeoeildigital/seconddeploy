@@ -343,7 +343,7 @@ app.get("/partsupplier/dashboard", function (req, res) {
         res.render("partsupplier/dashboard.html");
       }
       else {
-           res.redirect("/404");
+           res.redirect("/partsupplier/parts");
       }
       
     })
