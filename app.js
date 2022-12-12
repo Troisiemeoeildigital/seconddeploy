@@ -440,7 +440,7 @@ app.get("/productmanufacturer/dashboard", function (req, res) {
        res.render("productmanufacturer/dashboard.html");
       }
       else {
-           res.redirect("/404");
+           res.redirect("/productmanufacturer/listofproducts");
       }
   
     })
