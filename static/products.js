@@ -1847,8 +1847,10 @@ console.log(deleteData)
 // Click add user button
 btnprAdd.addEventListener('click', () => {
   const setDate = document.querySelector('.setDate')
-  let now = new Date();
-  setDate.value = now.toDateString() + " || " + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+  let now = new Date()
+    
+
+            setDate.value = now.getDate() + "/" + (now.getMonth() +1)  + "/" + now.getFullYear() + " || " +   now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
   addmodaly.classList.add('modaly-show');
  addproductCategory.value = '';
   addproductName.value = '';
