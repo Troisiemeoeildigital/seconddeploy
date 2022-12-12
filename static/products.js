@@ -1850,7 +1850,7 @@ btnprAdd.addEventListener('click', () => {
   let now = new Date()
     
 
-            setDate.value = now.getDate() + "/" + (now.getMonth() +1)  + "/" + now.getFullYear() + " || " +   now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+            setDate.value =         now.getFullYear() + "/" + (now.getMonth() +1)  + "/" + now.getDate() + " || " +   now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
   addmodaly.classList.add('modaly-show');
  addproductCategory.value = '';
   addproductName.value = '';
