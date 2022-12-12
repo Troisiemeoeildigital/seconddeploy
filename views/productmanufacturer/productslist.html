@@ -531,11 +531,21 @@
                         <!--here start the products entry form-->
                         <div class="tab-pane fade show active" id="pills-home-fill" role="tabpanel" aria-labelledby="pills-home-tab-fill">
                            <div class="">
-                              <form >
-                                 <fieldset>
-                                    <div class="form-card text-left">
-                                       
-                                       <div class="col-md-6">                      
+                            
+                                 <form class="form"  autocomplete="off"  data-toggle="validator" id='form-wizard1'>
+                    
+                        <!-- fieldsets -->
+                        
+                        <fieldset >
+                           <div class="form-card text-left">
+                       
+                                     
+                              <div class="row">
+                                 
+                          <div class="row">
+                           
+                               
+                                   <div class="col-md-6">                      
                                     <div class="form-group">
                                         <label>Product Category *</label>
                                          <select class="editpartsName form-control" id="editproductCategory" name="productCategory" data-errors="Please Enter Product Category."  required>
@@ -573,83 +583,80 @@
 <option>태블릿</option>
 <option>Others</option>
                                            </select>
+                                        <!-- <input type="text" class="form-control" id='editproductName' placeholder="Enter Product Name" data-errors="Please Enter Product Name." name="productName" required> -->
                                   
                                     </div>
-                                </div> 
-                                    </div>
-                                 </fieldset>
-                              </form>
-                                 <form class="form"  autocomplete="off"  data-toggle="validator" id='form-wizard1'>
-                    
-                        <!-- fieldsets -->
-                        
-                        <fieldset >
-                           <div class="form-card text-left">
-                       
-                                     
-                              <div class="row">
+                                </div>     
+                                  <div class="col-md-6"> 
+                                    <div class="form-group">
+                                        <label>Product Weight (kg) *</label>
+                                        <input type="number" class="form-control" min="0" step=".01" id='editproductWeight'placeholder="Enter Code" data-errors="Please product weight." name="productWeight" required>
                                  
-                          <div class="row">
-                           
-                                           <div class="col-md-6">
-                                            <label>Product Image </label>
-                                          <div class="row" style="gap: 4%;
-                                    align-items: baseline;">
-                                                      <div class="input-group mb-4" style="width: 80%;">
-                                                         <div class="custom-file mb-3">
-                                                         
-                                                            <input type="file" class="custom-file-input editfiles" id="customFile">
-                                                            <label class="custom-file-label editprodImgphld" for="customFile">Upload Product Image</label>
-                                                         </div>
-                                                   
-                                                      
-                                                      </div>
-                                                                        <nav class="navbary updateProdImg" style="margin-left: -12px; width:40px; background-color: #fb8500">
-                                    <a href="#" class="navbary__link">
-                                       <span class="" ><i class="bx bx-cloud-upload" style=" color: white;
-                                    font-size: 17px;"></i></span>
-                                       <span class="navbary__label " style="background-color: #fb8500; left: -71px;
-                                    width: 200px; top: -47px;">Update Product Image</span>
-                                    </a>
-                                 </nav>
-                                          </div>
-                            </div>
-                                   
-                                <div class="col-md-6">                      
+                                    </div>
+                                </div>               
+                             
+                                <div class="col-md-4">                      
                                     <div class="form-group">
                                         <label>Product Name *</label>
                                         <input readonly type="text" class="form-control" id='editproductName' placeholder="Enter Product Name" data-errors="Please Enter Product Name." name="productName" required>
                                    
                                     </div>
-                                </div>    
-                                <div class="col-md-6">
+                                </div>
+                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Product Model Name</label>
                                         <input type="text" class="form-control"  id='editmodelName'placeholder="Enter Product Model Name" data-errors="Enter Product Model Name." name="editmodelName" required>
                               
                                     </div>
-                                </div> 
-                            
-                                <div class="col-md-6"> 
-                                    <div class="form-group">
-                                        <label>Product Weight (g) *</label>
-                                        <input type="number" class="form-control" id='editproductWeight'placeholder="Enter Code" data-errors="Please product weight." name="productWeight" required>
-                                 
+                                </div>     
+                                <div class="col-md-4">
+                                  <form >
+                                 <fieldset>
+                                    <div class="form-card text-left">
+                                            <label>Product Image </label>
+                                          <div class="row" style="gap: 4%;
+                                    align-items: center;">
+                                                      <div class="input-group mb-4" style="width: 70%; gap: 7%; align-items: center;">
+                                                         <div class="custom-file mb-3">
+                                                         
+                                                            <input type="file" class="custom-file-input editfiles" id="customFile">
+                                                            <label class="custom-file-label editprodImgphld" for="customFile">Upload Product Image</label>
+                                                         </div>
+                                                    <nav class="navbary updateProdImg" style="margin-left: -12px; margin-top: 0px; width:40px; ">
+                                    <a href="#" class="navbary__link">
+                                       <span class="" ><i class="bx bx-cloud-upload" style=" color: white;
+                                    font-size: 17px;"></i></span>
+                                       <span class="navbary__label " style=" left: -71px;
+                                    width: 200px; top: -47px;">Update Product Image</span>
+                                    </a>
+                                 </nav>
+                                                      
+                                                      </div>
+                                                                       
+                                          </div>
+
+
                                     </div>
-                                </div> 
-                                    <div class="col-md-6"> 
+                                 </fieldset>
+                              </form>
+                                </div>
+                                
+                               
+                            
+                              
+                                    <div class="col-md-6" style="display: none; height: 0;"> 
                                     <div class="form-group">
                                         <label>Product Size (mm x mm x mm)</label>
                                     <div class="input-group mb-4" style="align-items: center;">
                         
                         <input type="number" class="form-control editprodWidth " name="editprodWidth"  placeholder="Width" aria-label="Width"
-                           aria-describedby="basic-addon4" required>
+                           aria-describedby="basic-addon4" >
                     <i class="las la-times" style="margin: 4px;"></i>
                                 <input type="number" class="form-control editprodDepth " name="editprodDepth" placeholder="Depth" aria-label="Depth"
-                           aria-describedby="basic-addon4" required>
+                           aria-describedby="basic-addon4" >
                    <i class="las la-times" style="margin: 4px;"></i>
                                 <input type="number" class="form-control editprodHeight " name="editprodHeight"  placeholder="Height" aria-label="notification"
-                           aria-describedby="basic-addon4" required>
+                           aria-describedby="basic-addon4" >
                                            <div class="input-group-prepend">
                                  
                            <span class="input-group-text" id="basic-addon4" style="height: 2.8em;
@@ -667,16 +674,16 @@
                                   <div class="col-md-6">
                                     <div class="form-group">
                                      <label>Registration Date</label>
-                                        <input type="date" style=" font-size: 15px;" class="form-control" id='editregisteredDate'placeholder="Enter Registration Date" data-errors="Please Registration Date." name="editregisteredDate" required>
+                                        <input readonly type="text" style=" font-size: 15px;" class="form-control" id='editregisteredDate'placeholder="Enter Registration Date" name="editregisteredDate" >
                                      
                                     </div>
                                 </div>
 
-                                     <div class="col-md-6"> 
+                                     <div class="col-md-6" style="display: none; height: 0;"> 
                                         
                                   <div class="form-group">
                                         <label>Registration Status</label>
-                                         <select class="productStatus form-control" id="editproductStatus" name="editproductStatus" data-errors="Please Enter Product Registration Status."  required>
+                                         <select class="productStatus form-control" id="editproductStatus" name="editproductStatus"  >
                                             <option value="Complete">Complete</option>
                                             <option value="Processing">Processing</option>
                                             <option value="Ready">Ready</option>
@@ -686,7 +693,7 @@
                                     </div>
                                        
                                 </div>
-                                    <div class="col-md-12"> 
+                                    <div class="col-md-6"> 
                                         
                                   <div class="form-group">
                                         <label>Memo</label>
