@@ -607,7 +607,7 @@ buildTable(materialDataUniq)
       energyrecovarrperc.push(energyRecoMassPercAssess)
         //quantity  solution starts here
   
-      console.log(doc.data().quantity)
+      // console.log(doc.data().quantity)
       		var row = `<tr>
               <td>${materialDataUniq[i].partRef}</td>
 							<td class="toggleG " >${(PartMass).toFixed(2)}</td>
@@ -722,21 +722,21 @@ const energyRecoveryWeightg = document.querySelector('.energyRecoveryWeightg')
            var resMap = new Map();
 var result = [];
 data.map((x) => {
-    if (!resMap.has(x.materialname))
-        resMap.set(x.materialname, parseFloat(x.recycledmaterialmass));
+    if (!resMap.has(x.materialgroup))
+        resMap.set(x.materialgroup, parseFloat(x.recycledmaterialmass));
     else
-        resMap.set(x.materialname, (parseFloat(x.recycledmaterialmass) + resMap.get(x.materialname)));
+        resMap.set(x.materialgroup, (parseFloat(x.recycledmaterialmass) + resMap.get(x.materialgroup)));
 })
 resMap.forEach((value, key) => {
     result.push({
-        materialname: key,
+        materialgroup: key,
         recycledmaterialmass: value
     })
 })
 console.log(result);
 
 let materialNameValues = result.map(function (el) {
-  return el.materialname
+  return el.materialgroup
 })
 console.log(materialNameValues)
 
@@ -804,7 +804,7 @@ buildTable(result)
 		for (var i = 0; i < result.length; i++){
 			var recycarr = `<tr>
           
-							<td>${result[i].materialname}</td>
+							<td>${result[i].materialgroup}</td>
               <td>${result[i].recycledmaterialmass.toFixed(2)}</td>
               <td>${(result[i].recycledmaterialmass / prodWeightRef * 100).toFixed(2)} </td>
                   
@@ -1074,19 +1074,19 @@ let chartRecovWeight = document.querySelector('.sumRecovWeightg').textContent
   //Chart for 1st assessement
   series: [{
     data: [{
-      x: 'Reuse Weight(%)',
+      x: 'Reuse Mass(%)',
       y: parseFloat(sumReuseWeightPercChart.textContent )  
     }, {
-      x: 'Recycled Weight(%)',
+      x: 'Recycled Mass(%)',
       y: parseFloat(sumRecycWeightPercChart.textContent )  
     }, {
-      x: 'Recovery Weight(%)',
+      x: 'Recovery Mass(%)',
       y: parseFloat(sumRecovWeightPercChart.textContent )  
     }, {
-      x: 'Disposable Weight(%)',
+      x: 'Disposable Mass(%)',
       y: parseFloat(disposalWeightPerc.textContent ) 
     }, {
-      x: 'Energy Recovery Weight(%)',
+      x: 'Energy Recovery Mass(%)',
       y: parseFloat(energyRecoveryWeightperc.textContent )
     }
 
@@ -1195,8 +1195,6 @@ btnpraddParts.addEventListener('click', () => {
  console.log(btnpraddRef)
 
 
-
-
 //click on add new parts
 const partname = document.querySelector('.partname');
 const getPPdata = document.querySelector('.getPPdata')
@@ -1212,6 +1210,7 @@ getPPdata.onclick = function(e) {
 // }
 
 // console.log(sumPartsWeight)
+     
 
 console.log(  typeof(btnpraddWeightRef))
   const partsRef = db.collection("recycledparts")
@@ -1220,7 +1219,7 @@ console.log(  typeof(btnpraddWeightRef))
     .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           const partWeightRef =  parseInt(doc.data().partWeight) * quantity.value;
-     
+       
            console.log(partWeightRef)
           console.log(partWeightRef < btnpraddWeightRef)
            if (partWeightRef <= btnpraddWeightRef) {
@@ -1411,7 +1410,6 @@ let idref = guid()
         <td  style="color: black; font-weight: 600;">${doc.data().partname}</td>
         <td style="color: black; font-weight: 600;">${doc.data().partCode}</td>
         <td style="color: black; font-weight: 600;">${doc.data().partWeight}</td>
-        <td style="color: black; font-weight: 600;">${doc.data().partSize}</td>
         <td style="color: black; font-weight: 600;">${doc.data().partRegisteredDate}</td>
            <td style="color: black; font-weight: 600;"><input type="number" class="quantityPart" style="border: 1px solid #ddd; text-align: center;" data-Part='${doc.id}' min="0" value="${doc.data().quantity}" placeholder="${doc.data().quantity}" name="" id=""></td>
         <td style="color: black; font-weight: 600;">${doc.data().partMemo}</td>
@@ -1422,10 +1420,7 @@ let idref = guid()
 		<span class="viewpartmat"data-toggle="modal" data-target="#partproductmaterial" data-PN= '${doc.data().partname}' data-id='${doc.id}'><i class="ri-eye-line" style="color: white; font-size: 15px;"></i></span>
 		<span class="navbary__label" style="background-color:  #219EBC">View Materials</span>
 	</a>
-    	<a href="#" class="navbary__link"  style="background-color:  #219EBC">
-		<span class="btnprodpartedit" data-Part='${doc.id}' ><i class='bx bxs-edit-alt' style="color: white; font-size: 15px;" ></i></span>
-		<span class="navbary__label" style="background-color:  #219EBC; top:-47px">Edit Part</span>
-	</a>
+   
   	<a href="#" class="navbary__link"  style="background-color:  #219EBC">
 		<span class="btnprodpartdelete" data-Part='${doc.id}' ><i class='ri-delete-bin-line' style="color: white; font-size: 15px;" ></i></span>
 		<span class="navbary__label" style="background-color:  #219EBC">Delete Part</span>
@@ -1453,6 +1448,15 @@ let idref = guid()
   addedpartslist.innerHTML = " "
   setupPartsProducts(snapshot.docs)
 
+
+   var tableparts = document.querySelector(".addedpartslist"), sumVal = 0;
+            for(var i = 1; i < tableparts.rows.length; i++)
+            {
+              let  sumVal = sumVal + parseInt(tableparts.rows[i].cells[3].innerHTML);
+            }
+            console.log(sumVal);
+   const setPPWeight = document.querySelector('.setPPWeight')
+  setPPWeight.innerHTML = "Total Parts Weight: " + sumVal.toFixed(2);
 
 //Edit Part specific to a product
 

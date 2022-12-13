@@ -17,7 +17,11 @@
       <link rel="stylesheet" href="../line-awesome.min.css">
       <link rel="stylesheet" href="../remixicon.css">
       <style>
-
+.styleBtn {
+  background-color: #11101D;
+  color: white;
+  border-color: black;
+}
          @media only screen and (min-width: 86em) {
   .table-wrapper {
     height: 70%;
@@ -498,7 +502,7 @@
                           
                         </fieldset>
                       
-                   <button type="button" class="btn btn-secondary action-button-close" data-dismiss="modaly">Close</button>
+                   <button type="button" class="btn styleBtn action-button-close"  data-dismiss="modaly">Close</button>
                    <button type="submit" id="addProduct" class="btn btn-primary btn-dark float-right mr-3">Add Product</button>
                                 
                    </form>
@@ -699,7 +703,7 @@
                               </div>
                            </div>
                         </fieldset>
-                       <button type="button" class="btn btn-secondary action-button-close" data-dismiss="modaly">Close</button>
+                       <button type="button" class="btn styleBtn action-button-close" data-dismiss="modaly">Close</button>
       <button  id="edit" class="btn btn-primary btn-dark editFormProd  float-right mr-3"  >Edit Product</button>
                    </form>
                  </div>
@@ -876,6 +880,7 @@
                <div class="deleterow align-items-center float-right" >
              <button class="btnpr btnpr-add" style="width: 10%; margin-bottom: 10px; background: #F05D5E;"><div class="addnewproductbtnpr">Delete All</div></button>
           </div>
+          <div class="setPPWeight">hey</div>
                                <table class="table-parts">
                                 <tr>
                                       <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
@@ -885,7 +890,6 @@
                                    <th>Part Name</th>
                                 <th>Part Code</th>
                                    <th>Part Weight</th>
-                                 <th>Part Size</th>
                                      <th>Registration Date</th>
                                        <th>Quantity</th>
                                    <th>Memo</th>
@@ -901,7 +905,7 @@
         </div>
        </div>
                         
-                          <button type="button" class="btn btn-secondary action-button-close" data-dismiss="modaly">Close</button>
+                          <button type="button" class="btn styleBtn action-button-close" data-dismiss="modaly">Close</button>
                   </div>
                </div>
             </div>
@@ -1104,7 +1108,7 @@
                            </div>
                     
                         <button  id="edit"  class="btn btn-primary btn-light  action-button-previous float-right mr-3" >소재 추가하기</button>
-                             <button type="button" class="btn btn-secondary action-button-close" data-dismiss="modaly" >Close</button>
+                             <button type="button" class="btn styleBtn action-button-close" data-dismiss="modaly" >Close</button>
                         </fieldset>
                       
                    </form>
@@ -1164,7 +1168,7 @@
                            </table>
                         </div>
                          <div class="modal-footer" >
-                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                 <button type="button" class="btn styleBtn" data-dismiss="modal">Close</button>
                           
                               </div>
                      </div>
@@ -1241,7 +1245,7 @@
                            </table>
                         </div>
                          <div class="modal-footer" >
-                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                 <button type="button" class="btn styleBtn" data-dismiss="modal">Close</button>
                           
                               </div>
                      </div>
@@ -1269,7 +1273,7 @@
                            <div class="modal-content" style="    overflow-x: hidden;">
                               <div class="modal-header">
                                  <h5 class="modal-title " id="exampleModalScrollableTitle"><span class="treeproducttitle"></span></h5>
-                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                 <button type="button" class="close styleBtn" data-dismiss="modal" aria-label="Close">
                                  <span aria-hidden="true">&times;</span>
                                  </button>
                               </div>
@@ -1354,7 +1358,7 @@
                                              </div>
                                  </td>
                               </tr>
-                                <tr data-id="2" data-parent="1" data-level="2">
+                                <!-- <tr data-id="2" data-parent="1" data-level="2">
                                   <td class="" data-column="name">
                                      <div class="input-group mb-3">
                                                  <div class="input-group-prepend" height="15px;">
@@ -1363,7 +1367,7 @@
                                              <input readonly type="text" style="margin:0;" data-column="name" class="productSizeAssess form-control" id="basic-url" aria-describedby="basic-addon3">
                                              </div>
                                  </td>
-                              </tr>
+                              </tr> -->
                                       <tr data-id="2" data-parent="1" data-level="2">
                                   <td class="" data-column="name">
                                      <div class="input-group mb-3">
@@ -1374,16 +1378,16 @@
                                              </div>
                                  </td>
                               </tr>
-                                       <tr data-id="2" data-parent="1" data-level="2">
+                                       <!-- <tr data-id="2" data-parent="1" data-level="2">
                                   <td class="" data-column="name">
-                                     <div class="input-group mb-3">
+                                     <div class="input-group mb-3" style="display: none; height: 0;">
                                                  <div class="input-group-prepend" height="15px;">
                                                  <span class="input-group-text" id="basic-addon3">Product Status</span>
                                                     </div>
                                              <input readonly type="text" style="margin:0;" data-column="name" class="productStatus form-control" id="basic-url" aria-describedby="basic-addon3">
                                              </div>
                                  </td>
-                              </tr>
+                              </tr> -->
                           </div>
                           <div class="col-md-3">
                       <table class="table">
@@ -1397,35 +1401,35 @@
                         </thead>
                         <tbody>
                            <tr>
-                              <th scope="row">Reuse Weight</th>
+                              <th scope="row">Reuse </th>
                               <td class="sumReuseWeight"></td>
                               <td class="sumReuseWeightPerc"></td>
                             
                            </tr>
                            <tr>
-                              <th scope="row">Recycling Weight</th>
+                              <th scope="row">Recycling </th>
                               <td class="sumRecycWeightg"></td>
                               <td class="sumRecycWeightPerc"></td>
                        
                            </tr>
                            <tr>
-                              <th scope="row">Recovery Weight</th>
+                              <th scope="row">Recovery </th>
                               <td class="sumRecovWeightg">
                               <td class="sumRecovWeightPerc"></td>
                            
                            </tr>
                              <tr>
-                              <th scope="row">Disposal Weight</th>
+                              <th scope="row">Disposal </th>
                               <td class="disposalWeightg"></td>
                               <td class="disposalWeightPerc"></td>
                            </tr>
                              <tr>
-                              <th scope="row">Energy Recovery Weight</th>
+                              <th scope="row">Energy Recovery </th>
                               <td class="energyRecoveryWeightg"></td>
                               <td class="energyRecoveryWeightperc"></td>
                            </tr>
                              <tr>
-                              <th scope="row">Product Weight</th>
+                              <th scope="row">Product </th>
                               <td class="sumTotalWeightg"></td>
                               <td class="sumTotalWeightPerc"></td>
                            </tr>
@@ -1638,7 +1642,7 @@
                                              </div>
                                  </td>
                               </tr>
-                                    <tr data-id="2" data-parent="1" data-level="2">
+                                    <!-- <tr data-id="2" data-parent="1" data-level="2">
                                   <td class="" data-column="name">
                                      <div class="input-group mb-3">
                                                  <div class="input-group-prepend" height="15px;">
@@ -1647,7 +1651,7 @@
                                              <input readonly type="text" style="margin:0;" data-column="name" class="productSizeAssess form-control" id="basic-url" aria-describedby="basic-addon3">
                                              </div>
                                  </td>
-                              </tr>
+                              </tr> -->
                                       <tr data-id="2" data-parent="1" data-level="2">
                                   <td class="" data-column="name">
                                      <div class="input-group mb-3">
@@ -1658,7 +1662,7 @@
                                              </div>
                                  </td>
                               </tr>
-                                       <tr data-id="2" data-parent="1" data-level="2">
+                                       <!-- <tr data-id="2" data-parent="1" data-level="2">
                                   <td class="" data-column="name">
                                      <div class="input-group mb-3">
                                                  <div class="input-group-prepend" height="15px;">
@@ -1667,7 +1671,7 @@
                                              <input readonly type="text" style="margin:0;" data-column="name" class="productStatus form-control" id="basic-url" aria-describedby="basic-addon3">
                                              </div>
                                  </td>
-                              </tr>
+                              </tr> -->
                           </div>
                           <div class="col-md-4">
                             <div style="display: flex; flex-direction:column; align-items:center;">
@@ -1810,7 +1814,7 @@
                                              </div>
                                  </td>
                               </tr>
-                                    <tr data-id="2" data-parent="1" data-level="2">
+                                    <!-- <tr data-id="2" data-parent="1" data-level="2">
                                   <td class="" data-column="name">
                                      <div class="input-group mb-3">
                                                  <div class="input-group-prepend" height="15px;">
@@ -1819,7 +1823,7 @@
                                              <input readonly type="text" style="margin:0;" data-column="name" class="productSizeAssess form-control" id="basic-url" aria-describedby="basic-addon3">
                                              </div>
                                  </td>
-                              </tr>
+                              </tr> -->
                                       <tr data-id="2" data-parent="1" data-level="2">
                                   <td class="" data-column="name">
                                      <div class="input-group mb-3">
@@ -1830,7 +1834,7 @@
                                              </div>
                                  </td>
                               </tr>
-                                       <tr data-id="2" data-parent="1" data-level="2">
+                                       <!-- <tr data-id="2" data-parent="1" data-level="2">
                                   <td class="" data-column="name">
                                      <div class="input-group mb-3">
                                                  <div class="input-group-prepend" height="15px;">
@@ -1839,7 +1843,7 @@
                                              <input readonly type="text" style="margin:0;" data-column="name" class="productStatus form-control" id="basic-url" aria-describedby="basic-addon3">
                                              </div>
                                  </td>
-                              </tr>
+                              </tr> -->
                           </div>
                           <div class="col-md-4">
                               <table class="table">
@@ -2004,7 +2008,7 @@
                               <button type="button" id="addSubs" class="btn btn-dark action-button float-right" >Add New Substance</button>
                     
                      </form>
-                        <button type="button" id="subsmodalclose" class="btn btn-secondary"  >Close</button>
+                        <button type="button" id="subsmodalclose" class="btn styleBtn"  >Close</button>
                   </div>
                </div>            
             </div>
