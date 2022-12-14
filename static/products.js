@@ -219,7 +219,7 @@ const editUI = (user) => {
 const renderUser = doc => {
    console.log(doc.ref.path)
   const tr = `
-    <tr data-id='${doc.id}' style="  border-bottom: 0.5px solid grey;">
+    <tr data-id='${doc.id}' style="  border-bottom: 0.5px solid #8080804d ;">
          <td >
                                 <div class="checkbox "  style="  display: inline-table;  width: 20px;
     height: 15px;">
@@ -1434,9 +1434,8 @@ let idref = guid()
       `;
       html+=pp
        const bpart = `
-       <tr data-id="1" data-parent="0" data-level="1">
-        <td data-column="name">ㄴ  ${doc.data().partname}</td>
-         </tr>
+       <li><span>${doc.data().partname}</span>
+                              </li>
       `;
        
        breadbody.insertAdjacentHTML('beforeend', bpart)
@@ -1449,14 +1448,17 @@ let idref = guid()
   setupPartsProducts(snapshot.docs)
 
 
-   var tableparts = document.querySelector(".addedpartslist"), sumVal = 0;
-            for(var i = 1; i < tableparts.rows.length; i++)
+
+
+   var tableparts = document.querySelector(".addedpartslist"),
+   sumVal = 0;
+            for(var i = 0; i < tableparts.rows.length; i++)
             {
-              let  sumVal = sumVal + parseInt(tableparts.rows[i].cells[3].innerHTML);
+             sumVal = sumVal + parseFloat(tableparts.rows[i].cells[3].innerHTML);
             }
             console.log(sumVal);
    const setPPWeight = document.querySelector('.setPPWeight')
-  setPPWeight.innerHTML = "Total Parts Weight: " + sumVal.toFixed(2);
+  setPPWeight.innerHTML = "Total Parts/Product Weight: " + sumVal.toFixed(2) + " / " + btnpraddWeightRef;
 
 //Edit Part specific to a product
 
@@ -1852,7 +1854,7 @@ btnprAdd.addEventListener('click', () => {
   let now = new Date()
     
 
-            setDate.value =         now.getFullYear() + "/" + (now.getMonth() +1)  + "/" + now.getDate() + " || " +   now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+            setDate.value =         now.getFullYear() + "/" + (now.getMonth() +1)  + "/" + now.getDate() + " - " +   now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
   addmodaly.classList.add('modaly-show');
  addproductCategory.value = '';
   addproductName.value = '';
