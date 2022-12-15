@@ -17,14 +17,19 @@
       <link rel="stylesheet" href="../line-awesome.min.css">
       <link rel="stylesheet" href="../remixicon.css">
          <style>
+          .styleBtn {
+  background-color: #11101D;
+  color: white;
+  border-color: black;
+}
                 @media only screen and (min-width: 60em) {
   .table-wrapper {
-    height: 443px;
+    height: auto;
   }
 }
          @media only screen and (min-width: 86em) {
   .table-wrapper {
-    height: 645px;
+    height: auto;
   }
 }
       </style>
@@ -215,7 +220,7 @@
                            <div class="modal-content">
                               <div class="modal-header">
                                  <h5 class="modal-title">부품목록 권한설정</h5>
-                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                 <button type="button" class="close styleBtn" data-dismiss="modal" aria-label="Close">
                                  <span aria-hidden="true">&times;</span>
                                  </button>
                               </div>
@@ -282,7 +287,7 @@
                      </table>
                               </div>
                               <div class="modal-footer">
-                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                 <button type="button" class="btn styleBtn" data-dismiss="modal">Close</button>
                                  <button type="button" class="btn btn-primary">Save changes</button>
                               </div>
                            </div>
@@ -355,7 +360,7 @@
     <div class="table-wrapper" style="
     overflow-y: scroll;"> 
       <table class="table-users parttable myTableMat" id="myTableMat" >
-        <thead style="position: sticky; top: 0; z-index: 1;">
+        <thead style="position: sticky; top: 0; z-index: 0;">
                  <th>Supplier Name</th>
              <th>Part Name</th>
             <th>Part Code</th>
@@ -504,7 +509,7 @@
                                 </fieldset>
                                 
                                 
-                            <button type="button" class="btn btn-secondary action-button-close" data-dismiss="modaly" >Close</button>
+                            <button type="button" class="btn styleBtn action-button-close" data-dismiss="modaly" >Close</button>
                         <button type="submit"  id="addPartsForm" class="btn btn-primary btn-dark float-right mr-3"  >Add Part</button>
                
                    </form>
@@ -617,7 +622,7 @@
                                 
                                 </fieldset>
                                              
-                            <button type="button" class="btn btn-secondary action-button-close" data-dismiss="modaly" >Close</button>
+                            <button type="button" class="btn styleBtn action-button-close" data-dismiss="modaly" >Close</button>
       <button type="submit" id="editPart" class="btn btn-primary btn-dark   float-right mr-3"  >Edit Part</button>
                    </form>
                  </div>
@@ -788,7 +793,7 @@
                            </div>
                     
                         <button  id="addMatPartBtn"  class="btn btn-primary btn-light float-right mr-3" >소재 추가</button>
-                             <button type="button" class="btn btn-secondary action-button-close" data-dismiss="modaly" >Close</button>
+                             <button type="button" class="btn styleBtn action-button-close" data-dismiss="modaly" >Close</button>
                         </fieldset>
                       
                    </form>
@@ -895,7 +900,7 @@
                     
                      </form>
                         <button type="button" id="addSubs" class="btn btn-dark action-button float-right" value="Submit" >제출하기</button>
-                        <button type="button" id="subsmodalclose" class="btn btn-secondary action-button-close" data-dismiss="modaly-wrapper" >Close</button>
+                        <button type="button" id="subsmodalclose" class="btn styleBtn action-button-close" data-dismiss="modaly-wrapper" >Close</button>
                   </div>
                </div>
             </div>
@@ -973,7 +978,7 @@
                            </table>
                         </div>
                          <div class="modal-footer" >
-                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                 <button type="button" class="btn styleBtn" data-dismiss="modal">Close</button>
                           
                               </div>
                      </div>
@@ -984,7 +989,8 @@
                      </div>
  <!--View Data table tree materials-->
     <div class="viewMatTable modaly-wrapper" >
-      <div class="modaly">
+      <div class="modaly" style="    width: 85%;
+    left: 10%;">
           <div class="modaly-header"> <span class="setPMatheader" style="font-size: 150%; color:black;"> </span></div>
         <div class="modaly-body">
           
@@ -1038,7 +1044,7 @@
                            </table>
                         </div>
                          <div class="modal-footer" >
-                                 <button type="button" class="btn btn-secondary action-button-close" data-dismiss="modal">Close</button>
+                                 <button type="button" class="btn styleBtn action-button-close" data-dismiss="modal">Close</button>
                           
                               </div>
                      </div>
@@ -1165,7 +1171,7 @@
                     
                     </fieldset>
                         <button type="button"  id="editMat"  class="btn btn-primary btn-dark  float-right mr-3" >소재 편집</button>
-                            <button type="button" id="subsmodalclose" class="btn btn-secondary action-button-closeMat"  >Close</button>
+                            <button type="button" id="subsmodalclose" class="btn styleBtn action-button-closeMat"  >Close</button>
                      
                       
                    </form>

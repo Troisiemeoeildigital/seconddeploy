@@ -138,11 +138,10 @@ const renderUser = doc => {
                                     <label for="checkbox2" class="mb-0"></label>
                                 </div>
                             </td>
-     <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().supplierName}</td>
      <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().partName}</td>
       <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().partCode}</td>
         <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().partWeight}</td>
-         <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().partWidth} x ${doc.data().partHeight} x ${doc.data().partDepth} (${doc.data().sizeUnit}) </td>
+
            <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().reusedPart}</td>
      <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().partRegisteredDate}</td>
            <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().partMemo}</td>
@@ -255,7 +254,7 @@ const setMatheader = document.querySelector('.setMatheader')
 
 <a href="#" class="navbary__link">
 		<span class="btnpmSubs" matName="${doc.data().materialName}"  matWeight="${doc.data().materialMassg}" data-id='${doc.id}'><i class="bx bx-plus" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style="background-color: #fb8500;">Add New Substances </span>
+		<span class="navbary__label" style="background-color: #fb8500; top:-46px; width:180px; left:-46px;">Add New Substances</span>
 	</a>
 
   <a href="#" class="navbary__link">
@@ -269,10 +268,8 @@ const setMatheader = document.querySelector('.setMatheader')
       `;
       html+=li
        const bpart = `
-       <tr data-id="1" data-parent="0" data-level="1">
-                                 <td data-column="name">ㄴ ${doc.data().materialName}</td>
-                              </tr>
-
+         <li><span style="background-color:#ffe5bd;">${doc.data().materialName}</span>
+                              </li>
       `;
         
        breadbody.insertAdjacentHTML('beforeend', bpart)
@@ -700,7 +697,6 @@ db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${s
 							<td>${arrUniq[i].substanceName}</td>
               <td>${arrUniq[i].casnumber}</td>
                 <td>${arrUniq[i].crm}</td>
-                    <td>${arrUniq[i].rohs}</td>
 							<td>${arrUniq[i].substanceMassg}</td>
 							<td>${arrUniq[i].substanceMassPerc}</td>
        
@@ -741,11 +737,11 @@ editSubmodaly.classList.add('modaly-show');
          console.log(doc.data())
 
     id = doc.id;
-    editSubHeader.innerHTML = '물질 정보 수정 -' + doc.data().substanceName
+    editSubHeader.innerHTML = '물질 정보 수정 -' + doc.data().substanceName;
     EditPMSubsName.value = doc.data().substanceName;
     EditPMSubsCAS.value = doc.data().casnumber;
     EditPMSubsCRM.value = doc.data().crm;
-    EditPMSubsROHS.value = doc.data().rohs;
+    // EditPMSubsROHS.value = doc.data().rohs;
     EditPMSubsMassg.value = doc.data().substanceMassg;
     EditPMSubsMassPerc.value = doc.data().substanceMassPerc;
     } else {
@@ -1224,7 +1220,7 @@ addModalyParts.reset();
     editmodaly.classList.add('modaly-show');
     const editHeader = document.querySelector('.editheader')
     id = doc.id;
-    editHeader.innerHTML = '부품정보수정  ' + doc.data().partName
+    editHeader.innerHTML = '부품정보수정 - ' + doc.data().partName
     editmodalyForm.editsupplierName.value = doc.data().supplierName;
     editmodalyForm.editpartName.value = doc.data().partName;
     editmodalyForm.editpartClass.value = doc.data().partCode;
@@ -1466,12 +1462,15 @@ if (data.some(checkUsername) == true) {
 btnprAdd.onclick = function() {
 
   addmodaly.classList.add('modaly-show');
+    const setDate = document.querySelector('.setDate')
+  let now = new Date()
+  console.log(now)
+ setDate.value = now.getFullYear() + "/" + (now.getMonth() +1)  + "/" + now.getDate() + " - " +   now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
 
   addModalyForm.addpartName.value = '';
   addModalyForm.addpartClass.value = '';
   addModalyForm.addpartWeight.value = '';
   addModalyForm.addreusedPart.value = '';
-  addModalyForm.addpartregisteredDate.value = '';
   addModalyForm.addMemo.value = '';
 
 
@@ -1583,6 +1582,7 @@ supplierNameData.value = doc.data().userCompanyname
 
 // Click submit in add modaly
 addPartsForm.addEventListener('click', e => {
+ 
   e.preventDefault();
 
         //Start work here

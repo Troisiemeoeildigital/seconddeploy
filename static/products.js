@@ -33,6 +33,8 @@ const addModalyParts = document.querySelector('.addPartmodaly .form');
 const addModalySubs = document.querySelector('.addSubsmodaly .form');
 const closebtn = document.querySelectorAll('.action-button-close')
 const addPPmodaly = document.querySelector('.addPPmodaly')
+let assess = document.querySelector('.assess')
+
 let addcas = document.querySelector('.addcas')
 let addcrm = document.querySelector('.addcrm')
 let addrohs = document.querySelector('.addrohs')
@@ -261,6 +263,7 @@ const renderUser = doc => {
       </td>
     </tr>
   `;
+
   const prodTabledata = document.querySelector('.prodTabledata')
   prodTabledata.insertAdjacentHTML('afterbegin', tr);
   
@@ -290,9 +293,29 @@ document.querySelector('#addsubsproduct').style.display = "none";
   const viewassess = document.querySelector(`[data-id='${doc.id}'] .viewbtn`);
   viewassess.onclick= function (e) {
     e.preventDefault()
+  
     let dataPWeightRef = viewassess.getAttribute('data-id');
 let dataPN = viewassess.getAttribute('data-PN');
 let prodWeightRef = viewassess.getAttribute('prodWeight');
+  db.collection("recycledproducts").doc(doc.id).collection('selectedParts').get().then((querySnapshot) => {
+                 let partWeihtArr = []
+                  querySnapshot.forEach((doc) => {
+                      // console.log(doc.data())
+                      partWeihtArr.push(parseFloat(doc.data().partWeight));
+                  })
+                    console.log(partWeihtArr)
+                  const weightSum = partWeihtArr.reduce((partialSum, a) => partialSum + a, 0);
+                  console.log(prodWeightRef, weightSum)
+                if (weightSum == prodWeightRef) {
+                  console.log(weightSum == prodWeightRef)
+                  assess.classList.add('modaly-show');
+                }
+                else {
+                      Swal.fire(`제품 평가 산출을 위해 부품 등록을 완료해주세요 <br />
+                            <span style="font-size:13px">Current total parts weight: ${weightSum}</span> <br />
+                                  <span style="font-size:13px"> Total product weight: ${prodWeightRef}</span>` , '', 'info')
+                }
+                })
 console.log(dataPN)
    		var table = document.querySelector('.renderParts')
       var renderEN4555 = document.querySelector('.renderEN4555')
@@ -412,7 +435,6 @@ buildTable(arrUniq)
               	<td>${arrUniq[i].substanceMassg}</td>
 							<td>${arrUniq[i].substanceMassPerc}</td>
               	<td>${arrUniq[i].crm}</td>
-                	<td>${arrUniq[i].rohs}</td>
                   
 					  </tr>`
 			table.innerHTML += row
@@ -470,7 +492,7 @@ buildTable(arrUniq)
       x: 'No. of CRMs',
       y: 0
     }, {
-      x: 'CRM Weight',
+      x: 'CRM Weight ',
       y: 0
     }]
   }]
@@ -1203,14 +1225,7 @@ getPPdata.onclick = function(e) {
   partSize.value = 0;
   partWeight.value = 0;
 
-//     var tablepartsRef = document.querySelector(".table-parts"),
-//   sumPartsWeight = 0;
-// for (var i = 1; i < tablepartsRef.rows.length; i++) {
-//   sumPartsWeight = sumPartsWeight + parseFloat(tablepartsRef.rows[i].cells[3].innerHTML);
-// }
 
-// console.log(sumPartsWeight)
-     
 
 console.log(  typeof(btnpraddWeightRef))
   const partsRef = db.collection("recycledparts")
@@ -1411,7 +1426,7 @@ let idref = guid()
         <td style="color: black; font-weight: 600;">${doc.data().partCode}</td>
         <td style="color: black; font-weight: 600;">${doc.data().partWeight}</td>
         <td style="color: black; font-weight: 600;">${doc.data().partRegisteredDate}</td>
-           <td style="color: black; font-weight: 600;"><input type="number" class="quantityPart" style="border: 1px solid #ddd; text-align: center;" data-Part='${doc.id}' min="0" value="${doc.data().quantity}" placeholder="${doc.data().quantity}" name="" id=""></td>
+           <td style="color: black; font-weight: 600;"><input type="number" class="quantityPart" style=" border-radius:5px; border: 1px solid #ddd; text-align: center;" data-Part='${doc.id}' min="0" value="${doc.data().quantity}" placeholder="${doc.data().quantity}" name="" id=""></td>
         <td style="color: black; font-weight: 600;">${doc.data().partMemo}</td>
 
           <td>
@@ -1881,6 +1896,9 @@ window.addEventListener('click', e => {
 
    if(e.target === addPPmodaly) {
     addPPmodaly.classList.remove('modaly-show');
+  }
+     if(e.target === assess) {
+    assess.classList.remove('modaly-show');
   }
 
 });
