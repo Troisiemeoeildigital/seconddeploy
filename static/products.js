@@ -219,12 +219,12 @@ const editUI = (user) => {
 //   document.querySelector('.loadingtitle').style.color = "black"
 
 const renderUser = doc => {
-   console.log(doc.ref.path)
+  
+  //  console.log(doc.ref.path)
   const tr = `
     <tr data-id='${doc.id}' style="  border-bottom: 0.5px solid #8080804d ;">
          <td >
-                                <div class="checkbox "  style="  display: inline-table;  width: 20px;
-    height: 15px;">
+   <div class="checkbox "  style="  display: inline-table;  width: 20px; height: 15px;">
                                     <input type="checkbox" class="checkbox-input" id="checkbox2" style="height: fit-content;">
                                     <label for="checkbox2" class="mb-0"></label>
                                 </div>
@@ -1234,7 +1234,6 @@ console.log(  typeof(btnpraddWeightRef))
     .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           const partWeightRef =  parseInt(doc.data().partWeight) * quantity.value;
-       
            console.log(partWeightRef)
           console.log(partWeightRef < btnpraddWeightRef)
            if (partWeightRef <= btnpraddWeightRef) {
@@ -1257,8 +1256,7 @@ console.log(  typeof(btnpraddWeightRef))
   title: '알림',
 
   html: `조회하신 부품 [${doc.data().partName} x ${quantity.value} (${partWeightRef} g)]이` + '<b> ' + `제품 중량(${btnpraddWeightRef} g) 을 초과했습니다. 다시 입력해주세요. `,
-  footer: '<a href="" style="display: none;">Why do I have this issue?</a>',
-  keydownListenerCapture:true
+  footer: '<a href="" style="display: none;">Why do I have this issue?</a>'
 })
       }
         });
@@ -1733,7 +1731,7 @@ addSubs.onclick = function(e) {
 							<td>${arrUniq[i].substanceName}</td>
               <td>${arrUniq[i].casnumber}</td>
                 <td style="width: 15px;">${arrUniq[i].crm}</td>
-                    <td style="width: 15px;">${arrUniq[i].rohs}</td>
+                
 							<td style="width: 15px;">${arrUniq[i].substanceMassg}</td>
 							<td style="width: 15px;">${arrUniq[i].substanceMassPerc}</td>
               <td>

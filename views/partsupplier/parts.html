@@ -30,15 +30,18 @@
 .modaly-body {
   overflow: auto;
 }
-                @media only screen and (min-width: 60em) {
+li span {
+  background-color: transparent;
+}
+                @media only screen and (min-width: 86em) {
                   
   .table-wrapper {
-    height: auto;
+    height: 470px;
   }
 }
-         @media only screen and (min-width: 86em) {
+         @media only screen and (min-width: 100em) {
   .table-wrapper {
-    height: auto;
+    height: 700px;
   }
 }
       </style>
@@ -75,9 +78,9 @@
       <li>
        <a  href="./parts" >
     <i class='bx bxs-component' ></i>
-         <span class="links_name">부품정보등록/조회’</span>
+         <span class="links_name">부품정보등록/조회</span>
        </a>
-       <span class="tooltip">부품정보등록/조회’</span>
+       <span class="tooltip">부품정보등록/조회</span>
      </li>
   
      <!-- <li>
@@ -203,7 +206,7 @@
                                                   <p class="mb-0">계정 생성일: 2022/08/02</p>
                                                     <div id="lastsignin"></div>
                                                   <div class="d-flex align-items-center justify-content-center mt-3">
-                                                      <button type="button" style="display: none;" class="btn border mr-2 notadmin" data-toggle="modal" data-target=".bd-example-modal-xl">권한</button>
+                                                     
                                                       <a href="./userprofile" class="btn border mr-2">내 계정</a>
                                                       <a href="/sessionLogout" class="btn border">로그아웃</a>
 
@@ -235,7 +238,7 @@
                                                                         justify-content: center;
                                                                         align-items: center;">
                                   <nav class="navbary"  style="width: 40%; background-color: #fb8500;">
-                                    <a href="https://firebasestorage.googleapis.com/v0/b/projectcrm-f4e5f.appspot.com/o/Bulk%20parts%20materials%20upload%20(minimal%20adv).csv?alt=media&token=2b7e6b30-22be-47dc-83ec-72602c8c06d3" class="navbary__link" >
+                                    <a href="https://firebasestorage.googleapis.com/v0/b/projectcrm-f4e5f.appspot.com/o/Bulk%20parts%20materials%20upload%20(minimal%20adv)%20(v1.2).csv?alt=media&token=e9d7ff50-9241-4f64-b54d-3df32e3e8208" class="navbary__link" >
                                       <span class="" ><svg xmlns="http://www.w3.org/2000/svg" style="fill: white;
                                                                                                     width: 18px;
                                                                                                     height: 18px;" 
@@ -367,7 +370,7 @@
 <div class="content-page" style="width: 100%;">
      <div class="container-fluid" style="padding-top: 0;">
             <div class="row mb-3" style="width:100%;">
-                              <div class="col-12 col-md-4">  <h4 class="mb-3" style="color: black;font-weight: 600; font-size: 25px;">부품정보등록/조회’</h4></div>
+                              <div class="col-12 col-md-4">  <h4 class="mb-3" style="color: black;font-weight: 600; font-size: 25px;">부품정보등록/조회</h4></div>
                               <div class="row col-6 col-md-8" style="gap: 2px; justify-content: end;     align-items: center;"> 
                                 <button class="btnpr btnpr-add" style=" width: 15%; background-color: #fb8500 ; "><div class="addnewproductbtnpr">새 부품 등록</div></button>
                     
@@ -453,24 +456,8 @@
              <div class="loadingtitle" id="loadingtitle"></div>
  <div class="tabledata" >
     <div class="table-wrapper" style="
-    overflow-y: scroll; height: 480px;"> 
-        <!-- <div class=" deleterow align-items-center" >
-                   <div class="col-md-9"> 
-                                  <form id="upload">
-                           <div class="input-group" style="margin-bottom: 2%; width: 30%; margin-left: 70%;">
-                           <div class="custom-file" >
-                           <input type="file" class="filey custom-file-input" id="inputGroupFile04" accept=".csv">
-                           <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-                             
-                        </div>
-                         <div class="input-group-append">
-                           <button class="btn btn-outline-secondary uploadbtn" type="submit" style="margin: 0; padding-bottom: 1px;">Upload</button>
-                        </div>
-                     </div>
-                      </form> 
-                              </div>
-     
-        </div> -->
+    overflow-y: scroll; "> 
+  
         
 
 <div class="table-wrapper">
@@ -610,7 +597,7 @@
                                 
                                 
                             <button type="button" class="btn styleBtn action-button-close" data-dismiss="modaly" >Close</button>
-                        <button type="submit"  id="addPartsForm" class="btn btn-primary btn-dark float-right mr-3"  >부품 추가</button>
+                        <button type="submit"  id="addPartsForm" class="btn btn-primary float-right mr-3" style="background-color:#fb8500; color:white; border:0" >부품 추가</button>
                
                    </form>
                                 
@@ -741,7 +728,7 @@
                                 </fieldset>
                                              
                             <button type="button" class="btn styleBtn action-button-close" data-dismiss="modaly" >Close</button>
-      <button type="submit" id="editPart" class="btn btn-primary btn-dark float-right mr-3">부품 정보 변경</button>
+      <button type="submit" id="editPart" class="btn btn-primary float-right mr-3" style="background-color:#fb8500; color:white; border:0">부품 정보 변경</button>
                    </form>
                  </div>
             <!-- Modal -->
@@ -758,7 +745,7 @@
    <div class="addPartMatmodaly modaly-wrapper" >
       <div class="modaly">
           <div class="modaly-header" style="text-align:left;"> <span class="addPartHeader" style="font-size: 150%; color:black;"></span></div>
-        <div class="modaly-body" >
+        <div class="modaly-body" style="overflow: hidden;" >
           <div class="card-body">
 
                      <form class="form addmatpartform"  autocomplete="off"  data-toggle="validator" id="form-wizard1">
@@ -783,8 +770,8 @@
 
                                     <div class="col-md-6"> 
                                     <div class="form-group">
-                                        <label>Recycle Rate (%)</label>
-                                        <input type="number" class="form-control" id='materialRecycleContent' placeholder="Enter Material Recycle Rate" data-errors="Please part specs." name="addmaterialRecycleContent" required>
+                                        <label>Recycled contents(%) *</label>
+                                        <input type="number" class="form-control" id='materialRecycleContent' placeholder="Enter Material Recycled contents" data-errors="Enter Material Recycled contents." name="addmaterialRecycleContent" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div> 
@@ -834,8 +821,7 @@
                                  <div class="col-md-3"> 
                                     <div class="form-group">
                                         <label>Material Mass (%) *</label>
-                                        <input readonly type="number"  step=".01"  class="form-control" id='editMaterialMassPerc'placeholder="Please enter Material mass" data-errors="Please part mass." name="addmaterialMassPerc" required>
-                                        <div class="help-block with-errors"></div>
+                                        <input readonly type="number"  step=".01"  class="form-control" id='editMaterialMassPerc' name="addmaterialMassPerc" required>
                                     </div>
                                 </div> 
                                     <div class="col-md-6">
@@ -912,7 +898,7 @@
                            </div>
                            </div>
                     
-                        <button  id="addMatPartBtn"  class="btn btn-primary btn-light float-right mr-3" >소재 추가</button>
+                        <button  id="addMatPartBtn"  class="btn btn-primary float-right mr-3" style="background-color: #fb8500; color: white; border: 0;" >소재 추가</button>
                              <button type="button" class="btn styleBtn action-button-close" data-dismiss="modaly" >Close</button>
                         </fieldset>
                       
@@ -948,28 +934,30 @@
                              
                               </div>
                               <div class="row">
-                                     <div class="col-md-6">
+                                     <div class="col-md-4">
                                     <div class="form-group">
                                        <label>Substance Type: *</label>
-                                        <select  class="getsubstancetype form-control" id="sel1" name="getsubstancetype">
-                                            <option value="">물질 종류 선택</option>
-                                            <option value="crm">CRMs</option>
+                                        <select  class="getsubstancetype form-control" id="sel1" name="getsubstancetype" >
+                                           <option value="" selected>선택하기</option>
+                                            <option value="crm" >CRMs</option>
                                             <!-- <option value="rohs">ROHS</option> -->
                                             <option value="none">All</option>
                                           
                                         </select>
                                     </div>
                                  </div>
-                                 <div class="col-md-6">
+                                     <div class="col-md-4">
                                     <div class="form-group">
-                                       <label>Substance Name: *</label>
-                                        <select  class="getsubstancelist form-control" id="getSubsname" name="getsubstancelist">
-                                           
-                                          
-                                        </select>
+                                       <label>CAS Number: *</label>
+                                       <input readonly type="text" class="addcas form-control" name="addcas" value="" placeholder=""  />
                                     </div>
                                  </div>
-                              
+                                    <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>Substance Mass (g): *</label>
+                                       <input type="number" class="addsubstanceMassg form-control" name="addsubstanceMassg"  />
+                                    </div>
+                                 </div>
                               </div>
                            </div>
                          
@@ -981,17 +969,20 @@
                                 
                               </div>
                               <div class="row">
-                                 <div class="col-md-4">
+                             <div class="col-md-4">
                                     <div class="form-group">
-                                       <label>CAS Number: *</label>
-                                       <input readonly type="text" class="addcas form-control" name="addcas" value="" placeholder=""  />
+                                       <label>Substance Name: *</label>
+                                        <select  class="getsubstancelist form-control" id="getSubsname" name="getsubstancelist">
+                                           
+                                          
+                                        </select>
                                     </div>
                                  </div>
                                
-                                <div class="col-md-4">
+                                  <div class="col-md-4">
                                     <div class="form-group">
-                                       <label>Substance Mass (g): *</label>
-                                       <input type="number" class="addsubstanceMassg form-control" name="addsubstanceMassg"  />
+                                       <label>CRMs: *</label>
+                                       <input readonly type="text" class="addcrm form-control" name="addcrm" />
                                     </div>
                                  </div>
                                    <div class="col-md-4">
@@ -1000,15 +991,10 @@
                                        <input readonly type="number" class="addsubstanceMassPerc form-control" name="addsubstanceMassPerc"  />
                                     </div>
                                  </div>
+                               
                               </div>
                               <div class="row" style="visibility: hidden; height: 0;">
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                       <label>CRMs: *</label>
-                                       <input readonly type="text" class="addcrm form-control" name="addcrm" />
-                                    </div>
-                                 </div>
-                               
+                                 
                                  <div class="col-md-6">
                                     <div class="form-group">
                                        <label>ROHS: *</label>
@@ -1056,7 +1042,7 @@
                         <div class="modal-dialog modal-dialog-scrollable" role="document">
                            <div class="modal-content">
                          <div class="modaly-header" style="text-align:left;"> <span class="addPartSubsHeader" style="font-size: 150%; color:black;"></span></div>
-                              <div class="modal-body">
+                              <div class="modal-body" style="overflow: hidden;">
                                 <div class="row float-right">
                                        <div class="sortaddpart" style="width: 90%;">
                 
@@ -1079,7 +1065,8 @@
 
 
                                 <div class="table-responsive">
-                    <div  class="table-wrapper"> 
+                    <div  class="table-wrapper" style="overflow: auto;
+    height: 480px;"> 
                                <table class="table-parts table-subs">
                             
                                 <tr>
@@ -1112,7 +1099,7 @@
                      </div>
  <!--View Data table tree materials-->
     <div class="viewMatTable modaly-wrapper" >
-      <div class="modaly" style="    width: 80%;left: 13%;">
+      <div class="modaly" style=" width:80%;left: 13%;">
              <div class="modaly-header" style="text-align:left;"> <span class="setMatheader"  style="font-size: 150%; color:black;"></span></div>
 
         <div class="modaly-body">
@@ -1146,9 +1133,7 @@
                            <div class="input-group-append" style="
     border-radius: 0;
 ">
-                           <span class="input-group-text" id="basic-addon5" style="
-    border-radius: 0 10px 10px 0;
-"><i class="las la-search font-size-20"></i></span>
+                           <span class="input-group-text" id="basic-addon5" style="border-radius: 0 10px 10px 0;"><i class="las la-search font-size-20"></i></span>
                            
                         </div>
                    </div>
@@ -1158,10 +1143,7 @@
 
 
                       <div class="row" style="width: auto;">
-                      <select class="custom-select sortPMSelection" id="inputGroupSelect03" style="
-    border-radius: 10px 0 0 10px;
-    width: 70%;
-">
+                      <select class="custom-select sortPMSelection" id="inputGroupSelect03" style="border-radius: 10px 0 0 10px;width: 70%;">
                            <option value="" selected="">Sort by...</option>
                            <option value="1">Sort by Material Group</option>
                            <option value="2">Sort by Material Name</option>
@@ -1184,9 +1166,7 @@
 
                      <div class="row col-md-12" style="align-items: center;">
                       <div class="col-md-2">
-                        <div class="table-responsive" style="    height: 310px; overflow: auto;border-collapse: collapse;
-    border-radius: 1em;
-    overflow: hidden;">
+                        <div class="table-responsive" style="height: 450px; overflow: auto;border-collapse: collapse; border-radius: 1em;">
                         <table id="tree-table-1" class="table table-hover table-bordered iq-bg-white tree" style="    overflow: auto;">
                            <thead class="bg-white" style="position: sticky; top: 0;">
                               <tr>
@@ -1203,7 +1183,9 @@
                         </div>
                      </div>
                       </div>
+                     
                       <div class="col-md-10">
+                         <div class="setPMWeight float-right"></div>
                <div class="table-responsive" style="overflow-x: hidden;">
              
                     <div  class="table-wrapper" style="height: auto;"> 
@@ -1229,7 +1211,7 @@
                             </tbody>
                            </table>
                         </div>
-                         <div class="modal-footer" >
+                         <div class="modal-footer" style="border: 0;" >
                                  <button type="button" class="btn styleBtn action-button-close float-left" style="border: 0;" data-dismiss="modal">Close</button>
                           
                               </div>
@@ -1247,11 +1229,11 @@
 
                       <!--Edit Material-->
   <div class="editMatmodaly modaly-wrapper" style="z-index: 92000;">
-      <div class="modaly">
+      <div class="modaly" style="padding-bottom: 15px;">
    
                      <div class="modaly-header" style="text-align:left;">  <span class="editMatHeader"  style="font-size: 150%; color:black;"></span></div>
 
-        <div class="modaly-body">
+        <div class="modaly-body" style="overflow: hidden;">
           <div class="card-body">
                      <div class="">
                            <form class="form" data-toggle="validator" id="form-wizard1">
@@ -1292,13 +1274,7 @@
                         <fieldset>
                            <div class="form-card text-left">
                               <div class="row">
-                                 <div class="col-7">
-                                    <h3 class="mb-4">Edit Material Details:</h3>
-                                 </div>
-                               
                               </div>
-                    
-                              
                            <div class="row">
                                            <div class="col-md-6">                      
                                     <div class="form-group">
@@ -1314,9 +1290,9 @@
                                 </div>  
                                   <div class="col-md-6"> 
                                     <div class="form-group">
-                                        <label>Recycle Rate (%)</label>
-                                        <input type="number" class="form-control" id='PMmaterialRecycleContent' placeholder="Enter Material Recycle Rate" data-errors="Please part specs." name="editmaterialRecycleContent" required>
-                                        <div class="help-block with-errors"></div>
+                                        <label>Recycled contents (%) *</label>
+                                        <input type="number" class="form-control" id='PMmaterialRecycleContent' placeholder="Enter Material Recycled contents" name="editmaterialRecycleContent" required>
+                                      
                                     </div>
                                 </div> 
                    
@@ -1369,12 +1345,28 @@
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div> 
+                                      <div class="col-md-6" style="display: contents;  ">
+                            <div class="col-md-3" style="display: flex; align-items: center; ">
+                                  <div class="custom-control custom-checkbox custom-control-inline">
+                           <input type="checkbox" class="custom-control-input seleccheckbox2" id="customCheck5" >
+                           <label class="custom-control-label" for="customCheck5">Selective Materials</label>
+                                   </div>
+                            </div>
+
+                            <div class="col-md-3">
+                              <label>Treatment </label>
+                               <select class="form-control selectiveMat" id="selectiveMat2" name="selectiveMat" disabled="true">
+                                           
+                                           </select>
+                            </div>
+                           </div>
                             </div>
                            </div>
                     
                     </fieldset>
+                           <button type="button" id="subsmodalclose" class="btn styleBtn action-button-closeMat float-right"  >Close</button>
                         <button type="button"  id="editMat"  class="btn btn-primary   float-right mr-3" style="background-color: #fb8500; border: 0;" >소재 정보 변경</button>
-                            <button type="button" id="subsmodalclose" class="btn styleBtn action-button-closeMat"  >Close</button>
+                     
                      
                       
                    </form>
@@ -1386,28 +1378,21 @@
     </div>
              
  <!--Edit Substance-->
-                      <div class="editSubmodaly modaly-wrapper" style="z-index: 92999;">
-      <div class="modaly" style="z-index: 99999;">
-   
+                 <div class="editSubmodaly modaly-wrapper" style="z-index: 92999;">
+                   <div class="modaly" style="z-index: 99999;">
                      <div class="modaly-header" style="text-align:left;">  <span class="editSubHeader"  style="font-size: 150%; color:black;"></span></div>
-
-        <div class="modaly-body">
-          <div class="card-body">
-                     <div class="">
-                      
-                          <form class="form"   data-toggle="validator" id="form-wizard1">
+                       <div class="modaly-body">
+                          <div class="card-body">
+                            <div class="">
+                             <form class="form"  data-toggle="validator" id="form-wizard1">
                      
                         <!-- fieldsets -->
                         <fieldset>
                            <div class="form-card text-left">
                               <div class="row">
                                  <div class="col-7">
-                                    <h3 class="mb-4">Edit Substance Details:</h3>
                                  </div>
-                               
                               </div>
-                    
-                              
                            <div class="row">
                                            <div class="col-md-6">                      
                                     <div class="form-group">
@@ -1466,7 +1451,7 @@
                     
                     </fieldset>
                         <button type="button"  id="editSub"  class="btn btn-primary float-right mr-3" style="background-color: #fb8500; color: white; border: 0;" >물질 편집</button>
-                            <button type="button" id="subsmodalclose" class="btn styleBtn action-button-closeSub"  >Close</button>
+                            <button type="button" id="subsmodalclose" class="btn styleBtn action-button-closeSub" data-dismiss="modaly-wrapper"  >Close</button>
                      
                       
                    </form>

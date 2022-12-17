@@ -22,12 +22,21 @@
   color: white;
   border-color: black;
 }
-         @media only screen and (min-width: 86em) {
-  .table-wrapper {
-    height: 70%;
-  }
-    
+li span {
+  background-color: transparent;
 }
+                @media only screen and (min-width: 86em) {
+                  
+  .table-wrapper {
+    height: 400px;
+  }
+}
+         @media only screen and (min-width: 100em) {
+  .table-wrapper {
+    height: 620px;
+  }
+} 
+
       </style>
       
      
@@ -259,13 +268,13 @@
                      </div>
                                        <div class="form-group" id="formfloat" style="width: 48%;margin:0;">
                       <div class="input-group mb-3">
-                       <input type="text" class="form-control" id="myInputProduct" style="margin: 0;border-radius: 10px 0 0 10px;height:46px;width: 66%;" onkeyup="prodSearch()" name="myInputProduct" placeholder="Search by " aria-label="Search Part Name" aria-describedby="basic-addon5">
+                       <input type="text" class="form-control" id="myInputProduct" style="margin: 0;border-radius: 10px 0 0 10px;height:46px;width: 70%;" onkeyup="prodSearch()" name="myInputProduct" placeholder="Search by " aria-label="Search Part Name" aria-describedby="basic-addon5">
                         <select class="custom-select searchProdSelection" id="inputGroupSelect03">
-                        <option selected="">Choose...</option>
+               
                            <option value="3">Product Name </option>
                            <option value="4">Model Name</option>
                         </select>
-                           <div class="input-group-append">
+                           <div class="input-group-append" style="margin-left: -2px;">
                            <span class="input-group-text" id="basic-addon5"><i class="las la-search font-size-20"></i></span>
                         </div>
                      </div>
@@ -299,7 +308,7 @@
  <div class="tabledata">
    
     <div class="table-wrapper table-responsive rounded mb-3" style="overflow-x: hidden; 
-    overflow-y: scroll; height: 29rem;">
+    overflow-y: scroll; ">
    
          
       <table class="table-users prodTabledata table-hover prod-table mb-0 ">
@@ -313,7 +322,7 @@
              <th style="width: 15%;">Product category</th>
           <th style="width: 15%;">Product name</th>
           <th>Model name</th>
-          <th>Product weight</th>
+          <th>Product weight (kg)</th>
           <th>Registration date</th>
           <th >Memo</th>
            <th style="width: 13%;">Action</th>
@@ -403,17 +412,17 @@
                                 </div>
 
                                      <div class="row">
-                                             <div class="col-md-4">  <div class="form-group">
+                                             <div class="col-md-4" style="display: none; height: 0; ">  <div class="form-group">
                                         <label>Product Manufacturer </label>
                                         <input readonly type="text" class="form-control" id='productManufacturer'  name="productManufacturer"  >
                               
                                     </div>   </div>   
-                                            <div class="col-md-4">  <div class="form-group">
+                                            <div class="col-md-6">  <div class="form-group">
                                         <label>Product Name *</label>
                                         <input type="text" class="form-control" id='addproductName' placeholder="Enter Product Name" data-errors="Please Enter Product Name." name="productName" required >
                                         <div class="help-block with-errors"></div>
                                     </div>   </div>       
-                                      <div class="col-md-4">
+                                      <div class="col-md-6">
                                             <label>Product Image </label>
                     <div class="input-group mb-4">
                         <div class="custom-file mb-3">
@@ -503,7 +512,7 @@
                         </fieldset>
                       
                    <button type="button" class="btn styleBtn action-button-close"  data-dismiss="modaly">Close</button>
-                   <button type="submit" id="addProduct" class="btn btn-primary btn-dark float-right mr-3">Add Product</button>
+                   <button type="submit" id="addProduct" class="btn btn-primary btn-dark float-right mr-3" style="background-color: #219EBC; border: 0; color: white;">제품등록</button>
                                 
                    </form>
                  </div>
@@ -704,7 +713,7 @@
                            </div>
                         </fieldset>
                        <button type="button" class="btn styleBtn action-button-close" data-dismiss="modaly">Close</button>
-      <button  id="edit" class="btn btn-primary btn-dark editFormProd  float-right mr-3"  >Edit Product</button>
+      <button  id="edit" class="btn btn-primary  editFormProd  float-right mr-3" style="background-color: #219EBC; color: white; border: 0;" >제품 정보 수정</button>
                    </form>
                  </div>
                         </div>
@@ -744,7 +753,7 @@
                             <div class="row" style="align-items: center;">
                            
                              
-                                       <div class="col-md-4">
+                                       <div class="col-md-3">
                                     <div class="form-group">
                                      <label>부품사</label>
                                
@@ -757,7 +766,7 @@
                                     </div>
                                 </div>
 
-                                   <div class="col-md-2">
+                                   <div class="col-md-3">
                                     <div class="form-group">
                                      <label>부품명</label>
                                
@@ -788,7 +797,8 @@
                                     </div>
                                 </div> 
                                 <div class="col-md-2">
-                                    <nav class="navbary" style="  background-color: #219EBC; margin-top: 35px;">
+                                    <nav class="navbary" style="  background-color: #219EBC; margin: 20px 5px 0 0;
+    font-size: 16px;">
 	
                      <a href="#" class="navbary__link" >
                         <span class=" getPPdata" style="color: white;" >부품 조회</span>
@@ -806,6 +816,13 @@
                         <fieldset> -->
                          
                                   <div class="col-md-12" style="visibility: hidden; height: 0;">
+                                     <div class="col-md-4"> 
+                                    <div class="form-group">
+                                        <label>부품 크기</label>
+                                        <input readonly type="text" class="form-control" id='partSize' placeholder="---" data-errors="---" name="addpartMassgEA" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
                                     <div class="form-group">
                                         <label>Part id</label>
                                         <input readonly type="hidden" class="form-control"  id='partId' placeholder="---" data-errors="---" name="addpartNumber" required>
@@ -814,21 +831,15 @@
                                 </div> 
                            <div class="row">
                                 
-                                   <div class="col-md-4"> 
-                                    <div class="form-group">
-                                        <label>부품 크기</label>
-                                        <input readonly type="text" class="form-control" id='partSize' placeholder="---" data-errors="---" name="addpartMassgEA" required>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div> 
-                              <div class="col-md-2"> 
+                                  
+                              <div class="col-md-3"> 
                                     <div class="form-group">
                                         <label>부품중량 </label>
                                         <input readonly type="number" class="form-control" id='partWeight'placeholder="---" data-errors="---" name="addpartMassg" value="" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div> 
-                                 <div class="col-md-2"> 
+                                 <div class="col-md-3"> 
                                     <div class="form-group">
                                         <label>등록일자</label>
                                         <input readonly type="date" class="form-control" id='partRegisteredDate'placeholder="---" data-errors="---" style=" font-size: 15px;" name="addpartMassPerc" required>
@@ -842,16 +853,21 @@
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
-                                
-                       </div>
 
-              
-                                       <div class="buttonaddParts addPart" style="display: none;" id="editForm">
+                                <div class="col-md-2">
+                                 
+                                       <div class="buttonaddParts addPart" style="display: none; top: 40%; left: 0;" id="editForm">
                                 <div class="content">
                                     <i class="bx bxs-edit"></i>
-                                    <span class="buttonaddParts-text">Add Part to Product</span>
+                                    <span class="buttonaddParts-text">부품 추가</span>
                                 </div>
                             </div>
+                                </div>
+                                
+                       </div>
+                   
+
+              
                         </fieldset>
                         
                      </form>
@@ -886,7 +902,8 @@
           </div>
           <div class="setPPWeight" style="    text-align: end;"></div>
                                <table class="table-parts table-hover  ">
-                                <tr>
+                           <thead>
+                                   <tr>
                                       <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
   <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
   <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
@@ -900,6 +917,7 @@
                                    <th style="width:16%">Action</th>
                               
                                 </tr>
+                           </thead>
                         
                             <tbody class="addedpartslist">
 
@@ -1070,7 +1088,7 @@
                                 </div> 
                                 <div class="col-md-4"> 
                                     <div class="form-group">
-                                        <label>Recycle Rate (%)</label>
+                                        <label>Recycled Contents (%)</label>
                                         <input type="number" class="form-control" id='materialRecycleContent' placeholder="Enter Material Recycle Rete (%)" data-errors="Please enter Material Recycle Rete (%)" name="addmaterialRecycleContent" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
@@ -1159,7 +1177,7 @@
 </svg></th>
                                 <th >  Material Category</th>
                                   <th>  Material Name</th>
-                                      <th>  Recycle Rate (%)</th>
+                                      <th>  Recycled Contents (%)</th>
                                         <th>  Recycle Type</th>
                                           <th>  Mass (g)</th>
                                             <th>  Mass (%)</th>
@@ -1234,7 +1252,7 @@
                                <th>Substance Name</th>
                                     <th>CAS No</th>
                                     <th>CRMs</th>
-                                        <th>ROHS</th>
+                                        <!-- <th>ROHS</th> -->
                                         <th>Substance Mass (g)</th>
                                       
                                             <th>Substance Mass (%)</th>
@@ -1739,7 +1757,7 @@
                               <th scope="col">Material Group </th>
                                  <th scope="col">Material Name </th>
                                     <th scope="col">Material Mass (g) </th>
-                                       <th scope="col">Recycled rate (%)</th>
+                                       <th scope="col">Recycled Contents (%)</th>
                                                    <th scope="col">Recycled Material Mass</th>
                                    
                            </tr>
@@ -1926,8 +1944,8 @@
    </div>
     
      
-     <div class="modal fade" id="addsubsproduct" tabindex="-1" role="dialog" aria-labelledby="addsubsproduct" style="z-index: 99999;" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+     <div class="modal fade" id="addsubsproduct" tabindex="-1" role="dialog" aria-labelledby="addsubsproduct" style=" z-index: 99999;" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable" role="document" style="height: 450px;">
                            <div class="modal-content">
                           
                               <div class="modal-body">
@@ -1943,27 +1961,31 @@
                              
                               </div>
                               <div class="row">
-                                     <div class="col-md-6">
+                                     <div class="col-md-4">
                                     <div class="form-group">
                                        <label>Substance Type: *</label>
                                         <select  class="getprodsubstancetype form-control" id="sel1" name="getprodsubstancetype">
                                             <option value="">물질 종류 선택</option>
                                             <option value="crm">CRM</option>
-                                            <option value="rohs">ROHS</option>
-                                            <option value="none">None</option>
+                                            <!-- <option value="rohs">ROHS</option> -->
+                                            <option value="none">All</option>
                                           
                                         </select>
                                     </div>
                                  </div>
-                                 <div class="col-md-6">
+                                   <div class="col-md-4">
                                     <div class="form-group">
-                                       <label>Substance Name: *</label>
-                                        <select  class="getprodsubstancelist form-control" id="getSubsname" name="getprodsubstancetype">
-                                            <option value="">Select an option</option>
-                                          
-                                        </select>
+                                       <label>Substance Mass (g): *</label>
+                                       <input type="number" class="addsubstanceMassg form-control" name="addsubstanceMassg"/>
                                     </div>
                                  </div>
+                                   <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>CAS Number: *</label>
+                                       <input readonly type="text" class="addcas form-control" name="addcas" value="" placeholder=""/>
+                                    </div>
+                                 </div>
+                               
                               
                               </div>
                            </div>
@@ -1976,32 +1998,31 @@
                                 
                               </div>
                               <div class="row">
-                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                       <label>CAS Number: *</label>
-                                       <input readonly type="text" class="addcas form-control" name="addcas" value="" placeholder=""  />
-                                    </div>
-                                 </div>
+                               
                                     <div class="col-md-4">
                                     <div class="form-group">
-                                       <label>Substance Mass (g): *</label>
-                                       <input type="number" class="addsubstanceMassg form-control" name="addsubstanceMassg"  />
+                                       <label>Substance Name: *</label>
+                                        <select  class="getprodsubstancelist form-control" id="getSubsname" name="getprodsubstancetype">
+                                            <option value="">Select an option</option>
+                                          
+                                        </select>
                                     </div>
                                  </div>
                                    <div class="col-md-4">
                                     <div class="form-group">
                                        <label>Substance Mass (%) : *</label>
-                                       <input type="number" class="addsubstanceMassPerc form-control" name="addsubstanceMassPerc"  />
+                                       <input readonly type="number" class="addsubstanceMassPerc form-control" name="addsubstanceMassPerc"  />
                                     </div>
                                  </div>
-                              </div>
-                              <div class="row" style="visibility: hidden; height: 0;">
-                                   <div class="col-md-6" >
+                                  <div class="col-md-4" >
                                     <div class="form-group">
                                        <label>CRMs: *</label>
                                        <input readonly type="text" class="addcrm form-control" name="addcrm" />
                                     </div>
                                  </div>
+                              </div>
+                              <div class="row" style="visibility: hidden; height: 0;">
+                                  
                                
                                  <div class="col-md-6">
                                     <div class="form-group">
@@ -2012,7 +2033,7 @@
                                  </div>
                               </div>
                            </div>
-                              <button type="button" id="addSubs" class="btn btn-dark action-button float-right" >Add New Substance</button>
+                              <button type="button" id="addSubs" class="btn action-button float-right" style="background-color: #219EBC; color: white; border: 0;" >Add New Substance</button>
                     
                      </form>
                         <button type="button" id="subsmodalclose" class="btn styleBtn"  >Close</button>
