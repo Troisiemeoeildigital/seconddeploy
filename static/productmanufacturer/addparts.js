@@ -873,15 +873,13 @@ eachDuplicatePart.onclick = function(e) {
                              materialRecycleContent: doc.data().materialRecycleContent,
                              materialRecycleType: doc.data().materialRecycleType,
                              matnameSelect: doc.data().matnameSelect,
-
                              partRef: doc.data().partRef,
                              partRefWeight: doc.data().partRefWeight,
                             //  proofurl: doc.data().proofurl,
                              recovMat: doc.data().recovMat,
                              recycMat: doc.data().recycMat,
                              reuseMat: doc.data().reuseMat,
-
-                                selecrecovMat: doc.data().selecrecovMat,
+                             selecrecovMat: doc.data().selecrecovMat,
                              selecrecycMat: doc.data().selecrecycMat,
                              selecreuseMat: doc.data().selecreuseMat,
                              selectiveMat: doc.data().selectiveMat,

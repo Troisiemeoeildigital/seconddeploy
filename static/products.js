@@ -1280,6 +1280,7 @@ const buttonaddParts = document.querySelector('.buttonaddParts')
     supplierName: supplierName.value,
     partSize: partSize.value,
     partWeight: parseFloat(partWeight.value),
+    partWeightRef: parseFloat(partWeight.value),
     partRegisteredDate: partRegisteredDate.value,
     partMemo: companyName.value,
     quantity: quantity.value,
@@ -1295,6 +1296,7 @@ const buttonaddParts = document.querySelector('.buttonaddParts')
               let  partproductRef = doc.id 
               let partproductname = doc.data().partname
                  let partproductweight = doc.data().partWeight
+                     let partproductweightRef = doc.data().partWeightRef
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
             console.log(partproductRef)
@@ -1308,12 +1310,14 @@ const buttonaddParts = document.querySelector('.buttonaddParts')
                             productRef: productRef.productName,
                             partRef: partproductname,
                             partWeight: parseFloat(partproductweight),
+                            partWeightRef: parseFloat(partproductweightRef),
                             materialName: doc.data().materialName,
                             materialGroup:doc.data().materialGroup,
                             materialClassId: doc.data().materialClassId,
                             materialRecycleContent: doc.data().materialRecycleContent,
                             materialRecycleType: doc.data().materialRecycleType,
                             materialMassg:parseFloat(doc.data().materialMassg),
+                            materialMassgRef:parseFloat(doc.data().materialMassg),
                             materialMassPerc: parseFloat(doc.data().materialMassPerc),
                             recovMat: parseFloat(doc.data().recovMat),
                             recycMat: parseFloat(doc.data().recycMat),
@@ -1343,13 +1347,15 @@ let idref = guid()
             productRef: productRef.productName,
             partRef: partproductname,
             partWeight: parseFloat(partproductweight),
-            materialWeightgRef: parseFloat(matRefData.materialMassg),
+            partWeightRef: parseFloat(partproductweightRef),
+            materialWeightgRef: parseFloat(matRefData.materialMassgRef),
             materialNameRef: matRefData.materialName,
             substanceName: doc.data().substanceName,
             casnumber: doc.data().casnumber,
             crm: doc.data().crm,
             rohs: doc.data().rohs,
             substanceMassg: parseFloat(doc.data().substanceMassg),
+             substanceMassgRef: parseFloat(doc.data().substanceMassg),
             substanceMassPerc: parseFloat(doc.data().substanceMassPerc),
          }, {merge:true})
       
@@ -1482,6 +1488,36 @@ let idref = guid()
    let editData = quantityPart[i].getAttribute("data-part");
    db.collection('recycledproducts').doc(`${btnpraddRef}`).collection('selectedParts').doc(`${editData}`).update({
     quantity: quantityPart[i].value
+   })
+   .then (()=>{
+       db.collection('recycledproducts').doc(`${btnpraddRef}`).collection('selectedParts').doc(`${editData}`).collection('selectedMaterials').get()
+       .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          console.log("Parts edited!")
+          let materialsWeightRefId = doc.id
+          let materialMassgRef = doc.data().materialMassgRef
+          let materialRecycleRate = doc.data().materialRecycleContentRef
+          db.collection('recycledproducts').doc(`${btnpraddRef}`).collection('selectedParts').doc(`${editData}`).collection('selectedMaterials').doc(`${materialsWeightRefId}`).update({
+            materialMassg: parseFloat(materialMassgRef * quantityPart[i].value),
+            materialRecycleContent: parseFloat(materialRecycleRate * quantityPart[i].value)
+          }).then(()=>{
+            console.log("Materials edited!")
+              db.collection('recycledproducts').doc(`${btnpraddRef}`).collection('selectedParts').doc(`${editData}`).collection('selectedMaterials').doc(`${materialsWeightRefId}`).collection('selectedSubs').get()
+       .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+                let subsWeightRefId = doc.id
+          let subsMassgRef = doc.data().substanceMassgRef
+            db.collection('recycledproducts').doc(`${btnpraddRef}`).collection('selectedParts').doc(`${editData}`).collection('selectedMaterials').doc(`${materialsWeightRefId}`).collection('selectedSubs').doc(`${subsWeightRefId}`).update({
+              substanceMassg: parseFloat(subsMassgRef * quantityPart[i].value)
+            })
+            .then(()=>{
+              console.log("Subs edited!")
+            })
+            })
+          })
+          })
+        })
+      })
    })
  }}
 
