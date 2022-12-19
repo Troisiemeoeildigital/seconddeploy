@@ -1279,7 +1279,7 @@ const buttonaddParts = document.querySelector('.buttonaddParts')
     partname: partname.value,
     supplierName: supplierName.value,
     partSize: partSize.value,
-    partWeight: parseFloat(partWeight.value),
+    partWeight: parseFloat(partWeight.value * quantity.value),
     partWeightRef: parseFloat(partWeight.value),
     partRegisteredDate: partRegisteredDate.value,
     partMemo: companyName.value,
@@ -1309,15 +1309,15 @@ const buttonaddParts = document.querySelector('.buttonaddParts')
                     db.collection('recycledproducts').doc(btnpraddRef).collection('selectedParts').doc(partproductRef).collection('selectedMaterials').doc(matRef).set({
                             productRef: productRef.productName,
                             partRef: partproductname,
-                            partWeight: parseFloat(partproductweight),
+                            partWeight: parseFloat(partproductweight ),
                             partWeightRef: parseFloat(partproductweightRef),
                             materialName: doc.data().materialName,
                             materialGroup:doc.data().materialGroup,
                             materialClassId: doc.data().materialClassId,
                             materialRecycleContent: doc.data().materialRecycleContent,
                             materialRecycleType: doc.data().materialRecycleType,
-                            materialMassg:parseFloat(doc.data().materialMassg),
-                            materialMassgRef:parseFloat(doc.data().materialMassg),
+                            materialMassg:parseFloat(doc.data().materialMassg * quantity.value),
+                            materialMassgRef:parseFloat(doc.data().materialMassg ),
                             materialMassPerc: parseFloat(doc.data().materialMassPerc),
                             recovMat: parseFloat(doc.data().recovMat),
                             recycMat: parseFloat(doc.data().recycMat),
@@ -1348,15 +1348,16 @@ let idref = guid()
             partRef: partproductname,
             partWeight: parseFloat(partproductweight),
             partWeightRef: parseFloat(partproductweightRef),
+            materialWeightgRef: parseFloat(matRefData.materialMassg),
             materialWeightgRef: parseFloat(matRefData.materialMassgRef),
             materialNameRef: matRefData.materialName,
             substanceName: doc.data().substanceName,
             casnumber: doc.data().casnumber,
             crm: doc.data().crm,
             rohs: doc.data().rohs,
-            substanceMassg: parseFloat(doc.data().substanceMassg),
+            substanceMassg: parseFloat(doc.data().substanceMassg * quantity.value),
              substanceMassgRef: parseFloat(doc.data().substanceMassg),
-            substanceMassPerc: parseFloat(doc.data().substanceMassPerc),
+            substanceMassPerc: parseFloat((doc.data().substanceMassg * quantity.value) * matRefData.materialMassg / 100),
          }, {merge:true})
       
        })
@@ -1479,14 +1480,19 @@ let idref = guid()
    const setPPWeight = document.querySelector('.setPPWeight')
   setPPWeight.innerHTML = "Total Parts/Product Weight: " + sumVal.toFixed(2) + " / " + btnpraddWeightRef;
 
-//Edit Part specific to a product
+//!Edit Part specific to a product
 
    let quantityPart = document.querySelectorAll(".quantityPart");
      for (let i = 0; i < quantityPart.length; i++) {
  
  quantityPart[i].onchange = function() {
    let editData = quantityPart[i].getAttribute("data-part");
-   db.collection('recycledproducts').doc(`${btnpraddRef}`).collection('selectedParts').doc(`${editData}`).update({
+   db.collection('recycledproducts').doc(`${btnpraddRef}`).collection('selectedParts').doc(`${editData}`).get()
+     .then((doc) => {
+        
+          let partWeightRef = doc.data().partWeightRef
+ db.collection('recycledproducts').doc(`${btnpraddRef}`).collection('selectedParts').doc(`${editData}`).update({
+    partWeight: partWeightRef * quantityPart[i].value,
     quantity: quantityPart[i].value
    })
    .then (()=>{
@@ -1497,9 +1503,13 @@ let idref = guid()
           let materialsWeightRefId = doc.id
           let materialMassgRef = doc.data().materialMassgRef
           let materialRecycleRate = doc.data().materialRecycleContentRef
+          let materialMassGcalc = materialMassgRef * quantityPart[i].value
+          let partMatWeightRef = partWeightRef * quantityPart[i].value
           db.collection('recycledproducts').doc(`${btnpraddRef}`).collection('selectedParts').doc(`${editData}`).collection('selectedMaterials').doc(`${materialsWeightRefId}`).update({
-            materialMassg: parseFloat(materialMassgRef * quantityPart[i].value),
-            materialRecycleContent: parseFloat(materialRecycleRate * quantityPart[i].value)
+            //todo continue here
+            materialMassg: parseFloat(materialMassGcalc),
+            materialMassPerc: parseFloat(materialMassGcalc / partMatWeightRef * 100).toFixed(2),
+         
           }).then(()=>{
             console.log("Materials edited!")
               db.collection('recycledproducts').doc(`${btnpraddRef}`).collection('selectedParts').doc(`${editData}`).collection('selectedMaterials').doc(`${materialsWeightRefId}`).collection('selectedSubs').get()
@@ -1519,6 +1529,9 @@ let idref = guid()
         })
       })
    })
+        
+     })
+  
  }}
 
 

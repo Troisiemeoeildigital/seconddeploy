@@ -553,7 +553,6 @@ app.get("/sessionLogout", (req, res) => {
 //   .then(() => {
 //   console.log("sign out success")
 // }).catch((error) => {
-//   // An error happened.
 // });
   res.redirect("/");
 });
