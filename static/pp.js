@@ -112,7 +112,6 @@ const renderUser = doc => {
    
       <td>${doc.data().partCode}</td>
         <td>${doc.data().partWeight}</td>
-         <td>${doc.data().partSize}</td>
            <td>${doc.data().reusedPart}</td>
      <td>${doc.data().partRegisteredDate}</td>
            <td>${doc.data().partMemo}</td>

@@ -1357,7 +1357,7 @@ let idref = guid()
             rohs: doc.data().rohs,
             substanceMassg: parseFloat(doc.data().substanceMassg * quantity.value),
              substanceMassgRef: parseFloat(doc.data().substanceMassg),
-            substanceMassPerc: parseFloat((doc.data().substanceMassg * quantity.value) * matRefData.materialMassg / 100),
+            substanceMassPerc: parseFloat(doc.data().substanceMassPerc),
          }, {merge:true})
       
        })
@@ -1398,7 +1398,7 @@ let idref = guid()
    setTimeout(()=>{
      buttonaddParts.classList.remove("active");
         buttonaddParts.querySelector("i").classList.replace( "bx-check-circle", "bxs-edit")
-        buttonaddParts.querySelector("span").innerText = "Add Part to Product";
+        buttonaddParts.querySelector("span").innerText = "부품 추가";
    }, 3500)
    
 
@@ -1674,6 +1674,8 @@ Swal.fire({
     getprodsubstancetype.addEventListener('change', (e)=>{
     e.preventDefault()
     getprodsubstancelist.innerHTML =""
+      
+
     db.collection("substances").where(getprodsubstancetype.value,"==", "Y")
     .get()
     .then((querySnapshot) => {
@@ -1684,8 +1686,11 @@ Swal.fire({
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
             // console.log(doc.id, " => ", doc.data());
+             let subsname = doc.data().subtanceName;
+            var length = 70;
+var trimmedString = subsname.substring(0, length);
            const tm = `
-      <option>${doc.data().subtanceName}</option>
+   <option style="width:50%;">${trimmedString}...</option>
   // `;
   getprodsubstancelist.insertAdjacentHTML('beforeend', tm);
   // editmodalyForm.editsubstancelist.insertAdjacentHTML('beforeend', tm);
