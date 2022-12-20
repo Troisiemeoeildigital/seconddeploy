@@ -1674,9 +1674,10 @@ Swal.fire({
     getprodsubstancetype.addEventListener('change', (e)=>{
     e.preventDefault()
     getprodsubstancelist.innerHTML =""
-      
-
-    db.collection("substances").where(getprodsubstancetype.value,"==", "Y")
+         if (getprodsubstancetype.value == "crm") {
+          console.log(getprodsubstancetype.value == "crm")
+               console.log(getprodsubstancetype.value)
+   db.collection("substances").where("crm","==", "Y")
     .get()
     .then((querySnapshot) => {
                 const to = `
@@ -1690,16 +1691,46 @@ Swal.fire({
             var length = 70;
 var trimmedString = subsname.substring(0, length);
            const tm = `
-   <option style="width:50%;">${trimmedString}...</option>
+   <option value="${doc.data().subtanceName}" style="width:50%;">${subsname}</option>
   // `;
   getprodsubstancelist.insertAdjacentHTML('beforeend', tm);
   // editmodalyForm.editsubstancelist.insertAdjacentHTML('beforeend', tm);
  
         });
     })
+    }
+    else  {
+      console.log(getprodsubstancetype.value == "none")
+      console.log(getprodsubstancetype.value)
+         db.collection("substances")
+    .get()
+    .then((querySnapshot) => {
+                const to = `
+      <option >Select an option</option>
+  // `;
+  getprodsubstancelist.insertAdjacentHTML('beforeend', to);
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            // console.log(doc.id, " => ", doc.data());
+             let subsname = doc.data().subtanceName;
+            var length = 70;
+var trimmedString = subsname.substring(0, length);
+           const tm = `
+   <option value="${subsname}" style="width:50%;">${trimmedString}...</option>
+  // `;
+  getprodsubstancelist.insertAdjacentHTML('beforeend', tm);
+  // editmodalyForm.editsubstancelist.insertAdjacentHTML('beforeend', tm);
+ 
+        });
+    })
+    }
+
+ 
   })
 
    getprodsubstancelist.onchange = function() {
+    console.log("im firing up")
+    console.log(getprodsubstancelist.value, getprodsubstancetype.value)
  db.collection("substances").where("subtanceName", "==", getprodsubstancelist.value).where(getprodsubstancetype.value, "==", "Y").get()
       .then((querySnapshot)=> {
            querySnapshot.forEach((doc) => {
