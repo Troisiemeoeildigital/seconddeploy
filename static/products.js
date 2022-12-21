@@ -1197,8 +1197,6 @@ convertAll.onclick = function(e) {
 //add parts tp specific product
  const btnpraddParts = document.querySelector(`[data-id='${doc.id}'] .btnpr-addPP`);
 btnpraddParts.addEventListener('click', () => {
- 
- 
   addPPmodaly.classList.add('modaly-show');
   const addedpartslist = document.querySelector('.addedpartslist')
    const btnpraddRef = btnpraddParts.getAttribute('id');
@@ -1216,6 +1214,67 @@ btnpraddParts.addEventListener('click', () => {
        addPPheaderSubs.innerHTML = '물질추가 : ' + btnpraddNameRef
  console.log(btnpraddRef)
 
+   auth.onAuthStateChanged(user => {
+
+    if(user) {
+      console.log(user.email)
+      // .where("authorizedUsers", "array-contains", `${user.email}`);
+        var addpartsRef = db.collectionGroup('recycledparts')
+addpartsRef
+.get()
+ .then(query=>{
+        let data = query.docs.map(doc=>{
+        let x = doc.data()
+            return x;
+    })
+
+    const matHashMap = {}
+    data = data.filter((item, _)=>{
+      let alreadyExists = matHashMap.hasOwnProperty(item.supplierName)
+      return alreadyExists ? false: matHashMap[item.supplierName] = 1
+    })
+ 
+    // console.log(data)
+   
+    buildTable(data)
+	function buildTable(data){
+
+		for (var i = 0; i < data.length; i++){
+			var row = `
+							<option>${data[i].supplierName}</option>
+              
+					  `
+			supplierName.insertAdjacentHTML ("beforeend", row)
+
+
+		}}
+  })
+  supplierName.addEventListener('change', ()=>{
+   partname.innerHTML = "";
+  //  .where("authorizedUsers", "array-contains", `${user.email}`).where("supplierName", "==",supplierName.value)
+db.collection("recycledparts").where("supplierName", "==",supplierName.value)
+    .get()
+    .then((querySnapshot) => {
+          const to = `
+      <option>Select an option</option>
+  // `;
+  partname.insertAdjacentHTML('beforeend', to);
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+           const tm = `
+      <option value="${doc.data().partName}">${doc.data().partName}</option>
+  `;
+
+   partname.insertAdjacentHTML('beforeend', tm)
+        });
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+ })
+
+}})
 
 //click on add new parts
 const partname = document.querySelector('.partname');
@@ -1961,41 +2020,6 @@ btnprAdd.addEventListener('click', () => {
   addproductStatus.value = '';
   addMemo.value = '';
 
-
-  
-});
-
-// User click anyware outside the modaly
-window.addEventListener('click', e => {
-  if(e.target === addmodaly) {
-    addmodaly.classList.remove('modaly-show');
-  }
-  if(e.target === editmodaly) {
-    editmodaly.classList.remove('modaly-show');
-  }
-  if(e.target === viewmodaly) {
-    viewmodaly.classList.remove('modaly-show');
-  }
-
-   if(e.target === addPPmodaly) {
-    addPPmodaly.classList.remove('modaly-show');
-  }
-     if(e.target === assess) {
-    assess.classList.remove('modaly-show');
-  }
-
-});
-
-
-// // Get all users
-// db.collection('users').get().then(querySnapshot => {
-//   querySnapshot.forEach(doc => {
-//   console.log(doc.data());
-//   })
-// });
-
-
-
 auth.onAuthStateChanged(user => {
 
     if(user) {
@@ -2017,7 +2041,7 @@ document.querySelector(".files").addEventListener("change", function(e) {
     document.querySelector('.prodImgphld').innerHTML = files[i].name
   }
 });
-  addProduct.addEventListener('click', (e) => {
+  addProduct.onclick = function(e){
   e.preventDefault();
 
   if (files.length != 0) {
@@ -2114,7 +2138,42 @@ document.querySelector(".files").addEventListener("change", function(e) {
   }
 
 
-})
+}
+  
+});
+
+// User click anyware outside the modaly
+window.addEventListener('click', e => {
+  if(e.target === addmodaly) {
+    addmodaly.classList.remove('modaly-show');
+  }
+  if(e.target === editmodaly) {
+    editmodaly.classList.remove('modaly-show');
+  }
+  if(e.target === viewmodaly) {
+    viewmodaly.classList.remove('modaly-show');
+  }
+
+   if(e.target === addPPmodaly) {
+    addPPmodaly.classList.remove('modaly-show');
+  }
+     if(e.target === assess) {
+    assess.classList.remove('modaly-show');
+  }
+
+});
+
+
+// // Get all users
+// db.collection('users').get().then(querySnapshot => {
+//   querySnapshot.forEach(doc => {
+//   console.log(doc.data());
+//   })
+// });
+
+
+
+
 
 // Click submit in add modaly
   const buttoni = document.querySelector(".buttoni");
@@ -2357,67 +2416,14 @@ firebase.auth().onAuthStateChanged(user => {
 
 
 
-  var addpartsRef = db.collectionGroup('recycledparts');
-addpartsRef
-.get()
- .then(query=>{
-        let data = query.docs.map(doc=>{
-        let x = doc.data()
-            return x;
-    })
 
-    const matHashMap = {}
-    data = data.filter((item, _)=>{
-      let alreadyExists = matHashMap.hasOwnProperty(item.supplierName)
-      return alreadyExists ? false: matHashMap[item.supplierName] = 1
-    })
+
+
+
+
+
+
  
-    // console.log(data)
-   
-    buildTable(data)
-	function buildTable(data){
-
-		for (var i = 0; i < data.length; i++){
-			var row = `
-							<option>${data[i].supplierName}</option>
-              
-					  `
-			supplierName.insertAdjacentHTML ("beforeend", row)
-
-
-		}}
-  })
-
-
-
-
-
-
-
- supplierName.addEventListener('change', ()=>{
-   partname.innerHTML = "";
-db.collection("recycledparts").where("supplierName", "==", supplierName.value)
-    .get()
-    .then((querySnapshot) => {
-          const to = `
-      <option>Select an option</option>
-  // `;
-  partname.insertAdjacentHTML('beforeend', to);
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-           const tm = `
-      <option value="${doc.data().partName}">${doc.data().partName}</option>
-  `;
-
-   partname.insertAdjacentHTML('beforeend', tm)
-        });
-    })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
- })
-
   
 
 

@@ -52,7 +52,9 @@ body{
     position: fixed;
     margin-top: 15px;
     border-radius: 8px;
-    width: 14%;
+    width: 25%;
+    height: 370px;
+    overflow-y: scroll;
     padding: 16px;
     background-color: #fff;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);

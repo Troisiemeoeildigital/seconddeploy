@@ -937,8 +937,6 @@ btnpraddParts.onclick =  function(e)  {
   addmodalyPartsSingle.classList.add('modaly-show');
   const addPartHeader = document.querySelector('.addPartHeader')
   addPartHeader.innerHTML = `소재추가  - ${doc.data().partName}`
-
-
   const getPMatRef = btnpraddParts.getAttribute('data-id')
   console.log(getPMatRef)
   const addmaterialOptions = document.querySelector('#selectiveMat')
@@ -1501,13 +1499,60 @@ if (data.some(checkUsername) == true) {
             }
 }
 
+ db.collection("users").where("userRole","==","Product Manufacturer")
+    .get()
+  .then((querySnapshot)=>{
+    querySnapshot.forEach((doc)=>{
+       const tr = `
+        <li value='${doc.data().userEmail}' class="item">
+                    <span class="checkbox">
+                     <i class='bx bx-check' ></i>
+                    </span>
+                    <span class="item-text">${doc.data().userFirstname} ${doc.data().userLastname}, ${doc.data().userEmail}</span>
+                </li>
+       `
+       const listitems = document.querySelector('.list-items')
+        listitems.insertAdjacentHTML('beforeEnd', tr);
+
+    })
+  })
+  .then(()=>{
+    const selectBtn = document.querySelector(".select-btn"),
+      items = document.querySelectorAll(".item");
+      // itemText = document.querySelectorAll(".item-text")
+selectBtn.addEventListener("click", () => {
+    selectBtn.classList.toggle("open");
+});
+
+items.forEach(item => {
+    item.addEventListener("click", () => {
+        item.classList.toggle("checked"); 
+        // itemText.classList.toggle("checked"); 
+      
+        let checked = document.querySelectorAll(".checked"),
+            btnText = document.querySelector(".btn-text");
+
+            if(checked && checked.length > 0){
+                btnText.innerText = `${checked.length} Selected`;
+                let checkedUser = []
+ checked.forEach((user)=>{
+checkedUser.push(user.attributes[0].value)
+ })
+ console.log(checkedUser)
+            }else{
+                btnText.innerText = "0 Selected";
+                btnText.style.fontSize = "14px"
+            }
+    });
+})
+  })
+
 
 
 // Click add user button
 btnprAdd.onclick = function() {
-
   addmodaly.classList.add('modaly-show');
-    const setDate = document.querySelector('.setDate')
+  const setDate = document.querySelector('.setDate')
   let now = new Date()
   console.log(now)
  setDate.value = now.getFullYear() + "/" + (now.getMonth() +1)  + "/" + now.getDate() + " - " +   now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
@@ -1517,11 +1562,6 @@ btnprAdd.onclick = function() {
   addModalyForm.addpartWeight.value = '';
   addModalyForm.addreusedPart.value = '';
   addModalyForm.addMemo.value = '';
-
-
-
-  
-  
 };
 
 // User click anyware outside the modaly
@@ -1644,6 +1684,14 @@ const checkUsername = element => element == document.querySelector('#addClass').
     
 console.log(data.some(checkUsername) )
 if (data.some(checkUsername) == false) {
+  const checkedUsersRef = document.querySelectorAll('.item.checked')
+  let checkedUserArr = []
+  for (let i = 0; i < checkedUsersRef.length; i++) {
+  // console.log()
+  checkedUserArr.push(checkedUsersRef[i].getAttribute('value'))
+}
+console.log(checkedUserArr)
+
   db.collection('recycledparts').add({
      supplierName: addModalyForm.addsupplierName.value,
    partName: addModalyForm.addpartName.value,
@@ -1656,7 +1704,8 @@ if (data.some(checkUsername) == false) {
     partSize: `${addpartWidth.value} x ${addpartDepth.value} x ${addpartHeight.value}`,
     reusedPart: addModalyForm.addreusedPart.value,
     partRegisteredDate: addModalyForm.addpartregisteredDate.value,
-    partMemo: addModalyForm.addMemo.value
+    partMemo: addModalyForm.addMemo.value,
+    authorizedUsers: checkedUserArr
     
   })
 Swal.fire(
