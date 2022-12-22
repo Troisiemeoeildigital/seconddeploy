@@ -187,6 +187,23 @@ assignRequestRole[i].onchange = function(e){
     })
   })
   }
+
+     else if (e.target.value == 4) {
+        const addpartSupplierRole = functions.httpsCallable('addadminRole');
+  addpartSupplierRole({email: requestRoleType}).then(result => {
+    console.log(result);
+    db.collection("users").doc(uid).update({
+      userRole: "Admin",
+      requestType: false,
+    }).then(()=>{
+      Swal.fire(
+  'Confirmed!',
+  'Admin Access Granted !',
+  'success'
+)
+    })
+  })
+  }
  
 }
 }
@@ -275,6 +292,22 @@ assignRole[i].onchange = function(e){
       Swal.fire(
   'Confirmed!',
   'Part Supplier Access Granted !',
+  'success'
+)
+    })
+  })
+  }
+
+    else if (e.target.value == 4) {
+        const addpartSupplierRole = functions.httpsCallable('addadminRole');
+  addpartSupplierRole({email: roleType}).then(result => {
+    console.log(result);
+    db.collection("users").doc(uid).update({
+      userRole: "Admin",
+    }).then(()=>{
+      Swal.fire(
+  'Confirmed!',
+  'Admin Access Granted !',
   'success'
 )
     })

@@ -1218,8 +1218,8 @@ btnpraddParts.addEventListener('click', () => {
 
     if(user) {
       console.log(user.email)
-      // .where("authorizedUsers", "array-contains", `${user.email}`);
-        var addpartsRef = db.collectionGroup('recycledparts')
+
+        var addpartsRef = db.collectionGroup('recycledparts').where("authorizedUsers", "array-contains", `${user.email}`);
 addpartsRef
 .get()
  .then(query=>{
@@ -1251,8 +1251,8 @@ addpartsRef
   })
   supplierName.addEventListener('change', ()=>{
    partname.innerHTML = "";
-  //  .where("authorizedUsers", "array-contains", `${user.email}`).where("supplierName", "==",supplierName.value)
-db.collection("recycledparts").where("supplierName", "==",supplierName.value)
+
+db.collection("recycledparts").where("supplierName", "==",supplierName.value).where("authorizedUsers", "array-contains", `${user.email}`).where("supplierName", "==",supplierName.value)
     .get()
     .then((querySnapshot) => {
           const to = `

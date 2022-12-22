@@ -41,21 +41,20 @@ app.all("*", (req, res, next) => {
 //admin pages
 app.get("/admin/parts", function (req, res) {
    const sessionCookie = req.cookies.session || "";
-
   admin
     .auth()
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
-          // if(userData.admin == true) {
+        
+         if(userData.admin == true) {
             console.log(userData)
   
       console.log("Logged in:", userData.email)
-            res.render("admin/parts.html");
-      // }
-      // else {
-      //      res.redirect("/404");
-      // }
-
+      res.render("admin/parts.html.html");
+      }
+      else {
+           res.redirect("/404");
+      }
     })
     .catch((error) => {
       res.redirect("/login");
@@ -68,15 +67,17 @@ app.get("/admin/listofproducts", function (req, res) {
     .auth()
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
-          // if(userData.admin == true) {
+        
+         if(userData.partSupplier == true) {
             console.log(userData)
   
       console.log("Logged in:", userData.email)
-            res.render("admin/productslist.html");
-      // }
-      // else {
-      //      res.redirect("/404");
-      // }
+      res.render("admin/productslist.html");
+      }
+      else {
+           res.redirect("/404");
+      }
+         
 
     })
     .catch((error) => {
@@ -90,15 +91,15 @@ app.get("/admin/dashboard", function (req, res) {
     .auth()
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
-          // if(userData.admin == true) {
+          if(userData.admin == true) {
             console.log(userData)
   
       console.log("Logged in:", userData.email)
             res.render("admin/dashboard.html");
-      // }
-      // else {
-      //      res.redirect("/404");
-      // }
+      }
+      else {
+           res.redirect("/404");
+      }
 
     })
     .catch((error) => {
@@ -112,15 +113,15 @@ app.get("/admin/listofusers", function (req, res) {
     .auth()
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
-          // if(userData.admin == true) {
+          if(userData.admin == true) {
             console.log(userData)
   
       console.log("Logged in:", userData.email)
             res.render("admin/listofusers.html");
-      // }
-      // else {
-      //      res.redirect("/404");
-      // }
+      }
+      else {
+           res.redirect("/404");
+      }
 
     })
     .catch((error) => {
@@ -135,15 +136,15 @@ app.get("/admin/materials", function (req, res) {
     .auth()
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
-          // if(userData.admin == true) {
+          if(userData.admin == true) {
             console.log(userData)
   
       console.log("Logged in:", userData.email)
             res.render("admin/materials.ejs");
-      // }
-      // else {
-      //      res.redirect("/404");
-      // }
+      }
+      else {
+           res.redirect("/404");
+      }
 
     })
     .catch((error) => {
@@ -157,15 +158,15 @@ app.get("/admin/substances", function (req, res) {
     .auth()
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
-          // if(userData.admin == true) {
+          if(userData.admin == true) {
             console.log(userData)
   
       console.log("Logged in:", userData.email)
             res.render("admin/substances.html");
-      // }
-      // else {
-      //      res.redirect("/404");
-      // }
+      }
+      else {
+           res.redirect("/404");
+      }
 
     })
     .catch((error) => {
@@ -179,15 +180,15 @@ app.get("/admin/selectivesmaterials", function (req, res) {
     .auth()
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
-          // if(userData.admin == true) {
+          if(userData.admin == true) {
             console.log(userData)
   
       console.log("Logged in:", userData.email)
             res.render("admin/selectivematerials.html");
-      // }
-      // else {
-      //      res.redirect("/404");
-      // }
+      }
+      else {
+           res.redirect("/404");
+      }
 
     })
     .catch((error) => {
