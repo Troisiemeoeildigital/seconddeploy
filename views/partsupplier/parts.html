@@ -1,0 +1,1541 @@
+<!doctype html>
+<html lang="en" style="font-size:13px;">
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>자원효율성 통합시스템 | Dashboard for managing recyclable products</title>
+      
+      <!-- Favicon -->
+     
+ <link rel="stylesheet" href="../products.css" />
+  <link rel="stylesheet" href="../parts.css" />
+ <link rel="stylesheet" href="../addbtn.css" />
+   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+      <link rel="stylesheet" href="../backend.css" />
+      <link rel="stylesheet" href="../backend-plugin.min.css">
+       <link rel="stylesheet" href="../all.min.css">
+      <link rel="stylesheet" href="../line-awesome.min.css">
+      <link rel="stylesheet" href="../remixicon.css">
+      <link rel="stylesheet" href="../components/multiselect.css">
+         <style>
+
+                           .styleBtn {
+  background-color: #11101D;
+  color: white;
+  border-color: black;
+}
+.modaly {
+  
+  border-radius: 15px;
+}
+.modaly-body {
+  overflow: auto;
+}
+li span {
+  background-color: transparent;
+}
+                @media only screen and (min-width: 86em) {
+                  
+  .table-wrapper {
+    height: 470px;
+  }
+}
+         @media only screen and (min-width: 100em) {
+  .table-wrapper {
+    height: 700px;
+  }
+}
+      </style>
+        <!-- <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js"></script>
+   
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-auth.js" defer ></script> -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  
+      </head>
+  <body class="" style="overflow-y: hidden;">
+
+    <!-- Wrapper Start -->
+      <div class="sidebar" style="background: #fb8500;">
+    <div class="logo-details">
+     
+        <div class="logo_name">Kitech</div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+  
+      <!-- <li>
+        <a href="./dashboard">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">대시보드</span>
+        </a>
+         <span class="tooltip">대시보드</span>
+      </li>
+  -->
+   
+      <li>
+       <a  href="./parts" >
+    <i class='bx bxs-component' ></i>
+         <span class="links_name">부품정보등록/조회</span>
+       </a>
+       <span class="tooltip">부품정보등록/조회</span>
+     </li>
+  
+     <!-- <li>
+       <a  href="./materials" >
+ <i class='bx bx-pie-chart-alt-2' ></i>
+         <span class="links_name">소재목록</span>
+       </a>
+       <span class="tooltip">소재목록</span>
+     </li>
+     <li>
+       <a  href="./substances" >
+  <i class='bx bx-dna' ></i>
+         <span class="links_name">물질목록</span>
+       </a>
+       <span class="tooltip">물질목록</span>
+     </li> -->
+     
+
+    
+
+     <li>
+       <a  href="#" >
+       <i class='bx bx-bell' ></i>
+         <span class="links_name">공지사항</span>
+       </a>
+       <span class="tooltip">공지사항</span>
+     </li>
+       <li>
+       <a  href="#" >
+       <i class="ri-question-line"></i>
+         <span class="links_name">자주 묻는 질문</span>
+       </a>
+       <span class="tooltip">자주 묻는 질문</span>
+     </li>
+     
+     <li class="profile" style="margin-bottom: 30px; background: #fb8500;">
+         <div class="profile-details">
+           <!--<img src="profile.jpg" alt="profileImg">-->
+           <div class="name_job">
+             <div class="name">Logout</div>
+             <div class="job">2022 - 2023</div>
+               
+           </div>
+         </div>
+        <a href="/sessionLogout"  > <i style="background: #fb8500;" class='bx bx-log-out' id="log_out" ></i> </a>
+       
+     </li>
+    </ul>
+  </div>
+    
+    
+  <section class="home-section">
+        
+<div class="content-page">
+     <div class="container-fluid" style="    padding-top: 60px;">
+           <div class="iq-top-navbar" style="box-shadow: 0 16px 15px 0 rgba(252, 170, 19, 0.075)">
+          <div class="iq-navbar-custom">
+              <nav class="navbar navbar-expand-lg navbar-light p-0">
+            
+               
+              
+                  <div class="d-flex align-items-center">
+                   
+                  <div class="userroledisplay notadmin" style="display: none;" >
+                         <div class="card-body">
+                  
+                      <!-- <button type="button" class="btn mb-1 bg-primary-light">
+                      Product Manufacturer
+                      </button> -->
+                      <button type="button" class="btn mb-1 " style="background-color: #fb8500; color:white">
+                    부품 공급사
+                      </button>
+                      
+                      <!-- <button type="button" class="btn mb-1 bg-danger-light">
+                      Notifications <span class="badge badge-danger ml-2">4</span>
+                      </button> -->
+                  </div>
+                  </div>
+                      <button class="navbar-toggler" type="button" data-toggle="collapse"
+                          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                          aria-label="Toggle navigation">
+                          <i class="ri-menu-3-line"></i>
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                          <ul class="navbar-nav ml-auto navbar-list align-items-center">
+                             
+                              <li class="nav-item nav-icon search-content">
+                                  <a href="#" class="search-toggle rounded" id="dropdownSearch" data-toggle="dropdown"
+                                      aria-haspopup="true" aria-expanded="false">
+                                      <i class="ri-search-line"></i>
+                                  </a>
+                                  <div class="iq-search-bar iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownSearch">
+                                      <form action="#" class="searchbox p-2">
+                                          <div class="form-group mb-0 position-relative">
+                                              <input type="text" class="text search-input font-size-12"
+                                                  placeholder="type here to search...">
+                                              <a href="#" class="search-link"><i class="las la-search"></i></a>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </li>
+                              <li class="nav-item nav-icon dropdown caption-content">
+                                  <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton4"
+                                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <img src="../1.png" class="img-fluid rounded" alt="user">
+                                  </a>
+                                  <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <div class="card shadow-none m-0">
+                                          <div class="card-body p-0 text-center">
+                                              <div class="media-body profile-detail text-center">
+                                                  <img src="../profile-bg.jpg" alt="profile-bg"
+                                                      class="rounded-top img-fluid mb-4">
+                                                  <img src="../1.png" alt="profile-img"
+                                                      class="rounded profile-img img-fluid avatar-70">
+                                              </div>
+                                              <div class="p-3" >
+                                                   <div class="mb-1">
+                                                    <div id="userDisplay"></div>
+                                                    <h5 class="mb-1 " id="usertitle" ></h5>
+                                                    <h5 class="mb-1 " id="useremailcard" ></h5>
+                                                </div>
+                                                  
+                                                  <p class="mb-0">계정 생성일: 2022/08/02</p>
+                                                    <div id="lastsignin"></div>
+                                                  <div class="d-flex align-items-center justify-content-center mt-3">
+                                                     
+                                                      <a href="./userprofile" class="btn border mr-2">내 계정</a>
+                                                      <a href="/sessionLogout" class="btn border">로그아웃</a>
+
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </nav>
+          </div>
+      </div>
+        <div class="row">
+
+               <div class="modal fade bd-example-modal-xl bulkUpload"  tabindex="-1" role="dialog"  aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                           <div class="modal-content">
+                              <div class="modal-header" style="align-items: center;">
+          
+                                 <h5 class="modal-title">Bulk Upload</h5>
+                                 <div class="modal-header-download" style="
+                                                                        width: 10%;
+                                                                        display: flex;
+                                                                        flex-direction: row;
+                                                                        align-content: center;
+                                                                        justify-content: center;
+                                                                        align-items: center;">
+                                  <nav class="navbary"  style="width: 40%; background-color: #fb8500;">
+                                    <a href="https://firebasestorage.googleapis.com/v0/b/projectcrm-f4e5f.appspot.com/o/Bulk%20parts%20materials%20upload%20(minimal%20adv)%20(v1.2).csv?alt=media&token=e9d7ff50-9241-4f64-b54d-3df32e3e8208" class="navbary__link" >
+                                      <span class="" ><svg xmlns="http://www.w3.org/2000/svg" style="fill: white;
+                                                                                                    width: 18px;
+                                                                                                    height: 18px;" 
+                                    viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM96 48c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16zm-6.3 71.8c3.7-14 16.4-23.8 30.9-23.8h14.8c14.5 0 27.2 9.7 30.9 23.8l23.5 88.2c1.4 5.4 2.1 10.9 2.1 16.4c0 35.2-28.8 63.7-64 63.7s-64-28.5-64-63.7c0-5.5 .7-11.1 2.1-16.4l23.5-88.2zM112 336c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H112z"/></svg></span>
+                                      <span class="navbary__label" style="background-color: #fb8500;width: 300px; left: -120px;" >Download Reference Upload File</span>
+
+                                   
+                                    </a>
+                                  </nav>
+      
+                                 <button type="button" class="close styleBtn" data-dismiss="modal" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                                 </button>
+                                 </div>
+                                                
+                              </div>
+                              <div class="modal-body" style="height: 500px;">
+
+                                  <label for="csv" class="drop-container">
+                                        <figure>
+                                            <svg xmlns="http://www.w3.org/2000/svg" style="    width: 100px;
+                                                                                              fill: #0d45a5;" 
+                                              class="iborrainputfile"  viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg>
+                                         </figure>
+                                    <input type="file" class="filey" id="images" accept=".csv" required>
+                                  </label>
+
+
+                              </div>
+                              <div class="modal-footer" style="justify-content: space-between">
+                                 
+                                 <button type="button" class="btn styleBtn" data-dismiss="modal">Close</button>
+                                 <!-- <button class="btn btn-secondary uploadbtn" style="width: 25%;" type="submit" >Upload</button> -->
+
+                                    <nav class="navbary uploadbtn" style="width:25%; background-color: #fb8500;">
+	<a href="#" class="navbary__link" >
+		<span class="" ><svg xmlns="http://www.w3.org/2000/svg" style="fill: white;
+                                                                  width: 18px;
+                                                                  height: 18px;" 
+  viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></span>
+		<span class="navbary__label" style="background-color: #fb8500;width: 252px; left: 10px ;" >Bulk Upload Parts & Materials</span>
+	</a>
+</nav>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+         
+     <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog"  aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                                 <h5 class="modal-title">부품목록 권한설정</h5>
+                                 <button type="button" class="close styleBtn" data-dismiss="modal" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                                 </button>
+                              </div>
+                              <div class="modal-body">
+                                 <table class="table">
+                        <thead class="thead-dark">
+                           <tr>
+                  
+                              <th scope="col">Product Manufacturer Name</th>
+                              <th scope="col">Person in charge</th>
+                              <th scope="col">Email address</th>
+                              <th scope="col">Phone number
+</th>
+                              <th scope="col">Select to allow part db to display</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                     
+                              <td>SAMSUNG Electronics</td>
+                               <td>Micheal Lawson</td>
+                                      <td>	micheal.lawson@example.com</td>
+                       <td>(726) 233-4558</td>
+                              <td>     
+                           <input type="checkbox" style="height: 21px;" >
+                          
+                        </td>
+                           </tr>
+                           <tr>
+                  
+                              <td>LG Electronics</td>
+                                   <td>Howard Palmer</td>
+                                      <td>	howard.palmer@example.com</td>
+                       <td>(392) 599-4914</td>
+                              <td>    
+                           <input type="checkbox" style="height: 21px;" >
+                          
+                        </td>
+                           </tr>
+                           <tr>
+                  
+                              <td>Conway Industry</td>
+                                    <td>Louise Hart</td>
+                                      <td>	louise.hart@example.com</td>
+                       <td> (259) 834-1569</td>
+                              <td>   
+                           <input type="checkbox" style="height: 21px;" >
+                          
+                        </td>
+                           </tr>
+                              <tr>
+                  
+                              <td>Shinil Industry</td>
+                                  <td>Beverley Boyd</td>
+                                      <td>	beverley.boyd@example.com</td>
+                       <td> (880) 555-2854</td>
+                           
+                              <td>   
+                           <input type="checkbox" style="height: 21px;" >
+                          
+                        </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                              </div>
+                              <div class="modal-footer">
+                                 <button type="button" class="btn styleBtn" data-dismiss="modal">Close</button>
+                                 <button type="button" class="btn btn-primary">Save changes</button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+    
+<div class="content-page" style="width: 100%;">
+     <div class="container-fluid" style="padding-top: 0;">
+            <div class="row mb-3" style="width:100%;">
+                              <div class="col-12 col-md-4">  <h4 class="mb-3" style="color: black;font-weight: 600; font-size: 25px;">부품정보등록/조회</h4></div>
+                              <div class="row col-6 col-md-8" style="gap: 2px; justify-content: end;     align-items: center;"> 
+                                <button class="btnpr btnpr-add" style=" width: 15%; background-color: #fb8500 ; "><div class="addnewproductbtnpr">부품 등록</div></button>
+                    
+
+                             
+                                <button class="btnpr btnpr-add" style=" width: 15%; background: #F05D5E;"><div class="addnewproductbtnpr">Delete All</div></button>
+                            
+                              </div>
+                           </div>
+                               <div class="row mb-3" style="width:100%;">
+                              <div class="col-12 col-md-4"></div>
+                              <div class="row col-6 col-md-8" style="gap: 2px; justify-content: end;     align-items: center;"> 
+                                  <div class="row" >
+                        <div class="input-group-prepend" style="width: 70%;">
+                           <input type="text" class="form-control" id="myInputMat" style="margin: 0; border-radius: 10px 0 0 10px; height:46px;" onkeyup="materialSearch()" name="myInputMat" placeholder="Search by Part Code" aria-label="Search Part Name" aria-describedby="basic-addon5">
+                        </div>
+                        <select class="custom-select searchPartSelection" id="inputGroupSelect03" style="
+    width: 10%;
+    border-radius: 0;
+">
+                           <option selected="">Choose...</option>
+                           <option value="1">Part Name</option>
+                           <option value="2">Part Code</option>
+                        </select>
+                           <div class="input-group-append" style="
+    border-radius: 0; 
+">
+                           <span class="input-group-text" id="basic-addon5" style="border-radius: 0 10px 10px 0;
+"><i class="las la-search font-size-20"></i></span>
+                        </div>
+                     </div>
+                                  <button type="button" class="btnpr btnpr-add bulkUpload" data-toggle="modal" data-target=".bulkUpload"            style="color: white;
+                                                                        font-size: small; 
+                                                                        width: 15%; 
+                                                                        background-color: #fb8500 ; ">
+                                  <div class="batchUploadPM">Bulk Upload</div></button>
+
+                                 
+                              </div>
+                           </div>
+
+<div class="row justify-content-end mb-3">
+                              <div class="col-2">
+                        
+                              </div>
+                              <div class="col-2">
+                            
+                              </div>
+                              <div class="col-8">
+                                <div class="row" style="
+    justify-content: end;
+    gap: 4%;
+">
+                                    <!-- <div class="" id="formfloat">
+                      <div class="input-group mb-3">
+                      
+                        <select class="custom-select sortPartSelection" id="inputGroupSelect03">
+                           <option value="0" selected="">Choose...</option>
+                           <option value="2">Sort by Part Name</option>
+                           <option value="3">Sorty by Part Code</option>
+                        </select>
+                           <div class="input-group-append">
+                           <span class="input-group-text" id="basic-addon5"><i class="bx bx-sort font-size-20"></i></span>
+                        </div>
+                     </div>
+                     </div> -->
+
+
+
+                  
+                     
+                                </div>
+                              </div>
+                           </div>
+
+
+     
+        <div class="">
+    
+
+            
+        <!--Here starts the form-->
+             <div class="loadingtitle" id="loadingtitle"></div>
+ <div class="tabledata" >
+    <div class="table-wrapper" style="
+    overflow-y: scroll; "> 
+  
+        
+
+<div class="table-wrapper">
+  <table class="table-users parttable" id="myTableMat" >
+    
+        <thead style="position: sticky; top: 0; font-size: 13px;">
+            
+            <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
+  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+</svg></th>
+                
+             <th>Part Name</th>
+            <th>Part Code</th>
+            <th>Part Weight (g)</th>
+          
+                <th>Reused Parts</th>
+                  <th>Registred Date</th>
+             <th>Memo </th>
+          <th style="width: 13%;">Action</th>
+        </thead>
+        <tbody class="parttable"></tbody>
+    
+      </table>
+</div>
+    
+    
+    </div>
+    </div>
+
+
+  <!--Add modaly second-->
+    
+    <!-- Add modaly -->
+    <div class="add-modaly modaly-wrapper">
+      <div class="modaly">
+        <div class="modaly-header" style="text-align:left;"> <span  style="font-size: 150%; color:black; ">Add Part</span></div>
+        <div class="modaly-body">
+          <div class="card-body">
+                     <div class="">
+                
+                    
+                        <form class="form"  autocomplete="off"  data-toggle="validator" id="form-wizard1">
+                       
+                        <!-- fieldsets -->
+                 
+                     
+                        <fieldset >
+                           <div class="form-card text-left">
+                         
+                         
+                            <div class="row">
+                              <div class="col-md-12" style="display: none; height: 0;">
+                                 <input readonly type="hidden" class="form-control" id='addsupplierName' placeholder="Enter Supplier Name" data-errors="Please Enter Part Name." name="addsupplierName" >
+
+                                                     <div class="input-group mb-4" style="align-items: center;">
+                        
+                        <input type="number" class="form-control addpartWidth "   placeholder="Width" aria-label="Width"
+                           aria-describedby="basic-addon4" >
+                    <i class="las la-times" style="margin: 4px;"></i>
+                                <input type="number" class="form-control addpartDepth "  placeholder="Depth" aria-label="Depth"
+                           aria-describedby="basic-addon4" >
+                   <i class="las la-times" style="margin: 4px;"></i>
+                                <input type="number" class="form-control addpartHeight "  placeholder="Height" aria-label="notification"
+                           aria-describedby="basic-addon4" >
+                           <div class="input-group-prepend">
+                                 
+                           <span class="input-group-text" id="basic-addon4" style="height: 2.8em;
+                              border-radius: 0;"><i class="las la-ruler-combined  font-size-28"></i></span>
+                                     <select class="custom-select selectUnit" id="inputGroupSelect03" style="border-radius: 0 10px 10px 0px;">
+                           <option value="" selected>Choose Unit</option>
+                           <option value="mm" >mm</option>
+                           <option value="inch">inch</option>
+                        </select>
+                        </div>
+                     </div>
+                              </div>
+                           
+                                <div class="col-md-12">
+                                </div>  
+                              
+                                <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Part Name *</label>
+                                        <input type="text" class="form-control" id='addpartName' placeholder="Enter Part Name" data-errors="Please Enter Part Name." name="addpartName" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>    
+                              
+                                   <div class="col-md-6">
+                                    <div class="form-group">
+                                     <label>Reused Part *</label>
+                                      <select name="addreusedPart" id="addpartClass" class=" form-control" data-style="py-0">
+                                       <option>Select Option</option>
+                                       <option>Yes</option>
+                                       <option>No</option>
+                                     
+                                    </select>
+                                        
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Part Code *</label>
+                                        <input type="text" class="form-control" id='addClass' placeholder="Enter Part Code" data-errors="Please Enter Part Code." name="addClass" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                         
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                     <label>Registration Date *</label>
+                                        <input readonly type="text" class="form-control setDate" id='addpartregisteredDate' placeholder="Enter Registration Date" data-errors="Please Registration Date." name="addpartregisteredDate" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                 <div class="col-md-6"> 
+                                    <div class="form-group">
+                                        <label>Part Weight (g) *</label>
+                                        <input type="number" step=".01" class="form-control" id='addpartWeight'placeholder="Please enter part weight" data-errors="Please enter part weight." name="addpartWeight" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                 <div class="col-md-3">
+                                    <div class="form-group">
+                                     <label>User Access</label>
+                                
+            <div class="select-btn">
+                <span class="btn-text">Select Users</span>
+                <span class="arrow-dwn">
+                <i class='bx bx-chevron-down'></i>
+                </span>
+            </div>
+
+            <ul class="list-items">
+            
+            </ul>
+        
+                                      
+                                    </div>
+                                </div>
+                              
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                     <label>Memo</label>
+                                        <input type="text" class="form-control" id='addMemo'placeholder="Enter Memo" data-errors="Please Enter Memo." name="addMemo" >
+                                      
+                                    </div>
+                                </div>
+                             
+                                     
+                                </fieldset>
+                                
+                                
+                            <button type="button" class="btn styleBtn action-button-close" data-dismiss="modaly" >Close</button>
+                        <button type="submit"  id="addPartsForm" class="btn btn-primary float-right mr-3" style="background-color:#fb8500; color:white; border:0" >부품 추가</button>
+               
+                   </form>
+                                
+                 </div>
+
+            <!-- Modal -->
+             </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit modaly for Parts -->
+    <div class="edit-modaly modaly-wrapper">
+      <div class="modaly">
+          <div class="modaly-header" style="text-align:left;"> <span class="editheader" style="font-size: 150%; color:black;"></span></div>
+        <div class="modaly-body">
+             <div class="card-body">
+                 <div class="">
+                    <form class="form"  autocomplete="off"  data-toggle="validator" id='form-wizard1'>
+                      
+              
+                        <!-- fieldsets -->
+                        <fieldset >
+                           <div class="form-card text-left">
+                             <div class="row"> 
+                             <div class="row error"> 
+                                <!-- <h3>
+                                    해당 데이터를 확인할 권한이 없습니다
+                                </h3> -->
+                              </div>
+                            </div>
+                         
+                            <div class="row">
+                               <div class="col-md-12" style="display: none; height: 0;">
+                                  <div class="col-md-9"> 
+                                    <div class="form-group">
+                                        <label>Part Size *</label>
+                                                                <div class="input-group mb-4" style="align-items: center;">
+                        
+                        <input type="number" class="form-control editpartWidth " name="editpartWidth"  placeholder="Width" aria-label="Width"
+                           aria-describedby="basic-addon4">
+                    <i class="las la-times" style="margin: 4px;"></i>
+                                <input type="number" class="form-control editpartDepth " name="editpartDepth" placeholder="Depth" aria-label="Depth"
+                           aria-describedby="basic-addon4">
+                   <i class="las la-times" style="margin: 4px;"></i>
+                                <input type="number" class="form-control editpartHeight " name="editpartHeight"  placeholder="Height" aria-label="notification"
+                           aria-describedby="basic-addon4">
+                           <div class="input-group-prepend">
+                                 
+                           <span class="input-group-text" id="basic-addon4" style="height: 2.8em;
+                              border-radius: 0;"><i class="las la-ruler-combined  font-size-28"></i></span>
+                                     <select class="custom-select editselectUnit" name="editselectUnit" id="inputGroupSelect03" style="border-radius: 0 10px 10px 0px;">
+                           <option value="" selected>Choose Unit</option>
+                           <option value="mm" >mm</option>
+                           <option value="inch">inch</option>
+                        </select>
+                        </div>
+                     </div>
+                                    </div>
+                                </div> 
+                                    <div class="col-md-4">                      
+                                    <div class="form-group">
+                                        <label>Supplier Name *</label>
+                                        <input readonly type="text" class="form-control" id='editsupplierName' placeholder="Enter Supplier Name" data-errors="Please Enter Part Name." name="editsupplierName" >
+                                
+                                    </div>
+                                </div> 
+                                </div>
+                           
+                                <div class="col-md-12">
+                                </div> 
+                                
+                                <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Part Name *</label>
+                                        <input type="text" class="form-control" id='editpartName' placeholder="Enter Product Name" data-errors="Please Enter Part Name." name="editpartName" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>    
+                                      <div class="col-md-6">
+                                    <div class="form-group">
+                                     <label>Reused Part</label>
+                                      <select name="editreusedPart" id="editreusedPart" class=" form-control" data-style="py-0">
+                                       <option>Select Option</option>
+                                       <option>Yes</option>
+                                       <option>No</option>
+                                     
+                                    </select>
+                                        
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                             
+                                <div class="col-md-6"> 
+                                    <div class="form-group">
+                                        <label>Part Code *</label>
+                                        <input type="text" class="form-control" id='editpartClass' placeholder="Please part Code" data-errors="Please part Code." name="editpartClass" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                     <label>Registration Date</label>
+                                        <input readonly type="text" class="form-control" id='editpartregisteredDate' placeholder="Enter Registration Date" data-errors="Please Enter Registration Date." name="editpartregisteredDate" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                 <div class="col-md-6"> 
+                                    <div class="form-group">
+                                        <label>Part Weight (g) *</label>
+                                        <input type="number" step=".01" class="form-control" id='editpartWeight'placeholder="Please part weight" data-errors="Please part weight." name="editpartWeight" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                               
+                             
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                     <label>Memo</label>
+                                        <input type="text" class="form-control" id='editMemo' placeholder="Enter Memo"  name="editMemo" >
+                                    
+                                    </div>
+                                </div>
+                             
+                                
+                                </fieldset>
+                                             
+                            <button type="button" class="btn styleBtn action-button-close" data-dismiss="modaly" >Close</button>
+      <button type="submit" id="editPart" class="btn btn-primary float-right mr-3" style="background-color:#fb8500; color:white; border:0">부품 정보 변경</button>
+                   </form>
+                 </div>
+            <!-- Modal -->
+             </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <!--add new material-->
+   <div class="addPartMatmodaly modaly-wrapper" >
+      <div class="modaly">
+          <div class="modaly-header" style="text-align:left;"> <span class="addPartHeader" style="font-size: 150%; color:black;"></span></div>
+        <div class="modaly-body" style="overflow: hidden;" >
+          <div class="card-body">
+
+                     <form class="form addmatpartform"  autocomplete="off"  data-toggle="validator" id="form-wizard1">
+                   
+
+                        <!-- fieldsets -->
+                        <fieldset>
+                           <div class="form-card text-left">
+                           <div class="row">
+                                           <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Material Group *</label>
+                                         <select class="form-control" id="editmaterialGroup" name="addmaterialGroup" data-errors="Please Enter Material Category."  required>
+                                            
+                                             
+                                           </select>
+                                       
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>  
+                              
+
+                                    <div class="col-md-6"> 
+                                    <div class="form-group">
+                                        <label>Recycled contents(%) *</label>
+                                        <input type="number" class="form-control" id='materialRecycleContent' placeholder="Enter Material Recycled contents" data-errors="Enter Material Recycled contents." name="addmaterialRecycleContent" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                      
+                           </div>  
+                        
+                       
+                        
+                               <div class="row">
+                                
+                              <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Material Name *</label>
+                                         <select class="form-control addmaterialName" id="editmaterialName"  name="addmaterialName" data-errors="Please Enter Material Category."  required>
+                                            
+                                             
+                                           </select>
+                                       
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                           
+                                  <div class="col-md-6"> 
+                                    <div class="form-group">
+                                        <label>Recycle Type *</label>
+                                         <select name="addmaterialRecycleType" id="editMaterialRecycleType" class="form-control" data-style="py-0">
+                                       <option>Select Option</option>
+                                       <option>Pre Consumer </option>
+                                       <option>Post Consumer </option>
+                                       <option >Pre+Post Consumer</option>
+                                       <option>Unspecified</option>
+                                    
+                                    </select>
+                                        
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                              </div>
+                            <div class="row">
+                                     <div class="col-md-3"> 
+                                    <div class="form-group">
+                                        <label>Material Mass (g) *</label>
+                                        <input type="number" class="form-control addPartmaterialMassg" id='editMaterialMassg'placeholder="Please enter Material mass" data-errors="Please part mass." name="addmaterialMassg" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                 <div class="col-md-3"> 
+                                    <div class="form-group">
+                                        <label>Material Mass (%) *</label>
+                                        <input readonly type="number"  step=".01"  class="form-control" id='editMaterialMassPerc' name="addmaterialMassPerc" required>
+                                    </div>
+                                </div> 
+                                    <div class="col-md-6">
+                                            <label>Upload file for material</label>
+                    <div class="input-group mb-4">
+                        <div class="custom-file mb-3">
+                        
+                           <input type="file" class="custom-file-input files" id="customFile">
+                           <label class="custom-file-label prodImgphld" for="customFile">Upload Proof File</label>
+                        </div>
+                     
+                     </div>
+                          
+                            </div>
+                            </div>
+                                <div class="row align-items-center" style="margin-bottom: 15px;" >
+                            <div class="col-md-6">
+                                  <div class="custom-control custom-checkbox custom-control-inline">
+                           <input type="checkbox" class="custom-control-input seleccheckbox" id="customCheck5" >
+                           <label class="custom-control-label" for="customCheck5">Selective Materials</label>
+                                   </div>
+                            </div>
+
+                            <div class="col-md-6">
+                              <label>Treatment </label>
+                               <select class="form-control selectiveMat" id="selectiveMat" name="selectiveMat" disabled="true">
+                                           
+                                           </select>
+                            </div>
+                           </div>
+                               <div class="row" style="visibility: hidden; height: 0;">
+                            <div class="col-md-4">
+                                <label>Recoverability</label>
+                              <input type="text" class="form-control"  id='recovMat' readonly  data-errors="Please Recoverability." name="addmaterialClassID" required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                             <div class="col-md-4">
+                                  <label>Recyclability</label>
+                              <input type="text" class="form-control"  id='recycMat' readonly data-errors="Please Recyclability." name="addmaterialClassID" required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                             <div class="col-md-4">
+                                  <label>Reusability</label>
+                              <input type="text" class="form-control"  id='reuseMat' readonly  data-errors="Please Reusability." name="addmaterialClassID" required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                           </div>
+                                <div class="row" style="visibility: hidden; height: 0;">
+                            <div class="col-md-4">
+                                <label>Recoverability</label>
+                              <input type="text" class="form-control"  id='selecrecovMat' readonly  data-errors="Please Recoverability." name="addmaterialClassID" required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                             <div class="col-md-4">
+                                  <label>Recyclability</label>
+                              <input type="text" class="form-control"  id='selecrecycMat' readonly data-errors="Please Recyclability." name="addmaterialClassID" required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                             <div class="col-md-4">
+                                  <label>Reusability</label>
+                              <input type="text" class="form-control"  id='selecreuseMat' readonly  data-errors="Please Reusability." name="addmaterialClassID" required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                                   <div class="col-md-4">
+                                  <label>PartRef</label>
+                              <input type="text" class="form-control"  readonly  data-errors="Please Reusability." name="addmatpartref" required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                               <div class="col-md-4">
+                                  <label>PartRefMass</label>
+                              <input type="text" class="form-control"   readonly  data-errors="Please Reusability." name="addmatpartWeight" required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                           </div>
+                           </div>
+                    
+                        <button  id="addMatPartBtn"  class="btn btn-primary float-right mr-3" style="background-color: #fb8500; color: white; border: 0;" >소재 추가</button>
+                             <button type="button" class="btn styleBtn action-button-close" data-dismiss="modaly" >Close</button>
+                        </fieldset>
+                      
+                   </form>
+     
+             </div>
+        </div>
+      </div>
+    </div>
+
+
+ <!-- Edit Substance for specific Material -->
+    <div class="addSubsmodaly modaly-wrapper" id="exampleModalScrollableSUBS" style="z-index: 99999;" >
+      <div class="modaly" style="margin-top: 10%;">
+    
+             <div class="modaly-header" style="text-align:left;"> <span class="setAddSubsHeader" style="font-size: 150%; color:black;"></span></div>
+             
+        <div class="modaly-body">
+          <div class="card-body">
+                    
+      <div class="container-fluid">
+         <div class="row" >
+            <div class="col-sm-12 col-lg-12">
+               <div class="iq-card">
+                
+                  <div class="iq-card-body">
+                     <form id="form-wizard1" class="text-center mt-4" name="formwizard" >
+                      
+                    
+                           <div class="form-card text-left">
+                              <div class="row">
+                            
+                             
+                              </div>
+                              <div class="row">
+                                     <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>Substance Type: *</label>
+                                        <select  class="getsubstancetype form-control" id="sel1" name="getsubstancetype" >
+                                           <option value="" selected>선택하기</option>
+                                            <option value="crm" >CRMs</option>
+                                            <!-- <option value="rohs">ROHS</option> -->
+                                            <option value="none">All</option>
+                                          
+                                        </select>
+                                    </div>
+                                 </div>
+                                     <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>CAS Number: *</label>
+                                       <input readonly type="text" class="addcas form-control" name="addcas" value="" placeholder=""  />
+                                    </div>
+                                 </div>
+                                    <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>Substance Mass (g): *</label>
+                                       <input type="number" class="addsubstanceMassg form-control" name="addsubstanceMassg"  />
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                         
+                   
+                           <div class="form-card text-left">
+                              <div class="row">
+                                 <div class="col-7">
+                                 </div>
+                                
+                              </div>
+                              <div class="row">
+                             <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>Substance Name: *</label>
+                                        <select  class="getsubstancelist form-control" id="getSubsname" name="getsubstancelist">
+                                           
+                                          
+                                        </select>
+                                    </div>
+                                 </div>
+                               
+                                  <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>CRMs: *</label>
+                                       <input readonly type="text" class="addcrm form-control" name="addcrm" />
+                                    </div>
+                                 </div>
+                                   <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>Substance Mass (%) : *</label>
+                                       <input readonly type="number" class="addsubstanceMassPerc form-control" name="addsubstanceMassPerc"  />
+                                    </div>
+                                 </div>
+                               
+                              </div>
+                              <div class="row" style="visibility: hidden; height: 0;">
+                                 
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label>ROHS: *</label>
+                                        <input readonly  type="text" class="addrohs form-control" name="addrohs" />
+                                      
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           
+                    
+                     </form>
+                        <button type="button" id="addSubs" class="btn action-button float-right" style="background-color: #fb8500; border: 0; color: white;" value="Submit" >물질 추가</button>
+                        <button type="button" id="subsmodalclose" class="btn styleBtn" data-dismiss="modaly-wrapper" >Close</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+            <!-- Modal -->
+             </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+         <!--Here ends the form-->
+          </div>
+          </div>
+         </div>
+        </div>
+      </div>
+     </div>
+    </div>
+ </div>
+</div>
+
+    <!--View Data table tree subs-->
+
+   <div class="modal fade" id="exampleModalScrollableSubstances" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableSubstances" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                           <div class="modal-content">
+                         <div class="modaly-header" style="text-align:left;"> <span class="addPartSubsHeader" style="font-size: 150%; color:black;"></span></div>
+                              <div class="modal-body" style="overflow: hidden;">
+                                <div class="row float-right">
+                                       <div class="sortaddpart" style="width: 90%;">
+                
+                       <div class="form-group" id="formfloat" style="width: 100%; margin:0;">
+                      <div class="input-group mb-3">
+                      
+                        <select  class="custom-select sortSubsSelection" id="inputGroupSelect03">
+                           <option value="" selected>Choose...</option>
+                           <option value="0">Sort by Substance Name</option>
+                           <option value="3">Sort by CRM</option>
+                            <option value="2">Sort by ROHS</option>
+                        </select>
+                           <div class="input-group-append">
+                           <span class="input-group-text" id="basic-addon5"><i class="bx bx-sort font-size-20"></i></span>
+                        </div>
+                     </div>
+                     </div>
+                         </div>
+                                </div>
+
+
+                                <div class="table-responsive">
+                    <div  class="table-wrapper" style="overflow: auto;
+    height: 480px;"> 
+                               <table class="table-parts table-subs">
+                            
+                                <tr>
+                            <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
+  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+</svg></th>
+                                <th>Substance Name</th>
+                                    <th>CAS No</th>
+                                    <th>CRMs</th>
+                                        <th>Substance Mass (g)</th>
+                                            <th>Substance Mass (%)</th>
+                                  <th >Action</th>
+                                </tr>
+                        
+                            <tbody class="substancelisttable">
+
+                            </tbody>
+                           </table>
+                        </div>
+                         <div class="modal-footer" >
+                                 <button type="button" class="btn styleBtn" data-dismiss="modal">Close</button>
+                          
+                              </div>
+                     </div>
+                              </div>
+                              
+                           </div>
+                        </div>
+                     </div>
+ <!--View Data table tree materials-->
+    <div class="viewMatTable modaly-wrapper" >
+      <div class="modaly" style=" width:80%;left: 13%;">
+             <div class="modaly-header" style="text-align:left;"> <span class="setMatheader"  style="font-size: 150%; color:black;"></span></div>
+
+        <div class="modaly-body">
+           
+          <div class="card-body">
+            <div class="row col-md-12 justify-content-end mb-3">
+                              <div class="col-2">
+                        
+                              </div>
+                              <div class="col-2">
+                            
+                              </div><div class="col-8">
+                                <div class="row" style="justify-content: end; gap: 5%; ">
+                                    <div class="" id="formfloat" style="width: 37%;height: fit-contnet;">
+                      <div class="input-group mb-3">
+                      
+                   <div class="row">
+                       <div class="input-group-prepend" style="
+    width: 75%;
+">
+                                              <input type="text" class="form-control" id="myInputPM" style="margin: 0;border-radius: 10px 0 0 10px;height:46px;width: 75%;margin-left: 25%;" onkeyup="tableSearch()" name="myInputProduct" placeholder="Search by Material Name" aria-label="Search by Material Name" aria-describedby="basic-addon5">
+                        </div>
+                       <div class="selectwrapp" style="width: 0%; border-radius: 0;">
+                         <select style=" border-radius: 0;" class="custom-select searchProdSelection" id="inputGroupSelect03">
+                           <option selected="">Choose...</option>
+                           <option value="3">Prodcut Name </option>
+                           <option value="4">Model Name</option>
+                  
+                        </select>
+                       </div>
+                           <div class="input-group-append" style="
+    border-radius: 0;
+">
+                           <span class="input-group-text" id="basic-addon5" style="border-radius: 0 10px 10px 0;"><i class="las la-search font-size-20"></i></span>
+                           
+                        </div>
+                   </div>
+                     </div>
+                     </div>
+
+
+
+                      <div class="row" style="width: auto;">
+                      <select class="custom-select sortPMSelection" id="inputGroupSelect03" style="border-radius: 10px 0 0 10px;width: 70%;">
+                           <option value="" selected="">Sort by...</option>
+                           <option value="1">Sort by Material Group</option>
+                           <option value="2">Sort by Material Name</option>
+    
+                        </select>
+                           <div class="input-group-append" style="
+    max-height: 78%;
+">
+                           <span class="input-group-text" id="basic-addon5" style="
+    border-radius: 0 10px 10px 0;
+    /* max-height: 78%; */
+"><i class="bx bx-sort font-size-20"></i></span>
+                        </div>
+                     </div>
+                                </div>
+                              </div>
+                           </div>
+    
+
+
+                     <div class="row col-md-12" style="align-items: center;">
+                      <div class="col-md-2">
+                        <div class="table-responsive" style="height: 450px; overflow: auto;border-collapse: collapse; border-radius: 1em;">
+                        <table id="tree-table-1" class="table table-hover table-bordered iq-bg-white tree" style="    overflow: auto;">
+                           <thead class="bg-white" style="position: sticky; top: 0;">
+                              <tr>
+                                 <th class="breadpartname" style="background-color: #fb8500; color:white;"></th>
+                              </tr>
+                           </thead>
+                         
+                        </table>
+                        <div>
+                              <ol class="wtree breadbody">
+                          
+
+                           </ol>
+                        </div>
+                     </div>
+                      </div>
+                     
+                      <div class="col-md-10">
+                         <div class="setPMWeight float-right"></div>
+               <div class="table-responsive" style="overflow-x: hidden;">
+             
+                    <div  class="table-wrapper" style="height: auto;"> 
+                        <table class="table-parts" id="myTable" style="font-size: 13px;" >
+                            <thead>
+                                <tr>
+                                       <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
+  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+</svg></th>
+                                <th >  Material Group</th>
+                                  <th>  Material Name</th>
+                                      <th>  Recycled Contents %</th>
+                                        <th>  Recycle Type</th>
+                                          <th>  Mass (g)</th>
+                                            <th>  Mass (%)</th>
+                                            <th>Proof File</th>
+                                             <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="materiallist">
+
+                            </tbody>
+                           </table>
+                        </div>
+                         <div class="modal-footer" style="border: 0;" >
+                                 <button type="button" class="btn styleBtn action-button-close float-left" style="border: 0;" data-dismiss="modal">Close</button>
+                          
+                              </div>
+                     </div>
+                      </div>
+                     </div>
+                 
+                              
+     
+             </div>
+        </div>
+      </div>
+    </div>
+   
+
+                      <!--Edit Material-->
+  <div class="editMatmodaly modaly-wrapper" style="z-index: 92000;">
+      <div class="modaly" style="padding-bottom: 15px;">
+   
+                     <div class="modaly-header" style="text-align:left;">  <span class="editMatHeader"  style="font-size: 150%; color:black;"></span></div>
+
+        <div class="modaly-body" style="overflow: hidden;">
+          <div class="card-body">
+                     <div class="">
+                           <form class="form" data-toggle="validator" id="form-wizard1">
+                             <div class="row">
+                                   <div class="col-md-6">
+                                            <h2>Upload file for material </h2>
+                    <div class=" row input-group mb-4" style="    align-items: baseline;">
+                        <div class="custom-file mb-3" style="    margin-right: 5%;">
+                        
+                           <input type="file" class="custom-file-input editfiles" id="customFile">
+                           <label class="custom-file-label editprodImgphld" for="customFile">Update Proof file</label>
+                          
+                        </div>
+                                   
+                    <nav class="navbary updateProof" style="margin-left: -12px; width:40px; background-color: #fb8500;">
+                    <a href="#" class="navbary__link">
+                      <span class="" ><i class="bx bx-cloud-upload" style=" color: white;
+                      font-size: 17px;"></i></span>
+                      <span class="navbary__label " style="background-color: #fb8500; left:-55px;">Upload Proof File</span>
+                    </a>
+                  </nav>
+                     </div>
+                            </div>
+                               <div class="col-md-6" style=" display: flex;margin-top: 1%;align-items: center;justify-content: flex-end;align-content: center;">
+                                          <nav class="navbary deleteProof" style="width:30%; background-color: #F05D5E;">
+	<a href="#" class="navbary__link">
+		<span class="" ><i class="ri-delete-bin-line" style=" color: white;
+    font-size: 17px;"></i></span>
+		<span class="navbary__label " style="background-color: #F05D5E; left:-55%;">Delete Proof File</span>
+	</a>
+</nav>
+                               </div>
+                              </div>
+                            </form>
+                          <form class="form"   data-toggle="validator" id="form-wizard1">
+                     
+                        <!-- fieldsets -->
+                        <fieldset>
+                           <div class="form-card text-left">
+                              <div class="row">
+                              </div>
+                           <div class="row">
+                                           <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Material Group *</label>
+                                          <!-- <input type="text" class="form-control"  id='PMmaterialGroup' placeholder="Please Enter Material Category" data-errors="Please Class ID."  > -->
+                                         <select class="form-control" id="PMmaterialGroup" name="PMmaterialGroup" data-errors="Please Enter Material Category."  required>
+                                       
+                                             
+                                           </select>
+                                      
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>  
+                                  <div class="col-md-6"> 
+                                    <div class="form-group">
+                                        <label>Recycled contents (%) *</label>
+                                        <input type="number" class="form-control" id='PMmaterialRecycleContent' placeholder="Enter Material Recycled contents" name="editmaterialRecycleContent" required>
+                                      
+                                    </div>
+                                </div> 
+                   
+                           </div> 
+                    
+                               <div class="row">
+                                    
+                                  <div class="col-md-6">                
+                                            <div class="form-group">
+                                        <label>Material Name *</label>
+                                         <!-- <input type="text" class="form-control editmaterialName"  id='PMmaterialName' placeholder="Please Enter Product Name" data-errors="Please Class ID." name="editmaterialName" > -->
+                                         <select class="editmaterialName form-control addmaterialName" id="PMmaterialName" name="editmaterialName" data-errors="Please Enter Product Name."  required>
+                                           
+                                           </select>
+                                      
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>  
+                                
+                                 <div class="col-md-6"> 
+                                    <div class="form-group">
+                                        <label>Recycle Type *</label>
+                                         <select name="editMaterialRecycleType" id="PMMaterialRecycleType" class="form-control" data-style="py-0">
+                                           <option>Select Option</option>
+                                       <option value="Pre Consumer">Pre Consumer </option>
+                                       <option>Post Consumer </option>
+                                       <option value="Pre+Post Consumer" >Pre+Post Consumer</option>
+                                       <option>Unspecified</option>
+                                    
+                                    
+                                    </select>
+                                        
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="row">
+                              
+                                     <div class="col-md-3"> 
+                                    <div class="form-group">
+                                        <label>Material Mass (g) *</label>
+                                        <input type="number" class="form-control" id='PMmaterialMassg' placeholder="Please enter Material mass" data-errors="Please part mass." name="editmaterialMassg" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                 <div class="col-md-3"> 
+                                    <div class="form-group">
+                                        <label>Material Mass (%) *</label>
+                                        <input readonly type="number" class="form-control" id='PMMaterialMassPerc' placeholder="Please enter Material mass" data-errors="Please part mass." name="editMaterialMassPerc" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                      <div class="col-md-6" style="display: contents;  ">
+                            <div class="col-md-3" style="display: flex; align-items: center; ">
+                                  <div class="custom-control custom-checkbox custom-control-inline">
+                           <input type="checkbox" class="custom-control-input seleccheckbox2" id="customCheck5" >
+                           <label class="custom-control-label" for="customCheck5">Selective Materials</label>
+                                   </div>
+                            </div>
+
+                            <div class="col-md-3">
+                              <label>Treatment </label>
+                               <select class="form-control selectiveMat" id="selectiveMat2" name="selectiveMat" disabled="true">
+                                           
+                                           </select>
+                            </div>
+                           </div>
+                            </div>
+                           </div>
+                    
+                    </fieldset>
+                           <button type="button" id="subsmodalclose" class="btn styleBtn action-button-closeMat float-right"  >Close</button>
+                        <button type="button"  id="editMat"  class="btn btn-primary   float-right mr-3" style="background-color: #fb8500; border: 0;" >소재 정보 변경</button>
+                     
+                     
+                      
+                   </form>
+                 </div>
+            <!-- Modal -->
+             </div>
+        </div>
+      </div>
+    </div>
+             
+ <!--Edit Substance-->
+                 <div class="editSubmodaly modaly-wrapper" style="z-index: 92999;">
+                   <div class="modaly" style="z-index: 99999;">
+                     <div class="modaly-header" style="text-align:left;">  <span class="editSubHeader"  style="font-size: 150%; color:black;"></span></div>
+                       <div class="modaly-body">
+                          <div class="card-body">
+                            <div class="">
+                             <form class="form"  data-toggle="validator" id="form-wizard1">
+                     
+                        <!-- fieldsets -->
+                        <fieldset>
+                           <div class="form-card text-left">
+                              <div class="row">
+                                 <div class="col-7">
+                                 </div>
+                              </div>
+                           <div class="row">
+                                           <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Substance Name </label>
+                                          <input type="text" class="form-control"  id='EditPMSubsName' name="EditPMSubsName" placeholder="Please Enter Susbtance Name" data-errors="Please Enter Susbtance Name"  >
+                                    </div>
+                                </div>  
+                   
+                                  <div class="col-md-6">                
+                                            <div class="form-group">
+                                        <label>CAS Number </label>
+                                    
+                                          <input type="text" class="form-control"  id='EditPMSubsCAS' name="EditPMSubsCAS" placeholder="Please Enter CAS Number" data-errors="Please Enter CAS Number"  >
+                                    
+                                    </div>
+                                </div>  
+                           </div> 
+                
+                               <div class="row">
+                                     <div class="col-md-6"> 
+                                    <div class="form-group">
+                                         <label>CRM </label>
+                                    
+                                          <input type="text" class="form-control"  id='EditPMSubsCRM' name="EditPMSubsCRM" placeholder="Please Enter CRM value" data-errors="Please Enter CRM value"  >
+                                    
+                                    </div>
+                                </div> 
+<!-- 
+                                  <div class="col-md-3"> 
+                                    <div class="form-group">
+                                         <label>ROHS </label>
+                                    
+                                          <input type="text" class="form-control"  id='EditPMSubsROHS' name="EditPMSubsROHS" placeholder="Please Enter ROHS value" data-errors="Please Enter ROHS value"  >
+                                        
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>  -->
+                          
+                           
+                                     <div class="col-md-3"> 
+                                    <div class="form-group">
+                                        <label>Susbtance Mass (g) </label>
+                                        <input type="text" class="form-control" id='EditPMSubsMassg' name="EditPMSubsMassg" placeholder="Please enter Susbtance mass (g)" >
+                               
+                                    </div>
+                                </div> 
+                                 <div class="col-md-3"> 
+                                    <div class="form-group">
+                                        <label>Susbtance Mass (%) *</label>
+                                        <input type="text" class="form-control" id='EditPMSubsMassPerc' placeholder="Please enter Material mass (%)"  name="EditPMSubsMassPerc" >
+                                 
+                                    </div>
+                                </div> 
+                            </div>
+                           </div>
+                    
+                    </fieldset>
+                        <button type="button"  id="editSub"  class="btn btn-primary float-right mr-3" style="background-color: #fb8500; color: white; border: 0;" >물질 편집</button>
+                            <button type="button" id="subsmodalclose" class="btn styleBtn action-button-closeSub" data-dismiss="modaly-wrapper"  >Close</button>
+                     
+                      
+                   </form>
+                 </div>
+            <!-- Modal -->
+             </div>
+        </div>
+      </div>
+    </div>      
+  
+
+    
+    
+               </div>
+
+     
+ <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-functions.js"></script>
+    <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-storage.js"></script>
+    <script src="https://npmcdn.com/js-file-manager/dist/jsfilemanager.min.js"></script>
+
+<script  type="module">
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAq2QjImxRXEtRHN-N6u2YEod-wUJMtI1s",
+  authDomain: "projectcrm-f4e5f.firebaseapp.com",
+  databaseURL: "https://projectcrm-f4e5f-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "projectcrm-f4e5f",
+  storageBucket: "projectcrm-f4e5f.appspot.com",
+  messagingSenderId: "404890912341",
+  appId: "1:404890912341:web:5b129be76ccdfeba8c76dc",
+  measurementId: "G-TL8J23TNZE"
+};
+</script>
+ <!-- <script  type="module" src="./auth.js" defer></script> -->
+
+   
+    <!-- Backend Bundle JavaScript -->
+    <script src="../backend-bundle.min.js"></script>
+    <script src="../components/multiselect.js"></script>
+    <!-- Table Treeview JavaScript -->
+    <script src="../table-treeview.js"></script>
+ <script  type="module" src="../parts.js" defer></script>
+     <script   src="../sidemenu.js" ></script>
+      <script   src="../sortandsearch/sortPart.js" ></script>
+    <script   src="../uploadarea/uploadfile.js" ></script>
+    
+    <!-- Chart Custom JavaScript -->
+    <script src="../customizer.js"></script>
+    
+    <!-- Chart Custom JavaScript -->
+    <script async src="../chart-custom.js"></script>
+    
+    <!-- app JavaScript -->
+    <script src="../app.js"></script>
+     <!-- <script   type="module" src="./auth.js" ></script> -->
+     <script>feather.replace()</script>
+<script src="../search.js" ></script>
+  </body>
+</html>
+
+

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kitech - Login</title>
+    <link rel="stylesheet" href="./mvp.css" />
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"  ></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"  ></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"  ></script>
+      <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+
+  </head>
+  <body>
+    <main>
+    <!-- loader END -->
+    <form id="login">
+       <div class="wrapper">
+       <section class="login-content">
+         <div class="container h-100">
+            <div class="row justify-content-center align-items-center height-self-center">
+               <div class="col-md-5 col-sm-12 col-12 align-self-center">
+                  <div class="sign-user_card">   
+                     <div class="logo-detail">            
+                           <!-- <div class="d-flex align-items-center"><img src="../assets/images/logo.png" class="img-fluid rounded-normal light-logo logo" alt="logo"> <h4 class="logo-title ml-3">NotePlus</h4></div> -->
+                     </div>      
+                     <h3 class="mb-2">로그인</h3>
+                     <p>자원효율성 평가 통합 시스템</p>
+                     <form>
+                        <div class="row">
+                        
+                             <!-- <div class="col-lg-12">
+                              <div class="floating-label form-group">
+                                 <input class="floating-input form-control uid" name="uid" type="text" placeholder=" ">
+                                 <label>아이디</label>
+                              </div>
+                           </div> -->
+                             <div class="col-lg-12">
+                              <div class="floating-label form-group">
+                                 <input class="floating-input form-control email" name="email" type="email" placeholder=" ">
+                                 <label>아이디</label>
+                              </div>
+                           </div>
+                           <div class="col-lg-12">
+                              <div class="floating-label form-group">
+                                 <input class="floating-input form-control password" name="password" type="password" placeholder=" ">
+                                 <label>비밀번호</label>
+                              </div>
+                           </div>
+                           <!-- <div class="col-lg-6">
+                              <div class="custom-control custom-checkbox mb-3 text-left">
+                                 <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                 <label class="custom-control-label" for="customCheck1">기억하기</label>
+                              </div>
+                           </div> -->
+                           <!-- <div class="col-lg-6">
+                              <a href="auth-recoverpw.html" class="text-primary float-right">비밀번호 분실</a>
+                           </div> -->
+                        </div>
+                          <div class="row" style="
+                                                            display: flex;
+                                                            flex-wrap: wrap;
+                                                            margin-right: 0px;
+                                                            margin-left: 0px;
+                                                            flex-direction: row-reverse;
+                                                            justify-content: space-between;
+                                                            align-items: center;
+                                                               ">
+                          <button type="submit" class="btn btn-primary singin" >로그인</button>
+                                    <p class="mt-3">
+                                       계정이 없으신가요?  <a href="./registration" class="text-primary">가입하기</a>
+                                    </p>
+                                    </div>
+                    
+                        <!-- <p class="mt-3 mb-0">
+                           계정 생성하기 <a href="./signup" class="text-primary"><b>Sign Up</b></a>
+                        </p> -->
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      </div>
+    </form>
+     
+
+      <script>
+        window.addEventListener("DOMContentLoaded", () => {
+           const firebaseConfig = {
+            apiKey: "AIzaSyAq2QjImxRXEtRHN-N6u2YEod-wUJMtI1s",
+            authDomain: "projectcrm-f4e5f.firebaseapp.com",
+            databaseURL: "https://projectcrm-f4e5f-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "projectcrm-f4e5f",
+            storageBucket: "projectcrm-f4e5f.appspot.com",
+            messagingSenderId: "404890912341",
+            appId: "1:404890912341:web:5b129be76ccdfeba8c76dc",
+            measurementId: "G-TL8J23TNZE"
+          };
+
+            const app = firebase.initializeApp(firebaseConfig);
+         const db = firebase.firestore(app);
+// const emailRef = document.querySelector('.email')
+const singin = document.querySelector('.singin')
+const uidRef = document.querySelector('.uid')
+
+         //  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
+
+                           document
+            .getElementById("login")
+            .onsubmit = function(event) {
+              event.preventDefault();
+              let email = event.target.email.value;
+              let password = event.target.password.value;
+
+              firebase
+                .auth()
+                .signInWithEmailAndPassword(email, password)
+                .then(({ user }) => {
+                  console.log({user})
+                  return user.getIdToken().then((idToken) => {
+                    return fetch("/sessionLogin", {
+                      method: "POST",
+                      headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                        "CSRF-Token": Cookies.get("XSRF-TOKEN"),
+                      },
+                      body: JSON.stringify({ idToken }),
+                    });
+                  });
+                 
+                })
+                .then(() => {
+                                firebase.auth().currentUser.getIdTokenResult()
+                              .then((idTokenResult) => {
+                                 // Confirm the user is an Admin.
+                                 if (!!idTokenResult.claims.productManu) {
+                                    // Show admin UI.
+                                    console.log("product manu detected")
+                                          window.location.assign("/productmanufacturer/dashboard");
+                                 } 
+                                 else if (!!idTokenResult.claims.partSupplier) {
+                                     console.log("product manu detected")
+                                          window.location.assign("/partsupplier/dashboard");
+                                 }
+                                  else if (!!idTokenResult.claims.admin) {
+                                     console.log("admin user detected")
+                                          window.location.assign("/admin/dashboard");
+                                 }
+                                 else if(!!idTokenResult.claims.default) {
+                                    // Show regular user UI.
+                                    console.log("default user detected")
+                                          window.location.assign("/main");
+                                 }
+                              })
+                              .catch((error) => {
+                                 console.log(error);
+                              });
+                })
+
+ 
+             
+              return false;
+               }
+
+                     
+                     // uidRef.onchange = function() {
+                     //       db.collection('users').where('userCompanyname', '==', uidRef.value).get()
+              
+                     // .then((querySnapshot) => {
+                     //    querySnapshot.forEach((doc) => {
+                     //          // doc.data() is never undefined for query doc snapshots
+                     //      if(doc.exists) {
+                     //                            singin.style.display = "inline-block"
+       
+                              
+                     //      }
+                        
+                     //      else {
+                     //             singin.style.display = "none"
+                     //      }
+                     //    })  
+                 
+                     // })
+                       
+                     // }
+
+     
+               
+        });
+
+      </script>
+    </main>
+  </body>
+</html>
+
+
+
+
+
+
+

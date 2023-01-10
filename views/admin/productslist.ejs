@@ -1,0 +1,2084 @@
+<!doctype html>
+<html lang="en" style="font-size: 13px;">
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>자원효율성 통합시스템 | Dashboard for managing recyclable products</title>
+      
+      <!-- Favicon -->
+     
+ <link rel="stylesheet" href="../products.css" />
+  <link rel="stylesheet" href="../parts.css" />
+ <link rel="stylesheet" href="../addbtn.css" />
+   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+      <link rel="stylesheet" href="../backend.css" />
+      <link rel="stylesheet" href="../backend-plugin.min.css">
+       <link rel="stylesheet" href="../all.min.css">
+      <link rel="stylesheet" href="../line-awesome.min.css">
+      <link rel="stylesheet" href="../remixicon.css">
+      <style>
+    li span {
+  background-color: transparent;
+}
+    @media only screen and (min-width: 86em) {
+                  
+  .table-wrapper {
+    height: 400px;
+  }
+}
+         @media only screen and (min-width: 100em) {
+  .table-wrapper {
+    height: 620px;
+  }
+} 
+
+      </style>
+        <!-- <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js"></script>
+   
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-auth.js" defer ></script> -->
+  
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-firestore.js"></script>
+  
+      </head>
+  <body class="" style="overflow-y: hidden;">
+    <!-- loader Start -->
+   
+    <!-- loader END -->
+    <!-- Wrapper Start -->
+         <div class="sidebar" style="background: #023047;">
+    <div class="logo-details">
+     
+        <div class="logo_name">Kitech</div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+  
+      <li>
+        <a  href="./dashboard">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">대시보드</span>
+        </a>
+         <span class="tooltip">대시보드</span>
+      </li>
+    
+      <li>
+       <a  href="./listofproducts" >
+       
+              <i class='bx bxs-cube-alt'></i>
+         <span class="links_name">제품목록</span>
+       </a>
+       <span class="tooltip">제품목록</span>
+     </li>
+ 
+       <li>
+       <a  href="./parts" >
+ <i class='bx bxs-component' ></i>
+         <span class="links_name">부품목록</span>
+       </a>
+       <span class="tooltip">부품목록</span>
+     </li>
+        <li>
+       <a  href="./materials" >
+ <i class='bx bx-pie-chart-alt-2' ></i>
+         <span class="links_name">소재목록</span>
+       </a>
+       <span class="tooltip">소재목록</span>
+     </li>
+     <li>
+       <a  href="./substances" >
+  <i class='bx bx-dna' ></i>
+         <span class="links_name">물질목록</span>
+       </a>
+       <span class="tooltip">물질목록</span>
+     </li>
+
+       <li>
+       <a  href="./listofusers" >
+          <i class='bx bx-user'></i>
+         <span class="links_name">사용자 목록</span>
+       </a>
+       <span class="tooltip">사용자 목록</span>
+     </li>
+
+           <li>
+       <a  href="#" >
+       <i class="bx bx-bell"></i>
+         <span class="links_name">공지사항</span>
+       </a>
+       <span class="tooltip">공지사항</span>
+     </li>
+       <li>
+     <a  href="#">
+       <i class="ri-question-line"></i>
+         <span class="links_name">자주 묻는 질문</span>
+       </a>
+       <span class="tooltip">자주 묻는 질문</span>
+     </li>
+   
+    
+     <li class="profile" style="margin-bottom: 30px; background: #023047;">
+         <div class="profile-details">
+           <!--<img src="profile.jpg" alt="profileImg">-->
+           <div class="name_job">
+             <div class="name">Logout</div>
+             <div class="job">2022 - 2023</div>
+               
+           </div>
+         </div>
+        <a href="/sessionLogout"  > <i style="background: #023047;" class='bx bx-log-out' id="log_out" ></i> </a>
+       
+     </li>
+    </ul>
+  </div>
+    
+    
+  <section class="home-section">
+        
+<div class="content-page">
+     <div class="container-fluid" style="padding-top: 80px;">
+           <%- include('components/topBar'); %>
+
+
+
+
+        <div class="row" >
+            <div class="col-lg-12">
+                <div class="d-flex flex-wrap flex-wrap align-items-center mb-4" style="width:100%; justify-content: space-between;">
+                    <div>
+                        <h4 class="mb-3" style="color: black;font-weight: 600; font-size: 25px;">제품 목록</h4>
+                      
+                    </div>
+               <div class="row" style="width: 13%; margin-left:12%">
+                   
+                     <button class="btnpr btnpr-add" style="width: 90%; margin-bottom: 10px; margin-left: 5px; background: #F05D5E;"><div class="addnewproductbtnpr">Delete All</div></button>
+               </div>
+                </div>
+      
+                         
+            </div>
+
+    
+<!--Duplicated Sort and Seach (not working)-->
+      <div class="col-lg-12">
+            
+                <div class="d-flex flex-wrap flex-wrap align-items-center mb-4">
+                    <div class="col-lg-4">
+                 <h4 class="mb-3" style="color: black;font-weight: 600; font-size: 25px;"></h4>  
+              </div>
+                
+        <div class="col-lg-8">
+            <div class="row searchandaddpart">
+                 
+              
+                                  <div class="sortaddpart">
+
+  <div class="form-group" id="formfloat" style="width: 41%;margin:0;">
+                      <div class="input-group mb-3">
+                      
+                        <select class="custom-select sortProdSelection" id="inputGroupSelect03">
+                           <option value="" selected="">Choose...</option>
+                         <option value="4">Sort by  Model name</option>
+                           <option value="7">Sort by Registration date</option>
+                            <option value="8">Sort by Registration status</option>
+                        </select>
+                           <div class="input-group-append">
+                           <span class="input-group-text" id="basic-addon5"><i class="bx bx-sort font-size-20"></i></span>
+                        </div>
+                     </div>
+                     </div>
+                                       <div class="form-group" id="formfloat" style="width: 48%;margin:0;">
+                      <div class="input-group mb-3">
+                       <input type="text" class="form-control" id="myInputProduct" style="margin: 0;border-radius: 10px 0 0 10px;height:46px;width: 66%;" onkeyup="prodSearch()" name="myInputProduct" placeholder="Search by " aria-label="Search Part Name" aria-describedby="basic-addon5">
+                        <select class="custom-select searchProdSelection" id="inputGroupSelect03">
+                        <option selected="">Choose...</option>
+                           <option value="3">Product Name </option>
+                           <option value="4">Model Name</option>
+                        </select>
+                           <div class="input-group-append">
+                           <span class="input-group-text" id="basic-addon5"><i class="las la-search font-size-20"></i></span>
+                        </div>
+                     </div>
+                     </div>
+
+                
+                     
+            </div>
+            </div>
+
+               </div>
+                </div>
+            </div>
+            
+
+             
+
+ <div class="row float-right align-items-center" style="width: 100%; align-items: center; text-align: center;">
+    <div class="loadingtitle" style="text-align: center;  margin-left: 45%;"></div>
+ </div>
+     
+                      
+<!-- <form id="upload">
+	<label for="file">File to upload</label>
+	<input type="file" id="file" accept=".json">
+
+	<button class="uploadbtn">Upload</button>
+</form> -->
+            
+        <!--Here starts the form-->
+        
+
+ 
+          
+ <div class="tabledata">
+   
+    <div class="table-wrapper table-responsive rounded mb-3" style="overflow-x: hidden; 
+    overflow-y: scroll; ">
+   
+         
+      <table class="table-users prodTabledata  prod-table mb-0 ">
+    <thead class="bg-white " style=" top: 0;z-index: 0;">
+  <tr class="ligth ligth-data">
+                <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
+  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+</svg></th>
+         <th >Product Image</th>
+         <th>Product Manufacturer</th>
+             <th >Product Category</th>
+          <th>Product Name</th>
+          <th>Model Name</th>
+          <th>Product Weight</th>
+          <th>Registration Date</th>
+          <th>Memo</th>
+           <th style="width: 13%;">Action</th>
+        </tr>
+    </thead> 
+   </table>
+    
+    </div>
+    </div>
+
+
+  <!--Add modaly second-->
+    
+    <!-- Add modaly -->
+    <div class="add-modaly modaly-wrapper">
+      <div class="modaly">
+        <div class="modaly-header"> <span style="font-size: 150%; color:black;">Product Identification</span></div>
+        <div class="modaly-body" style="    overflow-y: scroll;
+    height: 630px;
+    overflow-x: hidden;">
+          <div class="card-body">
+                     <div >
+                        <form class="form" autocomplete="off"  data-toggle="validator" id="form-wizard1">
+                 
+                      <!-- fieldsets -->
+                         
+                        <fieldset id="personal">
+                    
+                          
+                        <div class="row">
+                                 <div class="col-md-6">
+                                            <label>Product Image *</label>
+                    <div class="input-group mb-4">
+                        <div class="custom-file mb-3">
+                        
+                           <input type="file" class="custom-file-input files" id="customFile">
+                           <label class="custom-file-label prodImgphld" for="customFile">Upload Product Image</label>
+                        </div>
+                     
+                     </div>
+                          
+                            </div>
+                                  <div class="col-md-6"> 
+                               <div class="form-group">
+                                        <label>Product Category *</label>
+                                         <select class="partsName form-control"  id="addproductCategory" name="productCategory" data-errors="Please Enter Product Category."  required>
+                                        
+                                        
+<option>에어컨</option>
+<option>가정용 오븐 및 레인지후드</option>
+<option>전기램프 및 등 조명기기</selectoption>
+<option>가정용 식기세척기</option>
+<option>가정용 냉장고</option>
+<option>가정용 드럼 건조기</option>
+<option>가정용 세탁기 및 세탁기겸 건조기</option>
+<option>로컬 스페이스 히터</option>
+<option>전문가용 냉장용 보관 캐비닛</option>
+<option>주거용 환기 장치</option>
+<option>고체연료 보일러 및 고체 연료 보일러 패키지, 보조 히터, 온도 제어 및 태양광 장치</option>
+<option>콤비네이션 히터, 공간 히터 패키지</option>
+<option>전자 디스플레이 및 텔레비젼</option>
+<option>청소기</option>
+<option>온수기, 온수 저장 탱크, 온수기 및 태양광 장치 패키지</option>
+<option>공기 가열 제품, 냉각 제품, 고온 공정 냉각기 및 팬 코일 장치</option>
+<option>서큘레이터</option>
+<option>컴퓨터 및 컴퓨터 서버</option>
+<option>전동기</option>
+<option>외부 전원 공급 장치</option>
+<option>125W~500kW 전기 모터로 구동되는 팬</option>
+<option>심플 셋톱 박스</option>
+<option>소형, 중형 및 대형 전력 변압기</option>
+<option>전기전자 가정 및 사무기기의 대기/오프모드 전력소비</option>
+<option>양수 펌프</option>
+<option>용접기기</option>
+<option>직판 냉장기기</option>
+<option>이동전화</option>
+<option>스마트폰</option>
+<option>태블릿</option>
+<option>Others</option>
+
+                                           
+                                           </select>
+                                        <!-- <input type="text" class="form-control" id='editproductName' placeholder="Enter Product Name" data-errors="Please Enter Product Name." name="productName" > -->
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                 </div>
+                                </div>
+                         
+        
+                           
+                               
+                                     <div class="row">
+                                             <div class="col-md-4">  <div class="form-group">
+                                        <label>Product Manufacturer </label>
+                                        <input readonly type="text" class="form-control" id='productManufacturer'  name="productManufacturer" required >
+                                        <div class="help-block with-errors"></div>
+                                    </div>   </div>   
+                                            <div class="col-md-4">  <div class="form-group">
+                                        <label>Product Name *</label>
+                                        <input type="text" class="form-control" id='addproductName' placeholder="Enter Product Name" data-errors="Please Enter Product Name." name="productName" required >
+                                        <div class="help-block with-errors"></div>
+                                    </div>   </div>                      
+                                       <div class="col-md-4">     <div class="form-group">
+                                        <label>Product Model Name *</label>
+                                        <input type="text" class="form-control" id='addproductMN' placeholder="Enter Product Model Name" data-errors="Please Enter Product Model Name." name="productMN" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div> </div>
+                                 
+                                </div>    
+                                <div class="row">
+                                      <div class="col-md-6">
+                                       <div class="form-group">
+                                        <label>Product Weight (g) *</label>
+                                        <input type="number" step=".01" class="form-control" id='addproductWeight'placeholder="Enter Code" data-errors="Please product weight." name="productWeight" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                              </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                     <label>Product Size</label>
+                                         <div class="input-group mb-4" style="align-items: center;">
+                        
+                        <input type="text" class="form-control " id="addprodWidth" placeholder="Width" aria-label="Width"
+                           aria-describedby="basic-addon4" required>
+                    <i class="las la-times" style="margin: 4px;"></i>
+                                <input type="text" class="form-control " id="addprodDepth"  placeholder="Depth" aria-label="Depth"
+                           aria-describedby="basic-addon4" required>
+                   <i class="las la-times" style="margin: 4px;"></i>
+                                <input type="text" class="form-control " id="addprodHeight"  placeholder="Height" aria-label="Height"
+                           aria-describedby="basic-addon4" required>
+                              <div class="input-group-prepend">
+                                 
+                           <span class="input-group-text" id="basic-addon4" style="height: 2.8em;
+                              border-radius: 0;"><i class="las la-ruler-combined  font-size-28"></i></span>
+                                     <select class="custom-select selectUnit" name="selectUnit" id="inputGroupSelect03" style="border-radius: 0 10px 10px 0px;">
+                           <option value="" selected>Choose Unit</option>
+                           <option value="mm" >mm</option>
+                           <option value="inch">inch</option>
+                        </select>
+                        </div>
+                     </div>
+                                    </div>
+                                </div>
+                                </div>
+                           
+                     
+                      
+                        
+                        
+                           <div class="form-card text-left">
+                          
+                                           
+                                  
+                               <div class="row">  
+                                <div class="col-md-6"> 
+                                    <div class="form-group">
+                                        <label>Registered Date</label>
+                                        <input type="date" style=" font-size: 15px;" class="form-control" id='addregisteredDate' placeholder="Enter the registration date." data-errors="Please the right registration date." name="registeredDate" required >
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+
+                                      
+                                <div class="col-md-6"> 
+                                    
+                                  <div class="form-group">
+                                        <label>Product Registration Status</label>
+                                         <select class="productStatus form-control" id="addproductStatus" name="productStatus" data-errors="Please Enter Product Registration Status." required >
+                                            <option value="Complete">Complete</option>
+                                            <option value="Processing">Processing</option>
+                                            <option value="Ready">Ready</option>
+                                           
+                                           </select>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                 </div>
+                                     <div class="row">
+                                  <div class="col-md-12">
+                                    <div class="form-group">
+                                     <label>Memo</label>
+                                        <input type="text" class="form-control" id='addmemo' placeholder="Please Enter Memo." data-errors="Please Enter Memo." name="memo" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                              
+                              </div>
+                               </div>
+                          
+                        </fieldset>
+                      
+                   <button type="button" class="btn btn-secondary action-button-close" data-dismiss="modaly">Close</button>
+                   <button type="submit" id="addProduct" class="btn btn-primary btn-dark float-right mr-3">Add Product</button>
+                                
+                   </form>
+                 </div>
+            <!-- Modal -->
+             </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit modaly -->
+    <div class="edit-modaly modaly-wrapper">
+      <div class="modaly" >
+        <div class="modaly-body" style="    overflow-y: scroll;
+    height: fit-content;
+    overflow-x: hidden;">
+          <div class="modaly-header">  <span class="editheader" style="font-size: 150%; color:black;"></span></div>
+             <div class="card-body" style="padding: 0;">
+                  <div class="card-body">
+                     <ul class="nav nav-pills mb-3 nav-fill" id="pills-tab-1" role="tablist" style="    width: 50%;
+    margin-left: 26%;">
+                       
+                      
+                     </ul>
+                     <div class="tab-content" id="pills-tabContent-1">
+                        <!--here start the products entry form-->
+                        <div class="tab-pane fade show active" id="pills-home-fill" role="tabpanel" aria-labelledby="pills-home-tab-fill">
+                           <div class="">
+                              <form >
+                                 <fieldset>
+                                    <div class="form-card text-left">
+                                       
+
+                                            <div class="col-md-6">
+                                            <label>Product Image *</label>
+           <div class="row" style="    gap: 4%;
+    align-items: baseline;">
+                     <div class="input-group mb-4" style="width: 80%;">
+                        <div class="custom-file mb-3">
+                        
+                           <input type="file" class="custom-file-input editfiles" id="customFile">
+                           <label class="custom-file-label editprodImgphld" for="customFile">Upload Product Image</label>
+                        </div>
+                  
+                     
+                     </div>
+                                         <nav class="navbary updateProdImg" style="margin-left: -12px; width:40px; background-color: #023047">
+	<a href="#" class="navbary__link">
+		<span class="" ><i class="bx bx-cloud-upload" style=" color: white;
+    font-size: 17px;"></i></span>
+		<span class="navbary__label " style="background-color: #023047; left: -71px;
+    width: 200px; top: -47px;">Update Product Image</span>
+	</a>
+</nav>
+           </div>
+                            </div>
+
+
+                                    </div>
+                                 </fieldset>
+                              </form>
+                                 <form class="form"  autocomplete="off"  data-toggle="validator" id='form-wizard1'>
+                    
+                        <!-- fieldsets -->
+                        
+                        <fieldset >
+                           <div class="form-card text-left">
+                       
+                                     
+                              <div class="row">
+                                 
+                          <div class="row">
+                           
+                               
+                                   <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Product Category *</label>
+                                         <select class="editpartsName form-control" id="editproductCategory" name="productCategory" data-errors="Please Enter Product Category."  required>
+                              
+                                                                                 
+<option>에어컨</option>
+<option>가정용 오븐 및 레인지후드</option>
+<option>전기램프 및 등 조명기기</selectoption>
+<option>가정용 식기세척기</option>
+<option>가정용 냉장고</option>
+<option>가정용 드럼 건조기</option>
+<option>가정용 세탁기 및 세탁기겸 건조기</option>
+<option>로컬 스페이스 히터</option>
+<option>전문가용 냉장용 보관 캐비닛</option>
+<option>주거용 환기 장치</option>
+<option>고체연료 보일러 및 고체 연료 보일러 패키지, 보조 히터, 온도 제어 및 태양광 장치</option>
+<option>콤비네이션 히터, 공간 히터 패키지</option>
+<option>전자 디스플레이 및 텔레비젼</option>
+<option>청소기</option>
+<option>온수기, 온수 저장 탱크, 온수기 및 태양광 장치 패키지</option>
+<option>공기 가열 제품, 냉각 제품, 고온 공정 냉각기 및 팬 코일 장치</option>
+<option>서큘레이터</option>
+<option>컴퓨터 및 컴퓨터 서버</option>
+<option>전동기</option>
+<option>외부 전원 공급 장치</option>
+<option>125W~500kW 전기 모터로 구동되는 팬</option>
+<option>심플 셋톱 박스</option>
+<option>소형, 중형 및 대형 전력 변압기</option>
+<option>전기전자 가정 및 사무기기의 대기/오프모드 전력소비</option>
+<option>양수 펌프</option>
+<option>용접기기</option>
+<option>직판 냉장기기</option>
+<option>이동전화</option>
+<option>스마트폰</option>
+<option>태블릿</option>
+<option>Others</option>
+                                           </select>
+                                        <!-- <input type="text" class="form-control" id='editproductName' placeholder="Enter Product Name" data-errors="Please Enter Product Name." name="productName" required> -->
+                                  
+                                    </div>
+                                </div>                   
+                             
+                                <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Product Name *</label>
+                                        <input readonly type="text" class="form-control" id='editproductName' placeholder="Enter Product Name" data-errors="Please Enter Product Name." name="productName" required>
+                                   
+                                    </div>
+                                </div>    
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Product Model Name</label>
+                                        <input type="text" class="form-control"  id='editmodelName'placeholder="Enter Product Model Name" data-errors="Enter Product Model Name." name="editmodelName" required>
+                              
+                                    </div>
+                                </div> 
+                            
+                                <div class="col-md-6"> 
+                                    <div class="form-group">
+                                        <label>Product Weight (g) *</label>
+                                        <input type="number" class="form-control" id='editproductWeight'placeholder="Enter Code" data-errors="Please product weight." name="productWeight" required>
+                                 
+                                    </div>
+                                </div> 
+                                    <div class="col-md-6"> 
+                                    <div class="form-group">
+                                        <label>Product Size (mm x mm x mm)</label>
+                                    <div class="input-group mb-4" style="align-items: center;">
+                        
+                        <input type="number" class="form-control editprodWidth " name="editprodWidth"  placeholder="Width" aria-label="Width"
+                           aria-describedby="basic-addon4" required>
+                    <i class="las la-times" style="margin: 4px;"></i>
+                                <input type="number" class="form-control editprodDepth " name="editprodDepth" placeholder="Depth" aria-label="Depth"
+                           aria-describedby="basic-addon4" required>
+                   <i class="las la-times" style="margin: 4px;"></i>
+                                <input type="number" class="form-control editprodHeight " name="editprodHeight"  placeholder="Height" aria-label="notification"
+                           aria-describedby="basic-addon4" required>
+                                           <div class="input-group-prepend">
+                                 
+                           <span class="input-group-text" id="basic-addon4" style="height: 2.8em;
+                              border-radius: 0;"><i class="las la-ruler-combined  font-size-28"></i></span>
+                                     <select class="custom-select editselectUnit" name="editselectUnit" id="inputGroupSelect03" style="border-radius: 0 10px 10px 0px;">
+                           <option value="" selected>Choose Unit</option>
+                           <option value="mm" >mm</option>
+                           <option value="inch">inch</option>
+                        </select>
+                        </div>
+                       
+                            </div>
+                           </div> 
+                            </div>   
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                     <label>Registration Date</label>
+                                        <input type="date" style=" font-size: 15px;" class="form-control" id='editregisteredDate'placeholder="Enter Registration Date" data-errors="Please Registration Date." name="editregisteredDate" required>
+                                     
+                                    </div>
+                                </div>
+
+                                     <div class="col-md-6"> 
+                                        
+                                  <div class="form-group">
+                                        <label>Registration Status</label>
+                                         <select class="productStatus form-control" id="editproductStatus" name="editproductStatus" data-errors="Please Enter Product Registration Status."  required>
+                                            <option value="Complete">Complete</option>
+                                            <option value="Processing">Processing</option>
+                                            <option value="Ready">Ready</option>
+                                           
+                                           </select>
+                                     
+                                    </div>
+                                       
+                                </div>
+                                    <div class="col-md-12"> 
+                                        
+                                  <div class="form-group">
+                                        <label>Memo</label>
+                                         <input type="text" class="productStatus form-control" id="editMemo" name="editMemo" data-errors="Please Enter Memo."  required>
+                                         
+                           
+                                    </div>
+                                       
+                                </div>
+                              </div>
+                           </div>
+                        </fieldset>
+                       <button type="button" class="btn btn-secondary action-button-close" data-dismiss="modaly">Close</button>
+      <button  id="edit" class="btn btn-primary btn-dark editFormProd  float-right mr-3"  >Edit Product</button>
+                   </form>
+                 </div>
+                        </div>
+                         <!--here ends the products entry form-->
+                           <!--here start the adding parts entry form for the specific product-->
+                    
+                          <!--here ends the adding parts entry form for the specific product-->
+                     </div>
+                  </div>
+             
+                  <!-- here ends the edit product data form -->
+            <!-- Modal -->
+             </div>
+        </div>
+      </div>
+    </div>
+
+     <div class="addPPmodaly modaly-wrapper" style="padding-top: 50px;">
+      <div class="modaly" style="    width: 80%;
+    left: 12%; margin-top:3%">
+
+        <div class="modaly-body">
+         <div class="modaly-header"> <span class="setPPheader" style="font-size: 150%; color:black;"> </span></div>
+          <div class="card-body">
+                     <div class="container-fluid">
+         <div class="row">
+            <div class="col-sm-12 col-lg-12">
+               <div class="iq-card">
+                
+                  <div class="iq-card-body">
+                     <form id="form-wizard1" class="addPPForm text-center mt-4">
+                
+                              
+                              <fieldset>
+                           
+                            
+                            <div class="row" style="align-items: center;">
+                           
+                             
+                                       <div class="col-md-4">
+                                    <div class="form-group">
+                                     <label>부품사</label>
+                               
+                                      <select  class="supplierName form-control" name="supplierName" id="supplierName"  data-style="py-0">
+                                      <option value="" selected>Select an option</option>
+                                     
+                                    </select>
+                                        
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                   <div class="col-md-2">
+                                    <div class="form-group">
+                                     <label>부품명</label>
+                               
+                                      <select  class="partname form-control" name="partname" id="partname"  data-style="py-0">
+                                    
+                                    
+                                    </select>
+                                        
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>부품코드</label>
+                                        <select   class="form-control"  id='partCode' placeholder="부품 코드를 입력하세요"  data-errors="부품 코드를 입력하세요." name="addpartCode" required>
+
+                                        </select>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                
+                            
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>부품 수량</label>
+                                        <input type="number" class="form-control quantity"  placeholder="부품 수량을 입력하세요" data-errors="부품 수량을 입력하세요." value="0" name="addpartQuantity" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                <div class="col-md-2">
+                                    <nav class="navbary" style="  background-color: #023047; margin-top: 35px;">
+	
+                     <a href="#" class="navbary__link" >
+                        <span class=" getPPdata" style="color: white;" >부품 조회</span>
+                    
+                     </a>
+                  </nav>
+
+                                </div>
+                                     
+                                </div> 
+                        <!-- <button  id="edit" class="btn btn-primary btn-light  previous action-button-previous float-right mr-3" value="Previous" >Add Part</button> -->
+                      <!-- <button type="button" name="next" class="  btn checkpartdata btn-primary next action-button-next float-right" value="next"  >Next</button>
+                        </fieldset>
+                        
+                        <fieldset> -->
+                         
+                                  <div class="col-md-12" style="visibility: hidden; height: 0;">
+                                    <div class="form-group">
+                                        <label>Part id</label>
+                                        <input readonly type="hidden" class="form-control"  id='partId' placeholder="---" data-errors="---" name="addpartNumber" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                           <div class="row">
+                                
+                                   <div class="col-md-4"> 
+                                    <div class="form-group">
+                                        <label>부품 크기</label>
+                                        <input readonly type="text" class="form-control" id='partSize' placeholder="---" data-errors="---" name="addpartMassgEA" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                              <div class="col-md-2"> 
+                                    <div class="form-group">
+                                        <label>부품중량 </label>
+                                        <input readonly type="number" class="form-control" id='partWeight'placeholder="---" data-errors="---" name="addpartMassg" value="" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                 <div class="col-md-2"> 
+                                    <div class="form-group">
+                                        <label>등록일자</label>
+                                        <input readonly type="date" class="form-control" id='partRegisteredDate'placeholder="---" data-errors="---" style=" font-size: 15px;" name="addpartMassPerc" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                     <label>메모</label>
+                                        <input readonly type="text" class="form-control" id='companyName' placeholder="---" data-errors="---" name="addsupplierInfo" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                
+                       </div>
+
+              
+                                       <div class="buttonaddParts addPart" style="display: none;" id="editForm">
+                                <div class="content">
+                                    <i class="bx bxs-edit"></i>
+                                    <span class="buttonaddParts-text">Add Part to Product</span>
+                                </div>
+                            </div>
+                        </fieldset>
+                        
+                     </form>
+
+                     
+       <div class="row" style="align-items: baseline;">
+        <div class="col-md-2">
+     <div class="table-responsive" style="  border-radius: 10px;  height: 310px; overflow: auto;">
+                        <table id="tree-table-1" class="table table-hover table-bordered iq-bg-white tree" style="    border-collapse: collapse;
+  border-radius: 1em;
+  overflow: hidden;">
+                           <thead class="" style="position: sticky; top: 0; background-color: #023047;">
+                              <tr>
+                                 <th class="breadproductname" style="color: white;"></th>
+                              </tr>
+                           </thead>
+                           <tbody class="breadbody">
+                       
+                            
+                           </tbody>
+                        </table>
+                     </div>
+        </div>
+         <div class="col-md-10" style="margin-top: 3%;">
+              <div  class="table-wrapper" style="    height: auto;"> 
+               <div class="deleterow align-items-center float-right" >
+             <button class="btnpr btnpr-add" style="width: 10%; margin-bottom: 10px; background: #F05D5E;"><div class="addnewproductbtnpr">Delete All</div></button>
+          </div>
+                               <table class="table-parts">
+                                <tr>
+                                      <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
+  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+</svg></th>
+                                   <th>Part Name</th>
+                                <th>Part Code</th>
+                                   <th>Part Weight</th>
+                                 <th>Part Size</th>
+                                     <th>Registration Date</th>
+                                       <th>Quantity</th>
+                                   <th>Memo</th>
+                                   <th style="width:16%">Action</th>
+                              
+                                </tr>
+                        
+                            <tbody class="addedpartslist">
+
+                            </tbody>
+                           </table>
+                        </div>
+        </div>
+       </div>
+                        
+                          <button type="button" class="btn btn-secondary action-button-close" data-dismiss="modaly">Close</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+            <!-- Modal -->
+             </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!--add new material-->
+     <div class="addPartmodaly modaly-wrapper">
+      <div class="modaly">
+        <div class="modaly-header"><h3>Add New Material</h3></div>
+        <div class="modaly-body">
+          <div class="card-body">
+                     <div class="">
+                        <form class="form"  autocomplete="off"  data-toggle="validator" id="form-wizard1">
+                             <ul id="top-tab-list" class="p-0">
+                           
+                           <li id="personal">
+                              <a href="#personal">
+                              <i class="ri-user-fill"></i><span>Material Details </span>
+                              </a>
+                           </li>
+                        
+                        </ul>
+                        <!-- fieldsets -->
+                        <fieldset>
+                           <div class="form-card text-left">
+                              <div class="row">
+                                 <div class="col-7">
+                                    <h3 class="mb-4">Enter New Material Details:</h3>
+                                 </div>
+                                 <div class="col-5">
+                                    <!-- <h2 class="steps">Step 3 - 4</h2> -->
+                                 </div>
+                              </div>
+                              
+                           <div class="row">
+                                           <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Material Group *</label>
+                                         <select class="form-control" id="editmaterialGroup" name="addmaterialGroup" data-errors="Please Enter Material Category."  required>
+                                             <option>Steels and ferrous materials</option>
+                                             <option>Non-ferrous metals and alloys</option>
+                                             <option>Precious metals</option>
+                                             <option>Non-metallic inorganic materials</option>
+                                               <option>Other inorganics</option>
+                                             <option>Unfilled thermoplastics resin</option>
+                                             <option>Filled thermoplastics resin</option>
+                                             <option>Duromers</option>
+                                               <option>Elastomers</option>
+                                             <option>Natural materials</option>
+                                             <option>Other organics</option>
+                                             <option>Materials for product operation</option>
+                                             
+                                           </select>
+                                        <!-- <input type="text" class="form-control" id='editproductName' placeholder="Enter Product Name" data-errors="Please Enter Product Name." name="productName" required> -->
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>  
+                               <!-- <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Material Name</label>
+                                        <input type="text" class="form-control"  id='materialClassID'placeholder="Enter Enter Material Class ID" data-errors="Please Part number." name="addmaterialName" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>  -->
+                                  <div class="col-md-6">                
+                                            <div class="form-group">
+                                        <label>Material Name *</label>
+                                         <select class="form-control addmaterialName" id="editmaterialName" name="addmaterialName" data-errors="Please Enter Product Name."  required>
+                                            <option>Stainless steel </option>
+                                            <option>Cast and sintered irons</option>
+                                            <option>Other ferrous alloys, non-stainless steels</option>
+                                            <option>Aluminium and its alloys</option>
+                                            <option>Copper and its alloys</option>
+                                            <option>Magnesium and its alloys</option>
+                                            <option>Nickel and its alloys</option>
+                                            <option>Zinc and its alloys</option>
+                                            <option>Lead and its alloys (including Pb solders)</option>
+                                            <option>Tin and its alloys (including Pb-free solders)</option>
+                                            <option>Other non-ferrous metals and alloys</option>
+                                            <option>Gold</option>
+                                            <option>Platinum</option>
+                                            <option>Other precious metals</option>
+                                            <option>Ceramics</option>
+                                            <option>Glass</option>
+                                            <option>Other inorganic materials </option>
+                                            <option>PolyVinylChloride (PVC)</option>
+                                            <option>PolyEthylene (PE)</option>
+                                            <option>PolyPropylene (PP)</option>
+                                            <option>PolyStyrene (PS)</option>
+                                            <option>PolyCarbonate (PC)</option>
+                                            <option>PolyOxyMethylene (POM)</option>
+                                            <option>Acrylonitrile-Butadiene-Styrene (ABS)</option>
+                                            <option>Styrene Acrylonitrile (SAN)</option>
+                                            <option>PolyAmide (PA)</option>
+                                            <option>PolyEthyleneTerephthalate (PET)</option>
+                                            <option>PolyPhenyleneEther (PPE)</option>
+                                            <option>PolyButyleneTerephthalate (PBT)</option>
+                                            <option>PC-PBT</option>
+                                            <option>PC-ABS</option>
+                                            <option>PPE-PS</option>
+                                            <option>Other unfilled thermoplastics</option>
+                                            <option>PolyVinylChloride (PVC)</option>
+                                            <option>PolyEthylene (PE)</option>
+                                            <option>PolyPropylene (PP)</option>
+                                            <option>PolyStyrene (PS)</option>
+                                            <option>PolyCarbonate (PC)</option>
+                                            <option>PolyOxyMethylene (POM)</option>
+                                            <option>Acrylonitrile-Butadiene-Styrene (ABS)</option>
+                                            <option>Styrene Acrylonitrile (SAN)</option>
+                                            <option>PolyAmide (PA)</option>
+                                            <option>PolyEthyleneTerephthalate (PET)</option>
+                                            <option>PolyPhenyleneEther (PPE)</option>
+                                            <option>PolyButyleneTerephthalate (PBT)</option>
+                                            <option>PC-PBT</option>
+                                            <option>PC-ABS</option>
+                                            <option>PPE-PS</option>
+                                            <option>Other filled thermoplastics</option>
+                                            <option>Polyurethane (PUR)</option>
+                                            <option>Unsaturated polyester (UP)</option>
+                                            <option>Epoxy resin (EP)</option>
+                                            <option>Other duromers</option>
+                                            <option>NBR</option>
+                                            <option>Silicone</option>
+                                            <option>Other elastomers</option>
+                                            <option>Wood</option>
+                                            <option>Paper</option>
+                                            <option>Fiber</option>
+                                            <option>Leather</option>
+                                            <option>Other organic materials </option>
+                                            <option>Refrigerant gases and cryogens and other greenhouse gases</option>
+                                            <option>Other gases</option>
+                                            <option>Oils and greases</option>
+                                            <option>Fuels </option>
+                                            <option>Other liquids</option>
+                                            <option>Other substances or mixtures for product operation </option>
+                                                                                        
+                                           </select>
+                                        <!-- <input type="text" class="form-control" id='editproductName' placeholder="Enter Product Name" data-errors="Please Enter Product Name." name="productName" required> -->
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>  
+                           </div>  
+                               <div class="row">
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Class ID</label>
+                                        <input type="text" class="form-control"  id='materialClassID' placeholder="Enter Enter Material Class ID" data-errors="Please Part number." name="addmaterialClassID" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                <div class="col-md-4"> 
+                                    <div class="form-group">
+                                        <label>Recycle Rate (%)</label>
+                                        <input type="number" class="form-control" id='materialRecycleContent' placeholder="Enter Material Recycle Rete (%)" data-errors="Please enter Material Recycle Rete (%)" name="addmaterialRecycleContent" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                               </div>
+                              <div class="row">
+                                  <div class="col-md-12"> 
+                                    <div class="form-group">
+                                        <label>Recycle Type *</label>
+                                         <select name="addmaterialRecycleType" id="editMaterialRecycleType" class="selectpicker form-control" data-style="py-0">
+                                       <option>Select Option</option>
+                                       <option>Option 1</option>
+                                       <option>Option 2</option>
+                                       <option >Option 3</option>
+                                       <option>Option 4</option>
+                                    
+                                    </select>
+                                        
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                              </div>
+                            <div class="row">
+                                     <div class="col-md-6"> 
+                                    <div class="form-group">
+                                        <label>Material Mass (g) *</label>
+                                        <input type="number" class="form-control" id='editMaterialMassg'placeholder="Please enter Material mass" data-errors="Please part mass." name="addmaterialMassg" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                 <div class="col-md-6"> 
+                                    <div class="form-group">
+                                        <label>Material Mass (%) *</label>
+                                        <input type="number" class="form-control" id='editMaterialMassPerc'placeholder="Please enter Material mass" data-errors="Please part mass." name="addmaterialMassPerc" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                            </div>
+                           </div>
+                    
+                        <button  id="edit"  class="btn btn-primary btn-light  action-button-previous float-right mr-3" >소재 추가하기</button>
+                             <button type="button" class="btn btn-secondary action-button-close" data-dismiss="modaly" >Close</button>
+                        </fieldset>
+                      
+                   </form>
+                 </div>
+            <!-- Modal -->
+             </div>
+        </div>
+      </div>
+    </div>
+
+<!--view partproduct material-->
+  <div class="modal fade" id="partproductmaterial" tabindex="-1" role="dialog" aria-labelledby="partproductmaterial" style="z-index: 99999;" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                           <div class="modal-content">
+                      
+                              <div class="modal-body">
+                            <div class="modaly-header"> <span class="setPPheaderMat" style="font-size: 150%; color:black;"> </span></div>
+      <div class="container-fluid">
+        <div class="row" style="align-items: center;">
+        <!-- <div class="col-md-2">
+     <div class="table-responsive">
+                        <table id="tree-table-4" class="table table-hover table-bordered iq-bg-success  tree">
+                           <thead class="bg-success">
+                              <tr>
+                                 <th class="breadpartname"></th>
+                              </tr>
+                           </thead>
+                           <tbody class="breadpartmat">
+                        
+                           
+                           </tbody>
+                        </table>
+                     </div>
+        </div> -->
+        <div class="col-md-12">
+   <div class="table-responsive">
+                    <div  class="table-wrapper"> 
+                               <table class="table-parts" id="myTable">
+                            <thead>
+                                <tr>
+                                                             <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
+  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+</svg></th>
+                                <th >  Material Category</th>
+                                  <th>  Material Name</th>
+                                      <th>  Recycle Rate (%)</th>
+                                        <th>  Recycle Type</th>
+                                          <th>  Mass (g)</th>
+                                            <th>  Mass (%)</th>
+                                <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="materiallist">
+
+                            </tbody>
+                           </table>
+                        </div>
+                         <div class="modal-footer" >
+                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          
+                              </div>
+                     </div>
+        </div>
+        </div>
+                       
+                  </div>
+               </div>            
+            </div>
+         </div>    
+        </div>
+
+ <div class="modal fade" id="partproductmaterialsubs" tabindex="-1" role="dialog" aria-labelledby="partproductmaterialsubs" style="z-index: 99999;" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                           <div class="modal-content">
+                           
+                              <div class="modal-body">
+                            <div class="modaly-header"> <span class="setPPheaderSubs" style="font-size: 150%; color:black;"> </span></div>
+      <div class="container-fluid">
+<div class="col-md-6 float-right">
+   
+                       <div class="input-group mb-3">
+                        
+                       <div class="form-group" id="formfloat" style="width: 50%;">
+                      <div class="input-group mb-3">
+                      
+                        <select  class="custom-select sortSubsSelection" id="inputGroupSelect03">
+                           <option value="" selected>Sort by...</option>
+                           <option value="4">Sort by  CRM</option>
+                           <option value="3">Sort by ROHS</option>
+                   
+                        </select>
+                           <div class="input-group-append">
+                           <span class="input-group-text" id="basic-addon5"><i class="bx bx-sort font-size-20"></i></span>
+                        </div>
+                     </div>
+                     </div>
+                        <div class="input-group-prepend" style="width: 40%; margin-left: 2%;">
+                           <input type="text" class="form-control" id="myInputSub" style="margin: 0; border-radius: 10px 0 0 10px; height:46px;" onkeyup='subSearch()' name="myInputSub" placeholder="Search Substance Name" aria-label="Search Part Name"
+                           aria-describedby="basic-addon5">
+                        </div>
+                        
+                           <div class="input-group-append" style="height: 46px;">
+                           <span class="input-group-text" id="basic-addon5"><i class="las la-search font-size-20"></i></span>
+                        </div>
+                     </div>
+</div>
+        
+                          <div class="table-responsive">
+                    <div  class="table-wrapper"> 
+                               <table class="table-parts mysubsTable" id="myTable">
+                            <thead>
+                                
+                                <tr>
+                            <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
+  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+</svg></th>
+                               <th>Substance Name</th>
+                                    <th>CAS No</th>
+                                    <th>CRMs</th>
+                                        <th>ROHS</th>
+                                        <th>Substance Mass (g)</th>
+                                      
+                                            <th>Substance Mass (%)</th>
+                                 
+                                <th>Action</th>
+                                </tr>
+                        
+                            </thead>
+                            <tbody class="substancelist">
+
+                            </tbody>
+                           </table>
+                        </div>
+                         <div class="modal-footer" >
+                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          
+                              </div>
+                     </div>
+                  </div>
+               </div>            
+            </div>
+         </div>    
+        </div>
+
+  </div>
+         <!--Here ends the form-->
+          </div>
+          </div>
+         </div>
+        </div>
+      </div>
+     </div>
+    </div>
+ </div>
+</div>
+
+    <!--View Data table tree-->
+     <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true" style="   width: 115%; left: -5%;">
+                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                           <div class="modal-content" style="    overflow-x: hidden;">
+                              <div class="modal-header">
+                                 <h5 class="modal-title " id="exampleModalScrollableTitle"><span class="treeproducttitle"></span></h5>
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                                 </button>
+                              </div>
+                              <div class="modal-body" style="    overflow-x: hidden;">
+                          
+      <div class="container-fluid" style="margin-left: 15px; margin-right: 15px;">
+
+                  
+        
+                     <ul class="nav nav-tabs" id="myTab-1" role="tablist">
+                        <li class="nav-item naveselect" style="   width: 34%;">
+                           <a class="nav-link active" id="pills-home-tab-fill" data-toggle="pill" href="#home" role="tab" aria-controls="home" aria-selected="true">재활용가능율평가[EN45555]
+</a>
+                        </li>
+                        <li class="nav-item naveselect">
+                           <a class="nav-link" id="pills-profile-tab-fill" data-toggle="pill" href="#profile" role="tab" aria-controls="profile" aria-selected="false">재활용함유율평가[EN45557]</a>
+                        </li>
+                          <li class="nav-item naveselect" >
+                           <a class="nav-link" id="pills-Accessment-tab-fill" data-toggle="pill" href="#Accessment" role="tab" aria-controls="Accessment" aria-selected="false">희소물질선언[EN45558]</a>
+                        </li>
+                     
+                     </ul>
+                     <div class="tab-content" id="myTabContent-2">
+                        <div class="tab-pane fade show active " id="home" role="tabpanel" aria-labelledby="home-tab">
+                 
+                             <div class="row downloadtitle">
+                                   <nav class="navbary"  style="background-color:  #023047; width: 15%; ";>
+
+  	<a href="#" class="navbary__link reportbtn"  style="background-color:  #023047">
+		<span class=""  ><i class='bx bxs-file-pdf' style="color: white; font-size: 30px;"></i></span>
+		<span class="navbary__label" style="background-color:  #023047; top: -45px;  width: 200px;">PDF 다운로드 [EN45555]</span>
+	</a>
+   	<a href="#" class="navbary__link reportbtnCSV"  style="background-color:  #023047">
+		<span class=""  ><svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" style="color: white; font-size: 30px;" fill="currentColor" class="bi bi-filetype-csv" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM3.517 14.841a1.13 1.13 0 0 0 .401.823c.13.108.289.192.478.252.19.061.411.091.665.091.338 0 .624-.053.859-.158.236-.105.416-.252.539-.44.125-.189.187-.408.187-.656 0-.224-.045-.41-.134-.56a1.001 1.001 0 0 0-.375-.357 2.027 2.027 0 0 0-.566-.21l-.621-.144a.97.97 0 0 1-.404-.176.37.37 0 0 1-.144-.299c0-.156.062-.284.185-.384.125-.101.296-.152.512-.152.143 0 .266.023.37.068a.624.624 0 0 1 .246.181.56.56 0 0 1 .12.258h.75a1.092 1.092 0 0 0-.2-.566 1.21 1.21 0 0 0-.5-.41 1.813 1.813 0 0 0-.78-.152c-.293 0-.551.05-.776.15-.225.099-.4.24-.527.421-.127.182-.19.395-.19.639 0 .201.04.376.122.524.082.149.2.27.352.367.152.095.332.167.539.213l.618.144c.207.049.361.113.463.193a.387.387 0 0 1 .152.326.505.505 0 0 1-.085.29.559.559 0 0 1-.255.193c-.111.047-.249.07-.413.07-.117 0-.223-.013-.32-.04a.838.838 0 0 1-.248-.115.578.578 0 0 1-.255-.384h-.765ZM.806 13.693c0-.248.034-.46.102-.633a.868.868 0 0 1 .302-.399.814.814 0 0 1 .475-.137c.15 0 .283.032.398.097a.7.7 0 0 1 .272.26.85.85 0 0 1 .12.381h.765v-.072a1.33 1.33 0 0 0-.466-.964 1.441 1.441 0 0 0-.489-.272 1.838 1.838 0 0 0-.606-.097c-.356 0-.66.074-.911.223-.25.148-.44.359-.572.632-.13.274-.196.6-.196.979v.498c0 .379.064.704.193.976.131.271.322.48.572.626.25.145.554.217.914.217.293 0 .554-.055.785-.164.23-.11.414-.26.55-.454a1.27 1.27 0 0 0 .226-.674v-.076h-.764a.799.799 0 0 1-.118.363.7.7 0 0 1-.272.25.874.874 0 0 1-.401.087.845.845 0 0 1-.478-.132.833.833 0 0 1-.299-.392 1.699 1.699 0 0 1-.102-.627v-.495Zm8.239 2.238h-.953l-1.338-3.999h.917l.896 3.138h.038l.888-3.138h.879l-1.327 4Z"/>
+</svg></span>
+		<span class="navbary__label" style="background-color:#023047; top: -45px; left: -48px; width: 200px;">CSV 다운로드 [EN45555]</span>
+	</a>
+   </nav>
+                            </div>
+                            <div class="" style="margin-left: 30px; margin-right: 30px; margin-top: 15px;">
+                              <div class="report" style="margin-right: 2%; margin-left: 2%; margin-top: 2%;">
+                               <div class="row" style="align-items: center;">
+                          <div class="col-md-4">
+                                <tr data-id="2" data-parent="1" data-level="2">
+                               <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Product Category</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0;" data-column="name" class="productCategory form-control" id="basic-url" aria-describedby="basic-addon3" style="font-size: 12px;">
+                                             </div>
+                                 </td>
+                              </tr>
+                               <tr data-id="2" data-parent="1" data-level="2">
+                               <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Product Name</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0;" data-column="name" class="productName form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                               <tr data-id="2" data-parent="1" data-level="2">
+                               <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Product Model Name</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0;" data-column="name" class="productMNAssess form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                              <tr data-id="2" data-parent="1" data-level="2">
+                               <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Product Weight</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0px;" data-column="name" class="productWeight form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                                <tr data-id="2" data-parent="1" data-level="2">
+                                  <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Product Size</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0;" data-column="name" class="productSizeAssess form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                                      <tr data-id="2" data-parent="1" data-level="2">
+                                  <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Registration Date</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0;" data-column="name" class="registeredDate form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                                       <tr data-id="2" data-parent="1" data-level="2">
+                                  <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Product Status</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0;" data-column="name" class="productStatus form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                          </div>
+                          <div class="col-md-3">
+                      <table class="table">
+                        <thead class="thead-light">
+                           <tr>
+                              <th scope="col">Indication</th>
+                              <th scope="col">Mass(g)</th>
+                              <th scope="col">Mass(%)</th>
+                        
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <th scope="row">Reuse Weight</th>
+                              <td class="sumReuseWeight"></td>
+                              <td class="sumReuseWeightPerc"></td>
+                            
+                           </tr>
+                           <tr>
+                              <th scope="row">Recycling Weight</th>
+                              <td class="sumRecycWeightg"></td>
+                              <td class="sumRecycWeightPerc"></td>
+                       
+                           </tr>
+                           <tr>
+                              <th scope="row">Recovery Weight</th>
+                              <td class="sumRecovWeightg">
+                              <td class="sumRecovWeightPerc"></td>
+                           
+                           </tr>
+                             <tr>
+                              <th scope="row">Disposal Weight</th>
+                              <td class="disposalWeightg"></td>
+                              <td class="disposalWeightPerc"></td>
+                           </tr>
+                             <tr>
+                              <th scope="row">Energy Recovery Weight</th>
+                              <td class="energyRecoveryWeightg"></td>
+                              <td class="energyRecoveryWeightperc"></td>
+                           </tr>
+                             <tr>
+                              <th scope="row">Product Weight</th>
+                              <td class="sumTotalWeightg"></td>
+                              <td class="sumTotalWeightPerc"></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                          </div>
+                          <div class="col-md-5" >
+                              <div class="card">
+                  <div class="card-body">
+                     <div class="chart" id="chart"></div>
+                  </div>
+               </div>
+                          </div>
+                         </div>
+                   
+                   <!--Table EN45555-->
+                             
+                              <div class="row downloadtitle" style="    margin-right: -5%;
+">
+                                   <nav class="navbary"  style="background-color:  #023047; width: 15%; ";>
+ 	<a href="#" class="navbary__link convertAll" style="background-color:  #023047">
+		<span class=""  ><i class='ri-eye-line' style="color: white; font-size: 18px;"></i></span>
+		<span class="navbary__label" style="background-color:  #023047; top: -45px;  width: 200px;">Show All</span>
+	</a>
+  	<a href="#" class="navbary__link convertG" style="background-color:  #023047">
+		<span class=""  ><svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" style="fill: white;" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M384 176c0 70.7-57.3 128-128 128s-128-57.3-128-128s57.3-128 128-128s128 57.3 128 128zm7.8-112C359.5 24.9 310.7 0 256 0S152.5 24.9 120.2 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H391.8zM296 224c0-10.6-4.1-20.2-10.9-27.4l33.6-78.3c3.5-8.1-.3-17.5-8.4-21s-17.5 .3-21 8.4L255.7 184c-22 .1-39.7 18-39.7 40c0 22.1 17.9 40 40 40s40-17.9 40-40z"/></svg></span>
+		<span class="navbary__label" style="background-color:  #023047; top: -45px;  width: 200px;">Convert to Gram</span>
+	</a>
+   	<a href="#" class="navbary__link  convertPerc"  style="background-color:  #023047">
+		<span class=""  ><i class="ri-percent-line" style="color: white; font-size: 18px;"></i></span>
+		<span class="navbary__label" style="background-color:#023047; top: -45px; left: -24px; width: 200px;">Convert to %</span>
+	</a>
+   </nav>
+                            </div>
+                         <div class="row">
+                          
+                  <div class="table-wrapper" style="
+    display: block;
+    overflow-x: scroll; ">
+                         <div class="fulldata">
+                         <table class="table sumAssess" id="table">
+                       
+                               <thead class="thead" style="background-color: #023047; color: white; text-align: center;">
+                           <tr>
+                              <th scope="col" >Part</th>
+                              <th scope="col" class="toggleG ">Part Mass(g)</th>
+                              <th scope="col" >Material</th>
+                              <th scope="col" class="toggleG ">Material Mass(g) </th>
+                              <th scope="col" class="toggleG ">Reusablity Mass(g)</th>
+                              <th scope="col" class="togglePerc ">Reusablity  Mass(%)</th>
+                              <th scope="col" class="toggleG ">Recyclability  Mass(g)</th>
+                              <th scope="col" class="togglePerc ">Recyclability  Mass(%)</th>
+                              <th scope="col" class="toggleG ">Recoverability  Mass(g)</th>
+                              <th scope="col" class="togglePerc ">Recoverability  Mass(%)</th>
+                              <th scope="col" class="toggleG ">Disposable Mass(g)</th>
+                              <th scope="col" class="togglePerc ">Disposable Mass(%)</th>
+                              <th scope="col" class="toggleG ">Total Mass(g)</th>
+                              <th scope="col" class="togglePerc ">Total Mass(%)</th>
+                            
+                           </tr>
+                        </thead>
+                        <tbody class="renderEN4555" style="text-align: center;">
+                         
+                        </tbody>
+                  
+                     
+                      
+                    
+                     </table>
+                           </div>
+                         <div class="convertedToGram" style="display: none; height: 0;">
+                        <table class="table sumAssess" id="table">
+                           
+                               <thead class="thead" style="background-color: #023047; color: white; text-align: center;">
+                           <tr>
+                              <th scope="col" >Part</th>
+                              <th scope="col" class="toggleG ">Part Mass(g)</th>
+                              <th scope="col" >Material</th>
+                              <th scope="col" class="toggleG ">Material Mass(g) </th>
+                              <th scope="col" class="toggleG ">Reusablity Mass(g)</th>               
+                              <th scope="col" class="toggleG ">Recyclability  Mass(g)</th>                        
+                              <th scope="col" class="toggleG ">Recoverability  Mass(g)</th>                           
+                              <th scope="col" class="toggleG ">Disposable Mass(g)</th>            
+                              <th scope="col" class="toggleG ">Total Mass(g)</th>                            
+                           </tr>
+                        </thead>
+                        <tbody class="renderEN4555ToG" style="text-align: center;">
+                         
+                        </tbody>                     
+                       </table>
+                         </div>
+
+
+                        <div class="convertedToPerc" style="display: none; height: 0;">
+                       <table class="table sumAssess" id="table">
+                              
+                               <thead class="thead" style="background-color: #023047; color: white; text-align: center;">
+                           <tr>
+                              <th scope="col" >Part</th>
+                              <th scope="col" >Material</th>                           
+                              <th scope="col" class="togglePerc ">Reusablity  Mass(%)</th>                           
+                              <th scope="col" class="togglePerc ">Recyclability  Mass(%)</th>                              
+                              <th scope="col" class="togglePerc ">Recoverability  Mass(%)</th>               
+                              <th scope="col" class="togglePerc ">Disposable Mass(%)</th>
+                              <th scope="col" class="togglePerc ">Total Mass(%)</th>
+                            
+                           </tr>
+                        </thead>
+                        <tbody class="renderEN4555ToPerc" style="text-align: center;">
+                         
+                        </tbody>
+                      
+                       </table>
+                       </div>
+
+
+                           <!-- <table class="table sumAssessG">
+                        
+                        <thead class="thead" style="background-color: #023047; color: white; text-align: center;">
+                           <tr>
+                              <th scope="col">Part</th>
+                              <th scope="col">Part Mass(g)
+</th>
+                              <th scope="col">Material</th>
+                              <th scope="col">Material Mass(g) </th>
+                              <th scope="col">Reusablity Mass(g)</th>
+                  
+                              <th scope="col">Recyclability  Mass(g)</th>
+                           
+                              <th scope="col">Recoverability  Mass(g)</th>
+                              
+                              <th scope="col">Disposable Mass(g)</th>
+               
+                              <th scope="col">Total Mass(g)</th>
+
+                            
+                           </tr>
+                        </thead>
+                        <tbody class="renderEN4555G" style="text-align: center;">
+                         
+                        </tbody>
+                     </table> -->
+                  </div>
+                         </div>
+                         </div>
+                          <!--End Table EN45555-->
+                            </div>
+                        
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        
+                        <div  class="table-wrapper"> 
+ <div class="row downloadtitle" style="    padding-right: 2%;">
+                                <nav class="navbary"  style="background-color:  #023047; width: 15%; ";>
+
+  	<a href="#" class="navbary__link reportbtnEN4557"  style="background-color:  #023047">
+		<span class=""  ><i class='bx bxs-file-pdf' style="color: white; font-size: 30px;"></i></span>
+		<span class="navbary__label" style="background-color:  #023047; top: -45px;  width: 200px;">PDF 다운로드 [EN45557]</span>
+	</a>
+   	<a href="#" class="navbary__link reportTableCSVEN45557"  style="background-color:  #023047">
+		<span class=""  ><svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" style="color: white; font-size: 30px;" fill="currentColor" class="bi bi-filetype-csv" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM3.517 14.841a1.13 1.13 0 0 0 .401.823c.13.108.289.192.478.252.19.061.411.091.665.091.338 0 .624-.053.859-.158.236-.105.416-.252.539-.44.125-.189.187-.408.187-.656 0-.224-.045-.41-.134-.56a1.001 1.001 0 0 0-.375-.357 2.027 2.027 0 0 0-.566-.21l-.621-.144a.97.97 0 0 1-.404-.176.37.37 0 0 1-.144-.299c0-.156.062-.284.185-.384.125-.101.296-.152.512-.152.143 0 .266.023.37.068a.624.624 0 0 1 .246.181.56.56 0 0 1 .12.258h.75a1.092 1.092 0 0 0-.2-.566 1.21 1.21 0 0 0-.5-.41 1.813 1.813 0 0 0-.78-.152c-.293 0-.551.05-.776.15-.225.099-.4.24-.527.421-.127.182-.19.395-.19.639 0 .201.04.376.122.524.082.149.2.27.352.367.152.095.332.167.539.213l.618.144c.207.049.361.113.463.193a.387.387 0 0 1 .152.326.505.505 0 0 1-.085.29.559.559 0 0 1-.255.193c-.111.047-.249.07-.413.07-.117 0-.223-.013-.32-.04a.838.838 0 0 1-.248-.115.578.578 0 0 1-.255-.384h-.765ZM.806 13.693c0-.248.034-.46.102-.633a.868.868 0 0 1 .302-.399.814.814 0 0 1 .475-.137c.15 0 .283.032.398.097a.7.7 0 0 1 .272.26.85.85 0 0 1 .12.381h.765v-.072a1.33 1.33 0 0 0-.466-.964 1.441 1.441 0 0 0-.489-.272 1.838 1.838 0 0 0-.606-.097c-.356 0-.66.074-.911.223-.25.148-.44.359-.572.632-.13.274-.196.6-.196.979v.498c0 .379.064.704.193.976.131.271.322.48.572.626.25.145.554.217.914.217.293 0 .554-.055.785-.164.23-.11.414-.26.55-.454a1.27 1.27 0 0 0 .226-.674v-.076h-.764a.799.799 0 0 1-.118.363.7.7 0 0 1-.272.25.874.874 0 0 1-.401.087.845.845 0 0 1-.478-.132.833.833 0 0 1-.299-.392 1.699 1.699 0 0 1-.102-.627v-.495Zm8.239 2.238h-.953l-1.338-3.999h.917l.896 3.138h.038l.888-3.138h.879l-1.327 4Z"/>
+</svg></span>
+		<span class="navbary__label" style="background-color:#023047; top: -45px; left: -48px; width: 200px;">CSV 다운로드 [EN45557]</span>
+	</a>
+   </nav>
+                            </div>
+                
+                               <div class="" style="margin-left: 15px; margin-right: 30px; margin-top: 30px;">
+                                 <div class="reportEN4557" style="margin-right: 2%; margin-left: 2%; margin-top: 2%;">
+                               <div class="row" style="align-items: center;">
+                          <div class="col-md-4">
+                                <tr data-id="2" data-parent="1" data-level="2">
+                               <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Product Category</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0;" data-column="name" class="productCategory form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                               <tr data-id="2" data-parent="1" data-level="2">
+                               <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Product Name</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0;" data-column="name" class="productName form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                            <tr data-id="2" data-parent="1" data-level="2">
+                               <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Product Model Name</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0;" data-column="name" class="productMNAssess form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                              <tr data-id="2" data-parent="1" data-level="2">
+                               <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Product Weight</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0px;" data-column="name" class="productWeight form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                                    <tr data-id="2" data-parent="1" data-level="2">
+                                  <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Product Size</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0;" data-column="name" class="productSizeAssess form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                                      <tr data-id="2" data-parent="1" data-level="2">
+                                  <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Registration Date</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0;" data-column="name" class="registeredDate form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                                       <tr data-id="2" data-parent="1" data-level="2">
+                                  <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Product Status</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0;" data-column="name" class="productStatus form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                          </div>
+                          <div class="col-md-4">
+                            <div style="display: flex; flex-direction:column; align-items:center;">
+                                <table class="table" style="display: none;">
+                        <thead class="thead-light">
+                           <tr>
+                              <th scope="col">Indication</th>
+                              <th scope="col">Mass(g)</th>
+                              <th scope="col">Mass(%)</th>
+                        
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="">
+                              <th scope="row">Recycled Material</th>
+                              <td class="sumRecycWeight"></td>
+                              <td class="sumRecycWeightPer"></td>
+                           </tr>
+                           </tr>
+                             <tr>
+                              <th scope="row">Product Weight</th>
+                              <td class="sumTotalWeightg"></td>
+                              <td class="sumTotalWeightPerc"></td>
+                           
+                           </tr>
+                        </tbody>
+                            </table>
+                     <table class="table tableMatSummarry">
+                        <thead class="thead-light">
+                           <tr>
+                              <th scope="col">Recycled Material</th>
+                              <th scope="col">Recycled Mass(g)</th>
+                           <th scope="col">Recycled Mass(%)</th>
+                        
+                           </tr>
+                        </thead>
+                        <tbody class="summedrecyc">
+
+                        </tbody>
+                     </table>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                              <div class="card">
+                  <div class="card-body">
+                     <div class="chartsecond" id="chartsecond"></div>
+                  </div>
+               </div>
+                          </div>
+                         </div>
+                             
+                              <!--Table EN45557-->
+                                     
+                             
+                               <div class="row">
+                    <table class="table materialChart">
+                        <thead class="thead" style="background-color: #023047; color: white; text-align: center;">
+                           <tr>
+                              <th scope="col">Material Group </th>
+                                 <th scope="col">Material Name </th>
+                                    <th scope="col">Material Mass (g) </th>
+                                       <th scope="col">Recycled rate (%)</th>
+                                                   <th scope="col">Recycled Material Mass</th>
+                                   
+                           </tr>
+                        </thead>
+                        <tbody class="renderEN4557" style="text-align: center;">
+                         
+                        </tbody>
+                     </table>
+                                   </div>
+                            </div>
+                        
+                         <!--End Table EN45557-->
+                            </div>
+                        </div>
+                       
+                        </div>
+                         <div class="tab-pane fade" id="Accessment" role="tabpanel" aria-labelledby="Accessment-tab">
+                        
+                        <div  class="table-wrapper"> 
+                              <div class="row downloadtitle" style="    padding-right: 2%;">
+                        <nav class="navbary"  style="background-color:  #023047; width: 15%; ";>
+
+  	<a href="#" class="navbary__link reportbtnEN4558"  style="background-color:  #023047">
+		<span class=""  ><i class='bx bxs-file-pdf' style="color: white; font-size: 30px;"></i></span>
+		<span class="navbary__label" style="background-color:  #023047; top: -45px;  width: 200px;">PDF 다운로드 [EN45558]</span>
+	</a>
+   	<a href="#" class="navbary__link reportTableCSVEN45558"  style="background-color:  #023047">
+		<span class=""  ><svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" style="color: white; font-size: 30px;" fill="currentColor" class="bi bi-filetype-csv" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM3.517 14.841a1.13 1.13 0 0 0 .401.823c.13.108.289.192.478.252.19.061.411.091.665.091.338 0 .624-.053.859-.158.236-.105.416-.252.539-.44.125-.189.187-.408.187-.656 0-.224-.045-.41-.134-.56a1.001 1.001 0 0 0-.375-.357 2.027 2.027 0 0 0-.566-.21l-.621-.144a.97.97 0 0 1-.404-.176.37.37 0 0 1-.144-.299c0-.156.062-.284.185-.384.125-.101.296-.152.512-.152.143 0 .266.023.37.068a.624.624 0 0 1 .246.181.56.56 0 0 1 .12.258h.75a1.092 1.092 0 0 0-.2-.566 1.21 1.21 0 0 0-.5-.41 1.813 1.813 0 0 0-.78-.152c-.293 0-.551.05-.776.15-.225.099-.4.24-.527.421-.127.182-.19.395-.19.639 0 .201.04.376.122.524.082.149.2.27.352.367.152.095.332.167.539.213l.618.144c.207.049.361.113.463.193a.387.387 0 0 1 .152.326.505.505 0 0 1-.085.29.559.559 0 0 1-.255.193c-.111.047-.249.07-.413.07-.117 0-.223-.013-.32-.04a.838.838 0 0 1-.248-.115.578.578 0 0 1-.255-.384h-.765ZM.806 13.693c0-.248.034-.46.102-.633a.868.868 0 0 1 .302-.399.814.814 0 0 1 .475-.137c.15 0 .283.032.398.097a.7.7 0 0 1 .272.26.85.85 0 0 1 .12.381h.765v-.072a1.33 1.33 0 0 0-.466-.964 1.441 1.441 0 0 0-.489-.272 1.838 1.838 0 0 0-.606-.097c-.356 0-.66.074-.911.223-.25.148-.44.359-.572.632-.13.274-.196.6-.196.979v.498c0 .379.064.704.193.976.131.271.322.48.572.626.25.145.554.217.914.217.293 0 .554-.055.785-.164.23-.11.414-.26.55-.454a1.27 1.27 0 0 0 .226-.674v-.076h-.764a.799.799 0 0 1-.118.363.7.7 0 0 1-.272.25.874.874 0 0 1-.401.087.845.845 0 0 1-.478-.132.833.833 0 0 1-.299-.392 1.699 1.699 0 0 1-.102-.627v-.495Zm8.239 2.238h-.953l-1.338-3.999h.917l.896 3.138h.038l.888-3.138h.879l-1.327 4Z"/>
+</svg></span>
+		<span class="navbary__label" style="background-color:#023047; top: -45px; left: -48px; width: 200px;">CSV 다운로드 [EN45558]</span>
+	</a>
+   </nav>
+                                   
+                            </div>
+                  
+                               <div class="" style="margin-left: 15px; margin-right: 30px; margin-top: 30px;">
+                                 <div class="reportEN4558" style="margin-right: 2%; margin-left: 2%; margin-top: 2%;">
+                              <div class="row" style="align-items: center;">
+                          <div class="col-md-4">
+                                <tr data-id="2" data-parent="1" data-level="2">
+                               <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Product Category</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0;" data-column="name" class="productCategory form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                               <tr data-id="2" data-parent="1" data-level="2">
+                               <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Product Name</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0;" data-column="name" class="productName form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                              <tr data-id="2" data-parent="1" data-level="2">
+                               <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Product Model Name</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0;" data-column="name" class="productMNAssess form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                              <tr data-id="2" data-parent="1" data-level="2">
+                               <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Product Weight</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0px;" data-column="name" class="productWeight form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                                    <tr data-id="2" data-parent="1" data-level="2">
+                                  <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Product Size</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0;" data-column="name" class="productSizeAssess form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                                      <tr data-id="2" data-parent="1" data-level="2">
+                                  <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Registration Date</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0;" data-column="name" class="registeredDate form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                                       <tr data-id="2" data-parent="1" data-level="2">
+                                  <td class="" data-column="name">
+                                     <div class="input-group mb-3">
+                                                 <div class="input-group-prepend" height="15px;">
+                                                 <span class="input-group-text" id="basic-addon3">Product Status</span>
+                                                    </div>
+                                             <input readonly type="text" style="margin:0;" data-column="name" class="productStatus form-control" id="basic-url" aria-describedby="basic-addon3">
+                                             </div>
+                                 </td>
+                              </tr>
+                          </div>
+                          <div class="col-md-4">
+                              <table class="table">
+                        <thead class="thead-light">
+                           <tr>
+                              <th scope="col">Indication</th>
+                              <th scope="col">Mass(g)</th>
+                              <th scope="col">Mass(%)</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <th scope="row">CRM Weight</th>
+                              <td class="crmweightg"></td>
+                              <td class="crmweightPerc"></td>
+                           
+                           </tr>
+                             <tr>
+                              <th scope="row">Product Weight</th>
+                              <td class="sumTotalWeightg"></td>
+                              <td class="sumTotalWeightPerc"></td>
+                           
+                           </tr>
+                        </tbody>
+                     </table>
+                          </div>
+                          <div class="col-md-4">
+                              <div class="card">
+                  <div class="card-body">
+                     <div class="chartsthree" id="chartsthree"></div>
+                  </div>
+               </div>
+                          </div>
+                                    </div>
+                                
+                              
+                      <!-- Table EN45558-->
+                    
+                         <div class="row">
+                    <table class="table subsAssess">
+                        <thead class="thead" style="background-color: #023047; color: white; text-align: center;"> 
+                           <tr>
+                              <th scope="col">Part Name</th>
+                                 <th scope="col">Part Mass(g)</th>
+                                    <th scope="col">Material Name</th>
+                                       <th scope="col">Material Mass(g)</th>
+                              <th scope="col">CRM Substance</th>
+                              <th scope="col">CAS No.</th>
+                              <th scope="col" class="crmWeightg">CRM Mass(g) </th>
+                                   <th scope="col">CRM Mass(%)</th>
+                                      <th scope="col">CRMs</th>
+                                         <th scope="col">ROHS</th>
+                           </tr>
+                        </thead>
+                        <tbody class="renderParts" style="text-align: center;">
+                         
+                        </tbody>
+                     </table>
+
+                     
+                     
+                         </div>
+                         </div>
+                            <!--End Table EN45558-->
+                            </div>
+                        </div>
+                       
+                        </div>
+                     </div>
+                  </div>
+               </div>            
+            </div>
+         </div>    
+        </div>
+     
+     <div class="modal fade" id="addsubsproduct" tabindex="-1" role="dialog" aria-labelledby="addsubsproduct" style="z-index: 99999;" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                           <div class="modal-content">
+                          
+                              <div class="modal-body">
+                            <div class="modaly-header"> <span class="addPPheaderSubs" style="font-size: 150%; color:black;"> </span></div>
+      <div class="container-fluid">
+
+                    <form id="form-wizard1" class="addSubsForm text-center mt-4" name="formwizard" >
+                      
+                    
+                           <div class="form-card text-left">
+                              <div class="row">
+                            
+                             
+                              </div>
+                              <div class="row">
+                                     <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label>Substance Type: *</label>
+                                        <select  class="getprodsubstancetype form-control" id="sel1" name="getprodsubstancetype">
+                                            <option value="">물질 종류 선택</option>
+                                            <option value="crm">CRM</option>
+                                            <option value="rohs">ROHS</option>
+                                            <option value="none">None</option>
+                                          
+                                        </select>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label>Substance Name: *</label>
+                                        <select  class="getprodsubstancelist form-control" id="getSubsname" name="getprodsubstancetype">
+                                            <option value="">Select an option</option>
+                                          
+                                        </select>
+                                    </div>
+                                 </div>
+                              
+                              </div>
+                           </div>
+                         
+                   
+                           <div class="form-card text-left">
+                              <div class="row">
+                                 <div class="col-7">
+                                 </div>
+                                
+                              </div>
+                              <div class="row">
+                                 <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>CAS Number: *</label>
+                                       <input readonly type="text" class="addcas form-control" name="addcas" value="" placeholder=""  />
+                                    </div>
+                                 </div>
+                                    <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>Substance Mass (g): *</label>
+                                       <input type="number" class="addsubstanceMassg form-control" name="addsubstanceMassg"  />
+                                    </div>
+                                 </div>
+                                   <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>Substance Mass (%) : *</label>
+                                       <input type="number" class="addsubstanceMassPerc form-control" name="addsubstanceMassPerc"  />
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="row" style="visibility: hidden; height: 0;">
+                                   <div class="col-md-6" >
+                                    <div class="form-group">
+                                       <label>CRMs: *</label>
+                                       <input readonly type="text" class="addcrm form-control" name="addcrm" />
+                                    </div>
+                                 </div>
+                               
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label>ROHS: *</label>
+                                        <input readonly type="text" class="addrohs form-control" name="addrohs" />
+                                      
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                              <button type="button" id="addSubs" class="btn btn-dark action-button float-right" >Add New Substance</button>
+                    
+                     </form>
+                        <button type="button" id="subsmodalclose" class="btn btn-secondary"  >Close</button>
+                  </div>
+               </div>            
+            </div>
+         </div>    
+        </div>
+
+
+
+   
+    
+
+    
+    
+           
+     
+ <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-storage.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-functions.js"></script>
+
+    <!-- Backend Bundle JavaScript -->
+    <script src="../backend-bundle.min.js"></script>
+    <script src="../admin/products.js"></script>
+    <script    src="../sidemenu.js" ></script>
+     <script  type="module" src="../addbtn.js" ></script>
+      <script   src="../uploadarea/uploadImgProd.js" ></script>
+     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script> -->
+    <!-- Chart Custom JavaScript -->
+    <!-- <script src="../customizer.js"></script> -->
+      <script  src="../searchProd.js" ></script>
+      <script type="text/javascript" src="../table-to-excel-master/dist/tableToExcel.js"></script>
+          <script  src="../sortandsearch/sortProd.js" ></script>
+    <!-- Chart Custom JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
+    <!-- app JavaScript -->
+    <script src="../app.js"></script>
+     <!-- <script   type="module" src="./auth.js" ></script> -->
+        <!-- <script>feather.replace()</script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+
+
+
+
+    <script>
+       const report = document.querySelector('.report')
+       const reportbtn = document.querySelector('.reportbtn')
+        const reportEN4558 = document.querySelector('.reportEN4558')
+       const reportbtnEN4558 = document.querySelector('.reportbtnEN4558')
+        const reportEN4557 = document.querySelector('.reportEN4557')
+         const reportbtnEN4557 = document.querySelector('.reportbtnEN4557')
+
+          const reportTablebtnEN4557 = document.querySelector('.reportTablebtnEN4557')
+            const reportTableEN4557 = document.querySelector('.reportTableEN4557')
+
+
+              const reportTableEN4558 = document.querySelector('.reportTableEN4558')
+                const reportbtnTableEN4558 = document.querySelector('.reportbtnTableEN4558')
+        
+                const reportTablebtn = document.querySelector('.reportTablebtn')
+                const reportTable = document.querySelector('.reportTable')
+                
+                
+window.onload = function () {
+       reportbtn
+        .addEventListener("click", () => {
+            const invoice = report;
+            console.log(invoice);
+            console.log(window);
+            var opt = {
+                margin: 0.1,
+                filename: 'Assessment Report.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 1 },
+                jsPDF: { unit: 'cm', format: 'A1', orientation: 'portrait' }
+            };
+            html2pdf().from(invoice).set(opt).save();
+        })
+
+    reportbtnEN4558
+        .addEventListener("click", () => {
+            const invoice = reportEN4558;
+            console.log(invoice);
+            console.log(window);
+            var opt = {
+                margin: 0.1,
+                filename: 'Assessment Report EN4558.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'cm', format: 'A2', orientation: 'portrait' }
+            };
+            html2pdf().from(invoice).set(opt).save();
+        })
+
+     
+       reportbtnEN4557.addEventListener("click", () => {
+            const invoice = reportEN4557;
+            console.log(invoice);
+            console.log(window);
+            var opt = {
+                margin: 0.1,
+                filename: 'Assessment Report EN4557.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'cm', format: 'A2', orientation: 'portrait' }
+            };
+            html2pdf().from(invoice).set(opt).save();
+        })
+          
+}
+
+     </script>
+     <script>	
+   document.querySelector('.reportbtnCSV').onclick = function() {
+      TableToExcel.convert(document.querySelector(".sumAssess"));
+
+   }
+
+     document.querySelector('.reportTableCSVEN45557').onclick = function() {
+      TableToExcel.convert(document.querySelector(".materialChart"));
+
+   }
+
+    document.querySelector('.reportTableCSVEN45558').onclick = function() {
+      TableToExcel.convert(document.querySelector(".subsAssess"));
+
+   }
+   </script>
+  </body>
+</html>

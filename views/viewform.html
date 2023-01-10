@@ -1,0 +1,337 @@
+<div class="col-lg-12">
+  <div class="row justify-content-end mb-3">
+                              <div class="col-2">
+                        
+                              </div>
+                              <div class="col-2">
+                            
+                              </div><div class="col-8">
+                                <div class="row" style="
+    justify-content: end;
+    gap: 4%;
+">
+                                    <div class="" id="formfloat">
+                      <div class="input-group mb-3">
+                      
+                        <select class="custom-select sortSubsSelection" id="inputGroupSelect03">
+                           <option value="6" selected="">Choose...</option>
+                           <option value="0">Sort by Substance Name</option>
+                           <option value="1">Sorty by CAS number</option>
+                        </select>
+                           <div class="input-group-append">
+                           <span class="input-group-text" id="basic-addon5"><i class="bx bx-sort font-size-20"></i></span>
+                        </div>
+                     </div>
+                     </div>
+
+
+
+                      <div class="row" style="width: auto;">
+                        <div class="input-group-prepend" style="width: 60%;/* margin: 0; */">
+                           <input type="text" class="form-control" id="myInputSub" style="margin: 0; border-radius: 10px 0 0 10px; height:46px;"  name="myInputSub" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon5">
+                        </div>
+                        <select class="custom-select searchSubSelection" id="inputGroupSelect03" style="
+    width: 10%;
+    border-radius: 0;
+">
+                           <option selected="">Choose...</option>
+                           <option value="0">Substance Name</option>
+                           <option value="1">CAS Number</option>
+                        </select>
+                           <div class="input-group-append" style="
+    border-radius: 0;
+">
+                           <span class="input-group-text" id="basic-addon5" style="
+    height: 74%;
+    border-radius: 0 10px 10px 0;
+"><i class="las la-search font-size-20"></i></span>
+                        </div>
+                     </div>
+                                </div>
+                              </div>
+                           </div>
+</div>
+
+<script>
+    
+  let sortSubsSelection = document.querySelector(".sortSubsSelection")
+sortSubsSelection.addEventListener('change', ()=>{
+if (sortSubsSelection.value == 0) {
+
+
+var tablesubs, rows, switching, i, x, y, shouldSwitch;
+var tablesubs = document.querySelector(".table-users")
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = tablesubs.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[0];
+      y = rows[i + 1].getElementsByTagName("TD")[0];
+      //check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+else if (sortSubsSelection.value == 1) {
+
+
+var tablesubs, rows, switching, i, x, y, shouldSwitch;
+var tablesubs = document.querySelector(".table-users")
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = tablesubs.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[1];
+      y = rows[i + 1].getElementsByTagName("TD")[1];
+      //check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+})
+
+
+
+//Search Feature
+let searchSubSelection = document.querySelector(".searchSubSelection")
+  
+searchSubSelection.addEventListener('change', ()=>{
+if (searchSubSelection.value == 0) {
+document.getElementsByName('myInputSub')[0].placeholder = 'Search by Substance Name'
+}
+else if (searchSubSelection.value == 1) {
+document.getElementsByName('myInputSub')[0].placeholder = 'Search by CAS Number'
+}
+
+})
+const myInputSub = document.querySelector('#myInputSub')
+myInputSub.onkeyup = function() {
+     let filter,  tr, td, txtValue, input, table;
+                input = document.getElementById("myInputSub");
+                table = document.querySelector(".table-users");
+            //Intialising Variables
+          
+            filter = input.value.toUpperCase();
+          
+            tr = table.getElementsByTagName("tr");
+         
+    
+            for (let i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[searchSubSelection.value];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+} 
+  
+
+
+
+</script>
+
+<!--Part Solution for the quantity problem: the solution is to get the quantity of fetched part and multiply it to the values of the assess-->
+<script>
+    		for (var i = 0; i < materialDataUniq.length; i++){
+           db.collection('recycledproducts').doc(`${dataPWeightRef}`).collection('selectedParts').where('partname', '==', `${materialDataUniq[i].partRef}`).get().then((querySnapshot)=> {
+    querySnapshot.forEach((doc)=>{
+      let recycMat = parseFloat(materialDataUniq[i].recycMat)
+      let reuseMat = parseFloat(materialDataUniq[i].reuseMat)
+      let recovMat = parseFloat(materialDataUniq[i].recovMat)
+      let materialMass = parseFloat(materialDataUniq[i].materialMassg)
+      // let secondmaterialMass = parseFloat(secondMatarrUniq[i].materialMassg)
+      let PartMass = parseFloat(materialDataUniq[i].partWeight)
+         let recycleRate = parseFloat(materialDataUniq[i].materialRecycleContent)
+      // Reuse Mass (g)
+      let reuseMassgAssess = reuseMat * materialMass
+        console.log(reuseMassgAssess)
+           let prodWeightRefValue = viewassess.getAttribute('prodWeight');
+      // Reuse Mass (%)
+      let reuseMassPerAssess = reuseMassgAssess / prodWeightRefValue * 100
+    
+      // Recycle Mass (g),  Formula: material mass * Recycle factor
+      let recycleMassgAssess = materialMass * recycMat 
+      // Recycle Mass (%),  Formula: (material mass * Recycle factor) / Part Mass
+   
+      let recycleMassPercAssess = recycleMassgAssess  / materialMass * 100
+      console.log(recycleMassPercAssess)
+       //Recovery Mass (g),  Formula: material mass * Recovery factor
+      let recovMassgAssess = materialMass * recovMat 
+     //Recovery Mass (%),  Formula: (material mass * Recovery factor) / Part Mass
+      let recovMassPercAssess = recovMassgAssess / materialMass * 100
+      //  console.log(recovMassPercAssess.toFixed(2))
+      // Disposable Mass (g), Formulat: Material total mass - Recovery mass 
+      let disposabaleMassg = (materialMass - recovMassgAssess).toFixed(2)
+      // Disposable Mass (%), Formula: (Material total mass - Recovery mass) / Material mass
+      let disposabalePercMass = disposabaleMassg / materialMass * 100
+      // Energy Recovery Mass (g), Formula: Recovery mass - Reuse mass - Recycling mass 
+      let energyRecoMassgAssess = recovMassgAssess - reuseMassgAssess - recycleMassgAssess
+     
+      //Energy Recovery Mass (%), Formula: (Recovery mass - Reuse mass - Recycling mass ) / Material mass
+      const energyRecoMassPercAssess = energyRecoMassgAssess / materialMass 
+ console.log(energyRecoMassPercAssess)
+      // Recycled Material Mass (g), Formula: PartA's material mass * Recycled rate
+    //  const RecycMatg = materialMass * recycleRate
+        // Recycled Material Mass (g), Formula: PartA's material mass * Recycled rate
+    //  let RecycMatg = (recycMat * secondmaterialMass)
+   let RecycMatPerc = (materialDataUniq[i].materialMassg * recycleRate / 100).toFixed(2)
+      energyrecovarr.push(energyRecoMassgAssess)
+      energyrecovarrperc.push(energyRecoMassPercAssess)
+        //quantity  solution starts here
+  
+      console.log(doc.data().quantity)
+      		var row = `<tr>
+              <td>${materialDataUniq[i].partRef}</td>
+							<td class="toggleG " >${(PartMass*doc.data().quantity).toFixed(2)}</td>
+              <td>${materialDataUniq[i].materialName}</td>
+              <td class="toggleG ">${materialMass.toFixed(2)}</td>
+              <td class="toggleG ">${reuseMassgAssess.toFixed(2)}</td>
+              <td class="togglePerc ">${reuseMassPerAssess.toFixed(2)}</td>
+              <td class="toggleG  ">${recycleMassgAssess.toFixed(2)}</td>
+              <td class="togglePerc ">${recycleMassPercAssess.toFixed(2)}</td>
+              <td class="toggleG ">${recovMassgAssess.toFixed(2)}</td>
+              <td class="togglePerc ">${recovMassPercAssess.toFixed(2)}</td>
+              <td class="toggleG ">${parseFloat(disposabaleMassg).toFixed(2)}</td>
+              <td class="togglePerc ">${disposabalePercMass.toFixed(2)}</td>
+              <td class="toggleG ">${PartMass.toFixed(2)}</td>
+              <td class="togglePerc ">100</td>
+					  </tr>`
+
+			renderEN4555.innerHTML += row
+  
+   })
+	
+
+      		var row = `<tr>
+              <td>${materialDataUniq[i].partRef}</td>
+							<td>${PartMass.toFixed(2)}</td>
+              <td>${materialDataUniq[i].materialName}</td>
+              <td>${materialMass.toFixed(2)}</td>
+              <td>${reuseMassgAssess.toFixed(2)}</td>
+        
+              <td>${recycleMassgAssess.toFixed(2)}</td>
+              
+              <td>${recovMassgAssess.toFixed(2)}</td>
+          
+              <td>${parseFloat(disposabaleMassg).toFixed(2)}</td>
+          
+              <td>${PartMass.toFixed(2)}</td>
+        
+					  </tr>`
+  
+			renderEN4555ToG.innerHTML += row
+
+        		var row = `<tr>
+              <td>${materialDataUniq[i].partRef}</td>
+              <td>${materialDataUniq[i].materialName}</td>
+              <td class="togglePerc ">${reuseMassPerAssess.toFixed(2)}</td>
+              <td class="togglePerc ">${recycleMassPercAssess.toFixed(2)}</td>
+              <td class="togglePerc ">${recovMassPercAssess.toFixed(2)}</td>
+              <td class="togglePerc ">${disposabalePercMass.toFixed(2)}</td>
+              <td class="togglePerc ">100</td>
+					  </tr>`
+			renderEN4555ToPerc.innerHTML += row
+
+     
+
+      var rowMat = `
+         <tr> 
+         <td>${materialDataUniq[i].materialGroup}</td>
+         <td>${materialDataUniq[i].materialName}</td>
+         <td>${materialDataUniq[i].materialMassg.toFixed(2)}</td>
+         <td>${recycleRate.toFixed(2)} </td>
+         <td>${parseFloat(RecycMatPerc).toFixed(2)} (g)</td>
+               </tr>
+      `
+    
+      	renderEN4557.innerHTML += rowMat
+    })
+
+
+		}
+</script>
+
+
+<script>
+  
+      db.collection('recycledparts').doc(idref).set({
+            supplierName: "Kitech",
+            partName: obj.partName,
+            partCode: obj.partCode,
+            partWeight: obj.partWeight,
+
+            partWidth: obj.partWidth,
+            partDepth: obj.partDepth,
+            partHeight: obj.partHeight,
+
+            sizeUnit: obj.sizeUnit,
+            partRegisteredDate: obj.partRegisteredDate,
+            reusedPart: obj.reusedPart,
+            partMemo: obj.partMemo
+           },{merge:true}) .then((doc)=> {
+            console.log("Document Added")
+            
+                  let  partRef = doc.id 
+                   console.log("Documents Added!")
+      db.collection('recycledparts').doc(partRef).collection('materials').add({
+              materialGroup	: obj.materialGroup,
+            materialMassPerc: obj.materialMassPerc,
+            materialMassg: obj.materialMassg,
+            materialName: obj.materialName,
+
+            materialRecycleContent: obj.materialRecycleContent,
+            matnameSelect: obj.matnameSelect,
+            partRef: obj.partName,
+            partRefWeight: obj.partWeight,
+
+            recovMat: obj.recovMat,
+            recycMat: obj.recycMat,
+            reuseMat: obj.reuseMat,
+
+      })
+    })
+</script>

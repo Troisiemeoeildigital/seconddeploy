@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>draggable</title>
+  <script src="https://cdn.jsdelivr.net/npm/table-dragger@1.0.2/dist/table-dragger.min.js"></script>
+ 
+</head>
+<body>
+<table id="table">
+
+    <thead>
+
+    <tr>
+
+      <th class='handle'>Header 1</th>
+
+      <th class='handle'>Header 2</th>
+
+      <th class='handle'>Header 3</th>
+
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    <tr>
+
+      <td>Cell 1</td>
+
+      <td>Cell 2</td>
+
+      <td>Cell 3</td>
+    </tr>
+
+    </tbody>
+  </table>
+   <script type="text/javascript">
+
+    var el = document.getElementById('table');
+
+  var dragger = tableDragger(el, {
+  mode: 'row',
+  dragHandler: '.handle',
+  
+  animation: 300
+});
+// dragger.on('drop',function(from, to){
+//   console(from);
+//   console(to);
+// });
+</script>
+</body>
+
+  
+</html>

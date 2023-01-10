@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en" style="font-size: 13px;">
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>자원효율성 통합시스템 | Dashboard for managing recyclable products</title>
+      
+      <!-- Favicon -->
+     
+ <link rel="stylesheet" href="../products.css" />
+  <link rel="stylesheet" href="./main.css" />
+  <!-- <link rel="stylesheet" href="../parts.css" /> -->
+
+   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+      <link rel="stylesheet" href="../backend.css" />
+      <link rel="stylesheet" href="../backend-plugin.min.css">
+       <link rel="stylesheet" href="../all.min.css">
+      <link rel="stylesheet" href="../line-awesome.min.css">
+      <link rel="stylesheet" href="../remixicon.css">
+      <style>
+               @media only screen and (max-width: 1599px ) {
+  .table-wrapper {
+    height: 35em;
+  }
+}
+              @media only screen and (min-width: 1650px ) {
+  .table-wrapper {
+    height: 50em;
+  } }
+      </style>
+        <!-- <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js"></script>
+   
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-auth.js" defer ></script> -->
+  
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-firestore.js"></script>
+  
+      </head>
+  <body class="" style="overflow-y: hidden;">
+    <!-- loader Start -->
+   
+    <!-- loader END -->
+    <!-- Wrapper Start -->
+      <div class="sidebar" style="background: #8ecae6;">
+    <div class="logo-details">
+     
+        <div class="logo_name">Kitech</div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+  
+    
+
+           <li>
+       <a  href="#" >
+       <i class="bx bx-bell"></i>
+         <span class="links_name">공지사항</span>
+       </a>
+       <span class="tooltip">공지사항</span>
+     </li>
+          <li>
+       <a  href="#" >
+       <i class="ri-question-line"></i>
+         <span class="links_name">자주 묻는 질문</span>
+       </a>
+       <span class="tooltip">자주 묻는 질문</span>
+     </li>
+    
+     <li class="profile" style="margin-bottom: 30px; background: #8ecae6;">
+         <div class="profile-details">
+           <!--<img src="profile.jpg" alt="profileImg">-->
+           <div class="name_job">
+             <div class="name">Logout</div>
+             <div class="job">2022 - 2023</div>
+               
+           </div>
+         </div>
+        <a href="/sessionLogout"  > <i style="background: #8ecae6;" class='bx bx-log-out' id="log_out" ></i> </a>
+       
+     </li>
+    </ul>
+  </div>
+    
+    
+  <section class="home-section">
+        
+<div class="content-page" style="    padding: 0px 5px 0;">
+     <div class="container-fluid" style="    padding-top: 80px;">
+           <div class="iq-top-navbar" style="box-shadow: 0 16px 15px 0 rgba(104, 199, 223, 0.07)">
+          <div class="iq-navbar-custom">
+              <nav class="navbar navbar-expand-lg navbar-light p-0">
+            
+               
+              
+                  <div class="d-flex align-items-center">
+                    <div class="userroledisplay adminelement" style="display: none;">
+                         <div class="card-body">
+                  
+                      <button type="button" class="btn mb-1" style="background-color: #8ecae6; font-size: 17px; color:white;">
+                      제품 제조사
+                      </button>
+                      <!-- <button type="button" class="btn mb-1 bg-success-light">
+                      Part Supplier <span class="badge badge-success ml-2">4</span>
+                      </button> -->
+                      <!-- <button type="button" class="btn mb-1 bg-danger-light">
+                      Notifications <span class="badge badge-danger ml-2">4</span>
+                      </button> -->
+                  </div>
+                  </div>
+                  <div class="userroledisplay notadmin" style="display: none;" >
+                         <div class="card-body">
+                  
+                      <!-- <button type="button" class="btn mb-1 bg-primary-light">
+                      Product Manufacturer
+                      </button> -->
+                      <button type="button" class="btn mb-1 bg-success-light">
+                      부품 공급사 
+                      </button>
+                      
+                      <!-- <button type="button" class="btn mb-1 bg-danger-light">
+                      Notifications <span class="badge badge-danger ml-2">4</span>
+                      </button> -->
+                  </div>
+                  </div>
+                      <button class="navbar-toggler" type="button" data-toggle="collapse"
+                          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                          aria-label="Toggle navigation">
+                          <i class="ri-menu-3-line"></i>
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                          <ul class="navbar-nav ml-auto navbar-list align-items-center">
+                             
+                              <li class="nav-item nav-icon search-content">
+                                  <a href="#" class="search-toggle rounded" id="dropdownSearch" data-toggle="dropdown"
+                                      aria-haspopup="true" aria-expanded="false">
+                                      <i class="ri-search-line"></i>
+                                  </a>
+                                  <div class="iq-search-bar iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownSearch">
+                                      <form action="#" class="searchbox p-2">
+                                          <div class="form-group mb-0 position-relative">
+                                              <input type="text" class="text search-input font-size-12"
+                                                  placeholder="type here to search...">
+                                              <a href="#" class="search-link"><i class="las la-search"></i></a>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </li>
+                              <li class="nav-item nav-icon dropdown caption-content">
+                                  <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton4"
+                                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <img src="../1.png" class="img-fluid rounded" alt="user">
+                                  </a>
+                                  <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <div class="card shadow-none m-0">
+                                          <div class="card-body p-0 text-center">
+                                              <div class="media-body profile-detail text-center">
+                                                  <img src="../profile-bg.jpg" alt="profile-bg"
+                                                      class="rounded-top img-fluid mb-4">
+                                                  <img src="../1.png" alt="profile-img"
+                                                      class="rounded profile-img img-fluid avatar-70">
+                                              </div>
+                                              <div class="p-3" >
+                                                   <div class="mb-1">
+                                                    <h5 class="mb-1 " id="usertitle" ></h5>
+                                                    <h5 class="mb-1 " id="useremailcard" ></h5>
+                                                </div>
+                                                  
+                                                  <p class="mb-0">계정 생성일: 2022/08/02</p>
+                                                  <div class="d-flex align-items-center justify-content-center mt-3">
+                                                      <a href="./userprofile" class="btn border mr-2">내 계정</a>
+                                                      <a href="/sessionLogout" class="btn border">로그아웃</a>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </nav>
+          </div>
+      </div>
+    
+<div class="content-page">
+     <div class="container-fluid">
+        <div class="row" style="    height: 80vh;">
+      
+        <!--Here starts the form-->
+
+<div class="row col-lg-12 wrapperdiv" style="  display: flex;  flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;">
+<div class="form-structor">
+	<div class="signup">
+		<h2 class="requestInfo" id="signup">관리자에게 권한 할당을 요청해주세요</h2>
+      <div class="requestData">
+       
+        
+      </div>
+			
+                  <nav class="navbary" style="background-color: black; width: 50%; margin-top: 15%;">
+	<a href="#" style="margin: 5%;">
+		<span  style="    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+
+    justify-content: space-between;" ><span style="color: white; font-size: 10px;" >권한 종류 확인하기</span> <i class="ri-external-link-line" style="color: white; font-size: 15px; "></i></span>
+		
+	</a>
+    </nav>
+		
+		<!-- <button class="submit-btn">Sign up</button> -->
+	</div>
+	<div class="login slide-up">
+		<div class="center">
+			<h2 class="form-title" id="login">권한 요청하기</h2>
+			<div class="form-holder" style="
+        display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+">
+				     <div class="input-group mb-3 form-holder" >
+                      
+                        <select class="custom-select roleSelect" id="inputGroupSelect03">
+                           <option value="" selected="">선택하기</option>
+                         <option value="Product Manufacturer">제품 제조사</option>
+                           <option value="Part Supplier">부품 공급사</option>
+                        </select>
+                           <div class="input-group-append">
+                           <span class="input-group-text" id="basic-addon5"><i class='bx bx-lock-open' style="font-size: 20px;"></i></span>
+                        </div>
+                     </div>
+			
+		
+                  <nav class="navbary" style="background-color: black; width: 50%;">
+	<a href="#" class="navbary__link">
+		<span class="requestAccess" style="color: white;" >요청하기</span>
+	
+	</a>
+    </nav>
+		</div>
+	</div>
+</div>
+</div>
+
+
+ 
+
+
+
+         <script    src="../sidemenu.js" ></script>
+ <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+
+
+  <!-- <script  type="module" src="../userslist.js" defer></script> -->
+   <!-- <script>feather.replace()</script> -->
+    <!-- Backend Bundle JavaScript -->
+    <script src="../backend-bundle.min.js"></script>
+      <script src="./main.js"></script>
+    <!-- Table Treeview JavaScript -->
+ 
+    
+    <!-- Chart Custom JavaScript -->
+    <script src="../customizer.js"></script>
+    
+    <!-- Chart Custom JavaScript -->
+    <!-- <script async src="./chart-custom.js"></script> -->
+    
+    <!-- app JavaScript -->
+    <script src="../app.js"></script>
+  </body>
+</html>

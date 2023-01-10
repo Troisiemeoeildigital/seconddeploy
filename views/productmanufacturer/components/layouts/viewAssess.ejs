@@ -1,0 +1,49 @@
+ <div class="assess modaly-wrapper" >
+       <div class="modaly" style="width: 85%;left: 10%; top: -5%; border-radius: 10px;">
+                      
+                              <div class="modal-header">
+                                 <h5 class="modal-title " id="exampleModalScrollableTitle"><span class="treeproducttitle"></span></h5>
+                                 <button type="button" class="close" data-dismiss="modaly-wrapper" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                                 </button>
+                              </div>
+                         
+                              <div class="modal-body" style="overflow-x: hidden; height: 60em;">
+                          
+      <div class="container-fluid" style="margin-left: 15px; margin-right: 15px;">
+
+                  
+        
+                     <ul class="nav nav-tabs" id="myTab-1" role="tablist">
+                        <li class="nav-item naveselect" style="   width: 34%;">
+                           <a class="nav-link active" id="pills-home-tab-fill" data-toggle="pill" href="#home" role="tab" aria-controls="home" aria-selected="true">재활용가능율평가[EN45555]
+</a>
+                        </li>
+                        <li class="nav-item naveselect">
+                           <a class="nav-link" id="pills-profile-tab-fill" data-toggle="pill" href="#profile" role="tab" aria-controls="profile" aria-selected="false">재활용함유율평가[EN45557]</a>
+                        </li>
+                          <li class="nav-item naveselect" >
+                           <a class="nav-link" id="pills-Accessment-tab-fill" data-toggle="pill" href="#Accessment" role="tab" aria-controls="Accessment" aria-selected="false">희소물질선언[EN45558]</a>
+                        </li>
+                     
+                     </ul>
+                     <div class="tab-content" id="myTabContent-2">
+                                               <%- include('AssessComp/en45555'); %>
+                                               <%- include('AssessComp/en45557'); %>
+                                               <%- include('AssessComp/en45558'); %>
+                       
+                     </div>
+                  </div>
+               </div>            
+    
+        </div>
+   </div>
+
+   <script>
+      const assess = document.querySelector('.assess')
+      const closeModal = document.querySelector('.close')
+      closeModal.onclick= function() {
+       assess.classList.remove('modaly-show')
+      }
+ 
+   </script>
