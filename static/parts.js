@@ -285,7 +285,7 @@ const setMatheader = document.querySelector('.setMatheader')
 
        <nav class="navbary" style="background-color: #fb8500; width: 80%;">
 	<a href="#" class="navbary__link" >
-		<span class="btnpmviewSubs"    data-id='${doc.id}' data-toggle="modal" data-target="#exampleModalScrollableSubstances"><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
+		<span class="btnpmviewSubs"  data-matName="${doc.data().materialGroup}"   data-id='${doc.id}' data-toggle="modal"   data-target="#exampleModalScrollableSubstances"><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
 		<span class="navbary__label" style="background-color: #fb8500;">View Substances</span>
 	</a>
 
@@ -777,18 +777,26 @@ addSubs.onclick = function(e) {
   console.log('Substance added Successfully');
   const subsform = document.querySelector('.subsform')
   subsform.reset()
+   getsubstancelist.innerHTML = ""
   // addmodalySubssSingle.classList.remove('modaly-show');
  })
 }}
 })
 btnpmviewSubs.forEach((eachbtnpmviewSubs)=>{
    const subsmatId = eachbtnpmviewSubs.getAttribute("data-id");
+     const matName = eachbtnpmviewSubs.getAttribute("matName");
 eachbtnpmviewSubs.onclick = function() {
 substancelisttable.innerHTML = "";
    const addPartSubsHeader = document.querySelector('.addPartSubsHeader')
-  addPartSubsHeader.innerHTML = `물질목록   - ${doc.data().partName}`
+   console.log(doc.data())
+ 
   console.log(`${subsmatId}`)
       //Start work here
+      db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${subsmatId}`).get()
+      .then((doc)=>{
+        console.log("Document data:", doc.data());
+ addPartSubsHeader.innerHTML = `물질목록 - ${doc.data().partRef} - ${doc.data().materialName}`
+      })
 db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${subsmatId}`).collection('substances').get()
 .then(query=>{
     let data = query.docs.map(doc=>{
