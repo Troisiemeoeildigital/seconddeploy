@@ -1088,6 +1088,7 @@ btnpraddParts.addEventListener('click', () => {
     const btnpraddWeightRef = btnpraddParts.getAttribute('part-weight');
      const btnpraddNameRef = btnpraddParts.getAttribute('product-name');
     console.log(btnpraddWeightRef)
+    supplierName.innerHTML = "";
   addedpartslist.innerHTML = "";
   const setPPheader = document.querySelector('.setPPheader')
   const setPPheaderMat = document.querySelector('.setPPheaderMat')
