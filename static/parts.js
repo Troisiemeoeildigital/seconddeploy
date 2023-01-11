@@ -125,9 +125,53 @@ let id;
 
 // Create element and render users
 
+ auth.onAuthStateChanged(user => {
+     if(user) {
+      
+ const userRef = db.collection('users').where('userID', '==', user.uid).get()
+
+userRef.then((querySnapshot) => {
+ querySnapshot.forEach((doc) => {
+  console.log( doc.data().userCompanyname)
+
+    
+    console.log('hey')
+    document.querySelector('.loadingtitle').innerHTML = "Data is loading - Please wait... ⌛"
+  document.querySelector('.loadingtitle').style.fontWeight = "600"
+  document.querySelector('.loadingtitle').style.color = "black"
+    document.querySelector('.loadingtitle').style.marginLeft = "43%";
+db.collection('recycledparts')
+.where("supplierName", '==',  doc.data().userCompanyname)
+.orderBy('partRegisteredDate', 'desc')
+.onSnapshot(snapshot => {
+  snapshot.docChanges().forEach(change => {
+    if(change.type === 'added') {
+      renderUser(change.doc);
+        // renderTest(change.doc);
+    }
+    if(change.type === 'removed') {
+      let tr = document.querySelector(`[data-id='${change.doc.id}']`);
+      let tbody = tr.parentElement;
+      tableUsers.removeChild(tbody);
+    }
+    if(change.type === 'modified') {
+      let tr = document.querySelector(`[data-id='${change.doc.id}']`);
+      let tbody = tr.parentElement;
+      tableUsers.removeChild(tbody);
+      renderUser(change.doc);
+        // renderTest(change.doc);
+    }
+  })
+  document.querySelector('.loadingtitle').innerHTML ="   "
+})
+  
+ })
+})}
+  })
+
 const renderUser = doc => {
 
-
+  console.log(doc.data())
 
   const tr = `
     <tr data-id='${doc.id}' style="  border-bottom: 0.5px solid grey;">
@@ -144,6 +188,7 @@ const renderUser = doc => {
 
            <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().reusedPart}</td>
      <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().partRegisteredDate}</td>
+      <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().authorizedUsers}</td>
            <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().partMemo}</td>
 
 
@@ -730,7 +775,9 @@ addSubs.onclick = function(e) {
   'success'
 )
   console.log('Substance added Successfully');
-  addmodalySubssSingle.classList.remove('modaly-show');
+  const subsform = document.querySelector('.subsform')
+  subsform.reset()
+  // addmodalySubssSingle.classList.remove('modaly-show');
  })
 }}
 })
@@ -1120,9 +1167,12 @@ console.log(uniqSelecMat)
   })
 
      const addPartmaterialMassg = document.querySelector('.addPartmaterialMassg')
- addPartmaterialMassg.onchange = function(e){
-  e.preventDefault()
+ addPartmaterialMassg.onchange = function(){
   addModalyParts.addmaterialMassPerc.value = (addModalyParts.addmaterialMassg.value / addModalyParts.addmatpartWeight.value * 100).toFixed(2)
+  console.log ("material mass %", addModalyParts.addmaterialMassPerc.value)
+  console.log ("material mass g", addModalyParts.addmaterialMassg.value)
+  console.log (" part mass g",addModalyParts.addmatpartWeight.value)
+
 
   
 }
@@ -1168,17 +1218,17 @@ seleccheckbox.style.height = "1px"
     })
 }
 
-//  let selectiveMat2 = document.getElementById("selectiveMat2");
-// let seleccheckbox2 = document.querySelector('.seleccheckbox2');
+ let selectiveMat2 = document.getElementById("selectiveMat2");
+let seleccheckbox2 = document.querySelector('.seleccheckbox2');
  
-// seleccheckbox2.onclick = function() {
-//   if(seleccheckbox2.checked == true) {
-// selectiveMat2.removeAttribute('disabled')
-// seleccheckbox2.style.height = "1px"
-//   } else {
-//     selectiveMat2.setAttribute("disabled", "disabled") 
-//   }
-// }
+seleccheckbox2.onclick = function() {
+  if(seleccheckbox2.checked == true) {
+selectiveMat2.removeAttribute('disabled')
+seleccheckbox2.style.height = "1px"
+  } else {
+    selectiveMat2.setAttribute("disabled", "disabled") 
+  }
+}
 
 var files = [];
 
@@ -1252,6 +1302,15 @@ addMatPartBtn.onclick = function(e) {
 setTimeout(resetForm, 0);
  function resetForm() {
 addModalyParts.reset();
+ db.collection('recylcedparts').doc(`${getPMatRef}`).get().then(()=>{
+    let partData = doc.data()
+    
+    console.log(partData);
+    
+     addModalyParts.addmatpartref.value = partData.partName
+     addModalyParts.addmatpartWeight.value = partData.partWeight
+
+  })
 }
     }
     else {
@@ -1329,6 +1388,19 @@ addModalyParts.reset();
 setTimeout(resetForm, 0);
  function resetForm() {
 addModalyParts.reset();
+document.querySelector('.prodImgphld').innerText = "Upload Proof File"
+ db.collection('recylcedparts').doc(`${getPMatRef}`).get().then(()=>{
+    let partData = doc.data()
+    
+    console.log(partData);
+    
+     addModalyParts.addmatpartref.value = partData.partName
+     addModalyParts.addmatpartWeight.value = partData.partWeight
+
+  })
+
+// addModalyParts.addmatpartWeight.value = partData.partWeight
+
 }
                   })
 
@@ -1600,12 +1672,13 @@ if (data.some(checkUsername) == true) {
     .get()
   .then((querySnapshot)=>{
     querySnapshot.forEach((doc)=>{
+      console.log(doc.data())
        const tr = `
         <li value='${doc.data().userEmail}' class="item">
                     <span class="checkbox">
                      <i class='bx bx-check' ></i>
                     </span>
-                    <span class="item-text">${doc.data().userCompanyname} | ${doc.data().userEmail}</span>
+                    <span class="item-text">${doc.data().userFirstname} ${doc.data().userLastname} | ${doc.data().userCompanyname} | ${doc.data().userEmail}</span>
                 </li>
        `
        const listitems = document.querySelector('.list-items')
@@ -1693,46 +1766,7 @@ window.addEventListener('click', e => {
   }
 });
 
-  auth.onAuthStateChanged(user => {
-     if(user) {
-      
- const userRef = db.collection('users').where('userID', '==', user.uid).get()
-
-userRef.then((querySnapshot) => {
- querySnapshot.forEach((doc) => {
-  console.log( doc.data().userCompanyname)
-
-    
-    console.log('hey')
-    document.querySelector('.loadingtitle').innerHTML = "Data is loading - Please wait... ⌛"
-  document.querySelector('.loadingtitle').style.fontWeight = "600"
-  document.querySelector('.loadingtitle').style.color = "black"
-    document.querySelector('.loadingtitle').style.marginLeft = "43%";
-db.collection('recycledparts').where("supplierName", '==',  doc.data().userCompanyname).onSnapshot(snapshot => {
-  snapshot.docChanges().forEach(change => {
-    if(change.type === 'added') {
-      renderUser(change.doc);
-        // renderTest(change.doc);
-    }
-    if(change.type === 'removed') {
-      let tr = document.querySelector(`[data-id='${change.doc.id}']`);
-      let tbody = tr.parentElement;
-      tableUsers.removeChild(tbody);
-    }
-    if(change.type === 'modified') {
-      let tr = document.querySelector(`[data-id='${change.doc.id}']`);
-      let tbody = tr.parentElement;
-      tableUsers.removeChild(tbody);
-      renderUser(change.doc);
-        // renderTest(change.doc);
-    }
-  })
-  document.querySelector('.loadingtitle').innerHTML ="   "
-})
-  
- })
-})}
-  })
+ 
 
 //   auth.onAuthStateChanged(user => {
 
@@ -1810,6 +1844,8 @@ Swal.fire(
   'New part is added successfully!',
   'success'
 )
+const addPartForm = document.querySelector('.addPartForm')
+addPartForm.reset()
 }
 else {
   Swal.fire(

@@ -239,7 +239,7 @@ li span {
                                                                         justify-content: center;
                                                                         align-items: center;">
                                   <nav class="navbary"  style="width: 40%; background-color: #fb8500;">
-                                    <a href="https://firebasestorage.googleapis.com/v0/b/projectcrm-f4e5f.appspot.com/o/Bulk%20parts%20materials%20upload%20(minimal%20adv)%20(v1.2).csv?alt=media&token=e9d7ff50-9241-4f64-b54d-3df32e3e8208" class="navbary__link" >
+                                    <a href="https://firebasestorage.googleapis.com/v0/b/projectcrm-f4e5f.appspot.com/o/Bulk%20parts%20materials%20upload%20(minimal%20adv)%20(v1.3)%20-%20Bulk%20parts%20materials%20upload%20(minimal%20adv)%20(v1.2)%20(3).csv?alt=media&token=e1d5ac4b-6736-4406-8157-36ad541bef2f" class="navbary__link" >
                                       <span class="" ><svg xmlns="http://www.w3.org/2000/svg" style="fill: white;
                                                                                                     width: 18px;
                                                                                                     height: 18px;" 
@@ -450,6 +450,7 @@ li span {
           
                 <th>Reused Parts</th>
                   <th>Registred Date</th>
+                    <th style="width: 25%;">Allowed Users</th>
              <th>Memo </th>
           <th style="width: 13%;">Action</th>
         </thead>
@@ -474,7 +475,7 @@ li span {
                      <div class="">
                 
                     
-                        <form class="form"  autocomplete="off"  data-toggle="validator" id="form-wizard1">
+                        <form class="form addPartForm"  autocomplete="off"  data-toggle="validator" id="form-wizard1">
                        
                         <!-- fieldsets -->
                  
@@ -813,7 +814,7 @@ li span {
                                  <div class="col-md-3"> 
                                     <div class="form-group">
                                         <label>Material Mass (%) *</label>
-                                        <input readonly type="number"  step=".01"  class="form-control" id='editMaterialMassPerc' name="addmaterialMassPerc" required>
+                                        <input readonly type="text"  class="form-control" id='editMaterialMassPerc' name="addmaterialMassPerc" required>
                                     </div>
                                 </div> 
                                     <div class="col-md-6">
@@ -821,7 +822,7 @@ li span {
                     <div class="input-group mb-4">
                         <div class="custom-file mb-3">
                         
-                           <input type="file" class="custom-file-input files" id="customFile">
+                           <input type="file" class="custom-file-input files resetprooffile" id="customFile">
                            <label class="custom-file-label prodImgphld" for="customFile">Upload Proof File</label>
                         </div>
                      
@@ -917,7 +918,7 @@ li span {
                <div class="iq-card">
                 
                   <div class="iq-card-body">
-                     <form id="form-wizard1" class="text-center mt-4" name="formwizard" >
+                     <form id="form-wizard1" class="text-center mt-4 subsform" name="formwizard" >
                       
                     
                            <div class="form-card text-left">
@@ -1190,7 +1191,7 @@ li span {
 </svg></th>
                                 <th >  Material Group</th>
                                   <th>  Material Name</th>
-                                      <th>  Recycled Contents %</th>
+                                      <th>  Recycled Contents (%)</th>
                                         <th>  Recycle Type</th>
                                           <th>  Mass (g)</th>
                                             <th>  Mass (%)</th>
@@ -1231,16 +1232,16 @@ li span {
                            <form class="form" data-toggle="validator" id="form-wizard1">
                              <div class="row">
                                    <div class="col-md-6">
-                                            <h2>Upload file for material </h2>
-                    <div class=" row input-group mb-4" style="    align-items: baseline;">
-                        <div class="custom-file mb-3" style="    margin-right: 5%;">
+                                            <label>Upload file for material </label>
+                    <div class=" row input-group mb-4" style=" margin: 0;   align-items: baseline;">
+                        <div class="custom-file mb-3">
                         
                            <input type="file" class="custom-file-input editfiles" id="customFile">
                            <label class="custom-file-label editprodImgphld" for="customFile">Update Proof file</label>
                           
                         </div>
                                    
-                    <nav class="navbary updateProof" style="margin-left: -12px; width:40px; background-color: #fb8500;">
+                    <nav class="navbary updateProof" style=" width:40px; background-color: #fb8500;">
                     <a href="#" class="navbary__link">
                       <span class="" ><i class="bx bx-cloud-upload" style=" color: white;
                       font-size: 17px;"></i></span>
@@ -1333,7 +1334,7 @@ li span {
                                  <div class="col-md-3"> 
                                     <div class="form-group">
                                         <label>Material Mass (%) *</label>
-                                        <input readonly type="number" class="form-control" id='PMMaterialMassPerc' placeholder="Please enter Material mass" data-errors="Please part mass." name="editMaterialMassPerc" required>
+                                        <input readonly type="number"  class="form-control" id='PMMaterialMassPerc' placeholder="Please enter Material mass" data-errors="Please part mass." name="editMaterialMassPerc" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div> 
