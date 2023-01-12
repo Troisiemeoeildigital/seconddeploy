@@ -11,7 +11,7 @@ const energyRecoveryWeightperc = document.querySelector('.energyRecoveryWeightpe
 const closebtn = document.querySelectorAll('.action-button-close')
 const addPPmodaly = document.querySelector('.addPPmodaly')
 let assess = document.querySelector('.assess')
-
+const addPPform=  document.querySelector('.addPPForm')
 let addcas = document.querySelector('.addcas')
 let addcrm = document.querySelector('.addcrm')
 let addrohs = document.querySelector('.addrohs')
@@ -66,6 +66,32 @@ let id;
 
 const auth = firebase.auth();
 const db = firebase.firestore();
+
+// const renderProds = doc =>{
+//   db.collection('recycledproducts')
+// .where("productManufacturer", '==',  doc.data().userCompanyname)
+
+// .onSnapshot(snapshot => {
+//   snapshot.docChanges().forEach(change => {
+//     if(change.type === 'added') {
+//       renderUser(change.doc);
+//         // renderTest(change.doc);
+//     }
+//     if(change.type === 'removed') {
+//       let tr = document.querySelector(`[data-id='${change.doc.id}']`);
+//       prodTabledata.removeChild(tr);
+//     }
+//     if(change.type === 'modified') {
+//       let tr = document.querySelector(`[data-id='${change.doc.id}']`);
+//       // let tbody = tr.parentElement;
+//       prodTabledata.removeChild(tr);
+//       renderUser(change.doc);
+//         // renderTest(change.doc);
+//     }
+//   })
+// })
+// }
+
  auth.onAuthStateChanged(user => {
      if(user) {
       
@@ -1087,7 +1113,15 @@ btnpraddParts.addEventListener('click', () => {
    const btnpraddRef = btnpraddParts.getAttribute('id');
     const btnpraddWeightRef = btnpraddParts.getAttribute('part-weight');
      const btnpraddNameRef = btnpraddParts.getAttribute('product-name');
+     
     console.log(btnpraddWeightRef)
+  
+  
+    	// 	var rowopt = `
+			// 				<option>Choose an option</option>
+              
+			// 		  `
+			// supplierName.insertAdjacentHTML ("beforeend", rowopt)
     supplierName.innerHTML = "";
   addedpartslist.innerHTML = "";
   const setPPheader = document.querySelector('.setPPheader')
@@ -1104,7 +1138,11 @@ btnpraddParts.addEventListener('click', () => {
 
     if(user) {
       console.log(user.email)
-
+      			var rowopt = `
+							<option>Choose an option</option>
+              
+					  `
+			supplierName.insertAdjacentHTML ("beforeend", rowopt)
         var addpartsRef = db.collectionGroup('recycledparts').where("authorizedUsers", "array-contains", `${user.email}`);
 addpartsRef
 .get()
@@ -1136,11 +1174,12 @@ addpartsRef
 		}}
   })
   supplierName.addEventListener('change', ()=>{
-   partname.innerHTML = "";
+
 
 db.collection("recycledparts").where("supplierName", "==",supplierName.value).where("authorizedUsers", "array-contains", `${user.email}`).where("supplierName", "==",supplierName.value)
     .get()
     .then((querySnapshot) => {
+         partname.innerHTML = "";
           const to = `
       <option>Select an option</option>
   // `;
@@ -1163,7 +1202,7 @@ db.collection("recycledparts").where("supplierName", "==",supplierName.value).wh
 }})
 
 //click on add new parts
-const partname = document.querySelector('.partname');
+
 const getPPdata = document.querySelector('.getPPdata')
 getPPdata.onclick = function(e) {
  e.preventDefault()
@@ -1309,7 +1348,6 @@ let idref = guid()
     })
     .then(()=>{
       console.log("All substances were added")
-     const addPPform=  document.querySelector('.addPPForm')
      addPPform.reset()
      
       buttonaddParts.style.display = "none";
