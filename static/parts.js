@@ -193,7 +193,7 @@ const renderUser = doc => {
       <nav class="navbary  viewModalList" data-id='${doc.id}'  style="width:40px; background-color: #fb8500;">
 	      <a href="#" class="navbary__link" >
 		        <span class="" ><i class='bx bxs-user-detail' style="color: white; font-size: 25px;"></i></i></span>
-		        <span class="navbary__label" style="background-color: #fb8500;" >Duplicate Part</span>
+		        <span class="navbary__label" style="background-color: #fb8500; width: 200px;" >View Allowed Users</span>
       	</a>
       </nav>
       </td>
@@ -244,8 +244,11 @@ const renderUser = doc => {
  const viewModalList = document.querySelector(`[data-id='${doc.id}'] .viewModalList`);
   viewModalList.onclick = function(e) {
 e.preventDefault()
+e.stopPropagation()
+let loopCount = 0;
+console.log(loopCount)
+
   const allowedUsersCard = document.querySelector('.allowedUsersCard')
- 
 viewAllowedUserList.classList.add('modaly-show');
 let partIdRef = viewbtn.getAttribute('data-id')
 console.log(partIdRef)
@@ -258,8 +261,10 @@ console.log(partIdRef)
 //         console.log("Current cities in CA: ", cities.join(", "));
 //     });
 
-  /**Update list of users */
-        const allowaccess = document.querySelector('.allowaccess')
+ 
+    /**Update list of users */
+     
+            const allowaccess = document.querySelector('.allowaccess')
  allowaccess.onclick = function(e) {
   e.preventDefault()
   // allowedUsersCard.innerHTML =""
@@ -278,31 +283,35 @@ let uniqueArr = [...new Set(arr)];
     authorizedUsers: uniqueArr
 })
 })
-
-
-
-
-
+.then(()=> {
+  setTimeout(renderAllowedUsers())
+})
  }
 
-  db.collection('recycledparts').doc(`${partIdRef}`).onSnapshot((doc) => {
+
+         
+ 
+renderAllowedUsers()
+ function renderAllowedUsers(){
+ db.collection('recycledparts').doc(`${partIdRef}`).get()
+ .then((doc) => {
+    e.stopPropagation()
     console.log(doc.data().authorizedUsers)
-  allowedUsersCard.innerHTML =""
-  
-    
-
-
+ 
     let listofUsers = doc.data().authorizedUsers  
               buildTable(listofUsers)
 	function buildTable(listofUsers){
-		for (var i = 0; i <= listofUsers.length; i++){
+     allowedUsersCard.innerHTML =""
+     
+		for (let i = 0; i < listofUsers.length; i++){
       db.collection('users').where("userEmail", "==", `${listofUsers[i]}`)
-      .onSnapshot((querySnapshot) => {
+      .get()
+      .then((querySnapshot) => {
         
         querySnapshot.forEach((doc) => {
            
 			var row = `
-						      <div class="courses-container">
+						      <div class="courses-container" id="${doc.id}">
 	<div class="course">
 		<div class="course-preview">
 			<h6 class="alloweduserheader">Allowed User</h6>
@@ -346,33 +355,42 @@ let uniqueArr = [...new Set(arr)];
 		
        allowedUsersCard.innerHTML += row
         });
-   
 
-          /** remove a user */
+
+             /** remove a user */
   const deletebtnCard = document.querySelectorAll('.deleteBtnCard')
   deletebtnCard.forEach(eachDltBtn => {
     eachDltBtn.onclick = function(e) {
     e.preventDefault()
  let userEmailData = eachDltBtn.getAttribute("data-email")
-
+ let userIdData = eachDltBtn.getAttribute("data-id")
+ document.getElementById(`${userIdData}`).remove()
   db.collection('recycledparts').doc(`${partIdRef}`).update({
     authorizedUsers: firebase.firestore.FieldValue.arrayRemove(`${userEmailData}`)
    
-});
+})
+// .then(()=> {
+ 
+  
+// })
  console.log("success user is dead")
  
   }
   })
-  
-       
-    });
 
+      
+     
+    });
 		}}  
+    
 })
 
+  }
 // 
  
   }
+
+  
 
  const viewbtn = document.querySelector(`[data-id='${doc.id}'] .viewbtn`);
   viewbtn.addEventListener('click', (e)=> {
