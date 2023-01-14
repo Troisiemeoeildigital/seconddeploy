@@ -305,8 +305,8 @@ renderAllowedUsers()
      
 		for (let i = 0; i < listofUsers.length; i++){
       db.collection('users').where("userEmail", "==", `${listofUsers[i]}`)
-      .get()
-      .then((querySnapshot) => {
+     
+      .onSnapshot((querySnapshot) => {
         
         querySnapshot.forEach((doc) => {
            
