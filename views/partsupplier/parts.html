@@ -9,6 +9,7 @@
      
  <link rel="stylesheet" href="../products.css" />
   <link rel="stylesheet" href="../parts.css" />
+   <link rel="stylesheet" href="../components/part/usersCard.css" />
  <link rel="stylesheet" href="../addbtn.css" />
    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
       <link rel="stylesheet" href="../backend.css" />
@@ -450,7 +451,7 @@ li span {
           
                 <th>Reused Parts</th>
                   <th>Registred Date</th>
-                    <th style="width: 25%;">Allowed Users</th>
+                    <th >Allowed Users</th>
              <th>Memo </th>
           <th style="width: 13%;">Action</th>
         </thead>
@@ -1111,8 +1112,8 @@ li span {
                       
                    <div class="row">
                        <div class="input-group-prepend" style="
-    width: 75%;
-">
+                                                              width: 75%;
+                                                              ">
                                               <input type="text" class="form-control" id="myInputPM" style="margin: 0;border-radius: 10px 0 0 10px;height:46px;width: 75%;margin-left: 25%;" onkeyup="tableSearch()" name="myInputProduct" placeholder="Search by Material Name" aria-label="Search by Material Name" aria-describedby="basic-addon5">
                         </div>
                        <div class="selectwrapp" style="width: 0%; border-radius: 0;">
@@ -1203,6 +1204,73 @@ li span {
 
                             </tbody>
                            </table>
+                        </div>
+                         <div class="modal-footer" style="border: 0;" >
+                                 <button type="button" class="btn styleBtn action-button-close float-left" style="border: 0;" data-dismiss="modal">Close</button>
+                          
+                              </div>
+                     </div>
+                      </div>
+                     </div>
+                 
+                              
+     
+             </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View allowed list of users-->
+      <div class="viewAllowedUserList modaly-wrapper" >
+      <div class="modaly" style=" width:50%;left: 25%;">
+             <div class="modaly-header" style="text-align:left;"> <span class="setMatheader"  style="font-size: 150%; color:black;"></span></div>
+
+        <div class="modaly-body">
+          <div class="card-body">
+                     <div class="row col-md-12" style="align-items: center; justify-content: center;">
+                      <div class="col-md-12">
+                         <div class="float-right"></div>
+               <div class="table-responsive" style="overflow-x: hidden;">
+                <div class="addUsers">
+                  <label for="addUsers"> Allow User Access</label>
+                    <form action="">
+                  <div class="col-lg-12" style="display: flex;
+                                                flex-direction: row;
+                                                align-content: center;
+                                                justify-content: space-around;">
+                    
+                        <div class="col-lg-8" style="margin-left:12%;">
+                               <div class="select-btn">
+                <span class="btn-text">Select Users</span>
+                <span class="arrow-dwn">
+                <i class='bx bx-chevron-down'></i>
+                </span>
+            </div>
+
+            <ul class="list-items editList" style="z-index: 9;">
+            
+            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                        <nav class="navbary" style="background-color: #fb8500; width: 60%;">
+                            <a href="#" class="navbary__link">
+                        <span class="allowaccess" ><i class="bx bx-link-external" style="color: white; font-size: 15px; "></i></span>
+                        <span class="navbary__label" style="left: -36px; background-color: #fb8500;">Allow Access</span>
+                      </a>
+                        </nav>
+                        </div>
+                  
+         
+                
+                  </div>
+                  </form>
+                </div>
+             
+                    <div  class="table-wrapper" style="height: auto;"> 
+                        <div class="allowedUsersCard">
+                     
+
+                        </div>
                         </div>
                          <div class="modal-footer" style="border: 0;" >
                                  <button type="button" class="btn styleBtn action-button-close float-left" style="border: 0;" data-dismiss="modal">Close</button>

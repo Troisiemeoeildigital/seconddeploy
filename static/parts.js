@@ -55,6 +55,7 @@ const addPartsForm = document.querySelector('#addPartsForm')
 
 // materials edit references
 let viewMatTable = document.querySelector('.viewMatTable')
+let viewAllowedUserList = document.querySelector('.viewAllowedUserList')
 let PMmaterialGroup = document.getElementById('PMmaterialGroup')
 let PMmaterialName = document.getElementById('PMmaterialName')
 let PMmaterialRecycleContent = document.getElementById('PMmaterialRecycleContent')
@@ -188,7 +189,14 @@ const renderUser = doc => {
 
            <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().reusedPart}</td>
      <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().partRegisteredDate}</td>
-      <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().authorizedUsers}</td>
+      <td style="color: black;font-weight: 600; font-size: 15px; display: flex; justify-content: center;">  
+      <nav class="navbary  viewModalList" data-id='${doc.id}'  style="width:40px; background-color: #fb8500;">
+	      <a href="#" class="navbary__link" >
+		        <span class="" ><i class='bx bxs-user-detail' style="color: white; font-size: 25px;"></i></i></span>
+		        <span class="navbary__label" style="background-color: #fb8500;" >Duplicate Part</span>
+      	</a>
+      </nav>
+      </td>
            <td style="color: black;font-weight: 600; font-size: 15px;">${doc.data().partMemo}</td>
 
 
@@ -233,7 +241,138 @@ const renderUser = doc => {
   parttable.insertAdjacentHTML('beforeend', tr);
    document.querySelector('.loadingtitle').style.display = "none"
   
+ const viewModalList = document.querySelector(`[data-id='${doc.id}'] .viewModalList`);
+  viewModalList.onclick = function(e) {
+e.preventDefault()
+  const allowedUsersCard = document.querySelector('.allowedUsersCard')
+ 
+viewAllowedUserList.classList.add('modaly-show');
+let partIdRef = viewbtn.getAttribute('data-id')
+console.log(partIdRef)
+// db.collection("cities").where("state", "==", "CA")
+//     .onSnapshot((querySnapshot) => {
+//         var cities = [];
+//         querySnapshot.forEach((doc) => {
+//             cities.push(doc.data().name);
+//         });
+//         console.log("Current cities in CA: ", cities.join(", "));
+//     });
 
+  /**Update list of users */
+        const allowaccess = document.querySelector('.allowaccess')
+ allowaccess.onclick = function(e) {
+  e.preventDefault()
+  // allowedUsersCard.innerHTML =""
+   const checkedUsersRef = document.querySelectorAll('.item.checked')
+  let editCheckedUserArr = []
+  for (let i = 0; i < checkedUsersRef.length; i++) {
+  // console.log()
+  editCheckedUserArr.push(checkedUsersRef[i].getAttribute('value'))
+}
+db.collection('recycledparts').doc(`${partIdRef}`).get().then(doc => {
+   let originalArray = doc.data().authorizedUsers
+   let arr = [...originalArray, ...editCheckedUserArr];
+let uniqueArr = [...new Set(arr)];
+    console.log(uniqueArr);
+   db.collection('recycledparts').doc(`${partIdRef}`).update({
+    authorizedUsers: uniqueArr
+})
+})
+
+
+
+
+
+ }
+
+  db.collection('recycledparts').doc(`${partIdRef}`).onSnapshot((doc) => {
+    console.log(doc.data().authorizedUsers)
+  allowedUsersCard.innerHTML =""
+  
+    
+
+
+    let listofUsers = doc.data().authorizedUsers  
+              buildTable(listofUsers)
+	function buildTable(listofUsers){
+		for (var i = 0; i <= listofUsers.length; i++){
+      db.collection('users').where("userEmail", "==", `${listofUsers[i]}`)
+      .onSnapshot((querySnapshot) => {
+        
+        querySnapshot.forEach((doc) => {
+           
+			var row = `
+						      <div class="courses-container">
+	<div class="course">
+		<div class="course-preview">
+			<h6 class="alloweduserheader">Allowed User</h6>
+			<h3 class="username">${doc.data().userFirstname} ${doc.data().userLastname}</h3>
+		</div>
+		<div class="course-info">
+			<div class="user_card">
+				<div class="user_avatar"> 
+				</div>
+				<div class="user_details"> 
+						<h6 class="h6">${doc.data().userEmail}</h6>
+					<h3 class="h3">${doc.data().userCompanyname}</h3>
+          <h6 class="h6">${doc.data().userRole}</h6>
+				</div>
+              <div class="btngroup" style="margin:0; gap: 5px; width: 20%">
+             <nav class="navbary" style="background-color: #fb8500; width: 100%; margin:0">
+	
+
+      	<a href="#" class="navbary__link">
+		<span class="btnpr-delete" ><i class="bx bx-link-external" style="color: white; font-size: 15px; "></i></span>
+		<span class="navbary__label" style="left: -36px; background-color: #fb8500;">Visit Profile</span>
+	</a>
+</nav>
+
+     <nav class="navbary" style="background-color: #fb8500; width: 100%; margin:0">  
+	<a href="#" class="navbary__link deleteBtnCard" data-email="${doc.data().userEmail}" data-id='${doc.id}'  >
+		<span class="" ><i class='ri-delete-bin-line' style="color: white; font-size: 17px;"></i></i></span>
+		<span class="navbary__label" style="background-color: #fb8500; left:-55px;" >Delete User</span>
+	</a>
+</nav>
+
+
+   
+    </div>
+
+			</div>
+		</div>
+	</div>
+</div>
+					  `
+		
+       allowedUsersCard.innerHTML += row
+        });
+   
+
+          /** remove a user */
+  const deletebtnCard = document.querySelectorAll('.deleteBtnCard')
+  deletebtnCard.forEach(eachDltBtn => {
+    eachDltBtn.onclick = function(e) {
+    e.preventDefault()
+ let userEmailData = eachDltBtn.getAttribute("data-email")
+
+  db.collection('recycledparts').doc(`${partIdRef}`).update({
+    authorizedUsers: firebase.firestore.FieldValue.arrayRemove(`${userEmailData}`)
+   
+});
+ console.log("success user is dead")
+ 
+  }
+  })
+  
+       
+    });
+
+		}}  
+})
+
+// 
+ 
+  }
 
  const viewbtn = document.querySelector(`[data-id='${doc.id}'] .viewbtn`);
   viewbtn.addEventListener('click', (e)=> {
@@ -242,13 +381,16 @@ viewMatTable.classList.add('modaly-show');
 // start here
 let partWeightRef = viewbtn.getAttribute('partWeight')
 
-const setMatheader = document.querySelector('.setMatheader')
+const setMatheader = document.querySelectorAll('.setMatheader')
       const breadbody = document.querySelector('.breadbody')
       breadbody.innerHTML = ""
     const breadpartname = document.querySelector('.breadpartname')
     breadpartname.innerHTML = `${doc.data().partName}`
   materialtitle.innerHTML = `${doc.data().partName}`
-  setMatheader.innerHTML = `  소재목록 - ${doc.data().partName}`
+  setMatheader.forEach((eachMatHeader) => {
+  eachMatHeader.innerHTML = `소재목록 - ${doc.data().partName}`
+
+  })
   const partRef = `${doc.id}`
   console.log(partRef)
  const materiallist = document.querySelector('.materiallist')
@@ -1499,7 +1641,7 @@ document.querySelector('.prodImgphld').innerText = "Upload Proof File"
 
   }
 }
-
+  
 
 
  
@@ -1689,18 +1831,24 @@ if (data.some(checkUsername) == true) {
                     <span class="item-text">${doc.data().userFirstname} ${doc.data().userLastname} | ${doc.data().userCompanyname} | ${doc.data().userEmail}</span>
                 </li>
        `
-       const listitems = document.querySelector('.list-items')
-        listitems.insertAdjacentHTML('beforeEnd', tr);
+       const listitems = document.querySelectorAll('.list-items')
+       listitems.forEach(eachItem => {
+          eachItem.insertAdjacentHTML('beforeEnd', tr);
+       })
+      
 
     })
   })
   .then(()=>{
-    const selectBtn = document.querySelector(".select-btn"),
+    const selectBtn = document.querySelectorAll(".select-btn"),
       items = document.querySelectorAll(".item");
       // itemText = document.querySelectorAll(".item-text")
-selectBtn.addEventListener("click", () => {
-    selectBtn.classList.toggle("open");
+      selectBtn.forEach(eachDrop => {
+        eachDrop.addEventListener("click", () => {
+    eachDrop.classList.toggle("open");
 });
+      })
+
 
 items.forEach(item => {
     item.addEventListener("click", () => {
@@ -1708,18 +1856,24 @@ items.forEach(item => {
         // itemText.classList.toggle("checked"); 
       
         let checked = document.querySelectorAll(".checked"),
-            btnText = document.querySelector(".btn-text");
+            btnText = document.querySelectorAll(".btn-text");
 
             if(checked && checked.length > 0){
-                btnText.innerText = `${checked.length} Selected`;
+              btnText.forEach(eachText => {
+                eachText.innerText = `${checked.length} Selected`;
+              })
+                
                 let checkedUser = []
  checked.forEach((user)=>{
 checkedUser.push(user.attributes[0].value)
  })
  console.log(checkedUser)
             }else{
-                btnText.innerText = "0 Selected";
-                btnText.style.fontSize = "14px"
+                   btnText.forEach(eachText => {
+                 eachText.innerText = "0 Selected";
+                eachText.style.fontSize = "14px"
+              })
+               
             }
     });
 })
@@ -1771,6 +1925,9 @@ window.addEventListener('click', e => {
   }
        if(e.target === editSubmodaly ) {
     editSubmodaly.classList.remove('modaly-show');
+  }
+     if(e.target === viewAllowedUserList ) {
+    viewAllowedUserList.classList.remove('modaly-show');
   }
 });
 
