@@ -293,6 +293,7 @@ let uniqueArr = [...new Set(arr)];
  
 renderAllowedUsers()
  function renderAllowedUsers(){
+     allowedUsersCard.innerHTML =""
  db.collection('recycledparts').doc(`${partIdRef}`).get()
  .then((doc) => {
     e.stopPropagation()
@@ -301,7 +302,6 @@ renderAllowedUsers()
     let listofUsers = doc.data().authorizedUsers  
               buildTable(listofUsers)
 	function buildTable(listofUsers){
-     allowedUsersCard.innerHTML =""
      
 		for (let i = 0; i < listofUsers.length; i++){
       db.collection('users').where("userEmail", "==", `${listofUsers[i]}`)
