@@ -284,7 +284,7 @@ let uniqueArr = [...new Set(arr)];
 })
 })
 .then(()=> {
-  setTimeout(renderAllowedUsers())
+  renderAllowedUsers()
 })
  }
 
