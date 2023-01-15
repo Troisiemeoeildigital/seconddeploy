@@ -141,36 +141,10 @@ userRef.then((querySnapshot) => {
   document.querySelector('.loadingtitle').style.fontWeight = "600"
   document.querySelector('.loadingtitle').style.color = "black"
     document.querySelector('.loadingtitle').style.marginLeft = "43%";
-db.collection('recycledparts')
-.where("supplierName", '==',  doc.data().userCompanyname)
-.orderBy('partRegisteredDate', 'desc')
-.onSnapshot(snapshot => {
-  snapshot.docChanges().forEach(change => {
-    if(change.type === 'added') {
-      renderUser(change.doc);
-        // renderTest(change.doc);
-    }
-    if(change.type === 'removed') {
-      let tr = document.querySelector(`[data-id='${change.doc.id}']`);
-      let tbody = tr.parentElement;
-      tableUsers.removeChild(tbody);
-    }
-    if(change.type === 'modified') {
-      let tr = document.querySelector(`[data-id='${change.doc.id}']`);
-      let tbody = tr.parentElement;
-      tableUsers.removeChild(tbody);
-      renderUser(change.doc);
-        // renderTest(change.doc);
-    }
-  })
-  document.querySelector('.loadingtitle').innerHTML ="   "
-})
-  
- })
-})}
-  })
 
-const renderUser = doc => {
+
+
+  const renderUser = doc => {
 
   console.log(doc.data())
 
@@ -960,19 +934,28 @@ substancelisttable.innerHTML = "";
 db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${subsmatId}`).collection('substances').get()
 .then(query=>{
     let data = query.docs.map(doc=>{
-        let x = doc.data()
+        let x = doc
             return x;
     })
     console.log(data)
+    // let dataId = query.docs.map(doc=>{
+    //     let y = doc.id
+    //         return y;
+    // })
+    // const obj = { ...dataId }
+    // console.log(obj)
+    // Array.prototype.push.apply(obj,data);
+    // console.log(obj)
+    
 
-    let arrUniq = [...new Map(data.map(v => [JSON.stringify([v.casnumber,v.crm,v.rohs,v.substanceMassPerc,v.substanceMassg,v.substanceName]), v])).values()]
-   
+    let arrUniq = [...new Map(data.map(v => [JSON.stringify([v.data().casnumber,v.data().crm,v.data().rohs,v.data().substanceMassPerc,v.data().substanceMassg,v.data().substanceName]), v])).values()]
     console.log(arrUniq)
     buildTable(arrUniq)
 	function buildTable(arrUniq){
 
 		for (var i = 0; i < arrUniq.length; i++ ) {
-			var row = `<tr id="${arrUniq[i].subidRef}">
+      console.log(arrUniq[i].id)
+			var row = `<tr id="${arrUniq[i].id}">
          <td >
                                 <div class="checkbox " style="  display: inline-table;  width: 20px;
     height: 15px;">
@@ -980,20 +963,20 @@ db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${s
                                     <label for="checkbox2" class="mb-0"></label>
                                 </div>
                             </td>
-							<td>${arrUniq[i].substanceName}</td>
-              <td>${arrUniq[i].casnumber}</td>
-                <td>${arrUniq[i].crm}</td>
-							<td>${arrUniq[i].substanceMassg}</td>
-							<td>${arrUniq[i].substanceMassPerc}</td>
+							<td>${arrUniq[i].data().substanceName}</td>
+              <td>${arrUniq[i].data().casnumber}</td>
+                <td>${arrUniq[i].data().crm}</td>
+							<td>${arrUniq[i].data().substanceMassg}</td>
+							<td>${arrUniq[i].data().substanceMassPerc}</td>
        
                     <td>
              <nav class="navbary" style="background-color: #fb8500;">
-             	<a href="#" class="navbary__link btnEditSubs" data-Part='${arrUniq[i].subidRef}'>
+             	<a href="#" class="navbary__link btnEditSubs" data-Part='${arrUniq[i].id}'>
 		<span  ><i class="bx bxs-edit-alt" style="color: white; font-size: 15px; "></i></span>
 		<span class="navbary__label" style="background-color: #fb8500;">Edit Substances</span>
 	</a>
 	<a href="#" class="navbary__link">
-		<span class="btnpartsubdelete"  data-Part='${arrUniq[i].subidRef}'><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
+		<span class="btnpartsubdelete"  data-Part='${arrUniq[i].id}'><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
 		<span class="navbary__label" style="background-color: #fb8500;">Delete Substance</span>
 	</a>
   </nav>
@@ -1016,7 +999,12 @@ editSubmodaly.classList.add('modaly-show');
   const EditSubRef = eachbtnEditSubs.getAttribute('data-part')
   console.log(EditSubRef)
   e.preventDefault()
- db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${subsmatId}`).collection('substances').doc(`${EditSubRef}`).get().then((doc)=> {
+ db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${subsmatId}`).collection('substances').doc(`${EditSubRef}`)
+ .onSnapshot((doc) => {
+  
+  console.log("parts id",partId)
+  console.log("mats id",subsmatId)
+  console.log("subs id",EditSubRef)
   if (doc.exists) {
         console.log("Document data:", doc.id, doc.data());
          const editSubHeader = document.querySelector('.editSubHeader')
@@ -1058,7 +1046,7 @@ editSub.onclick = function(e) {
     substanceName: EditPMSubsName.value,
     casnumber: EditPMSubsCAS.value,
     crm: EditPMSubsCRM.value,
-    rohs: EditPMSubsROHS.value,
+    // rohs: EditPMSubsROHS.value,
     substanceMassg: EditPMSubsMassg.value,
     substanceMassPerc: EditPMSubsMassPerc.value,
 	
@@ -1659,6 +1647,35 @@ document.querySelector('.prodImgphld').innerText = "Upload Proof File"
 
   }
 }
+db.collection('recycledparts')
+.where("supplierName", '==',  doc.data().userCompanyname)
+.orderBy('partRegisteredDate', 'desc')
+.onSnapshot(snapshot => {
+  snapshot.docChanges().forEach(change => {
+    if(change.type === 'added') {
+      renderUser(change.doc);
+        // renderTest(change.doc);
+    }
+    if(change.type === 'removed') {
+      let tr = document.querySelector(`[data-id='${change.doc.id}']`);
+      let tbody = tr.parentElement;
+      tableUsers.removeChild(tbody);
+    }
+    if(change.type === 'modified') {
+      let tr = document.querySelector(`[data-id='${change.doc.id}']`);
+      let tbody = tr.parentElement;
+      tableUsers.removeChild(tbody);
+      renderUser(change.doc);
+        // renderTest(change.doc);
+    }
+  })
+  document.querySelector('.loadingtitle').innerHTML =""
+})
+ })
+})}
+  })
+
+
   
 
 
@@ -1836,7 +1853,24 @@ if (data.some(checkUsername) == true) {
             }
 }
 
- db.collection("users").where("userRole","==","Product Manufacturer")
+
+
+
+
+// Click add user button
+btnprAdd.onclick = function() {
+  addmodaly.classList.add('modaly-show');
+  const setDate = document.querySelector('.setDate')
+  let now = new Date()
+  console.log(now)
+ setDate.value = now.getFullYear() + "/" + (now.getMonth() +1)  + "/" + now.getDate() + " - " +   now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+
+  addModalyForm.addpartName.value = '';
+  addModalyForm.addpartClass.value = '';
+  addModalyForm.addpartWeight.value = '';
+  addModalyForm.addreusedPart.value = '';
+  addModalyForm.addMemo.value = '';
+  db.collection("users").where("userRole","==","Product Manufacturer")
     .get()
   .then((querySnapshot)=>{
     querySnapshot.forEach((doc)=>{
@@ -1896,24 +1930,19 @@ checkedUser.push(user.attributes[0].value)
     });
 })
   })
+     auth.onAuthStateChanged(user => {
 
+    if(user) {
+      
+ const userRef = db.collection('users').where('userID', '==', user.uid).get()
 
-
-// Click add user button
-btnprAdd.onclick = function() {
-  addmodaly.classList.add('modaly-show');
-  const setDate = document.querySelector('.setDate')
-  let now = new Date()
-  console.log(now)
- setDate.value = now.getFullYear() + "/" + (now.getMonth() +1)  + "/" + now.getDate() + " - " +   now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
-
-  addModalyForm.addpartName.value = '';
-  addModalyForm.addpartClass.value = '';
-  addModalyForm.addpartWeight.value = '';
-  addModalyForm.addreusedPart.value = '';
-  addModalyForm.addMemo.value = '';
+userRef.then((querySnapshot) => {
+   querySnapshot.forEach((doc) => {
+const supplierNameData = document.querySelector('#addsupplierName')
+supplierNameData.value = doc.data().userCompanyname
+   })})}})
 };
-
+ 
 // User click anyware outside the modaly
 window.addEventListener('click', e => {
   if(e.target === addmodaly) {
@@ -1965,17 +1994,7 @@ window.addEventListener('click', e => {
 // Real time listener
 
 
-   auth.onAuthStateChanged(user => {
 
-    if(user) {
-      
- const userRef = db.collection('users').where('userID', '==', user.uid).get()
-
-userRef.then((querySnapshot) => {
-   querySnapshot.forEach((doc) => {
-const supplierNameData = document.querySelector('#addsupplierName')
-supplierNameData.value = doc.data().userCompanyname
-   })})}})
 
      
 
@@ -2091,23 +2110,21 @@ editPart.onclick = function(e) {
  
 
 firebase.auth().onAuthStateChanged(user => {
-  const userEmailCard = document.getElementById('useremailcard')
  
-  userEmailCard.innerHTML = user.email
-  
-})
-
-auth.onAuthStateChanged(user => {
-    if(user) {
+      if(user) {
         user.getIdTokenResult().then(idTokenResult => {
             user.admin = idTokenResult.claims.admin
             editUI(user)
         })
+         const userEmailCard = document.getElementById('useremailcard')
+ 
+  userEmailCard.innerHTML = user.email
     }
     else {
         console.log("There's nothing here!")
     }
 })
+
 
 const editUI = (user) => {
   if (user) {

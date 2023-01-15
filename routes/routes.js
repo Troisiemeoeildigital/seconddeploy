@@ -300,6 +300,7 @@ router.get("/partsupplier/parts", function (req, res) {
       res.redirect("/login");
     });
 });
+
 router.get("/partsupplier/dashboard", function (req, res) {
    const sessionCookie = req.cookies.session || "";
 

@@ -1029,10 +1029,95 @@ li span {
     </div>
  </div>
 </div>
-
+                                
+ <!--Edit Substance-->
+      <div class="editSubmodaly modaly-wrapper" style="z-index: 92999;">
+                   <div class="modaly" style="z-index: 99999;">
+                     <div class="modaly-header" style="text-align:left;">  <span class="editSubHeader"  style="font-size: 150%; color:black;"></span></div>
+                       <div class="modaly-body">
+                          <div class="card-body">
+                            <div class="">
+                             <form class="form"  data-toggle="validator" id="form-wizard1">
+                     
+                        <!-- fieldsets -->
+                        <fieldset>
+                           <div class="form-card text-left">
+                              <div class="row">
+                                 <div class="col-7">
+                                 </div>
+                              </div>
+                           <div class="row">
+                                           <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Substance Name </label>
+                                          <input type="text" class="form-control"  id='EditPMSubsName' name="EditPMSubsName" placeholder="Please Enter Susbtance Name" data-errors="Please Enter Susbtance Name"  >
+                                    </div>
+                                </div>  
+                   
+                                  <div class="col-md-6">                
+                                            <div class="form-group">
+                                        <label>CAS Number </label>
+                                    
+                                          <input type="text" class="form-control"  id='EditPMSubsCAS' name="EditPMSubsCAS" placeholder="Please Enter CAS Number" data-errors="Please Enter CAS Number"  >
+                                    
+                                    </div>
+                                </div>  
+                           </div> 
+                
+                               <div class="row">
+                                     <div class="col-md-6"> 
+                                    <div class="form-group">
+                                         <label>CRM </label>
+                                    
+                                          <input type="text" class="form-control"  id='EditPMSubsCRM' name="EditPMSubsCRM" placeholder="Please Enter CRM value" data-errors="Please Enter CRM value"  >
+                                    
+                                    </div>
+                                </div> 
+<!-- 
+                                  <div class="col-md-3"> 
+                                    <div class="form-group">
+                                         <label>ROHS </label>
+                                    
+                                          <input type="text" class="form-control"  id='EditPMSubsROHS' name="EditPMSubsROHS" placeholder="Please Enter ROHS value" data-errors="Please Enter ROHS value"  >
+                                        
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>  -->
+                          
+                           
+                                     <div class="col-md-3"> 
+                                    <div class="form-group">
+                                        <label>Susbtance Mass (g) </label>
+                                        <input type="text" class="form-control" id='EditPMSubsMassg' name="EditPMSubsMassg" placeholder="Please enter Susbtance mass (g)" >
+                               
+                                    </div>
+                                </div> 
+                                 <div class="col-md-3"> 
+                                    <div class="form-group">
+                                        <label>Susbtance Mass (%) *</label>
+                                        <input type="text" class="form-control" id='EditPMSubsMassPerc' placeholder="Please enter Material mass (%)"  name="EditPMSubsMassPerc" >
+                                 
+                                    </div>
+                                </div> 
+                            </div>
+                           </div>
+                    
+                    </fieldset>
+                        <button type="button"  id="editSub"  class="btn btn-primary float-right mr-3" style="background-color: #fb8500; color: white; border: 0;" >물질 편집</button>
+                            <button type="button" id="subsmodalclose" class="btn styleBtn action-button-closeSub" data-dismiss="modaly-wrapper"  >Close</button>
+                     
+                      
+                   </form>
+                 </div>
+            <!-- Modal -->
+             </div>
+        </div>
+      </div>
+    </div>      
+  
     <!--View Data table tree subs-->
 
-   <div class="modal fade" id="exampleModalScrollableSubstances" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableSubstances" aria-hidden="true">
+   <div class="modal fade" id="exampleModalScrollableSubstances" role="dialog" aria-labelledby="exampleModalScrollableSubstances" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-scrollable" role="document">
                            <div class="modal-content">
                          <div class="modaly-header" style="text-align:left;"> <span class="addPartSubsHeader" style="font-size: 150%; color:black;"></span></div>
@@ -1091,6 +1176,8 @@ li span {
                            </div>
                         </div>
                      </div>
+
+ 
  <!--View Data table tree materials-->
     <div class="viewMatTable modaly-wrapper" >
       <div class="modaly" style=" width:80%;left: 13%;">
@@ -1437,92 +1524,7 @@ li span {
         </div>
       </div>
     </div>
-             
- <!--Edit Substance-->
-                 <div class="editSubmodaly modaly-wrapper" style="z-index: 92999;">
-                   <div class="modaly" style="z-index: 99999;">
-                     <div class="modaly-header" style="text-align:left;">  <span class="editSubHeader"  style="font-size: 150%; color:black;"></span></div>
-                       <div class="modaly-body">
-                          <div class="card-body">
-                            <div class="">
-                             <form class="form"  data-toggle="validator" id="form-wizard1">
-                     
-                        <!-- fieldsets -->
-                        <fieldset>
-                           <div class="form-card text-left">
-                              <div class="row">
-                                 <div class="col-7">
-                                 </div>
-                              </div>
-                           <div class="row">
-                                           <div class="col-md-6">                      
-                                    <div class="form-group">
-                                        <label>Substance Name </label>
-                                          <input type="text" class="form-control"  id='EditPMSubsName' name="EditPMSubsName" placeholder="Please Enter Susbtance Name" data-errors="Please Enter Susbtance Name"  >
-                                    </div>
-                                </div>  
-                   
-                                  <div class="col-md-6">                
-                                            <div class="form-group">
-                                        <label>CAS Number </label>
-                                    
-                                          <input type="text" class="form-control"  id='EditPMSubsCAS' name="EditPMSubsCAS" placeholder="Please Enter CAS Number" data-errors="Please Enter CAS Number"  >
-                                    
-                                    </div>
-                                </div>  
-                           </div> 
-                
-                               <div class="row">
-                                     <div class="col-md-6"> 
-                                    <div class="form-group">
-                                         <label>CRM </label>
-                                    
-                                          <input type="text" class="form-control"  id='EditPMSubsCRM' name="EditPMSubsCRM" placeholder="Please Enter CRM value" data-errors="Please Enter CRM value"  >
-                                    
-                                    </div>
-                                </div> 
-<!-- 
-                                  <div class="col-md-3"> 
-                                    <div class="form-group">
-                                         <label>ROHS </label>
-                                    
-                                          <input type="text" class="form-control"  id='EditPMSubsROHS' name="EditPMSubsROHS" placeholder="Please Enter ROHS value" data-errors="Please Enter ROHS value"  >
-                                        
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>  -->
-                          
-                           
-                                     <div class="col-md-3"> 
-                                    <div class="form-group">
-                                        <label>Susbtance Mass (g) </label>
-                                        <input type="text" class="form-control" id='EditPMSubsMassg' name="EditPMSubsMassg" placeholder="Please enter Susbtance mass (g)" >
-                               
-                                    </div>
-                                </div> 
-                                 <div class="col-md-3"> 
-                                    <div class="form-group">
-                                        <label>Susbtance Mass (%) *</label>
-                                        <input type="text" class="form-control" id='EditPMSubsMassPerc' placeholder="Please enter Material mass (%)"  name="EditPMSubsMassPerc" >
-                                 
-                                    </div>
-                                </div> 
-                            </div>
-                           </div>
-                    
-                    </fieldset>
-                        <button type="button"  id="editSub"  class="btn btn-primary float-right mr-3" style="background-color: #fb8500; color: white; border: 0;" >물질 편집</button>
-                            <button type="button" id="subsmodalclose" class="btn styleBtn action-button-closeSub" data-dismiss="modaly-wrapper"  >Close</button>
-                     
-                      
-                   </form>
-                 </div>
-            <!-- Modal -->
-             </div>
-        </div>
-      </div>
-    </div>      
-  
+ 
 
     
     
