@@ -149,7 +149,7 @@ userRef.then((querySnapshot) => {
   console.log(doc.data())
 
   const tr = `
-    <tr data-id='${doc.id}' style="  border-bottom: 0.5px solid grey;">
+    <tr id='${doc.id}' data-id='${doc.id}' style="  border-bottom: 0.5px solid grey;">
      <td>
                                 <div class="checkbox " style="  display: inline-table;  width: 20px;
     height: 15px;">
@@ -1626,6 +1626,8 @@ document.querySelector('.prodImgphld').innerText = "Upload Proof File"
         confirmButtonText: 'Yes, delete it!'
 }).then((result) => {
   if (result.isConfirmed) {
+    let rowpartId = document.getElementById(`${doc.id}`)
+    rowpartId.remove()
      var deleteFn = firebase.functions().httpsCallable('recursiveDelete');
     deleteFn({ path: `${path.path}`})
         .then(function(result) {
