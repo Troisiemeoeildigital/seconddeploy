@@ -1018,7 +1018,7 @@ editSubmodaly.classList.add('modaly-show');
         console.log("Document data:", doc.id, doc.data());
          const editSubHeader = document.querySelector('.editSubHeader')
          //edit subs list here
-         console.log(doc.data())
+         console.log(doc.id)
         
          const getsubstancetypeEdit = document.querySelector('.getsubstancetypeEdit')
          getsubstancetypeEdit.value = doc.data().crm
