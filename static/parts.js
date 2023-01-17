@@ -950,6 +950,15 @@ db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${s
 
     let arrUniq = [...new Map(data.map(v => [JSON.stringify([v.data().casnumber,v.data().crm,v.data().rohs,v.data().substanceMassPerc,v.data().substanceMassg,v.data().substanceName]), v])).values()]
     console.log(arrUniq)
+    db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${subsmatId}`).get()
+    .then(doc => {
+      if (doc.exists) {
+        console.log()
+      }
+      else {
+        console.log("Document does not exist")
+      }
+    })
     buildTable(arrUniq)
 	function buildTable(arrUniq){
 
@@ -1008,7 +1017,17 @@ editSubmodaly.classList.add('modaly-show');
   if (doc.exists) {
         console.log("Document data:", doc.id, doc.data());
          const editSubHeader = document.querySelector('.editSubHeader')
+         //edit subs list here
          console.log(doc.data())
+        
+         const getsubstancetypeEdit = document.querySelector('.getsubstancetypeEdit')
+         getsubstancetypeEdit.value = doc.data().crm
+         if (doc.data().crm == "Y") {
+          getsubstancetypeEdit.value = "CRM"
+         } 
+         else {
+          getsubstancetypeEdit.value = 'ALL'
+         }
 
     id = doc.id;
     editSubHeader.innerHTML = '물질 정보 수정 -' + doc.data().substanceName;
@@ -1019,6 +1038,24 @@ editSubmodaly.classList.add('modaly-show');
     // EditPMSubsROHS.value = doc.data().rohs;
     EditPMSubsMassg.value = doc.data().substanceMassg;
     EditPMSubsMassPerc.value = doc.data().substanceMassPerc;
+
+  db.collection('recycledparts').doc(`${partId}`).collection("materials").doc(`${subsmatId}`).get()
+  .then(doc => {
+    if (doc.exists) {
+     EditPMSubsMassg.onchange = function(e){
+  e.preventDefault()
+
+      let materialWeight = doc.data().materialMassg
+      console.log(materialWeight)
+       EditPMSubsMassPerc.value = (EditPMSubsMassg.value / parseFloat(materialWeight) * 100).toFixed(2)
+     }
+    }
+    else {
+      console.log("Material does not exists")
+    }
+  })
+ 
+
     } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
@@ -1884,7 +1921,6 @@ if (data.some(checkUsername) == true) {
     eachDrop.classList.toggle("open");
 });
       })
-
 
 items.forEach(item => {
     item.addEventListener("click", () => {
