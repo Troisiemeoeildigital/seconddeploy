@@ -1857,22 +1857,7 @@ if (data.some(checkUsername) == true) {
 
 
 
-
-
-// Click add user button
-btnprAdd.onclick = function() {
-  addmodaly.classList.add('modaly-show');
-  const setDate = document.querySelector('.setDate')
-  let now = new Date()
-  console.log(now)
- setDate.value = now.getFullYear() + "/" + (now.getMonth() +1)  + "/" + now.getDate() + " - " +   now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
-
-  addModalyForm.addpartName.value = '';
-  addModalyForm.addpartClass.value = '';
-  addModalyForm.addpartWeight.value = '';
-  addModalyForm.addreusedPart.value = '';
-  addModalyForm.addMemo.value = '';
-  db.collection("users").where("userRole","==","Product Manufacturer")
+ db.collection("users").where("userRole","==","Product Manufacturer")
     .get()
   .then((querySnapshot)=>{
     querySnapshot.forEach((doc)=>{
@@ -1932,7 +1917,24 @@ checkedUser.push(user.attributes[0].value)
     });
 })
   })
-     auth.onAuthStateChanged(user => {
+
+// Click add user button
+btnprAdd.onclick = function() {
+  addmodaly.classList.add('modaly-show');
+  const setDate = document.querySelector('.setDate')
+  let now = new Date()
+  console.log(now)
+ setDate.value = now.getFullYear() + "/" + (now.getMonth() +1)  + "/" + now.getDate() + " - " +   now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+
+  addModalyForm.addpartName.value = '';
+  addModalyForm.addpartClass.value = '';
+  addModalyForm.addpartWeight.value = '';
+  addModalyForm.addreusedPart.value = '';
+  addModalyForm.addMemo.value = '';
+ 
+     
+  
+  auth.onAuthStateChanged(user => {
 
     if(user) {
       
