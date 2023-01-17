@@ -1012,14 +1012,13 @@ editSubmodaly.classList.add('modaly-show');
          console.log(doc.data())
          const EditPMSubsName = document.querySelector('.EditPMSubsName')
          const getsubstancetypeEdit = document.querySelector('.getsubstancetypeEdit')
-
           getsubstancetypeEdit.onchange = function(e) {
-    e.preventDefault()
-    EditPMSubsName.innerHTML = ""
+          e.preventDefault()
+          EditPMSubsName.innerHTML = ""
           db.collection("substances").where(getsubstancetypeEdit.value,"==", "Y")
-    .get()
-    .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
+           .get()
+            .then((querySnapshot) => {
+             querySnapshot.forEach((doc) => {
             let subsname = doc.data().subtanceName;
             let length = 70;
             let trimmedString = subsname.substring(0, length);
@@ -1056,6 +1055,7 @@ var trimmedString = subsname.substring(0, length);
       <option value="${subsname}" style="width:50%;">${trimmedString}...</option>
   // `;
   EditPMSubsName.insertAdjacentHTML('beforeend', tm);
+  console.log("crm condition happened here")
   // editmodalyForm.editsubstancelist.insertAdjacentHTML('beforeend', tm);
  
         });
@@ -1065,7 +1065,7 @@ var trimmedString = subsname.substring(0, length);
         console.log("Error getting documents: ", error);
     });
     }
-    else if (doc.data().rohs,"==", "Y") {
+    else if (doc.data().crm,"!==", "Y") {
           db.collection("substances").where("rohs","==", "Y")
     .get()
     .then((querySnapshot) => {
@@ -1081,6 +1081,7 @@ var trimmedString = subsname.substring(0, length);
   // `;
   EditPMSubsName.insertAdjacentHTML('beforeend', tm);
   // editmodalyForm.editsubstancelist.insertAdjacentHTML('beforeend', tm);
+  console.log("crm opposite condition happened here")
  
         });
     })
@@ -1089,7 +1090,6 @@ var trimmedString = subsname.substring(0, length);
         console.log("Error getting documents: ", error);
     });
     }
-
     else if (doc.data().none,"==", "Y") {
           db.collection("substances").where("none","==", "Y")
     .get()

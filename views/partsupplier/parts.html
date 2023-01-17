@@ -1043,7 +1043,10 @@ li span {
                         <fieldset>
                            <div class="form-card text-left">
                               <div class="row">
-                                 <div class="col-7">
+                               
+                              </div>
+                           <div class="row">
+                              <div class="col-4">
                                        <label>Substance Type </label>
                                      <select  class="getsubstancetypeEdit form-control" id="sel1" name="getsubstancetypeEdit" >
                                            <option value="" selected>선택하기</option>
@@ -1053,21 +1056,8 @@ li span {
                                           
                                         </select>
                                  </div>
-                              </div>
-                           <div class="row">
-                                           <div class="col-md-6">                      
-                                    <div class="form-group">
-                                        <label>Substance Name </label>
-                                          <!-- <input type="text" class="form-control"  id='EditPMSubsName' name="EditPMSubsName" placeholder="Please Enter Susbtance Name" data-errors="Please Enter Susbtance Name"  > -->
-                                            <select  class="EditPMSubsName form-control" id="sel1" name="EditPMSubsName" >
-                                        
-                                          
-                                        </select>
-                                          
-                                    </div>
-                                </div>  
-                   
-                                  <div class="col-md-6">                
+                                           
+                                  <div class="col-md-4">                
                                             <div class="form-group">
                                         <label>CAS Number </label>
                                     
@@ -1075,10 +1065,28 @@ li span {
                                     
                                     </div>
                                 </div>  
+                                    <div class="col-md-4"> 
+                                    <div class="form-group">
+                                        <label>Susbtance Mass (g) </label>
+                                        <input type="text" class="form-control" id='EditPMSubsMassg' name="EditPMSubsMassg" placeholder="Please enter Susbtance mass (g)" >
+                               
+                                    </div>
+                                </div> 
                            </div> 
                 
                                <div class="row">
-                                     <div class="col-md-6"> 
+                                <div class="col-md-4">                      
+                                    <div class="form-group">
+                                        <label>Substance Name </label>
+                                          <!-- <input type="text" class="form-control"  id='EditPMSubsName' name="EditPMSubsName" placeholder="Please Enter Susbtance Name" data-errors="Please Enter Susbtance Name"  > -->
+                                            <select  class="EditPMSubsName form-control" id="sel1" name="EditPMSubsName" >
+                                        
+                                          
+                                        </select>
+                                    </div>
+                                </div>  
+                   
+                                     <div class="col-md-4"> 
                                     <div class="form-group">
                                          <label>CRM </label>
                                     
@@ -1098,14 +1106,8 @@ li span {
                                 </div>  -->
                           
                            
-                                     <div class="col-md-3"> 
-                                    <div class="form-group">
-                                        <label>Susbtance Mass (g) </label>
-                                        <input type="text" class="form-control" id='EditPMSubsMassg' name="EditPMSubsMassg" placeholder="Please enter Susbtance mass (g)" >
-                               
-                                    </div>
-                                </div> 
-                                 <div class="col-md-3"> 
+                                 
+                                 <div class="col-md-4"> 
                                     <div class="form-group">
                                         <label>Susbtance Mass (%) *</label>
                                         <input type="text" class="form-control" id='EditPMSubsMassPerc' placeholder="Please enter Material mass (%)"  name="EditPMSubsMassPerc" >
