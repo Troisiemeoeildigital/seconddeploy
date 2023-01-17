@@ -1041,12 +1041,15 @@ editSubmodaly.classList.add('modaly-show');
 
   db.collection('recycledparts').doc(`${partId}`).collection("materials").doc(`${subsmatId}`).get()
   .then(doc => {
+    
+   console.log("Material path:" ,doc.ref.path)
     if (doc.exists) {
      EditPMSubsMassg.onchange = function(e){
   e.preventDefault()
 
       let materialWeight = doc.data().materialMassg
       console.log(materialWeight)
+
        EditPMSubsMassPerc.value = (EditPMSubsMassg.value / parseFloat(materialWeight) * 100).toFixed(2)
      }
     }
