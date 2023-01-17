@@ -1008,7 +1008,114 @@ editSubmodaly.classList.add('modaly-show');
   if (doc.exists) {
         console.log("Document data:", doc.id, doc.data());
          const editSubHeader = document.querySelector('.editSubHeader')
+         //edit subs list here
          console.log(doc.data())
+         const EditPMSubsName = document.querySelector('.EditPMSubsName')
+         const getsubstancetypeEdit = document.querySelector('.getsubstancetypeEdit')
+
+          getsubstancetypeEdit.onchange = function(e) {
+    e.preventDefault()
+    EditPMSubsName.innerHTML = ""
+          db.collection("substances").where(getsubstancetypeEdit.value,"==", "Y")
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            let subsname = doc.data().subtanceName;
+            let length = 70;
+            let trimmedString = subsname.substring(0, length);
+           const tm = `
+      <option value="${subsname}" style="width:50%;">${trimmedString}...</option>
+  // `;
+  EditPMSubsName.insertAdjacentHTML('beforeend', tm);
+  // editmodalyForm.editsubstancelist.insertAdjacentHTML('beforeend', tm);
+ 
+        });
+    })
+   
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+    
+
+
+    }
+
+    if (doc.data().crm,"==", "Y") {
+
+          db.collection("substances").where("crm","==", "Y")
+    .get()
+    .then((querySnapshot) => {
+      
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            // console.log(doc.id, " => ", doc.data());
+            let subsname = doc.data().subtanceName;
+            var length = 70;
+var trimmedString = subsname.substring(0, length);
+           const tm = `
+      <option value="${subsname}" style="width:50%;">${trimmedString}...</option>
+  // `;
+  EditPMSubsName.insertAdjacentHTML('beforeend', tm);
+  // editmodalyForm.editsubstancelist.insertAdjacentHTML('beforeend', tm);
+ 
+        });
+    })
+   
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+    }
+    else if (doc.data().rohs,"==", "Y") {
+          db.collection("substances").where("rohs","==", "Y")
+    .get()
+    .then((querySnapshot) => {
+      
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            // console.log(doc.id, " => ", doc.data());
+            let subsname = doc.data().subtanceName;
+            var length = 70;
+var trimmedString = subsname.substring(0, length);
+           const tm = `
+      <option value="${subsname}" style="width:50%;">${trimmedString}...</option>
+  // `;
+  EditPMSubsName.insertAdjacentHTML('beforeend', tm);
+  // editmodalyForm.editsubstancelist.insertAdjacentHTML('beforeend', tm);
+ 
+        });
+    })
+   
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+    }
+
+    else if (doc.data().none,"==", "Y") {
+          db.collection("substances").where("none","==", "Y")
+    .get()
+    .then((querySnapshot) => {
+      
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            // console.log(doc.id, " => ", doc.data());
+            let subsname = doc.data().subtanceName;
+            var length = 70;
+var trimmedString = subsname.substring(0, length);
+           const tm = `
+      <option value="${subsname}" style="width:50%;">${trimmedString}...</option>
+  // `;
+  EditPMSubsName.insertAdjacentHTML('beforeend', tm);
+  // editmodalyForm.editsubstancelist.insertAdjacentHTML('beforeend', tm);
+ 
+        });
+    })
+   
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+    }
+
+    
 
     id = doc.id;
     editSubHeader.innerHTML = '물질 정보 수정 -' + doc.data().substanceName;
@@ -1902,8 +2009,6 @@ btnprAdd.onclick = function() {
     eachDrop.classList.toggle("open");
 });
       })
-// add this to production github
-
 
 items.forEach(item => {
     item.addEventListener("click", () => {
