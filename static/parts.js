@@ -1048,12 +1048,8 @@ editSub.onclick = function(e) {
     crm: EditPMSubsCRM.value,
     // rohs: EditPMSubsROHS.value,
     substanceMassg: EditPMSubsMassg.value,
-    substanceMassPerc: EditPMSubsMassPerc.value,
-
-	
-   
+    substanceMassPerc: EditPMSubsMassPerc.value
   })
-  
     Swal.fire(
   'Success!',
   'Susbstance updated successfully!',
@@ -1140,7 +1136,7 @@ eachDuplicatePart.onclick = function(e) {
 
                              partRef: doc.data().partRef,
                              partRefWeight: doc.data().partRefWeight,
-                            //  proofurl: doc.data().proofurl,
+                             proofurl: doc.data().proofurl,
                              recovMat: doc.data().recovMat,
                              recycMat: doc.data().recycMat,
                              reuseMat: doc.data().reuseMat,
