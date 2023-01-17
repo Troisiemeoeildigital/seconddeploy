@@ -950,6 +950,15 @@ db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${s
 
     let arrUniq = [...new Map(data.map(v => [JSON.stringify([v.data().casnumber,v.data().crm,v.data().rohs,v.data().substanceMassPerc,v.data().substanceMassg,v.data().substanceName]), v])).values()]
     console.log(arrUniq)
+    db.collection('recycledparts').doc(`${partId}`).collection('materials').doc(`${subsmatId}`).get()
+    .then(doc => {
+      if (doc.exists) {
+        console.log()
+      }
+      else {
+        console.log("Document does not exist")
+      }
+    })
     buildTable(arrUniq)
 	function buildTable(arrUniq){
 
@@ -1010,112 +1019,15 @@ editSubmodaly.classList.add('modaly-show');
          const editSubHeader = document.querySelector('.editSubHeader')
          //edit subs list here
          console.log(doc.data())
-         const EditPMSubsName = document.querySelector('.EditPMSubsName')
+        
          const getsubstancetypeEdit = document.querySelector('.getsubstancetypeEdit')
-          getsubstancetypeEdit.onchange = function(e) {
-          e.preventDefault()
-          EditPMSubsName.innerHTML = ""
-          db.collection("substances").where(getsubstancetypeEdit.value,"==", "Y")
-           .get()
-            .then((querySnapshot) => {
-             querySnapshot.forEach((doc) => {
-            let subsname = doc.data().subtanceName;
-            let length = 70;
-            let trimmedString = subsname.substring(0, length);
-           const tm = `
-      <option value="${subsname}" style="width:50%;">${trimmedString}...</option>
-  // `;
-  EditPMSubsName.insertAdjacentHTML('beforeend', tm);
-  // editmodalyForm.editsubstancelist.insertAdjacentHTML('beforeend', tm);
- 
-        });
-    })
-   
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
-    
-
-
-    }
-
-    if (doc.data().crm,"==", "Y") {
-
-          db.collection("substances").where("crm","==", "Y")
-    .get()
-    .then((querySnapshot) => {
-      
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            // console.log(doc.id, " => ", doc.data());
-            let subsname = doc.data().subtanceName;
-            var length = 70;
-var trimmedString = subsname.substring(0, length);
-           const tm = `
-      <option value="${subsname}" style="width:50%;">${trimmedString}...</option>
-  // `;
-  EditPMSubsName.insertAdjacentHTML('beforeend', tm);
-  console.log("crm condition happened here")
-  // editmodalyForm.editsubstancelist.insertAdjacentHTML('beforeend', tm);
- 
-        });
-    })
-   
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
-    }
-    else if (doc.data().crm,"!==", "Y") {
-          db.collection("substances").where("rohs","==", "Y")
-    .get()
-    .then((querySnapshot) => {
-      
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            // console.log(doc.id, " => ", doc.data());
-            let subsname = doc.data().subtanceName;
-            var length = 70;
-var trimmedString = subsname.substring(0, length);
-           const tm = `
-      <option value="${subsname}" style="width:50%;">${trimmedString}...</option>
-  // `;
-  EditPMSubsName.insertAdjacentHTML('beforeend', tm);
-  // editmodalyForm.editsubstancelist.insertAdjacentHTML('beforeend', tm);
-  console.log("crm opposite condition happened here")
- 
-        });
-    })
-   
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
-    }
-    else if (doc.data().none,"==", "Y") {
-          db.collection("substances").where("none","==", "Y")
-    .get()
-    .then((querySnapshot) => {
-      
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            // console.log(doc.id, " => ", doc.data());
-            let subsname = doc.data().subtanceName;
-            var length = 70;
-var trimmedString = subsname.substring(0, length);
-           const tm = `
-      <option value="${subsname}" style="width:50%;">${trimmedString}...</option>
-  // `;
-  EditPMSubsName.insertAdjacentHTML('beforeend', tm);
-  // editmodalyForm.editsubstancelist.insertAdjacentHTML('beforeend', tm);
- 
-        });
-    })
-   
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
-    }
-
-    
+         getsubstancetypeEdit.value = doc.data().crm
+         if (doc.data().crm == "Y") {
+          getsubstancetypeEdit.value = "CRM"
+         } 
+         else {
+          getsubstancetypeEdit.value = 'ALL'
+         }
 
     id = doc.id;
     editSubHeader.innerHTML = '물질 정보 수정 -' + doc.data().substanceName;
@@ -1126,6 +1038,24 @@ var trimmedString = subsname.substring(0, length);
     // EditPMSubsROHS.value = doc.data().rohs;
     EditPMSubsMassg.value = doc.data().substanceMassg;
     EditPMSubsMassPerc.value = doc.data().substanceMassPerc;
+
+  db.collection('recycledparts').doc(`${partId}`).collection("materials").doc(`${subsmatId}`).get()
+  .then(doc => {
+    if (doc.exists) {
+     EditPMSubsMassg.onchange = function(e){
+  e.preventDefault()
+
+      let materialWeight = doc.data().materialMassg
+      console.log(materialWeight)
+       EditPMSubsMassPerc.value = (EditPMSubsMassg.value / parseFloat(materialWeight) * 100).toFixed(2)
+     }
+    }
+    else {
+      console.log("Material does not exists")
+    }
+  })
+ 
+
     } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
