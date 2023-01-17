@@ -2,6 +2,10 @@
 import loadingSkel from './components/products/js/loadingSkelt.js'
 import loadProdTable from './components/products/js/loadProdTable.js'
 
+
+
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyAq2QjImxRXEtRHN-N6u2YEod-wUJMtI1s",
   authDomain: "projectcrm-f4e5f.firebaseapp.com",
@@ -12,6 +16,7 @@ const firebaseConfig = {
   appId: "1:404890912341:web:5b129be76ccdfeba8c76dc",
   measurementId: "G-TL8J23TNZE"
 };
+
 
 
 // Initialize Firebase
