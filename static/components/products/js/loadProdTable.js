@@ -1781,7 +1781,7 @@ addSubs.onclick = function(e) {
     console.log(arrUniq)
     buildTable(arrUniq)
 	function buildTable(arrUniq){
-// testing git branch 
+// testing git branch v2
 		for (var i = 0; i < arrUniq.length; i++){
 			var row = `<tr  id= '${arrUniq[i].id}' >
        <td>
