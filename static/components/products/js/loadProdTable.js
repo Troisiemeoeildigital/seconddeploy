@@ -1,4 +1,3 @@
-// import renderUser from './renderUser.js';
 
 export default function loadProdTable() {
 const addmodaly = document.querySelector('.add-modaly');
@@ -1773,17 +1772,17 @@ addSubs.onclick = function(e) {
   
 .then(query=>{
     let data = query.docs.map(doc=>{
-        let x = doc
+        let x = doc.data()
             return x;
     })
     console.log(data)
-    let arrUniq = [...new Map(data.map(v => [JSON.stringify([v.data().casnumber,v.data().crm,v.data().rohs,v.data().substanceMassPerc,v.data().substanceMassg,v.data().substanceName]), v])).values()]
+    let arrUniq = [...new Map(data.map(v => [JSON.stringify([v.casnumber,v.crm,v.rohs,v.substanceMassPerc,v.substanceMassg,v.substanceName]), v])).values()]
     console.log(arrUniq)
     buildTable(arrUniq)
 	function buildTable(arrUniq){
 
 		for (var i = 0; i < arrUniq.length; i++){
-			var row = `<tr  id= '${arrUniq[i].id}' >
+			var row = `<tr  id= '${arrUniq[i].subProdid}' >
        <td>
                                 <div class="checkbox d-inline-block" style="display: flex;
     align-items: center;justify-content: center;">
@@ -1792,19 +1791,19 @@ addSubs.onclick = function(e) {
                                     <label for="checkbox2" class="mb-0"></label>
                                 </div>
                             </td>
-							<td>${arrUniq[i].data().substanceName}</td>
-              <td>${arrUniq[i].data().casnumber}</td>
-                <td >${arrUniq[i].data().crm}</td>
+							<td>${arrUniq[i].substanceName}</td>
+              <td>${arrUniq[i].casnumber}</td>
+                <td >${arrUniq[i].crm}</td>
                 
-							<td >${arrUniq[i].data().substanceMassg}</td>
-							<td >${arrUniq[i].data().substanceMassPerc}</td>
+							<td >${arrUniq[i].substanceMassg}</td>
+							<td >${arrUniq[i].substanceMassPerc}</td>
               <td>
 
 
 
   <nav class="navbary"  style="background-color:  #219EBC ";>
 	<a href="#" class="navbary__link" >
-		<span class="btnprsubdelete"  data-id= '${arrUniq[i].id}'><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
+		<span class="btnprsubdelete"  data-id= '${arrUniq[i].subProdid}'><i class="ri-delete-bin-line" style="color: white; font-size: 15px; "></i></span>
 		<span class="navbary__label">Delete Substance</span>
 	</a>
   </nav>
@@ -1834,11 +1833,10 @@ addSubs.onclick = function(e) {
     let deleteData = btnprsubdelete[i].getAttribute("data-id");
 console.log(deleteData)
    let tr = document.getElementById(`${deleteData}`);
-     
-      db.collection('recycledproducts').doc(`${btnpraddRef}`).collection('selectedParts').doc(`${partmatRef}`).collection('selectedMaterials').doc(`${matsubRef}`).collection('selectedSubs').doc(`${deleteData}`).delete().then(() => {
+      tr.remove(tr);
+      db.collection('recycledproducts').doc(`${btnpraddRef}`).collection('selectedParts').doc(`${partmatRef}`).collection('selectedMaterials').doc(`${matsubRef}`).collection('selectedSubs').doc(deleteData).delete().then(() => {
           Swal.fire('Saved!', '', 'success')
       console.log('Document succesfully deleted!');
-       tr.remove(tr);
     })
  
     .catch(err => {

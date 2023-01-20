@@ -16,6 +16,7 @@ const app = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth(app);
 const db = firebase.firestore(app);
 const functions = firebase.functions();
+  
 const modalyWrapper = document.querySelector('.modaly-wrapper');
 const userroledisplay = document.querySelector('.userroledisplay')
 const materialtitle = document.querySelector('.modal-title')
@@ -1018,7 +1019,7 @@ editSubmodaly.classList.add('modaly-show');
         console.log("Document data:", doc.id, doc.data());
          const editSubHeader = document.querySelector('.editSubHeader')
          //edit subs list here
-         console.log(doc.data())
+         console.log(doc.id)
         
          const getsubstancetypeEdit = document.querySelector('.getsubstancetypeEdit')
          getsubstancetypeEdit.value = doc.data().crm
@@ -1078,7 +1079,7 @@ editSub.onclick = function(e) {
   denyButtonText: `Don't save`,
 }).then((result) => {
   /* Read more about isConfirmed, isDenied below */
-  
+  console.log("hello world")
 
 
   
@@ -1088,11 +1089,8 @@ editSub.onclick = function(e) {
     crm: EditPMSubsCRM.value,
     // rohs: EditPMSubsROHS.value,
     substanceMassg: EditPMSubsMassg.value,
-    substanceMassPerc: EditPMSubsMassPerc.value,
-	
-   
+    substanceMassPerc: EditPMSubsMassPerc.value
   })
-  
     Swal.fire(
   'Success!',
   'Susbstance updated successfully!',
@@ -1179,7 +1177,7 @@ eachDuplicatePart.onclick = function(e) {
 
                              partRef: doc.data().partRef,
                              partRefWeight: doc.data().partRefWeight,
-                            //  proofurl: doc.data().proofurl,
+                             proofurl: doc.data().proofurl,
                              recovMat: doc.data().recovMat,
                              recycMat: doc.data().recycMat,
                              reuseMat: doc.data().reuseMat,
@@ -1897,22 +1895,7 @@ if (data.some(checkUsername) == true) {
 
 
 
-
-
-// Click add user button
-btnprAdd.onclick = function() {
-  addmodaly.classList.add('modaly-show');
-  const setDate = document.querySelector('.setDate')
-  let now = new Date()
-  console.log(now)
- setDate.value = now.getFullYear() + "/" + (now.getMonth() +1)  + "/" + now.getDate() + " - " +   now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
-
-  addModalyForm.addpartName.value = '';
-  addModalyForm.addpartClass.value = '';
-  addModalyForm.addpartWeight.value = '';
-  addModalyForm.addreusedPart.value = '';
-  addModalyForm.addMemo.value = '';
-  db.collection("users").where("userRole","==","Product Manufacturer")
+ db.collection("users").where("userRole","==","Product Manufacturer")
     .get()
   .then((querySnapshot)=>{
     querySnapshot.forEach((doc)=>{
@@ -1971,7 +1954,24 @@ checkedUser.push(user.attributes[0].value)
     });
 })
   })
-     auth.onAuthStateChanged(user => {
+
+// Click add user button
+btnprAdd.onclick = function() {
+  addmodaly.classList.add('modaly-show');
+  const setDate = document.querySelector('.setDate')
+  let now = new Date()
+  console.log(now)
+ setDate.value = now.getFullYear() + "/" + (now.getMonth() +1)  + "/" + now.getDate() + " - " +   now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+
+  addModalyForm.addpartName.value = '';
+  addModalyForm.addpartClass.value = '';
+  addModalyForm.addpartWeight.value = '';
+  addModalyForm.addreusedPart.value = '';
+  addModalyForm.addMemo.value = '';
+ 
+     
+  
+  auth.onAuthStateChanged(user => {
 
     if(user) {
       
@@ -2251,3 +2251,5 @@ closebtnSub.forEach((eachCloseSub)=> {
     editSubmodaly.classList.remove('modaly-show');
    })
 })
+  
+
