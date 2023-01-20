@@ -66,7 +66,7 @@ let id;
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-console.log("hello from master")
+console.log("hello from master v3")
 
 // const renderProds = doc =>{
 //   db.collection('recycledproducts')
