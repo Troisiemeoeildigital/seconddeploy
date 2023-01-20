@@ -1,0 +1,206 @@
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Kitech - Registration</title>
+      <!-- Favicon -->
+       <link rel="stylesheet" href="./mvp.css" />
+      <style>
+         .form-control {
+            background: #f3f6fd;
+         }
+     
+      </style>
+   </head>
+  <body class=" ">
+    <!-- loader Start -->
+    
+    <!-- loader END -->
+    
+      <div class="wrapper" style="    background-color: #f3f6fd;">
+      <section class="login-content">
+         <div class="container">
+            <div class="row align-items-center justify-content-center height-self-center">
+               <div class="col-lg-8">
+                  <div class="card auth-card">
+                     <div class="card-body p-0">
+                        <div class="d-flex align-items-center auth-content">
+                           <div class="col-lg-12 align-self-center">
+                              <div class="p-3">
+                                 <h2 class="mb-2" style="text-align: center; color: #1f1c2f;">Sign Up</h2>
+                 
+                                 <form style="margin-top: 5%;" id="signup">
+                                    <div class="row">
+                                       <div class="col-lg-6">
+                                          <div class="floating-label form-group">
+                                             <input class="floating-input form-control" type="text" id="firstname" placeholder=" ">
+                                             <label>Full Name</label>
+                                          </div>
+                                       </div>
+                                       <div class="col-lg-6">
+                                          <div class="floating-label form-group">
+                                             <input class="floating-input form-control" type="number" id="phoneNumber" placeholder=" ">
+                                             <label>Phone Number</label>
+                                          </div>
+                                       </div>
+                                       <div class="col-lg-6">
+                                          <div class="floating-label form-group">
+                                             <input class="floating-input form-control" type="email" id="email" placeholder=" ">
+                                             <label>Email</label>
+                                          </div>
+                                       </div>
+                                       <div class="col-lg-6">
+                                          <div class="floating-label form-group">
+                                             <input class="floating-input form-control" type="text" id="companyname" placeholder=" ">
+                                             <label>Company Name</label>
+                                          </div>
+                                       </div>
+                                       <div class="col-lg-12">
+                                         <div class="floating-label form-group">
+                                             <input class="floating-input form-control" type="password" id="password" placeholder=" ">
+                                             <label>Password</label>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="row" style="
+                                                            display: flex;
+                                                            flex-wrap: wrap;
+                                                            margin-right: -15px;
+                                                            margin-left: -15px;
+                                                            flex-direction: row-reverse;
+                                                            justify-content: space-between;
+                                                            align-items: center;
+                                                               ">
+    <button type="submit" class="btn btn-primary float-right" style="background-color: #1f1c2f;
+    border: 0;">Sign Up</button>
+                                    <p class="mt-3">
+                                       Already have an Account?  <a href="./login" class="text-primary">Login</a>
+                                    </p>
+                                    </div>
+                                
+                                 </form>
+                              </div>
+                           </div>
+                         
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      </div>
+      
+     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+        <script  src="https://www.gstatic.com/firebasejs/7.14.1/firebase-functions.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
+      
+
+      <script type="module">
+     const firebaseConfig = {
+    apiKey: "AIzaSyAq2QjImxRXEtRHN-N6u2YEod-wUJMtI1s",
+    authDomain: "projectcrm-f4e5f.firebaseapp.com",
+    databaseURL: "https://projectcrm-f4e5f-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "projectcrm-f4e5f",
+    storageBucket: "projectcrm-f4e5f.appspot.com",
+    messagingSenderId: "404890912341",
+    appId: "1:404890912341:web:5b129be76ccdfeba8c76dc",
+    measurementId: "G-TL8J23TNZE"
+  };
+
+       const app = firebase.initializeApp(firebaseConfig);
+
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+         const db = firebase.firestore();
+         const functions = firebase.functions(app)
+         
+
+console.log("im updated!")
+        document
+          .getElementById("signup")
+          .addEventListener("submit", (event) => {
+            event.preventDefault();
+            
+            const firstname = document.getElementById('firstname').value;
+            const login = document.getElementById('email').value;
+               const phoneNumber = document.getElementById('phoneNumber').value;
+            const password = document.getElementById('password').value;
+            const companyname = document.getElementById('companyname').value;
+  
+            firebase
+              .auth()
+              .createUserWithEmailAndPassword(login, password)
+              
+            // .then(function(user) {
+            //  return user.updateProfile({
+            //  displayName: firstname,
+            //  phoneNumber: phonenumber
+            //  })})
+            .then( async  ({ user }) => {
+                user.updateProfile({
+             displayName: firstname  ,
+    
+             })
+               db.collection('users').add({
+                  fullName: firstname,
+                  userEmail: user.email,
+                   phoneNumber: phoneNumber,
+                  userCompanyname: companyname,
+                  userID: user.uid,
+                  requestType: false,
+                  requestStatus: "🔴",
+                  requestRole: "No Request has been sent.",
+                  userRole: "Default"
+               })
+              
+               console.log(user.email)
+                 const addDefaultRole = functions.httpsCallable('addDefaultRole');
+                  addDefaultRole({email: user.email}).then(result => {
+                     console.log(result);
+                  })
+                return user.getIdToken().then(  (idToken) => {
+                  return fetch("/sessionLogin", {
+                    method: "POST",
+                    headers: {
+                      Accept: "application/json",
+                      "Content-Type": "application/json",
+                      "CSRF-Token": Cookies.get("XSRF-TOKEN"),
+                    },
+                    body: JSON.stringify({ idToken }),
+                  });
+                });
+              })
+
+            //   .then(() => {
+            //     return firebase.auth().signOut();
+            //   })
+         
+            return false;
+          });
+
+
+      </script>
+    
+    <!-- Backend Bundle JavaScript -->
+    <script src="./backend-bundle.min.js"></script>
+    
+    <!-- Table Treeview JavaScript -->
+    <script src="./table-treeview.js"></script>
+    
+    <!-- Chart Custom JavaScript -->
+    <script src="./customizer.js"></script>
+    
+    <!-- Chart Custom JavaScript -->
+    <script async src="./chart-custom.js"></script>
+    
+    <!-- app JavaScript -->
+    <script src="./app.js"></script>
+  </body>
+</html>

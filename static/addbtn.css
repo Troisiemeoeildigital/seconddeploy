@@ -1,0 +1,276 @@
+/*Button: Edit Produts*/
+.buttoni{
+position: relative;
+    height: 40px;
+    width: 200px;
+    background: #87CEF5;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    overflow: hidden;
+    left: 85%;
+}
+.buttoni.active{
+  height: 20px;
+  width: 200px;
+}
+.buttoni::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 100%;
+  background: #669ab6;
+  border-radius: 55px;
+  transition: all 3s ease-in-out;
+}
+.buttoni.active::before{
+  animation: layer 3s ease-in-out forwards;
+}
+@keyframes layer {
+  100%{
+    left: 0%;
+  }
+}
+.buttoni .content{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  transition-delay: 0.2s;
+  margin: 0;
+}
+.buttoni.active .content{
+  transform: translateY(60px);
+}
+.buttoni .content i,
+.buttoni .content .buttoni-text{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+}
+.buttoni .content .buttoni-text{
+  font-size: 15px;
+  margin-left: 8px;
+}
+
+
+/*Button: Add ¨Parts*/
+.buttonaddParts{
+position: relative;
+    height: 40px;
+    width: 200px;
+    background: #219EBC;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    overflow: hidden;
+    left: 85%;
+}
+.buttonaddParts.active{
+  height: 20px;
+  width: 200px;
+}
+.buttonaddParts::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 100%;
+  background: #219EBC;
+  border-radius: 55px;
+  transition: all 3s ease-in-out;
+}
+.buttonaddParts.active::before{
+  animation: layer 3s ease-in-out forwards;
+}
+@keyframes layer {
+  100%{
+    left: 0%;
+  }
+}
+.buttonaddParts .content{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  transition-delay: 0.2s;
+  margin: 0;
+}
+.buttonaddParts.active .content{
+  transform: translateY(60px);
+}
+.buttonaddParts .content i,
+.buttonaddParts .content .buttonaddParts-text{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+}
+.buttonaddParts .content .buttonaddParts-text{
+  font-size: 15px;
+  margin-left: 8px;
+}
+
+
+/*Button: Add New Produt*/
+.buttonaddProducts{
+position: relative;
+    height: 40px;
+    width: 200px;
+    background: #219EBC;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    overflow: hidden;
+    left: 85%;
+    margin-bottom: 3%;
+}
+.buttonaddProducts.active{
+  height: 20px;
+  width: 200px;
+}
+.buttonaddProducts::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 100%;
+  background: #219EBC;
+  border-radius: 55px;
+  transition: all 3s ease-in-out;
+}
+.buttonaddProducts.active::before{
+  animation: layer 3s ease-in-out forwards;
+}
+@keyframes layer {
+  100%{
+    left: 0%;
+  }
+}
+.buttonaddProducts .content{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  transition-delay: 0.2s;
+  margin: 0;
+}
+.buttonaddProducts.active .content{
+  transform: translateY(60px);
+}
+.buttonaddProducts .content i,
+.buttonaddProducts .content .buttonaddProducts-text{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+}
+.buttonaddProducts .content .buttonaddProducts-text{
+  font-size: 15px;
+  margin-left: 8px;
+}
+
+/*Download Button*/
+
+/* 
+.buttonreport .buttonreportdwld{
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  padding: 12px 38px;
+  background: linear-gradient(90deg, #6616d0, #ac34e7);
+  border-radius: 45px;
+  margin: 10px;
+  font-size: 30px;
+  font-weight: 400;
+  text-decoration: none;
+  box-shadow: 3px 5px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+.buttonreport .buttonreportdwld.two{
+  background: linear-gradient(90deg, #025ce3, #4e94fd);
+}
+.buttonreport .buttonreportdwld .overlay{
+  position: absolute;
+  background: #fff;
+  top: 0;
+  left: 0;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  animation: blink 0.5s linear;
+}
+@keyframes blink {
+  0%{
+    height: 0px;
+    width: 0px;
+    opacity: 0.3;
+  }
+  100%{
+    height: 400px;
+    width: 400px;
+    opacity: 0;
+  }
+} */
+
+
+.drag-file-box {
+  max-width:760px;
+  max-height:228px;
+  border:3px dotted #B3B7C5;
+  margin:30px auto 0;
+  width:100%;
+  height:228px;
+  position:relative;
+  text-align:center;
+  font-family: Arial, Helvetica, sans-serif;
+  color:#444;
+}
+
+.drag-file-box h4 {
+  padding-top:156px;
+  width:auto;
+  height:auto;
+  margin:auto;
+}
+.drag-file-box h4 span {
+  display:block;
+  font-weight:normal;
+  font-size:0.8em;
+  line-height:1.8em;
+}
+
+
+
+.drag-file-box.example2:before {
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  display:block;
+  width:100%;
+  height:100%;
+  margin:auto;
+  cursor: url("https://www.formstack.com/images/icons/spot/important/drag-and-drop.svg"), copy;
+  background-position:center 10px;
+  background-repeat:no-repeat;
+  background-color:#F7FBFF;
+  background-image: url("data:image/png;base64,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");
+  opacity:0.2;
+  -webkit-transition: opacity 400ms, background-position 300ms ease-out 50ms;
+  transition: opacity 400ms, background-position 300ms ease-out 50ms;
+}
+
+.drag-file-box.example2:hover:before {
+  opacity:0.7;
+  transform: scale(1);
+  background-position:center 7px;
+}

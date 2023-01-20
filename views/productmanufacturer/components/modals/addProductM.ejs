@@ -1,0 +1,178 @@
+  <div class="add-modaly modaly-wrapper">
+      <div class="modaly">
+        <div class="modaly-header"> <span style="font-size: 150%; color:black;">제품 등록</span></div>
+        <div class="modaly-body" style="    overflow-y: scroll; height: auto; overflow-x: hidden;">
+          <div class="card-body">
+                     <div >
+                        <form class="form" autocomplete="off"  data-toggle="validator" id="form-wizard1">
+                 
+                      <!-- fieldsets -->
+                         
+                        <fieldset id="personal">
+                    
+                          
+                        <div class="row">
+                              <div class="col-md-6"> 
+                               <div class="form-group">
+                                        <label>Product Category *</label>
+                                         <select class="partsName form-control"  id="addproductCategory" name="productCategory" data-errors="Please Enter Product Category."  required>
+                                        
+                                        
+<option>에어컨</option>
+<option>가정용 오븐 및 레인지후드</option>
+<option>전기램프 및 등 조명기기</selectoption>
+<option>가정용 식기세척기</option>
+<option>가정용 냉장고</option>
+<option>가정용 드럼 건조기</option>
+<option>가정용 세탁기 및 세탁기겸 건조기</option>
+<option>로컬 스페이스 히터</option>
+<option>전문가용 냉장용 보관 캐비닛</option>
+<option>주거용 환기 장치</option>
+<option>고체연료 보일러 및 고체 연료 보일러 패키지, 보조 히터, 온도 제어 및 태양광 장치</option>
+<option>콤비네이션 히터, 공간 히터 패키지</option>
+<option>전자 디스플레이 및 텔레비젼</option>
+<option>청소기</option>
+<option>온수기, 온수 저장 탱크, 온수기 및 태양광 장치 패키지</option>
+<option>공기 가열 제품, 냉각 제품, 고온 공정 냉각기 및 팬 코일 장치</option>
+<option>서큘레이터</option>
+<option>컴퓨터 및 컴퓨터 서버</option>
+<option>전동기</option>
+<option>외부 전원 공급 장치</option>
+<option>125W~500kW 전기 모터로 구동되는 팬</option>
+<option>심플 셋톱 박스</option>
+<option>소형, 중형 및 대형 전력 변압기</option>
+<option>전기전자 가정 및 사무기기의 대기/오프모드 전력소비</option>
+<option>양수 펌프</option>
+<option>용접기기</option>
+<option>직판 냉장기기</option>
+<option>이동전화</option>
+<option>스마트폰</option>
+<option>태블릿</option>
+<option>Others</option>
+
+                                           
+                                           </select>
+                                        <!-- <input type="text" class="form-control" id='editproductName' placeholder="Enter Product Name" data-errors="Please Enter Product Name." name="productName" > -->
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                 </div>
+                              <div class="col-md-6">
+                                       <div class="form-group">
+                                        <label>Product Weight (kg) *</label>
+                                        <input type="number" step=".01" min="0" class="form-control" id='addproductWeight'placeholder="Enter Code" data-errors="Please product weight." name="productWeight" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                              </div>
+                               
+                               
+                                </div>
+
+                                     <div class="row">
+                                             <div class="col-md-4" style="display: none; height: 0; ">  <div class="form-group">
+                                        <label>Product Manufacturer </label>
+                                        <input readonly type="text" class="form-control" id='productManufacturer'  name="productManufacturer"  >
+                              
+                                    </div>   </div>   
+                                            <div class="col-md-4">  <div class="form-group">
+                                        <label>Product Name *</label>
+                                        <input type="text" class="form-control" id='addproductName' placeholder="Enter Product Name" data-errors="Please Enter Product Name." name="productName" required >
+                                        <div class="help-block with-errors"></div>
+                                    </div>   </div>    
+                                     <div class="col-md-4">     <div class="form-group">
+                                        <label>Product Model Name *</label>
+                                        <input type="text" class="form-control" id='addproductMN' placeholder="Enter Product Model Name" data-errors="Please Enter Product Model Name." name="productMN" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div> </div>   
+                                      <div class="col-md-4">
+                                            <label>Product Image </label>
+                    <div class="input-group mb-4">
+                        <div class="custom-file mb-3">
+                        
+                           <input type="file" class="custom-file-input files" id="customFile">
+                           <label class="custom-file-label prodImgphld" for="customFile">Upload Product Image</label>
+                        </div>
+                         </div>
+                            </div>               
+                                   
+                                 
+                                </div>    
+                                <div class="row">
+                                        <div class="col-md-6"> 
+                                    <div class="form-group">
+                                        <label>Registered Date</label>
+                                        <input readonly type="text" style=" font-size: 15px; padding:0;" class="form-control setDate" id='addregisteredDate' placeholder="Enter the registration date."  name="registeredDate"  >
+                                    </div>
+                                </div> 
+
+                                   <div class="col-md-6">
+                                    <div class="form-group">
+                                     <label>Memo</label>
+                                        <input type="text" class="form-control" id='addmemo' placeholder="Please Enter Memo."  name="memo" >
+                                      
+                                    </div>
+                                </div>
+                            
+                            </div>
+                           
+                     
+                      
+                        
+                        
+                           <div class="form-card text-left" >
+                               <div class="row">  
+                                  <div class="col-md-6" style="display: none; height: 0;">
+                                    <div class="form-group">
+                                     <label>Product Size</label>
+                                         <div class="input-group mb-4" style="align-items: center;">
+                        
+                        <input type="text" class="form-control " id="addprodWidth" placeholder="Width" aria-label="Width"
+                           aria-describedby="basic-addon4" >
+                    <i class="las la-times" style="margin: 4px;"></i>
+                                <input type="text" class="form-control " id="addprodDepth"  placeholder="Depth" aria-label="Depth"
+                           aria-describedby="basic-addon4" >
+                   <i class="las la-times" style="margin: 4px;"></i>
+                                <input type="text" class="form-control " id="addprodHeight"  placeholder="Height" aria-label="Height"
+                           aria-describedby="basic-addon4" >
+                              <div class="input-group-prepend">
+                                 
+                           <span class="input-group-text" id="basic-addon4" style="height: 2.8em;
+                              border-radius: 0;"><i class="las la-ruler-combined  font-size-28"></i></span>
+                                     <select class="custom-select selectUnit" name="selectUnit" id="inputGroupSelect03" style="border-radius: 0 10px 10px 0px;">
+                           <option value="" selected>Choose Unit</option>
+                           <option value="mm" >mm</option>
+                           <option value="inch">inch</option>
+                        </select>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+
+                                      
+                                <div class="col-md-6" style="display: none; height: 0;"> 
+                                    
+                                  <div class="form-group">
+                                        <label>Product Registration Status</label>
+                                         <select class="productStatus form-control" id="addproductStatus" name="productStatus"  >
+                                            <option value="Complete">Complete</option>
+                                            <option value="Processing">Processing</option>
+                                            <option value="Ready">Ready</option>
+                                           
+                                           </select>
+                                    </div>
+                                </div> 
+                                 </div>
+                                 
+                               </div>
+                          
+                        </fieldset>
+                      
+                   <button type="button" class="btn styleBtn action-button-close"  data-dismiss="modaly">Close</button>
+                   <button type="submit" id="addProduct" class="btn btn-primary btn-dark float-right mr-3" style="background-color: #219EBC; border: 0; color: white;">제품등록</button>
+                                
+                   </form>
+                 </div>
+            <!-- Modal -->
+             </div>
+        </div>
+      </div>
+    </div>

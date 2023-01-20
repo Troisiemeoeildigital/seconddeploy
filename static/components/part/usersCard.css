@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+
+
+.h6, .h3, .a, .btnCard {
+	font-family: 'Muli', sans-serif;
+} 
+
+.h6, .a {
+   font-size:10px;
+}
+.alloweduserheader {
+    font-size: 10px;
+}
+.username {
+    font-size: 13px;
+}
+.courses-container {
+    padding: 10px;
+}
+.course {
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 10px 10px rgba(148, 136, 116, 0.2);
+	display: flex;
+	max-width: 100%;
+	margin: 0 0 10px 0;
+	overflow: hidden;
+	width: 100%;
+	height: auto;
+}
+
+.course .h6 {
+    font-size: 10px;
+	opacity: 0.6;
+	margin: 0;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.course .h2 {
+	letter-spacing: 1px;
+	margin: 10px 0;
+}
+
+.course-preview {
+	background-color: #f79940;
+	color: #fff;
+	padding: 30px;
+	max-width: 250px;
+}
+
+.course-preview .a {
+	color: #fff;
+	display: inline-block;
+	font-size: 12px;
+	opacity: 0.6;
+	margin-top: 30px;
+	text-decoration: none;
+}
+
+.course-info {
+	padding: 40px;
+	position: relative;
+	width: 100%;
+}
+.btnCard {
+	background-color: #f79940;
+	border: 0;
+	border-radius: 50px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	color: #fff;
+	font-size: 0.7em;
+	padding: 3px 15px;
+	position: absolute;
+	bottom: 45px;
+	right: 30px;
+	letter-spacing: 1px;
+} 
+
+.user_card{
+	display:flex;
+	flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+	gap: 20px;
+}
+
+.user_avatar {
+	width: 50px;
+	height: 50px;
+	background-color: grey;
+	border-radius: 10px;
+}
+
+.user_details {
+	margin: 0;
+	padding: 0;
+}
+
+.user_details h3 {
+    font-size: 15px;
+	margin: 0;
+	padding: 10px 0 0 0;
+}

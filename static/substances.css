@@ -1,0 +1,63 @@
+table {
+    width: 100%; table-layout:fixed;
+}
+
+td {
+overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -100px;
+  margin-top: -25px;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+}
+
+button {
+  width: 200px;
+  height: 50px;
+  border: 3px solid #5daafc;
+  border-radius: 40px;
+  text-align: center;
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  background-color: #fff;
+  color: #5daafc;
+  transition: all 0.25s ease;
+}
+button:hover {
+  color: #fff;
+  background: #5daafc;
+}
+button:after {
+  content: "Load More";
+}
+button:active, button:focus {
+  outline: none;
+}
+
+.loading {
+  width: 50px;
+  border: 3px solid #cccccc;
+  border-left: 3px solid #5daafc;
+  animation: rotate-loader 1s 0.25s linear infinite;
+}
+.loading:hover {
+  background-color: #fff;
+}
+.loading:after {
+  content: "";
+}
+
+@keyframes rotate-loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

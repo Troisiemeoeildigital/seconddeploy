@@ -1,0 +1,96 @@
+    <div class="modal fade" id="addsubsproduct" tabindex="-1" role="dialog" aria-labelledby="addsubsproduct" style=" z-index: 99999;" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable" role="document" style="height: 450px;">
+                           <div class="modal-content">
+                          
+                              <div class="modal-body">
+                            <div class="modaly-header"> <span class="addPPheaderSubs" style="font-size: 150%; color:black;"> </span></div>
+      <div class="container-fluid">
+
+                    <form id="form-wizard1" class="addSubsForm text-center mt-4" name="formwizard" >
+                      
+                    
+                           <div class="form-card text-left">
+                              <div class="row">
+                            
+                             
+                              </div>
+                              <div class="row">
+                                     <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>Substance Type: *</label>
+                                        <select  class="getprodsubstancetype form-control" id="sel1" name="getprodsubstancetype">
+                                            <option value="">물질 종류 선택</option>
+                                            <option value="crm">CRMs</option>
+                                            <!-- <option value="rohs">ROHS</option> -->
+                                            <option value="none">All</option>
+                                          
+                                        </select>
+                                    </div>
+                                 </div>
+                                   <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>CAS Number: *</label>
+                                       <input readonly type="text" class="addcas form-control" name="addcas" value="" placeholder=""/>
+                                    </div>
+                                 </div>
+                                   <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>Substance Mass (g): *</label>
+                                       <input type="number" class="addsubstanceMassg form-control" name="addsubstanceMassg"/>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                         
+                   
+                           <div class="form-card text-left">
+                              <div class="row">
+                                 <div class="col-7">
+                                 </div>
+                                
+                              </div>
+                              <div class="row">
+                               
+                                    <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>Substance Name: *</label>
+                                        <select  class="getprodsubstancelist form-control" id="getSubsname" name="getprodsubstancetype">
+                                            <option value="">Select an option</option>
+                                          
+                                        </select>
+                                    </div>
+                                 </div>
+                                  <div class="col-md-4" >
+                                    <div class="form-group">
+                                       <label>CRMs: *</label>
+                                       <input readonly type="text" class="addcrm form-control" name="addcrm" />
+                                    </div>
+                                 </div>
+                                     <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>Substance Mass (%) : *</label>
+                                       <input readonly type="number" class="addsubstanceMassPerc form-control" name="addsubstanceMassPerc"  />
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="row" style="visibility: hidden; height: 0;">
+                                  
+                               
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label>ROHS: *</label>
+                                        <input readonly type="text" class="addrohs form-control" name="addrohs" />
+                                      
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                              <button type="button" id="addSubs" class="btn action-button float-right" style="background-color: #219EBC; color: white; border: 0;" >물질 추가</button>
+                    
+                     </form>
+                        <button type="button" id="subsmodalclose" class="btn styleBtn"  >Close</button>
+                  </div>
+               </div>            
+            </div>
+         </div>    
+        </div>
