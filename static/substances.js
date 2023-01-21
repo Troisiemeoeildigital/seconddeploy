@@ -1,13 +1,3 @@
-const firebaseConfig = {
-  apiKey: "AIzaSyAq2QjImxRXEtRHN-N6u2YEod-wUJMtI1s",
-  authDomain: "projectcrm-f4e5f.firebaseapp.com",
-  databaseURL: "https://projectcrm-f4e5f-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "projectcrm-f4e5f",
-  storageBucket: "projectcrm-f4e5f.appspot.com",
-  messagingSenderId: "404890912341",
-  appId: "1:404890912341:web:5b129be76ccdfeba8c76dc",
-  measurementId: "G-TL8J23TNZE"
-};
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
@@ -63,11 +53,9 @@ const renderUser = doc => {
       
        <tr data-id='${doc.id}' style="    border-bottom: 0.5px solid grey;">
 
-      <td style="padding:20px" class="substxt">${doc.data().subtanceName}</td>
+      <td style="padding:20px" class="substxt">${doc.data().substanceName}</td>
      <td class="substxt">${doc.data().casnumber}</td>
-      <td class="substxt">${doc.data().crm}</td>
-       <td class="substxt">${doc.data().rohs}</td>
-         <td class="substxt">${doc.data().none}</td>
+      <td class="substxt">${doc.data().substanceType}</td>
     
     </tr>
   `;
@@ -116,7 +104,7 @@ const renderUser = doc => {
 // let latestDoc = null;
 
 db.collection('substances')
-.orderBy('subtanceName')
+.orderBy('substanceType')
 .limit(6)
 .onSnapshot(snapshot => {
   snapshot.docChanges().forEach(change => {
@@ -146,7 +134,7 @@ button.addEventListener('click', function(){
   button.classList.add('loading');
 });
   const ref = db.collection ( 'substances' )
-.orderBy('subtanceName')
+.orderBy('index')
 .startAfter( latestDoc || 0)
   .limit (6) ;
 
@@ -158,11 +146,9 @@ button.addEventListener('click', function(){
     template += `
           <tr data-id='${doc.id}' style="    border-bottom: 0.5px solid grey;">
 
-      <td style="padding:20px" class="substxt">${doc.data().subtanceName}</td>
-     <td class="substxt">${doc.data().casnumber}</td>
-      <td class="substxt">${doc.data().crm}</td>
-       <td class="substxt">${doc.data().rohs}</td>
-         <td class="substxt">${doc.data().none}</td>
+          <td style="padding:20px" class="substxt">${doc.data().substanceName}</td>
+          <td class="substxt">${doc.data().casnumber}</td>
+           <td class="substxt">${doc.data().substanceType}</td>
      `
  } ) ;
     tableUsers.insertAdjacentHTML('beforeend', template);
@@ -195,11 +181,10 @@ for(let i = 0; i < json.length; i++) {
 
       
        db.collection('substances').add({
-            subtanceName: obj.subtanceName,
+           substanceName: obj.substanceName,
+            substanceType: obj.substanceType,
             casnumber: obj.casnumber,
-            rohs: obj.rohs,
-            crm: obj.crm,
-            none: obj.none,
+            index: obj.index,
        
         }) .then(()=> {
       console.log("Documents Added!")

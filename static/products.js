@@ -3,21 +3,6 @@ import loadingSkel from './components/products/js/loadingSkelt.js'
 import loadProdTable from './components/products/js/loadProdTable.js'
 
 
-
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAq2QjImxRXEtRHN-N6u2YEod-wUJMtI1s",
-  authDomain: "projectcrm-f4e5f.firebaseapp.com",
-  databaseURL: "https://projectcrm-f4e5f-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "projectcrm-f4e5f",
-  storageBucket: "projectcrm-f4e5f.appspot.com",
-  messagingSenderId: "404890912341",
-  appId: "1:404890912341:web:5b129be76ccdfeba8c76dc",
-  measurementId: "G-TL8J23TNZE"
-};
-
-
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth(app);
@@ -285,107 +270,11 @@ window.addEventListener('click', e => {
 firebase.auth().onAuthStateChanged(user => {
   const userEmailCard = document.getElementById('useremailcard')
  console.log(user)
-  userEmailCard.innerHTML = user.Email;
+  userEmailCard.innerHTML = user.email;
   
 })
 
-// get all data in json array: 
-//  var productsRef = db.collectionGroup('selectedproducts');
-//   var productsRef = db.collectionGroup('recycledproducts');
-// productsRef
-// .get()
-//  .then(query=>{
-//     let data = query.docs.map(doc=>{
-//         let x = doc.data().productWeight
-         
-//             return x;
-//     })
-  
-//     // console.log(data)
-//     const sum = data.reduce((accumulator, value) => {
-//   return accumulator + value;
-// }, 0);
-// // document.querySelector('.totalWeight').innerHTML = sum
-// // document.querySelector('.totalWeightPerc').innerHTML = parseFloat((sum / 3000000)/100000000000)  .toFixed(2) + "%" 
-// // console.log(sum); // 👉️ 65
-// })
 
-// .catch((error) => {
-//     console.log("Error getting document:", error);
-// });
-
-// const fetchData = document.querySelector('.fetchData')
-// fetchData.onclick = function(e){
-//   e.preventDefault()
-//     let prodTableTest = document.querySelector('.prodTabledata')
-//       function tableToJson(table) {
-//     var data = [];
-
-//     // first row needs to be headers
-//     var headers = [];
-//     for (var i=0; i<table.rows[0].cells.length; i++) {
-//         headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');
-//     }
-
-//     // go through cells
-   
-
-//         var tableRow = table.rows[5];
-//         var rowData = {};
-
-//         for (var j=2; j<tableRow.cells.length -1 ; j++) {
-
-//             rowData[ headers[j] ] = tableRow.cells[j].innerHTML;
-
-//         }
-
-//         data.push(rowData);
-//    console.log(data, typeof(data))
-  
-//   }
-         
-//     JSON.stringify(tableToJson(prodTableTest))
-// }
-
-
-// get all data in json array: 
-//  var productsRef = db.collectionGroup('selectedproducts');
-//   var partsRef = db.collectionGroup('recycledparts');
-// partsRef
-// .get()
-//  .then(query=>{
-//     let data = query.docs.map(doc=>{
-//         let x = doc.data()
-         
-//             return x;
-//     })
-//     console.log(data.length)
-
-// })
-
-
-
-// get all data in json array: 
-//  var productsRef = db.collectionGroup('selectedproducts');
-//   var partsRef = db.collectionGroup('materials');
-// partsRef
-// .get()
-//  .then(query=>{
-//     let data = query.docs.map(doc=>{
-//         let x = doc.data()
-         
-//             return x;
-//     })
-//     console.log(data.length)
-
-// // document.querySelector('.nbrmaterials').innerHTML = data.length
-// // document.querySelector('.nbrmaterialsperc').innerHTML = parseFloat((data.length / 70) * 100 ).toFixed(2) + "%" 
-
-// })
-
-// .catch((error) => {
-//     console.log("Error getting document:", error);
-// });
 
   partname.addEventListener('change', (e)=>{
     e.preventDefault()
