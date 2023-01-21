@@ -221,7 +221,7 @@ router.get("/404", function (req, res) {
     });
 });
 router.get("/registration", function (req, res) {
- res.render("registration.html");
+ res.render("registration.ejs");
 });
 router.get("/login", function (req, res) {
  
@@ -236,7 +236,7 @@ router.get("/login", function (req, res) {
       res.render("login.html");
     })
     .catch((error) => {
-      res.render("login.html");
+      res.render("login.ejs");
     });
 });
 router.get("/profile", function (req, res) {
