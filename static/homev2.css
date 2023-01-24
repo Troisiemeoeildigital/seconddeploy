@@ -1,0 +1,128 @@
+.sections {
+    width: 100%;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sectionOne, .sectionTwo, .sectionThree {
+    width: 65%;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.sectionOne {
+    height: 250px;
+}
+
+.sectionTwo{
+    margin-top: 2%;
+    height: 50px;
+}
+
+.sectionThree {
+    height: 550px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1%;
+    
+}
+
+.leftSectionOne {
+    width: 50%;
+}
+
+.rightSectionOne {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.leftSectionTwo, .rightSectionTwo {
+width: 50%;
+display: flex;
+flex-direction: row;
+align-content: center;
+align-items: center;
+justify-content: center;
+}
+
+.leftSectionThree, .rightSectionThree {
+    width: 50;
+    flex-direction: row;
+align-content: center;
+align-items: center;
+justify-content: center;
+}
+.leftSectionThree {
+    margin-left: 3%;
+}
+.rightSectionThree {
+    width: 50%;
+    margin-left: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardOne, .cardTwo, .cardThree {
+    width: 15%;
+}
+
+.cardsWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.cardContainer {
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 170px;
+	aspect-ratio: 9/16;
+	border-radius: 25px;
+	position: relative;
+	overflow: hidden;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.cardContainerOne {
+	background-image: url("https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+}
+
+.cardContainerTwo {
+    background-image: url("https://images.pexels.com/photos/106344/pexels-photo-106344.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+}
+
+.cardContainerThree {
+    background-image: url("https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+}
+
+.info {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	padding: 15px 20px 20px 20px;
+	color: #fff;
+	backdrop-filter: blur(10px);
+	background-color: #4848481a;
+    font-size: 3em;
+}
+
+.headerContent {
+	font-size: 0.7rem;
+	font-weight: 300;
+}
