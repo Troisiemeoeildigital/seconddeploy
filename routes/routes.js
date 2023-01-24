@@ -233,7 +233,7 @@ router.get("/login", function (req, res) {
     .then((userData) => {
       console.log("Logged in:", userData.userEmail)
       
-      res.render("login.html");
+      res.render("login.ejs");
     })
     .catch((error) => {
       res.render("login.ejs");
