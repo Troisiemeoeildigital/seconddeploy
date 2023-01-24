@@ -22,6 +22,9 @@
     .sectionOne, .sectionTwo, .sectionThree {
         width: 80%;
     }
+    .accordion {
+        width: 100%;
+    }
 
     .rightSectionOne, .rightSectionTwo, .rightSectionThree {
         margin-left: 25%;
@@ -30,6 +33,9 @@
            @media only screen and (min-width: 100em) {
             .sectionOne, .sectionTwo, .sectionThree {
                 width: 65%;
+    }
+    .rightSectionThree {
+        margin-left: 25%;
     }
   } 
 
@@ -81,12 +87,9 @@ align-content: center;
 align-items: center;
 justify-content: center;
 }
-.leftSectionThree {
-    margin-left: 3%;
-}
+
 .rightSectionThree {
     width: 50%;
-    margin-left: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
