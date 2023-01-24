@@ -1973,40 +1973,40 @@ supplierNameData.value = doc.data().userCompanyname
    })})}})
 };
  
-// User click anyware outside the modaly
-window.addEventListener('click', e => {
-  if(e.target === addmodaly) {
-    addmodaly.classList.remove('modaly-show');
-  }
-  if(e.target === editmodaly) {
-    editmodaly.classList.remove('modaly-show');
-  }
-  if(e.target === viewmodaly) {
-    viewmodaly.classList.remove('modaly-show');
-  }
+// // User click anyware outside the modaly
+// window.addEventListener('click', e => {
+//   if(e.target === addmodaly) {
+//     addmodaly.classList.remove('modaly-show');
+//   }
+//   if(e.target === editmodaly) {
+//     editmodaly.classList.remove('modaly-show');
+//   }
+//   if(e.target === viewmodaly) {
+//     viewmodaly.classList.remove('modaly-show');
+//   }
   
-   if(e.target === editMatmodaly) {
-    editMatmodaly.classList.remove('modaly-show');
-  }
-   if(e.target === addmodalySubssSingle) {
-    addmodalySubssSingle.classList.remove('modaly-show');
-  }
-     if(e.target === addmodalyPartsSingle) {
-    addmodalyPartsSingle.classList.remove('modaly-show');
-  }
-     if(e.target === editMatmodaly ) {
-    editMatmodaly.classList.remove('modaly-show');
-  }
-      if(e.target === viewMatTable ) {
-    viewMatTable.classList.remove('modaly-show');
-  }
-       if(e.target === editSubmodaly ) {
-    editSubmodaly.classList.remove('modaly-show');
-  }
-     if(e.target === viewAllowedUserList ) {
-    viewAllowedUserList.classList.remove('modaly-show');
-  }
-});
+//    if(e.target === editMatmodaly) {
+//     editMatmodaly.classList.remove('modaly-show');
+//   }
+//    if(e.target === addmodalySubssSingle) {
+//     addmodalySubssSingle.classList.remove('modaly-show');
+//   }
+//      if(e.target === addmodalyPartsSingle) {
+//     addmodalyPartsSingle.classList.remove('modaly-show');
+//   }
+//      if(e.target === editMatmodaly ) {
+//     editMatmodaly.classList.remove('modaly-show');
+//   }
+//       if(e.target === viewMatTable ) {
+//     viewMatTable.classList.remove('modaly-show');
+//   }
+//        if(e.target === editSubmodaly ) {
+//     editSubmodaly.classList.remove('modaly-show');
+//   }
+//      if(e.target === viewAllowedUserList ) {
+//     viewAllowedUserList.classList.remove('modaly-show');
+//   }
+// });
 
  
 
