@@ -1512,36 +1512,36 @@ btnprAdd.onclick = function() {
 };
 
 // User click anyware outside the modaly
-window.addEventListener('click', e => {
-  if(e.target === addmodaly) {
-    addmodaly.classList.remove('modaly-show');
-  }
-  if(e.target === editmodaly) {
-    editmodaly.classList.remove('modaly-show');
-  }
-  if(e.target === viewmodaly) {
-    viewmodaly.classList.remove('modaly-show');
-  }
+// window.addEventListener('click', e => {
+//   if(e.target === addmodaly) {
+//     addmodaly.classList.remove('modaly-show');
+//   }
+//   if(e.target === editmodaly) {
+//     editmodaly.classList.remove('modaly-show');
+//   }
+//   if(e.target === viewmodaly) {
+//     viewmodaly.classList.remove('modaly-show');
+//   }
   
-   if(e.target === editMatmodaly) {
-    editMatmodaly.classList.remove('modaly-show');
-  }
-   if(e.target === addmodalySubssSingle) {
-    addmodalySubssSingle.classList.remove('modaly-show');
-  }
-     if(e.target === addmodalyPartsSingle) {
-    addmodalyPartsSingle.classList.remove('modaly-show');
-  }
-     if(e.target === editMatmodaly ) {
-    editMatmodaly.classList.remove('modaly-show');
-  }
-      if(e.target === viewMatTable ) {
-    viewMatTable.classList.remove('modaly-show');
-  }
-       if(e.target === editSubmodaly ) {
-    editSubmodaly.classList.remove('modaly-show');
-  }
-});
+//    if(e.target === editMatmodaly) {
+//     editMatmodaly.classList.remove('modaly-show');
+//   }
+//    if(e.target === addmodalySubssSingle) {
+//     addmodalySubssSingle.classList.remove('modaly-show');
+//   }
+//      if(e.target === addmodalyPartsSingle) {
+//     addmodalyPartsSingle.classList.remove('modaly-show');
+//   }
+//      if(e.target === editMatmodaly ) {
+//     editMatmodaly.classList.remove('modaly-show');
+//   }
+//       if(e.target === viewMatTable ) {
+//     viewMatTable.classList.remove('modaly-show');
+//   }
+//        if(e.target === editSubmodaly ) {
+//     editSubmodaly.classList.remove('modaly-show');
+//   }
+// });
 
   auth.onAuthStateChanged(user => {
      if(user) {

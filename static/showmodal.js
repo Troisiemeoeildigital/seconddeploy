@@ -11,10 +11,10 @@ addBtn.addEventListener('click', () => {
 
 });
 
-// User click anyware outside the modal
-window.addEventListener('click', e => {
-  if(e.target === addModal) {
-    addModal.classList.remove('modal-show');
-  }
+// // User click anyware outside the modal
+// window.addEventListener('click', e => {
+//   if(e.target === addModal) {
+//     addModal.classList.remove('modal-show');
+//   }
  
-});
+// });

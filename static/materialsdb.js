@@ -225,17 +225,17 @@ for(let i = 0; i < json.length; i++) {
   
 });
 
-// User click anyware outside the modaly
-window.addEventListener('click', e => {
-  if(e.target === addmodaly) {
-    addmodaly.classList.remove('modaly-show');
-  }
-  if(e.target === editmodaly) {
-    editmodaly.classList.remove('modaly-show');
-  }
+// // User click anyware outside the modaly
+// window.addEventListener('click', e => {
+//   if(e.target === addmodaly) {
+//     addmodaly.classList.remove('modaly-show');
+//   }
+//   if(e.target === editmodaly) {
+//     editmodaly.classList.remove('modaly-show');
+//   }
 
 
-});
+// });
 
 
 // // Get all users

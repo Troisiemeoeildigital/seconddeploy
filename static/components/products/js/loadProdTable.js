@@ -8,6 +8,9 @@ const sumReuseWeightPercChart = document.querySelector('.sumReuseWeightPerc')
 const sumRecycWeightPercChart = document.querySelector('.sumRecycWeightPerc')
 const energyRecoveryWeightperc = document.querySelector('.energyRecoveryWeightperc')
 const closebtn = document.querySelectorAll('.action-button-close')
+const addPPClose = document.querySelector(".addPPClose")
+const addPPModal = document.querySelector("#addPPModal")
+
 const addPPmodaly = document.querySelector('.addPPmodaly')
 let assess = document.querySelector('.assess')
 const addPPform=  document.querySelector('.addPPForm')
@@ -184,15 +187,6 @@ db.collection('recycledproducts')
    
 
 
-closebtn.forEach((eachClose)=> {
-  eachClose.addEventListener('click', () =>{
-    addmodalyPartsSingle.classList.remove('modaly-show');
-    addPPmodaly.classList.remove('modaly-show');
-    addmodaly.classList.remove('modaly-show');
-    editmodaly.classList.remove('modaly-show');
-    
-   })
-})
 
 const subsmodalclose = document.querySelector('#subsmodalclose')
 subsmodalclose.onclick = function() {
@@ -2042,5 +2036,19 @@ deleteProduct(doc)
 })
   
   });
+}
+
+
+closebtn.forEach((eachClose)=> {
+  eachClose.addEventListener('click', () =>{
+    addmodalyPartsSingle.classList.remove('modaly-show');
+    addmodaly.classList.remove('modaly-show');
+    editmodaly.classList.remove('modaly-show');
+    
+   })
+})
+addPPClose.onclick = function() {
+  addPPModal.classList.remove('modaly-show')
+
 }
 }

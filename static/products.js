@@ -239,25 +239,25 @@ document.querySelector(".files").addEventListener("change", function(e) {
 });
 
 // User click anyware outside the modaly
-window.addEventListener('click', e => {
-  if(e.target === addmodaly) {
-    addmodaly.classList.remove('modaly-show');
-  }
-  if(e.target === editmodaly) {
-    editmodaly.classList.remove('modaly-show');
-  }
-  if(e.target === viewmodaly) {
-    viewmodaly.classList.remove('modaly-show');
-  }
+// window.addEventListener('click', e => {
+//   if(e.target === addmodaly) {
+//     addmodaly.classList.remove('modaly-show');
+//   }
+//   if(e.target === editmodaly) {
+//     editmodaly.classList.remove('modaly-show');
+//   }
+//   if(e.target === viewmodaly) {
+//     viewmodaly.classList.remove('modaly-show');
+//   }
 
-   if(e.target === addPPmodaly) {
-    addPPmodaly.classList.remove('modaly-show');
-  }
-     if(e.target === assess) {
-    assess.classList.remove('modaly-show');
-  }
+//    if(e.target === addPPmodaly) {
+//     addPPmodaly.classList.remove('modaly-show');
+//   }
+//      if(e.target === assess) {
+//     assess.classList.remove('modaly-show');
+//   }
 
-});
+// });
 
 
 // // Get all users
