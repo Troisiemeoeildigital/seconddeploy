@@ -32,6 +32,19 @@
   }
 } 
 
+
+.prodManu::before {
+  content: "";
+  counter-increment: item;
+  position: absolute;
+  top: 14px;
+  left: -30px;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  width: 30px;
+  height: 15px;
+}
+
       </style>
         <!-- <script type="module" src="https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js"></script>
    
@@ -814,11 +827,15 @@
                                  <th class="breadproductname" style="color: white;"></th>
                               </tr>
                            </thead>
-                           <tbody class="breadbody">
-                       
-                            
-                           </tbody>
+                        
                         </table>
+                        <div>
+                           <ol class="wtree breadbody">
+                  
+
+                   </ol>
+              
+                      </div>
                      </div>
         </div>
          <div class="col-md-10" style="margin-top: 3%;">

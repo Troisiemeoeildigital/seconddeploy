@@ -1503,7 +1503,8 @@ let idref = guid()
       `;
       html+=pp
        const bpart = `
-       <li><span>${doc.data().partname}</span>
+       <li class="prodManu" style="background-color: #cae0f5; text-align: left;     border-radius: 10px;
+       margin-right: 3%;"><span>${doc.data().partname}</span>
                               </li>
       `;
        

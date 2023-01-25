@@ -9,6 +9,9 @@ const functions = firebase.functions();
 const modalyWrapper = document.querySelector('.modaly-wrapper');
 const userroledisplay = document.querySelector('.userroledisplay')
 const materialtitle = document.querySelector('.modal-title')
+const closeAllowU = document.querySelector('#closeAllowU')
+const closeAllowUbtn = document.querySelector('.closeAllowUbtn')
+
 // modaly add
 const addmodaly = document.querySelector('.add-modaly');
 const addmodalyPartsSingle = document.querySelector('.addPartMatmodaly');
@@ -492,7 +495,8 @@ const setMatheader = document.querySelectorAll('.setMatheader')
 
       
        const bpart = `
-         <li><span style="background-color:#ffe5bd;">${doc.data().materialName}</span>
+         <li><span style="background-color:#ffe5bd; text-align: left;     border-radius: 10px;
+         margin-right: 3%;">${doc.data().materialName}</span>
                               </li>
       `;
         
@@ -2240,5 +2244,9 @@ closebtnSub.forEach((eachCloseSub)=> {
     editSubmodaly.classList.remove('modaly-show');
    })
 })
+
+closeAllowUbtn.onclick = function() {
+  closeAllowU.classList.remove('modaly-show')
+}
   
 

@@ -1,4 +1,4 @@
-  <div class="add-modaly modaly-wrapper">
+  <div class="add-modaly modaly-wrapper" id="addProdModaly">
       <div class="modaly">
         <div class="modaly-header"> <span style="font-size: 150%; color:black;">제품 등록</span></div>
         <div class="modaly-body" style="    overflow-y: scroll; height: auto; overflow-x: hidden;">
@@ -59,7 +59,7 @@
                               <div class="col-md-6">
                                        <div class="form-group">
                                         <label>Product Weight (kg) *</label>
-                                        <input type="number" step=".01" min="0" class="form-control" id='addproductWeight'placeholder="Enter Code" data-errors="Please product weight." name="productWeight" required>
+                                        <input type="number" step=".01" min="0" class="form-control" id='addproductWeight' placeholder="Enter product weight" data-errors="Please product weight." name="productWeight" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                               </div>
@@ -166,7 +166,7 @@
                           
                         </fieldset>
                       
-                   <button type="button" class="btn styleBtn action-button-close"  data-dismiss="modaly">Close</button>
+                   <button type="button" class="btn styleBtn action-button-close" id="addProdClose"  data-dismiss="modaly">Close</button>
                    <button type="submit" id="addProduct" class="btn btn-primary btn-dark float-right mr-3" style="background-color: #219EBC; border: 0; color: white;">제품등록</button>
                                 
                    </form>

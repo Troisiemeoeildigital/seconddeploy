@@ -9,6 +9,8 @@ const sumRecycWeightPercChart = document.querySelector('.sumRecycWeightPerc')
 const energyRecoveryWeightperc = document.querySelector('.energyRecoveryWeightperc')
 const closebtn = document.querySelectorAll('.action-button-close')
 const addPPClose = document.querySelector(".addPPClose")
+const addProdClose = document.querySelector("#addProdClose")
+const addProdModaly = document.querySelector("#addProdModaly")
 const addPPModal = document.querySelector("#addPPModal")
 
 const addPPmodaly = document.querySelector('.addPPmodaly')
@@ -105,7 +107,7 @@ userRef.then((querySnapshot) => {
 
 db.collection('recycledproducts')
 .where("productManufacturer", '==',  doc.data().userCompanyname)
-
+.orderBy("createdAt", "asc")
 .onSnapshot(snapshot => {
   snapshot.docChanges().forEach(change => {
     if(change.type === 'added') {
@@ -145,7 +147,7 @@ db.collection('recycledproducts')
      <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().productCategory}</td>
       <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().productName}</td>
       <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().productMN}</td>
-      <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().productWeight}</td>
+      <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().productWeight / 1000}</td>
         <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().registeredDate}</td>
              <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().memo}</td>
 
@@ -182,7 +184,7 @@ db.collection('recycledproducts')
    document.querySelector('.loadingtitle').style.display = "none"
  const loadingSkeleton = document.querySelectorAll('.loadingSkeleton')
  loadingSkeleton.forEach(loadingRow => {
-  loadingRow.style.display = "none"
+  loadingRow.remove();
  })
    
 
@@ -1430,7 +1432,8 @@ let idref = guid()
       `;
       html+=pp
        const bpart = `
-       <li><span>${doc.data().partname}</span>
+       <li class="prodManu" style="background-color: #cae0f5; text-align: left;     border-radius: 10px;
+       margin-right: 3%;"><span>${doc.data().partname}</span>
                               </li>
       `;
        
@@ -1454,7 +1457,7 @@ let idref = guid()
             }
             console.log(sumVal);
    const setPPWeight = document.querySelector('.setPPWeight')
-  setPPWeight.innerHTML = "Total Parts/Product Weight: " + sumVal.toFixed(2) + " / " + btnpraddWeightRef;
+  setPPWeight.innerHTML = "Total Parts Weight(g)/Product Weight(g): " + sumVal.toFixed(2) + " / " + btnpraddWeightRef;
 
 //!Edit Part specific to a product
 
@@ -2041,7 +2044,7 @@ deleteProduct(doc)
 
 closebtn.forEach((eachClose)=> {
   eachClose.addEventListener('click', () =>{
-    addmodalyPartsSingle.classList.remove('modaly-show');
+    // addmodalyPartsSingle.classList.remove('modaly-show');
     addmodaly.classList.remove('modaly-show');
     editmodaly.classList.remove('modaly-show');
     
@@ -2049,6 +2052,8 @@ closebtn.forEach((eachClose)=> {
 })
 addPPClose.onclick = function() {
   addPPModal.classList.remove('modaly-show')
-
+}
+addProdClose.onclick = function() {
+  addProdModaly.classList.remove('modaly-show')
 }
 }

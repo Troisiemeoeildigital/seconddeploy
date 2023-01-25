@@ -72,39 +72,28 @@ ol {
   margin: 10px 0 10px 10px;
   position: relative;
 }
-.wtree li:before {
-  content: "";
-  counter-increment: item;
-  position: absolute;
-  top: -10px;
-  left: -30px;
-  border-left: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  width: 30px;
-  height: 15px;
-}
+
+
+
 .wtree li:after {
   position: absolute;
   content: "";
-  top: 5px;
+  top: -14px;
   left: -30px;
   border-left: 1px solid #ddd;
-  border-top: 1px solid #ddd;
   width: 30px;
-  height: 100%;
+  height: 137px;
 }
 .wtree li:last-child:after {
   display: none;
 }
 .wtree li span {
   display: block;
-  border: 1px solid #ddd;
   padding: 10px;
-  color: #666666;
   text-decoration: none;
 }
 .wtree li span:before {
-  content: counters(item, ".") " ";
+  content: counters(item, ".") ". ";
 }
 
 .wtree li span:hover, .wtree li span:focus {

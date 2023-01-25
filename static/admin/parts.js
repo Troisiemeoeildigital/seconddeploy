@@ -109,10 +109,10 @@ const renderUser = doc => {
 
 
          <td>
-  <nav class="navbary" style="background-color: #219EBC">
+  <nav class="navbary" style="background-color: #023047">
 	<a href="#" class="navbary__link">
 		<span class=" viewbtn" id="btnprview"  data-toggle="modal" data-target="#exampleModalScrollable" partname='${doc.data().partName}' data-id='${doc.id}'><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style="left: -36px; background-color: #219EBC">View Materials</span>
+		<span class="navbary__label" style="left: -36px; background-color: #023047">View Materials</span>
 	</a>
 </nav>
    
@@ -160,10 +160,10 @@ setPMatheader.innerHTML =  `소재목록 : ${doc.data().partName}`
 
 
   <td>
- <nav class="navbary" style="background-color: #219EBC">
+ <nav class="navbary" style="background-color: #023047">
 	<a href="#" class="navbary__link">
 		<span class="btnpmviewSubs" id="btnprview" data-id='${doc.id}'  data-toggle="modal" data-target="#exampleModalScrollableSubstances"><i class="ri-eye-line" style="color: white; font-size: 15px; "></i></span>
-		<span class="navbary__label" style="left: -36px; background-color: #219EBC">View Substances</span>
+		<span class="navbary__label" style="left: -36px; background-color: #023047">View Substances</span>
 	</a>
 </nav>
       </td>
@@ -172,8 +172,15 @@ setPMatheader.innerHTML =  `소재목록 : ${doc.data().partName}`
       `;
       html+=li
        const bpart = `
-            <li><span style="background-color:#6b808b; color: white;">${doc.data().materialName}</span>
-                              </li>
+            <li>
+            <span style="
+            background-color:#6b808b; 
+            color: white; 
+            border-radius: 11px;
+            border-width: 0;">
+            ${doc.data().materialName}
+            </span>
+            </li>
       `;
         
        breadbody.insertAdjacentHTML('beforeend', bpart)
