@@ -1420,7 +1420,7 @@ li span {
                      <div class="">
                            <form class="form" data-toggle="validator" id="form-wizard1">
                              <div class="row">
-                                   <div class="col-md-6">
+                                   <div class="col-md-8">
                                             <label>Upload file for material </label>
                     <div class=" row input-group mb-4" style=" margin: 0;   align-items: baseline;">
                         <div class="custom-file mb-3">
@@ -1430,24 +1430,23 @@ li span {
                           
                         </div>
                                    
-                    <nav class="navbary updateProof" style=" width:40px; background-color: #fb8500;">
+                    <nav class="navbary updateProof" style=" width:15%; background-color: #fb8500;">
                     <a href="#" class="navbary__link">
                       <span class="" ><i class="bx bx-cloud-upload" style=" color: white;
                       font-size: 17px;"></i></span>
                       <span class="navbary__label " style="background-color: #fb8500; left:-55px;">Upload Proof File</span>
                     </a>
                   </nav>
+                  <nav class="navbary deleteProof" style="width:15%; background-color: #F05D5E;">
+                    <a href="#" class="navbary__link">
+                      <span class="" ><i class="ri-delete-bin-line" style=" color: white;
+                      font-size: 17px;"></i></span>
+                      <span class="navbary__label " style="background-color: #F05D5E; left:-55%;">Delete Proof File</span>
+                    </a>
+                  </nav>
                      </div>
                             </div>
-                               <div class="col-md-6" style=" display: flex;margin-top: 1%;align-items: center;justify-content: flex-end;align-content: center;">
-                                          <nav class="navbary deleteProof" style="width:30%; background-color: #F05D5E;">
-	<a href="#" class="navbary__link">
-		<span class="" ><i class="ri-delete-bin-line" style=" color: white;
-    font-size: 17px;"></i></span>
-		<span class="navbary__label " style="background-color: #F05D5E; left:-55%;">Delete Proof File</span>
-	</a>
-</nav>
-                               </div>
+                              
                               </div>
                             </form>
                           <form class="form"   data-toggle="validator" id="form-wizard1">
@@ -1530,14 +1529,14 @@ li span {
                                       <div class="col-md-6" style="display: contents;  ">
                             <div class="col-md-3" style="display: flex; align-items: center; ">
                                   <div class="custom-control custom-checkbox custom-control-inline">
-                           <input type="checkbox" class="custom-control-input seleccheckbox2" id="customCheck5" >
+                           <input type="checkbox" class="custom-control-input editSelectMat seleccheckbox2" id="editSelectMat" style="z-index: 5;" >
                            <label class="custom-control-label" for="customCheck5">Selective Materials</label>
                                    </div>
                             </div>
 
                             <div class="col-md-3">
                               <label>Treatment </label>
-                               <select class="form-control selectiveMat" id="selectiveMat2" name="selectiveMat" disabled="true">
+                               <select class="form-control editselectiveMat" id="selectiveMat2" name="selectiveMat" disabled>
                                            
                                            </select>
                             </div>
@@ -1546,10 +1545,19 @@ li span {
                            </div>
                     
                     </fieldset>
-                           <button type="button" id="subsmodalclose" class="btn styleBtn action-button-closeMat float-right"  >Close</button>
-                        <button type="button"  id="editMat"  class="btn btn-primary   float-right mr-3" style="background-color: #fb8500; border: 0;" >소재 정보 변경</button>
-                     
-                     
+                    <div class="editMatFoo" style="
+                                                  width: 100%;
+                                                  display: flex;
+                                                  flex-direction: row;
+                                                  align-content: center;
+                                                  justify-content: space-between;
+                                                  align-items: center;
+                                                    " >
+                      <button type="button" id="subsmodalclose" class="btn styleBtn action-button-closeMat float-right"  >Close</button>
+                      <button type="button"  id="editMat"  class="btn btn-primary   float-right mr-3" style="background-color: #fb8500; border: 0;" >소재 정보 변경</button>
+
+                    </div>
+                      
                       
                    </form>
                  </div>

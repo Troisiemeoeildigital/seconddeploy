@@ -552,8 +552,50 @@ btnpmedit.forEach((eachbtnpmedit)=>{
   
 editMatmodaly.classList.add('modaly-show');
  const updateProof = document.querySelector('.updateProof')
+      
+ let selectiveMat2 = document.getElementById("selectiveMat2");
+ let editSelectMat = document.querySelector('#editSelectMat');
+ editSelectMat.onclick = function() {
+  if(editSelectMat.checked == true) {
+    console.log("it's checked")
+selectiveMat2.disabled = false;
+  } else {
+    console.log("it's  not checked")
+    selectiveMat2.setAttribute("disabled", "disabled") 
+  }
+ }
+ 
+ 
+ db.collection("selectivematerials").get().then(query=>{
+  let data = query.docs.map(doc=>{
+      let x = doc.data()
+          return x;
+  })
+  console.log(data)
+  function getUniqueListBy(data, key) {
+  return [...new Map(data.map(item => [item[key], item])).values()]
+}
+const uniqSelecMat = getUniqueListBy(data, 'selectiveMaterials')
+console.log(uniqSelecMat)
+
+  const to = `
+    <option>Select an option</option>
+// `;
+addmaterialOptions.insertAdjacentHTML('beforeend', to)
+  buildTable(uniqSelecMat)
+function buildTable(uniqSelecMat){
+
+  for (var i = 0; i < uniqSelecMat.length; i++){
+    var row = `   <option>${uniqSelecMat[i].selectiveMaterials}</option>`
 
 
+ const editmaterialOptions = document.querySelector('.editselectiveMat')
+ editmaterialOptions.innerHTML += row
+  }
+}
+
+
+})
 //  document.querySelector('.editfiles').value = '';
   var addpartsRef = db.collectionGroup('materialsdb');
 addpartsRef
@@ -1237,7 +1279,7 @@ btnpraddParts.onclick =  function(e)  {
 addmaterialOptions.innerHTML = ""
   const addmatpartform = document.querySelector('.addmatpartform')
   addmatpartform.reset()
-     
+
      
   addModalyParts.addmaterialName.value = '';
   
@@ -1405,17 +1447,6 @@ seleccheckbox.style.height = "1px"
     })
 }
 
- let selectiveMat2 = document.getElementById("selectiveMat2");
-let seleccheckbox2 = document.querySelector('.seleccheckbox2');
- 
-seleccheckbox2.onclick = function() {
-  if(seleccheckbox2.checked == true) {
-selectiveMat2.removeAttribute('disabled')
-seleccheckbox2.style.height = "1px"
-  } else {
-    selectiveMat2.setAttribute("disabled", "disabled") 
-  }
-}
 
 var files = [];
 
