@@ -112,7 +112,6 @@ db.collection('recycledproducts')
   snapshot.docChanges().forEach(change => {
     if(change.type === 'added') {
       renderUser(change.doc);
-      console.log(change.doc.data().productCategory.length)
         // renderTest(change.doc);
     }
     if(change.type === 'removed') {
@@ -1731,7 +1730,7 @@ Swal.fire({
          if (getprodsubstancetype.value == "crm") {
           console.log(getprodsubstancetype.value == "crm")
                console.log(getprodsubstancetype.value)
-   db.collection("substances").where("crm","==", "Y")
+   db.collection("substances").where("substanceType","==", "CRM")
     .get()
     .then((querySnapshot) => {
                 const to = `
@@ -1741,11 +1740,11 @@ Swal.fire({
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
             // console.log(doc.id, " => ", doc.data());
-             let subsname = doc.data().subtanceName;
+             let subsname = doc.data().substanceName;
             var length = 70;
 var trimmedString = subsname.substring(0, length);
            const tm = `
-   <option value="${doc.data().subtanceName}" style="width:50%;">${subsname}</option>
+   <option value="${subsname}" style="width:50%;">${subsname}</option>
   // `;
   getprodsubstancelist.insertAdjacentHTML('beforeend', tm);
   // editmodalyForm.editsubstancelist.insertAdjacentHTML('beforeend', tm);
@@ -1766,7 +1765,7 @@ var trimmedString = subsname.substring(0, length);
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
             // console.log(doc.id, " => ", doc.data());
-             let subsname = doc.data().subtanceName;
+             let subsname = doc.data().substanceName;
             var length = 70;
 var trimmedString = subsname.substring(0, length);
            const tm = `

@@ -1727,7 +1727,7 @@ Swal.fire({
          if (getprodsubstancetype.value == "crm") {
           console.log(getprodsubstancetype.value == "crm")
                console.log(getprodsubstancetype.value)
-   db.collection("substances").where("crm","==", "Y")
+   db.collection("substances").where("substanceType","==", "CRM")
     .get()
     .then((querySnapshot) => {
                 const to = `
@@ -1742,7 +1742,7 @@ Swal.fire({
 var trimmedString = subsname.substring(0, length);
            const tm = `
    <option value="${doc.data().subtanceName}" style="width:50%;">${subsname}</option>
-  // `;
+ `;
   getprodsubstancelist.insertAdjacentHTML('beforeend', tm);
   // editmodalyForm.editsubstancelist.insertAdjacentHTML('beforeend', tm);
  
@@ -1757,7 +1757,7 @@ var trimmedString = subsname.substring(0, length);
     .then((querySnapshot) => {
                 const to = `
       <option >Select an option</option>
-  // `;
+`;
   getprodsubstancelist.insertAdjacentHTML('beforeend', to);
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
@@ -1767,7 +1767,7 @@ var trimmedString = subsname.substring(0, length);
 var trimmedString = subsname.substring(0, length);
            const tm = `
    <option value="${subsname}" style="width:50%;">${trimmedString}...</option>
-  // `;
+ `;
   getprodsubstancelist.insertAdjacentHTML('beforeend', tm);
   // editmodalyForm.editsubstancelist.insertAdjacentHTML('beforeend', tm);
  
