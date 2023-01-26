@@ -6,17 +6,17 @@ const admin = require("firebase-admin");
 // const firebase = require('firebase-admin');
 
 //dev variables
-const serviceAccount = require("./serviceAccountKey.json");
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://projectcrm-f4e5f-default-rtdb..firebaseio.com",
-});
+// const serviceAccount = require("./serviceAccountKey.json");
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: "https://projectcrm-f4e5f-default-rtdb..firebaseio.com",
+// });
 
 //production variables
-// var serviceAccount = require("./prodFbConfig.json");
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount)
-// });
+var serviceAccount = require("./prodFbConfig.json");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
 
 
 
