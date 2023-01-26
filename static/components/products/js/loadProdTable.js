@@ -112,6 +112,7 @@ db.collection('recycledproducts')
   snapshot.docChanges().forEach(change => {
     if(change.type === 'added') {
       renderUser(change.doc);
+      console.log(change.doc.data().productCategory.length)
         // renderTest(change.doc);
     }
     if(change.type === 'removed') {
@@ -134,8 +135,13 @@ db.collection('recycledproducts')
 
  const renderUser = doc => {
  
-  //  console.log(doc.ref.path)
-  const tr = `
+   console.log(doc.ref.path)
+   let productCateg = doc.data().productCategory
+
+  if (doc.data().productCategory.length > 10) {
+var trimmedProdCat = productCateg.substring(0, 10);
+    console.log(trimmedProdCat)
+    const tr = `
     <tr class="sindu_handle" data-id='${doc.id}' style="  border-bottom: 0.5px solid #8080804d ;">
          <td >
    <div class="checkbox "  style="  display: inline-table;  width: 20px; height: 15px;">
@@ -144,7 +150,8 @@ db.collection('recycledproducts')
                                 </div>
                             </td>
        <td><img style="max-width: 30px; max-height: 30px;" src="${doc.data().productImg}" alt="${doc.data().productName}"></td>
-     <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().productCategory}</td>
+
+<td style="color: black;font-weight: 600; font-size: 13px;"><a href="#" class="trimmedProdCateg" status="trimmed" trimName ="${trimmedProdCat}" fullName="${productCateg}">${trimmedProdCat}...</a></td>
       <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().productName}</td>
       <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().productMN}</td>
       <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().productWeight / 1000}</td>
@@ -177,16 +184,88 @@ db.collection('recycledproducts')
       </td>
     </tr>
   `;
-
-
   prodTabledata.insertAdjacentHTML('afterbegin', tr);
+  const trimmedProdCateg = document.querySelector('.trimmedProdCateg')
+  
+  trimmedProdCateg.onclick = function() {
+  let trimStatus = trimmedProdCateg.getAttribute('status')
+  console.log(trimStatus, trimStatus.length)
+  console.log(trimStatus.length == 7)
+  // console.log(`${trimStatus}` = "trimmed")
+
+  let fullName = trimmedProdCateg.getAttribute('fullname')
+  let trimName = trimmedProdCateg.getAttribute('trimName')
+
+  if(trimStatus.length == 10) {
+    trimmedProdCateg.innerHTML = trimName + '...'
+    trimmedProdCateg.removeAttribute('status');
+      trimmedProdCateg.setAttribute('status','trimmed');
+      
+  }
+  else if(trimStatus.length == 7) {
+    
+    trimmedProdCateg.innerHTML = fullName
+    trimmedProdCateg.removeAttribute('status');
+      trimmedProdCateg.setAttribute('status','notTrimmed');
+  }
+}
+
+  }
+  else {
+    const tr = `
+    <tr class="sindu_handle" data-id='${doc.id}' style="  border-bottom: 0.5px solid #8080804d ;">
+         <td >
+   <div class="checkbox "  style="  display: inline-table;  width: 20px; height: 15px;">
+                                    <input type="checkbox" class="checkbox-input" id="checkbox2" style="height: fit-content;">
+                                    <label for="checkbox2" class="mb-0"></label>
+                                </div>
+                            </td>
+       <td><img style="max-width: 30px; max-height: 30px;" src="${doc.data().productImg}" alt="${doc.data().productName}"></td>
+     <td style="color: black;font-weight: 600; font-size: 13px;">${productCateg}</td>
+      <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().productName}</td>
+      <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().productMN}</td>
+      <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().productWeight / 1000}</td>
+        <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().registeredDate}</td>
+             <td style="color: black;font-weight: 600; font-size: 13px;">${doc.data().memo}</td>
+
+
+    <td >
+  
+    
+ <nav class="navbary" style="background-color:  #219EBC; ">
+	<a href="#" class="navbary__link"   ;>
+		<span class=" btnpr-addPP"  id='${doc.id}' part-weight='${doc.data().productWeight}' product-name='${doc.data().productName}' ><i class="bx bx-plus" style="color: white; font-size: 15px;"></i></span>
+		<span class="navbary__label" style="background-color:  #219EBC">Add Parts</span>
+	</a>
+	<a href="#" class="navbary__link"  >
+		<span class=" btnpr-edit" data-id="${doc.id}"><i class='bx bxs-edit-alt' style="color: white; font-size: 15px;" ></i></span>
+		<span class="navbary__label" style="background-color:  #219EBC">Edit Product</span>
+	</a>
+	<a href="#" class="navbary__link"  >
+		<span class=" viewbtn" data-toggle="modal" data-id='${doc.id}' data-PN='${doc.data().productName}'  prodWeight='${doc.data().productWeight}'data-target="#exampleModalScrollable"><i class='ri-file-chart-fill' style="color: white; font-size: 15px;"></i></span>
+		<span class="navbary__label" style="background-color:  #219EBC">View Assessment</span>
+	</a>
+  	<a href="#" class="navbary__link"  >
+		<span class=" btnpr-delete" ><i class='ri-delete-bin-line' style="color: white; font-size: 15px;" ></i></span>
+		<span class="navbary__label" style="left: -50px; background-color:  #219EBC ;">Delete Product</span>
+	</a>
+</nav>
+   
+      </td>
+    </tr>
+  `;
+  prodTabledata.insertAdjacentHTML('afterbegin', tr);
+
+  }
+ 
+
+
   
    document.querySelector('.loadingtitle').style.display = "none"
  const loadingSkeleton = document.querySelectorAll('.loadingSkeleton')
  loadingSkeleton.forEach(loadingRow => {
   loadingRow.remove();
  })
-   
 
 
 
