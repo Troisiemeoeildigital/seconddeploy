@@ -97,7 +97,7 @@ exports.recursiveDelete = functions.runWith({timeoutSeconds: 540,memory: '2GB'})
     // at the command line by running 'firebase login:ci'.
      firebase_tools.firestore
       .delete(path, {
-        project: "projectcrm-f4e5f",
+        project: "kitech-crm",
         recursive: true,
         force: true,
         // token: functions.config().fb.token
