@@ -42,7 +42,7 @@ const renderUser = (doc) => {
 
   const tr = `
     <tr data-id='${doc.id}'>
-      <td>${doc.data().userFirstname} ${doc.data().userLastname}</td>
+      <td>${doc.data().fullName}</td>
      
       <td>${doc.data().userEmail}</td>
       <td>         <div class="input-group mb-3">
