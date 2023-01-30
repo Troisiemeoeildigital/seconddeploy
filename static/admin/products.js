@@ -110,40 +110,28 @@ let id;
   document.querySelector('.loadingtitle').style.fontWeight = "600"
   document.querySelector('.loadingtitle').style.color = "black"
     document.querySelector('.loadingtitle').style.marginLeft = "43%";
- auth.onAuthStateChanged(user => {
-     if(user) {
-      
- const userRef = db.collection('users').where('userID', '==', user.uid).get()
-
-userRef.then((querySnapshot) => {
- querySnapshot.forEach((doc) => {
-  console.log( doc.data().userCompanyname)
 
   
-db.collection('recycledproducts').onSnapshot(snapshot => {
-  snapshot.docChanges().forEach(change => {
-    if(change.type === 'added') {
-      renderUser(change.doc);
-        // renderTest(change.doc);
-    }
-    if(change.type === 'removed') {
-      let tr = document.querySelector(`[data-id='${change.doc.id}']`);
-      let tbody = tr.parentElement;
-      tableUsers.removeChild(tbody);
-    }
-    if(change.type === 'modified') {
-      let tr = document.querySelector(`[data-id='${change.doc.id}']`);
-      let tbody = tr.parentElement;
-      tableUsers.removeChild(tbody);
-      renderUser(change.doc);
-        // renderTest(change.doc);
-    }
-  })
-})
-  
- })
-})}
-  })
+    db.collection('recycledproducts').onSnapshot(snapshot => {
+      snapshot.docChanges().forEach(change => {
+        if(change.type === 'added') {
+          renderUser(change.doc);
+            // renderTest(change.doc);
+        }
+        if(change.type === 'removed') {
+          let tr = document.querySelector(`[data-id='${change.doc.id}']`);
+          let tbody = tr.parentElement;
+          tableUsers.removeChild(tbody);
+        }
+        if(change.type === 'modified') {
+          let tr = document.querySelector(`[data-id='${change.doc.id}']`);
+          let tbody = tr.parentElement;
+          tableUsers.removeChild(tbody);
+          renderUser(change.doc);
+            // renderTest(change.doc);
+        }
+      })
+    })
 console.log("hi")
 const editUI = (user) => {
   if (user) {
@@ -207,7 +195,7 @@ const editUI = (user) => {
 //   document.querySelector('.loadingtitle').style.color = "black"
 
 const renderUser = doc => {
-  
+
   //  console.log(doc.ref.path)
   const tr = `
     <tr data-id='${doc.id}' style="  border-bottom: 0.5px solid #8080804d ;">
@@ -253,6 +241,7 @@ const renderUser = doc => {
     </tr>
   `;
 
+
   const prodTabledata = document.querySelector('.prodTabledata')
   prodTabledata.insertAdjacentHTML('afterbegin', tr);
   
@@ -271,6 +260,15 @@ closebtn.forEach((eachClose)=> {
    })
 })
 
+var partsRef = db.collection('recycledproducts');
+partsRef
+.get()
+ .then(query=>{
+    let data = query.docs.map(doc=>{
+        let x = doc.data()
+    console.log(data)
+    })
+  })
 const subsmodalclose = document.querySelector('#subsmodalclose')
 subsmodalclose.onclick = function() {
 document.querySelector('#addsubsproduct').classList.remove('show');
