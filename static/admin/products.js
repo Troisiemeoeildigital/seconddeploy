@@ -135,7 +135,7 @@ let id;
 console.log("hi")
 const editUI = (user) => {
   if (user) {
-    const userTitleCard = document.getElementById('usertitle')
+    // const userTitleCard = document.getElementById('usertitle')
      const notadminElement = document.querySelectorAll('.notadmin')
      
       
@@ -149,7 +149,7 @@ const editUI = (user) => {
     adminElement.forEach(item => item.style.display = 'flex');
      notadminElement.forEach(item => item.style.display = 'none');
      
-      userTitleCard.innerHTML = 'Product Manufacturer'
+      // userTitleCard.innerHTML = 'Product Manufacturer'
       console.log("This User is an admin")
       const firstcreationtime = firebase.auth().currentUser.metadata.creationTime
       const userDisplayName = firebase.auth().currentUser.displayName
@@ -158,14 +158,14 @@ const editUI = (user) => {
     // firstcreation.innerHTML = "Since "  + firstcreationtime;
     // userDisplay.innerHTML = userDisplayName;
     } else {
-       const userTitleCard = document.getElementById('usertitle')
+      //  const userTitleCard = document.getElementById('usertitle')
        
        const lastsignin = document.getElementById('lastsignin')
         const adminElement = document.querySelectorAll('.adminelement');
         const notadminElement = document.querySelectorAll('.notadmin')
     adminElement.forEach(item => item.style.display = 'none');
     notadminElement.forEach(item => item.style.display = 'flex');
-      userTitleCard.innerHTML = 'Part Supplier'
+      // userTitleCard.innerHTML = 'Part Supplier'
     // lastsignindata = firebase.auth().currentUser.metadata.lastSignInTime
     // console.log(lastsignindata)
     // notadminElement.style.display = 'flex'
