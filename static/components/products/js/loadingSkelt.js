@@ -6,7 +6,10 @@
          <td >
               <div class="check" style=" margin-left: 30%"></div>
            </td>
-            <td>
+            <td style="    display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;">
        <div class="avatar" ></div>
        </td>
        <td>
@@ -35,7 +38,10 @@
          <td >
               <div class="check" style=" margin-left: 30%"></div>
            </td>
-            <td>
+            <td style="    display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;">
        <div class="avatar" ></div>
        </td>
        <td>
@@ -64,7 +70,10 @@
          <td >
               <div class="check" style=" margin-left: 30%"></div>
            </td>
-            <td>
+            <td  style="    display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;">
        <div class="avatar" ></div>
        </td>
        <td>
@@ -93,7 +102,10 @@
          <td >
               <div class="check" style=" margin-left: 30%"></div>
            </td>
-            <td>
+            <td  style="    display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;">
        <div class="avatar" ></div>
        </td>
        <td>
@@ -122,7 +134,10 @@
          <td >
               <div class="check" style=" margin-left: 30%"></div>
            </td>
-            <td>
+            <td  style="    display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;">
        <div class="avatar" ></div>
        </td>
        <td>

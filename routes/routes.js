@@ -220,6 +220,8 @@ router.get("/404", function (req, res) {
       res.redirect("/login");
     });
 });
+
+
 router.get("/registration", function (req, res) {
  res.render("registration.ejs");
 });
@@ -271,6 +273,11 @@ router.get("/userprofile", function (req, res) {
     .catch((error) => {
       res.redirect("/login");
     });
+});
+
+router.get("/homev2", function (req, res) {
+  res.render("homev2.html");
+
 });
 
 

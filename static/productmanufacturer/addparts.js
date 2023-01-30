@@ -590,14 +590,14 @@ addmodalySubssSingle.classList.add('modaly-show');
   getsubstancetype.onchange = function(e) {
     e.preventDefault()
     getsubstancelist.innerHTML = ""
-    db.collection("substances").where(getsubstancetype.value,"==", "Y")
+    db.collection("substances").where("substanceType","==", getsubstancetype.value)
     .get()
     .then((querySnapshot) => {
       
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
             // console.log(doc.id, " => ", doc.data());
-            let subsname = doc.data().subtanceName;
+            let subsname = doc.data().substanceName;
             var length = 70;
 var trimmedString = subsname.substring(0, length);
            const tm = `
@@ -616,7 +616,7 @@ var trimmedString = subsname.substring(0, length);
 
 
  getSubsname.onchange = function() {
- db.collection("substances").where("subtanceName", "==", getsubstancelist.value).where(getsubstancetype.value, "==", "Y").get()
+ db.collection("substances").where("substanceName", "==", getsubstancelist.value).where("substanceType", "==", getsubstancetype.value).get()
       .then((querySnapshot)=> {
            querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
@@ -1512,36 +1512,36 @@ btnprAdd.onclick = function() {
 };
 
 // User click anyware outside the modaly
-window.addEventListener('click', e => {
-  if(e.target === addmodaly) {
-    addmodaly.classList.remove('modaly-show');
-  }
-  if(e.target === editmodaly) {
-    editmodaly.classList.remove('modaly-show');
-  }
-  if(e.target === viewmodaly) {
-    viewmodaly.classList.remove('modaly-show');
-  }
+// window.addEventListener('click', e => {
+//   if(e.target === addmodaly) {
+//     addmodaly.classList.remove('modaly-show');
+//   }
+//   if(e.target === editmodaly) {
+//     editmodaly.classList.remove('modaly-show');
+//   }
+//   if(e.target === viewmodaly) {
+//     viewmodaly.classList.remove('modaly-show');
+//   }
   
-   if(e.target === editMatmodaly) {
-    editMatmodaly.classList.remove('modaly-show');
-  }
-   if(e.target === addmodalySubssSingle) {
-    addmodalySubssSingle.classList.remove('modaly-show');
-  }
-     if(e.target === addmodalyPartsSingle) {
-    addmodalyPartsSingle.classList.remove('modaly-show');
-  }
-     if(e.target === editMatmodaly ) {
-    editMatmodaly.classList.remove('modaly-show');
-  }
-      if(e.target === viewMatTable ) {
-    viewMatTable.classList.remove('modaly-show');
-  }
-       if(e.target === editSubmodaly ) {
-    editSubmodaly.classList.remove('modaly-show');
-  }
-});
+//    if(e.target === editMatmodaly) {
+//     editMatmodaly.classList.remove('modaly-show');
+//   }
+//    if(e.target === addmodalySubssSingle) {
+//     addmodalySubssSingle.classList.remove('modaly-show');
+//   }
+//      if(e.target === addmodalyPartsSingle) {
+//     addmodalyPartsSingle.classList.remove('modaly-show');
+//   }
+//      if(e.target === editMatmodaly ) {
+//     editMatmodaly.classList.remove('modaly-show');
+//   }
+//       if(e.target === viewMatTable ) {
+//     viewMatTable.classList.remove('modaly-show');
+//   }
+//        if(e.target === editSubmodaly ) {
+//     editSubmodaly.classList.remove('modaly-show');
+//   }
+// });
 
   auth.onAuthStateChanged(user => {
      if(user) {

@@ -17,6 +17,17 @@
       <link rel="stylesheet" href="../line-awesome.min.css">
       <link rel="stylesheet" href="../remixicon.css">
          <style>
+            .wtree li:before {
+  content: "";
+  counter-increment: item;
+  position: absolute;
+  top: 30px;
+  left: -30px;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  width: 30px;
+  height: 15px;
+}
    li span {
   background-color: transparent;
 }
@@ -289,7 +300,7 @@
     <div class="table-wrapper" style="
     overflow-y: scroll;"> 
       <table class="table-users parttable myTableMat" id="myTableMat" >
-        <thead style="position: sticky; top: 0; z-index: 1;">
+        <thead style="position: sticky; top: 0;">
                  <th>Supplier Name</th>
              <th>Part Name</th>
             <th>Part Code</th>
@@ -859,7 +870,7 @@
 
     <!--View Data table tree subs-->
 
-   <div class="modal fade" id="exampleModalScrollableSubstances" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableSubstances" aria-hidden="true">
+   <div class="modal fade" id="exampleModalScrollableSubstances" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableSubstances" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-scrollable" role="document">
                            <div class="modal-content">
                                 <div class="modaly-header"> <span class="setPSubsheader" style="font-size: 150%; color:black;"> </span></div>
@@ -934,20 +945,24 @@
                                 </div>
 
 
-                     <div class="row col-md-12" style="align-items: center;">
-                      <div class="col-md-2">
-                        <div class="table-responsive" style="    height: 310px; overflow: auto;">
-                        <table id="tree-table-1" class="table table-hover table-bordered iq-bg-white tree" style="    overflow: auto;">
-                           <thead class="bg-white" style="position: sticky; top: 0;">
-                              <tr>
-                                 <th class="breadpartname"></th>
-                              </tr>
-                           </thead>
-                           <tbody class="breadbody">
-                       
+                     <div class="row col-md-12" style="align-items:flex-start;">
+                      <div class="col-md-2" style="margin-top: 4%;">
+                        <div class="table-responsive" style="    height: 310px; overflow-x: hidden;">
+                           <table id="tree-table-1" class="table table-hover table-bordered iq-bg-white tree" style="    overflow: auto;">
+                              <thead class="bg-white" style="position: sticky; top: 0;">
+                                 <tr>
+                                    <th class="breadpartname" style="background-color: #023047; color:white; border-radius: 11px;
+                                    border-width: 0;"></th>
+                                 </tr>
+                              </thead>
                             
-                           </tbody>
-                        </table>
+                           </table>
+                           <div>
+                                 <ol class="wtree breadbody">
+                             
+   
+                              </ol>
+                           </div>
                      </div>
                       </div>
                       <div class="col-md-10">
@@ -1153,7 +1168,7 @@
     
     <!-- Table Treeview JavaScript -->
     <script src="../table-treeview.js"></script>
- <script  type="module" src="../pp.js" defer></script>
+ <script  type="module" src="../admin/parts.js" defer></script>
      <!-- <script   src="./sidemenu.js" ></script> -->
  
 

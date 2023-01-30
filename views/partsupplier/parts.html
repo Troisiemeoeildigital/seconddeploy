@@ -20,6 +20,18 @@
       <link rel="stylesheet" href="../components/multiselect.css">
          <style>
 
+.wtree li:before {
+  content: "";
+  counter-increment: item;
+  position: absolute;
+  top: 30px;
+  left: -30px;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  width: 30px;
+  height: 15px;
+}
+
                            .styleBtn {
   background-color: #11101D;
   color: white;
@@ -905,7 +917,7 @@ li span {
 
 
  <!-- Edit Substance for specific Material -->
-    <div class="addSubsmodaly modaly-wrapper" id="exampleModalScrollableSUBS" style="z-index: 99999;" >
+    <div class="addSubsmodaly modaly-wrapper" id="exampleModalScrollableSUBS" data-backdrop="static" data-keyboard="false"  style="z-index: 99999;" >
       <div class="modaly" style="margin-top: 10%;">
     
              <div class="modaly-header" style="text-align:left;"> <span class="setAddSubsHeader" style="font-size: 150%; color:black;"></span></div>
@@ -933,9 +945,9 @@ li span {
                                        <label>Substance Type: *</label>
                                         <select  class="getsubstancetype form-control" id="sel1" name="getsubstancetype" >
                                            <option value="" selected>선택하기</option>
-                                            <option value="crm" >CRMs</option>
+                                            <option value="CRM" >CRMs</option>
                                             <!-- <option value="rohs">ROHS</option> -->
-                                            <option value="none">All</option>
+                                            <option value="ALL">All</option>
                                           
                                         </select>
                                     </div>
@@ -1135,8 +1147,8 @@ li span {
   
     <!--View Data table tree subs-->
 
-   <div class="modal fade" id="exampleModalScrollableSubstances" role="dialog" aria-labelledby="exampleModalScrollableSubstances" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+   <div class="modal fade" data-backdrop="static" data-keyboard="false" id="exampleModalScrollableSubstances" aria-labelledby="exampleModalScrollableSubstances" >
+                        <div class="modal-dialog modal-dialog-scrollable" >
                            <div class="modal-content">
                          <div class="modaly-header" style="text-align:left;"> <span class="addPartSubsHeader" style="font-size: 150%; color:black;"></span></div>
                               <div class="modal-body" style="overflow: hidden;">
@@ -1197,7 +1209,7 @@ li span {
 
  
  <!--View Data table tree materials-->
-    <div class="viewMatTable modaly-wrapper" >
+    <div class="viewMatTable modaly-wrapper" data-backdrop="static" data-keyboard="false"  >
       <div class="modaly" style=" width:80%;left: 13%;">
              <div class="modaly-header" style="text-align:left;"> <span class="setMatheader"  style="font-size: 150%; color:black;"></span></div>
 
@@ -1264,58 +1276,62 @@ li span {
 
 
                      <div class="row col-md-12" style="align-items: center;">
-                      <div class="col-md-2">
-                        <div class="table-responsive" style="height: 450px; overflow: auto;border-collapse: collapse; border-radius: 1em;">
-                        <table id="tree-table-1" class="table table-hover table-bordered iq-bg-white tree" style="    overflow: auto;">
-                           <thead class="bg-white" style="position: sticky; top: 0;">
-                              <tr>
-                                 <th class="breadpartname" style="background-color: #fb8500; color:white;"></th>
-                              </tr>
-                           </thead>
-                         
-                        </table>
-                        <div>
-                              <ol class="wtree breadbody">
-                          
-
-                           </ol>
+                      <div style="display: flex; flex-direction: row;">
+                        <div class="col-md-2" style="margin-top: 4%;">
+                          <div class="table-responsive" style="height: 450px; overflow: auto;border-collapse: collapse; border-radius: 1em;">
+                          <table id="tree-table-1" class="table table-hover table-bordered iq-bg-white tree" style="    overflow: auto;">
+                             <thead class="bg-white" style="position: sticky; top: 0;">
+                                <tr>
+                                   <th class="breadpartname" style="background-color: #fb8500; color:white;"></th>
+                                </tr>
+                             </thead>
+                           
+                          </table>
+                          <div>
+                                <ol class="wtree breadbody">
+                            
+  
+                             </ol>
+                          </div>
+                       </div>
                         </div>
-                     </div>
+                        <div class="col-md-10">
+                          <div class="setPMWeight float-right"></div>
+                <div class="table-responsive" style="overflow-x: hidden;">
+              
+                     <div  class="table-wrapper" style="height: auto;"> 
+                         <table class="table-parts" id="myTable" style="font-size: 13px;" >
+                             <thead>
+                                 <tr>
+                                        <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
+   <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+   <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+ </svg></th>
+                                 <th >  Material Group</th>
+                                   <th>  Material Name</th>
+                                       <th>  Recycled Contents (%)</th>
+                                         <th>  Recycle Type</th>
+                                           <th>  Mass (g)</th>
+                                             <th>  Mass (%)</th>
+                                             <th>Proof File</th>
+                                              <th>Action</th>
+                                 </tr>
+                             </thead>
+                             <tbody class="materiallist">
+ 
+                             </tbody>
+                            </table>
+                         </div>
+                          <div class="modal-footer" style="border: 0;" >
+                                  <button type="button" class="btn styleBtn action-button-close float-left" style="border: 0;" data-dismiss="modal">Close</button>
+                           
+                               </div>
+                      </div>
+                       </div>
                       </div>
                      
-                      <div class="col-md-10">
-                         <div class="setPMWeight float-right"></div>
-               <div class="table-responsive" style="overflow-x: hidden;">
-             
-                    <div  class="table-wrapper" style="height: auto;"> 
-                        <table class="table-parts" id="myTable" style="font-size: 13px;" >
-                            <thead>
-                                <tr>
-                                       <th ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 20 20">
-  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
-  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
-</svg></th>
-                                <th >  Material Group</th>
-                                  <th>  Material Name</th>
-                                      <th>  Recycled Contents (%)</th>
-                                        <th>  Recycle Type</th>
-                                          <th>  Mass (g)</th>
-                                            <th>  Mass (%)</th>
-                                            <th>Proof File</th>
-                                             <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody class="materiallist">
-
-                            </tbody>
-                           </table>
-                        </div>
-                         <div class="modal-footer" style="border: 0;" >
-                                 <button type="button" class="btn styleBtn action-button-close float-left" style="border: 0;" data-dismiss="modal">Close</button>
-                          
-                              </div>
-                     </div>
-                      </div>
+                     
+                     
                      </div>
                  
                               
@@ -1326,7 +1342,7 @@ li span {
     </div>
 
     <!-- View allowed list of users-->
-      <div class="viewAllowedUserList modaly-wrapper" >
+      <div class="viewAllowedUserList modaly-wrapper" data-backdrop="static" data-keyboard="false" id="closeAllowU" >
       <div class="modaly" style=" width:50%;left: 25%;">
              <div class="modaly-header" style="text-align:left;"> <span class="setMatheader"  style="font-size: 150%; color:black;"></span></div>
 
@@ -1378,7 +1394,7 @@ li span {
                         </div>
                         </div>
                          <div class="modal-footer" style="border: 0;" >
-                                 <button type="button" class="btn styleBtn action-button-close float-left" style="border: 0;" data-dismiss="modal">Close</button>
+                                 <button type="button" class="btn styleBtn closeAllowUbtn float-left" style="border: 0;" data-dismiss="modal">Close</button>
                           
                               </div>
                      </div>
@@ -1394,7 +1410,7 @@ li span {
    
 
                       <!--Edit Material-->
-  <div class="editMatmodaly modaly-wrapper" style="z-index: 92000;">
+  <div class="editMatmodaly modaly-wrapper" data-backdrop="static" data-keyboard="false"  style="z-index: 92000;">
       <div class="modaly" style="padding-bottom: 15px;">
    
                      <div class="modaly-header" style="text-align:left;">  <span class="editMatHeader"  style="font-size: 150%; color:black;"></span></div>
@@ -1404,7 +1420,7 @@ li span {
                      <div class="">
                            <form class="form" data-toggle="validator" id="form-wizard1">
                              <div class="row">
-                                   <div class="col-md-6">
+                                   <div class="col-md-8">
                                             <label>Upload file for material </label>
                     <div class=" row input-group mb-4" style=" margin: 0;   align-items: baseline;">
                         <div class="custom-file mb-3">
@@ -1414,24 +1430,23 @@ li span {
                           
                         </div>
                                    
-                    <nav class="navbary updateProof" style=" width:40px; background-color: #fb8500;">
+                    <nav class="navbary updateProof" style=" width:15%; background-color: #fb8500;">
                     <a href="#" class="navbary__link">
                       <span class="" ><i class="bx bx-cloud-upload" style=" color: white;
                       font-size: 17px;"></i></span>
                       <span class="navbary__label " style="background-color: #fb8500; left:-55px;">Upload Proof File</span>
                     </a>
                   </nav>
+                  <nav class="navbary deleteProof" style="width:15%; background-color: #F05D5E;">
+                    <a href="#" class="navbary__link">
+                      <span class="" ><i class="ri-delete-bin-line" style=" color: white;
+                      font-size: 17px;"></i></span>
+                      <span class="navbary__label " style="background-color: #F05D5E; left:-55%;">Delete Proof File</span>
+                    </a>
+                  </nav>
                      </div>
                             </div>
-                               <div class="col-md-6" style=" display: flex;margin-top: 1%;align-items: center;justify-content: flex-end;align-content: center;">
-                                          <nav class="navbary deleteProof" style="width:30%; background-color: #F05D5E;">
-	<a href="#" class="navbary__link">
-		<span class="" ><i class="ri-delete-bin-line" style=" color: white;
-    font-size: 17px;"></i></span>
-		<span class="navbary__label " style="background-color: #F05D5E; left:-55%;">Delete Proof File</span>
-	</a>
-</nav>
-                               </div>
+                              
                               </div>
                             </form>
                           <form class="form"   data-toggle="validator" id="form-wizard1">
@@ -1514,14 +1529,14 @@ li span {
                                       <div class="col-md-6" style="display: contents;  ">
                             <div class="col-md-3" style="display: flex; align-items: center; ">
                                   <div class="custom-control custom-checkbox custom-control-inline">
-                           <input type="checkbox" class="custom-control-input seleccheckbox2" id="customCheck5" >
+                           <input type="checkbox" class="custom-control-input editSelectMat seleccheckbox2" id="editSelectMat" style="z-index: 5;" >
                            <label class="custom-control-label" for="customCheck5">Selective Materials</label>
                                    </div>
                             </div>
 
                             <div class="col-md-3">
                               <label>Treatment </label>
-                               <select class="form-control selectiveMat" id="selectiveMat2" name="selectiveMat" disabled="true">
+                               <select class="form-control editselectiveMat" id="selectiveMat2" name="selectiveMat" disabled>
                                            
                                            </select>
                             </div>
@@ -1530,10 +1545,19 @@ li span {
                            </div>
                     
                     </fieldset>
-                           <button type="button" id="subsmodalclose" class="btn styleBtn action-button-closeMat float-right"  >Close</button>
-                        <button type="button"  id="editMat"  class="btn btn-primary   float-right mr-3" style="background-color: #fb8500; border: 0;" >소재 정보 변경</button>
-                     
-                     
+                    <div class="editMatFoo" style="
+                                                  width: 100%;
+                                                  display: flex;
+                                                  flex-direction: row;
+                                                  align-content: center;
+                                                  justify-content: space-between;
+                                                  align-items: center;
+                                                    " >
+                      <button type="button" id="subsmodalclose" class="btn styleBtn action-button-closeMat float-right"  >Close</button>
+                      <button type="button"  id="editMat"  class="btn btn-primary   float-right mr-3" style="background-color: #fb8500; border: 0;" >소재 정보 변경</button>
+
+                    </div>
+                      
                       
                    </form>
                  </div>

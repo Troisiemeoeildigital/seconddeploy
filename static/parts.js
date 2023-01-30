@@ -9,6 +9,9 @@ const functions = firebase.functions();
 const modalyWrapper = document.querySelector('.modaly-wrapper');
 const userroledisplay = document.querySelector('.userroledisplay')
 const materialtitle = document.querySelector('.modal-title')
+const closeAllowU = document.querySelector('#closeAllowU')
+const closeAllowUbtn = document.querySelector('.closeAllowUbtn')
+
 // modaly add
 const addmodaly = document.querySelector('.add-modaly');
 const addmodalyPartsSingle = document.querySelector('.addPartMatmodaly');
@@ -492,7 +495,8 @@ const setMatheader = document.querySelectorAll('.setMatheader')
 
       
        const bpart = `
-         <li><span style="background-color:#ffe5bd;">${doc.data().materialName}</span>
+         <li><span style="background-color:#ffe5bd; text-align: left;     border-radius: 10px;
+         margin-right: 3%;">${doc.data().materialName}</span>
                               </li>
       `;
         
@@ -548,8 +552,50 @@ btnpmedit.forEach((eachbtnpmedit)=>{
   
 editMatmodaly.classList.add('modaly-show');
  const updateProof = document.querySelector('.updateProof')
+      
+ let selectiveMat2 = document.getElementById("selectiveMat2");
+ let editSelectMat = document.querySelector('#editSelectMat');
+ editSelectMat.onclick = function() {
+  if(editSelectMat.checked == true) {
+    console.log("it's checked")
+selectiveMat2.disabled = false;
+  } else {
+    console.log("it's  not checked")
+    selectiveMat2.setAttribute("disabled", "disabled") 
+  }
+ }
+ 
+ 
+ db.collection("selectivematerials").get().then(query=>{
+  let data = query.docs.map(doc=>{
+      let x = doc.data()
+          return x;
+  })
+  console.log(data)
+  function getUniqueListBy(data, key) {
+  return [...new Map(data.map(item => [item[key], item])).values()]
+}
+const uniqSelecMat = getUniqueListBy(data, 'selectiveMaterials')
+console.log(uniqSelecMat)
+
+  const to = `
+    <option>Select an option</option>
+// `;
+addmaterialOptions.insertAdjacentHTML('beforeend', to)
+  buildTable(uniqSelecMat)
+function buildTable(uniqSelecMat){
+
+  for (var i = 0; i < uniqSelecMat.length; i++){
+    var row = `   <option>${uniqSelecMat[i].selectiveMaterials}</option>`
 
 
+ const editmaterialOptions = document.querySelector('.editselectiveMat')
+ editmaterialOptions.innerHTML += row
+  }
+}
+
+
+})
 //  document.querySelector('.editfiles').value = '';
   var addpartsRef = db.collectionGroup('materialsdb');
 addpartsRef
@@ -830,19 +876,19 @@ addmodalySubssSingle.classList.add('modaly-show');
   getsubstancetype.onchange = function(e) {
     e.preventDefault()
     getsubstancelist.innerHTML = ""
-    db.collection("substances").where(getsubstancetype.value,"==", "Y")
+    db.collection("substances").where("substanceType","==", getsubstancetype.value)
     .get()
     .then((querySnapshot) => {
       
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
             // console.log(doc.id, " => ", doc.data());
-            let subsname = doc.data().subtanceName;
+            let subsname = doc.data().substanceName;
             var length = 70;
 var trimmedString = subsname.substring(0, length);
            const tm = `
       <option value="${subsname}" style="width:50%;">${trimmedString}...</option>
-  // `;
+   `;
   getsubstancelist.insertAdjacentHTML('beforeend', tm);
   // editmodalyForm.editsubstancelist.insertAdjacentHTML('beforeend', tm);
  
@@ -856,7 +902,7 @@ var trimmedString = subsname.substring(0, length);
 
 
  getSubsname.onchange = function() {
- db.collection("substances").where("subtanceName", "==", getsubstancelist.value).where(getsubstancetype.value, "==", "Y").get()
+ db.collection("substances").where("subtanceName", "==", getsubstancelist.value).where("substanceType", "==", getsubstancetype.value).get()
       .then((querySnapshot)=> {
            querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
@@ -1233,7 +1279,7 @@ btnpraddParts.onclick =  function(e)  {
 addmaterialOptions.innerHTML = ""
   const addmatpartform = document.querySelector('.addmatpartform')
   addmatpartform.reset()
-     
+
      
   addModalyParts.addmaterialName.value = '';
   
@@ -1401,17 +1447,6 @@ seleccheckbox.style.height = "1px"
     })
 }
 
- let selectiveMat2 = document.getElementById("selectiveMat2");
-let seleccheckbox2 = document.querySelector('.seleccheckbox2');
- 
-seleccheckbox2.onclick = function() {
-  if(seleccheckbox2.checked == true) {
-selectiveMat2.removeAttribute('disabled')
-seleccheckbox2.style.height = "1px"
-  } else {
-    selectiveMat2.setAttribute("disabled", "disabled") 
-  }
-}
 
 var files = [];
 
@@ -1973,40 +2008,40 @@ supplierNameData.value = doc.data().userCompanyname
    })})}})
 };
  
-// User click anyware outside the modaly
-window.addEventListener('click', e => {
-  if(e.target === addmodaly) {
-    addmodaly.classList.remove('modaly-show');
-  }
-  if(e.target === editmodaly) {
-    editmodaly.classList.remove('modaly-show');
-  }
-  if(e.target === viewmodaly) {
-    viewmodaly.classList.remove('modaly-show');
-  }
+// // User click anyware outside the modaly
+// window.addEventListener('click', e => {
+//   if(e.target === addmodaly) {
+//     addmodaly.classList.remove('modaly-show');
+//   }
+//   if(e.target === editmodaly) {
+//     editmodaly.classList.remove('modaly-show');
+//   }
+//   if(e.target === viewmodaly) {
+//     viewmodaly.classList.remove('modaly-show');
+//   }
   
-   if(e.target === editMatmodaly) {
-    editMatmodaly.classList.remove('modaly-show');
-  }
-   if(e.target === addmodalySubssSingle) {
-    addmodalySubssSingle.classList.remove('modaly-show');
-  }
-     if(e.target === addmodalyPartsSingle) {
-    addmodalyPartsSingle.classList.remove('modaly-show');
-  }
-     if(e.target === editMatmodaly ) {
-    editMatmodaly.classList.remove('modaly-show');
-  }
-      if(e.target === viewMatTable ) {
-    viewMatTable.classList.remove('modaly-show');
-  }
-       if(e.target === editSubmodaly ) {
-    editSubmodaly.classList.remove('modaly-show');
-  }
-     if(e.target === viewAllowedUserList ) {
-    viewAllowedUserList.classList.remove('modaly-show');
-  }
-});
+//    if(e.target === editMatmodaly) {
+//     editMatmodaly.classList.remove('modaly-show');
+//   }
+//    if(e.target === addmodalySubssSingle) {
+//     addmodalySubssSingle.classList.remove('modaly-show');
+//   }
+//      if(e.target === addmodalyPartsSingle) {
+//     addmodalyPartsSingle.classList.remove('modaly-show');
+//   }
+//      if(e.target === editMatmodaly ) {
+//     editMatmodaly.classList.remove('modaly-show');
+//   }
+//       if(e.target === viewMatTable ) {
+//     viewMatTable.classList.remove('modaly-show');
+//   }
+//        if(e.target === editSubmodaly ) {
+//     editSubmodaly.classList.remove('modaly-show');
+//   }
+//      if(e.target === viewAllowedUserList ) {
+//     viewAllowedUserList.classList.remove('modaly-show');
+//   }
+// });
 
  
 
@@ -2240,5 +2275,9 @@ closebtnSub.forEach((eachCloseSub)=> {
     editSubmodaly.classList.remove('modaly-show');
    })
 })
+
+closeAllowUbtn.onclick = function() {
+  closeAllowU.classList.remove('modaly-show')
+}
   
 

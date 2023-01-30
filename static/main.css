@@ -26,6 +26,7 @@ background-repeat: no-repeat;
 background-position: center;
   background-image: url("./loginbg.jpg");
 }
+
 .form-structor .signup {
         display: flex;
     flex-direction: column;
