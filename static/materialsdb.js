@@ -143,7 +143,6 @@ var tableusersfilter = document.querySelector(".table-users")
 // Click add user button
 btnprAdd.addEventListener('click', () => {
   addmodaly.classList.add('modaly-show');
-
 //   addModalyForm.substanceName.value = '';
 //   addModalyForm.cas.value = '';
 //   addModalyForm.crm.value = '';
@@ -174,7 +173,7 @@ for(let i = 0; i < json.length; i++) {
       
        db.collection('materialsdb').add({
             MaterialGroup: obj.MaterialGroup,
-            GroupID: obj.GroupID,
+            index: obj.index,
             재료명: obj.재료명,
             Reusabiity: obj.Reusabiity,
             Recyclability:obj.Recyclability,
