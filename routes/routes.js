@@ -180,7 +180,7 @@ router.get("/main", function (req, res) {
             console.log(userData)
   
       console.log("Logged in:", userData.email)
-            res.render("main.html");
+            res.render("main.ejs");
       }
       else {
            res.redirect("/404");

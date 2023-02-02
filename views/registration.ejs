@@ -136,18 +136,11 @@ console.log("im updated!")
 
   
             firebase
-              .auth()
-              .createUserWithEmailAndPassword(login, password)
-              
-            // .then(function(user) {
-            //  return user.updateProfile({
-            //  displayName: firstname,
-            //  phoneNumber: phonenumber
-            //  })})
+            .auth()
+            .createUserWithEmailAndPassword(login, password)
             .then( async  ({ user }) => {
                 user.updateProfile({
-             displayName: firstname  ,
-    
+             displayName: firstname,
              })
                db.collection('users').add({
                   fullName: firstname,

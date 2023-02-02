@@ -1,17 +1,5 @@
 
 
-// Initialize Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyAq2QjImxRXEtRHN-N6u2YEod-wUJMtI1s",
-  authDomain: "projectcrm-f4e5f.firebaseapp.com",
-  databaseURL: "https://projectcrm-f4e5f-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "projectcrm-f4e5f",
-  storageBucket: "projectcrm-f4e5f.appspot.com",
-  messagingSenderId: "404890912341",
-  appId: "1:404890912341:web:5b129be76ccdfeba8c76dc",
-  measurementId: "G-TL8J23TNZE"
-};
-
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore(app)
 const auth = firebase.auth(app);
@@ -78,26 +66,39 @@ const requestRoleType = document.querySelector('.requestRoleType')
     }
   })
 })
-
-		requestAccess.onclick = function(e) {
-	e.preventDefault()
-	roleSelect.value
-		db.collection('users').where('userID', '==', `${user.uid}`).get()
-		.then((querySnapshot) => {
- querySnapshot.forEach((doc) => {
-	console.log(doc.id)
-	db.collection('users').doc(doc.id).update({
-			requestRole: roleSelect.value,
-			requestType: true,
-			requestStatus: "🟢"
-	})
-// 	 .then(()=>{
 	
-//  })
- })
 
-})
+}
+	requestAccess.onclick = function(e) {
+	e.preventDefault()
+	console.log("im clicked")
+	// roleSelect.value
+	auth.onAuthStateChanged(user => {
+		if(user) {
+			console.log(user.uid)
+			db.collection('users').where('userID', '==', `${user.uid}`).get()
+			.then((querySnapshot) => {
+	 querySnapshot.forEach((doc) => {
+		console.log(doc.id)
+		db.collection('users').doc(doc.id).update({
+				requestRole: roleSelect.value,
+				requestType: true,
+				requestStatus: "🟢"
+		})
+		 .then(()=>{
+			Swal.fire(
+				'Success!',
+				'Your Request Has Been Submited to the Administrator!',
+				'success'
+			  )
+	 })
+	 })
+	
+	})
+	}
+	})
+	
 		
-}}
+}
 	})
 
