@@ -87,7 +87,7 @@ const renderUser = (doc) => {
     data.forEach(doc=> {
       const li = `
        <tr data-id='${doc.id}'>
-      <td>${doc.data().userFirstname} ${doc.data().userLastname}</td>
+      <td>${doc.data().fullName}</td>
    
       <td>${doc.data().userEmail}</td>
         <td>${doc.data().userRole}</td>
