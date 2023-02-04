@@ -282,7 +282,7 @@ renderAllowedUsers()
 	<div class="course">
 		<div class="course-preview">
 			<h6 class="alloweduserheader">Allowed User</h6>
-			<h3 class="username">${doc.data().userFirstname} ${doc.data().userLastname}</h3>
+			<h3 class="username">${doc.data().fullName}</h3>
 		</div>
 		<div class="course-info">
 			<div class="user_card">
@@ -1929,7 +1929,7 @@ if (data.some(checkUsername) == true) {
                     <span class="checkbox">
                      <i class='bx bx-check' ></i>
                     </span>
-                    <span class="item-text">${doc.data().userFirstname} ${doc.data().userLastname} | ${doc.data().userCompanyname} | ${doc.data().userEmail}</span>
+                    <span class="item-text">${doc.data().fullName} | ${doc.data().userCompanyname} | ${doc.data().userEmail}</span>
                 </li>
        `
        const listitems = document.querySelectorAll('.list-items')
