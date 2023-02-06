@@ -363,7 +363,7 @@ console.log(newArray)
 
     var numCrm = newArray.filter(function (el)
 {
-  return el.crm == "Y";
+  return el.substanceType == "CRM";
 }
 );
    console.log(numCrm)
@@ -801,7 +801,7 @@ const summedrecyc = document.querySelector('.summedrecyc')
 summedrecyc.innerHTML = ""
 
 buildTable(result)
-	function buildTable(result){
+	function buildTable(result) {
 
 		for (var i = 0; i < result.length; i++){
 			var recycarr = `<tr>
@@ -812,8 +812,6 @@ buildTable(result)
                   
 					  </tr>`
 		summedrecyc.innerHTML += recycarr
-
-
 		}
 	}
 
@@ -995,7 +993,7 @@ sumRecovWeightg.forEach((el)=> {
   el.innerHTML = sumVal.toFixed(2)
 })
 
-// Summary Recovering Weight (%)
+// Summary Recovering Weight (g)
   var sumAssess = document.querySelector(".sumAssess"),
   sumVal = 0;
 for (var i = 1; i < sumAssess.rows.length; i++) {

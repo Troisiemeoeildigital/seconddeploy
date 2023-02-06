@@ -192,8 +192,6 @@ document.querySelector(".files").addEventListener("change", function(e) {
     memo: addMemo.value,
     productImg: url,
     createdAt: firebase.firestore.FieldValue.serverTimestamp()
-
-
   })
   
     Swal.fire(
