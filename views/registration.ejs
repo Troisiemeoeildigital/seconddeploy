@@ -9,6 +9,7 @@
     <title>Kitech - Registration</title>
       <!-- Favicon -->
        <link rel="stylesheet" href="./mvp.css" />
+       
       <style>
          .form-control {
             background: #f3f6fd;
@@ -17,6 +18,15 @@
       </style>
    </head>
   <body class=" ">
+   <nav class="navbar navbar-expand-lg navbar-light bg-white" style="margin-top: 0;
+   padding: 0;
+   height: 9em;">
+      <div class="container">
+          <a class="navbar-brand" href="/">
+              <img src="./ci_logo.jpg" alt="brand" style="width: 22em;">
+          </a>
+      </div>
+  </nav>
     <!-- loader Start -->
     
     <!-- loader END -->
@@ -24,7 +34,8 @@
       <div class="wrapper" style="    background-color: #f3f6fd;">
       <section class="login-content">
          <div class="container">
-            <div class="row align-items-center justify-content-center height-self-center">
+            <div class="row  justify-content-center height-self-center" style="align-items: flex-start;
+            margin-top: 12%;">
                <div class="col-lg-8">
                   <div class="card auth-card">
                      <div class="card-body p-0">
@@ -82,7 +93,7 @@
                                                             justify-content: space-between;
                                                             align-items: center;
                                                                ">
-    <button type="submit" class="btn btn-primary float-right" style="background-color: #1f1c2f;
+    <button type="submit" class="btn btn-primary float-right" style="background-color: #fb8500;
     border: 0;">회원가입</button>
                                     <p class="mt-3">
                                        이미 계정이 있으신가요?  <a href="./login" class="text-primary">로그인</a>
@@ -154,7 +165,33 @@ console.log("im updated!")
                   requestRole: "No Request has been sent.",
                   userRole: "Default"
                })
-               Swal.fire(
+               let timerInterval
+                        Swal.fire({
+                        title: 'Please Wait...',
+                        html: "We're creating your account.",
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                           Swal.showLoading()
+                           const b = Swal.getHtmlContainer().querySelector('b')
+                           timerInterval = setInterval(() => {
+                              b.textContent = Swal.getTimerLeft()
+                           }, 100)
+                        },
+                        willClose: () => {
+                           clearInterval(timerInterval)
+                        }
+                        }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                           console.log('I was closed by the timer')
+                        }
+                        })
+               console.log(user.email)
+                 const addDefaultRole = functions.httpsCallable('addDefaultRole');
+                  addDefaultRole({email: user.email}).then(result => {
+                     console.log(result);
+                     Swal.fire(
                         '계정 생성이 완료되었습니다!',
                         `아래 계정으로 로그인하실 수 있습니다:
                         <br />
@@ -163,10 +200,6 @@ console.log("im updated!")
                         비밀번호: ${password}`,
                         'success'
                         )
-               console.log(user.email)
-                 const addDefaultRole = functions.httpsCallable('addDefaultRole');
-                  addDefaultRole({email: user.email}).then(result => {
-                     console.log(result);
                   })
                 return user.getIdToken().then(  (idToken) => {
                   return fetch("/sessionLogin", {
